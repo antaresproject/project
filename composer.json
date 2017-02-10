@@ -1,5 +1,5 @@
 {
-    "name": "antares/project",
+    "name": "antaresproject/project",
     "description": "Antares Provides Functionalities For Custom Products Development",
     "homepage": "http://antaresproject.io",
     "keywords": [
@@ -23,67 +23,67 @@
     "repositories": [
         {
             "type": "git",
-            "url": "http://git.mglocal/core/core.git"
+            "url": "https://github.com/antaresproject/core/core.git"
         },
         {
             "type": "git",
-            "url": "http://git.mglocal/components/module.git"
+            "url": "https://github.com/antaresproject/components/module.git"
         },
         {
             "type": "git",
-            "url": "http://git.mglocal/components/logger.git"
+            "url": "https://github.com/antaresproject/components/logger.git"
         },
         {
             "type": "git",
-            "url": "http://git.mglocal/components/updater.git"
+            "url": "https://github.com/antaresproject/components/updater.git"
         },
         {
             "type": "git",
-            "url": "http://git.mglocal/components/translations.git"
+            "url": "https://github.com/antaresproject/components/translations.git"
         },
         {
             "type": "git",
-            "url": "http://git.mglocal/components/widgets.git"
+            "url": "https://github.com/antaresproject/components/widgets.git"
         },
         {
             "type": "git",
-            "url": "http://git.mglocal/components/tester.git"
+            "url": "https://github.com/antaresproject/components/tester.git"
         },
         {
             "type": "git",
-            "url": "http://git.mglocal/components/reports.git"
+            "url": "https://github.com/antaresproject/components/reports.git"
         },
         {
             "type": "git",
-            "url": "http://git.mglocal/components/notifications.git"
+            "url": "https://github.com/antaresproject/components/notifications.git"
         },
         {
             "type": "git",
-            "url": "http://git.mglocal/components/customfields.git"
+            "url": "https://github.com/antaresproject/components/customfields.git"
         },
         {
             "type": "git",
-            "url": "http://git.mglocal/components/control.git"
+            "url": "https://github.com/antaresproject/components/control.git"
         },
         {
             "type": "git",
-            "url": "http://git.mglocal/components/automation.git"
+            "url": "https://github.com/antaresproject/components/automation.git"
         },
         {
             "type": "git",
-            "url": "http://git.mglocal/components/search.git"
+            "url": "https://github.com/antaresproject/components/search.git"
         },
         {
             "type": "git",
-            "url": "http://git.mglocal/components/api.git"
+            "url": "https://github.com/antaresproject/components/api.git"
         },
         {
             "type": "git",
-            "url": "http://git.mglocal/components/ban_management.git"
+            "url": "https://github.com/antaresproject/components/ban_management.git"
         },
         {
             "type": "git",
-            "url": "http://git.mglocal/components/two_factor_auth.git"
+            "url": "https://github.com/antaresproject/components/two_factor_auth.git"
         }
     ],
     "require": {
