@@ -1,0 +1,27 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            Module {{ manifest.name }} details
+        </h3>
+    </div>
+    <div class="panel-body">
+        <div class="clearfix"></div>
+        <blockquote>
+            <p>{{ manifest.description }}</p>
+        </blockquote>
+        <ul class="list-group">
+            {%if manifest.version %}
+                <li class="list-group-item">Version: <span class="label label-success">{{ manifest.version }}</span> </li>
+            {% endif %}
+            {%if manifest.author %}
+                <li class="list-group-item">Author: {{ manifest.author }}</li>
+            {% endif %}
+            {%if manifest.url %}
+                <li class="list-group-item">Documentation: {{ manifest.url }}</li>
+            {% endif %}
+            {%if manifest.name %}
+                <li class="list-group-item">Namespace: {{ manifest.name }}</li>
+            {% endif %}
+        </ul>
+    </div>
+</div>

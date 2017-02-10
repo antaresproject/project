@@ -1,0 +1,16 @@
+{% block javascripts %}
+    {%  
+        set asset = app('antares.asset').container('antares/foundation::footer').script('require',    'https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.2/require.min.js') 
+    %}     
+    {{ asset.scripts()|raw }}
+    {{ asset.styles()|raw }}
+{% endblock %}
+{% set dynamic = app('antares.asset').container('antares/foundation::scripts') %}
+<script type="text/javascript">
+    {{ dynamic.requireJs()|raw }}
+        window.addEventListener("load", function (event) {
+            $('.grid-stack,form').css('opacity', '1');
+        });
+</script>
+{{ dynamic.styles()|raw }}
+{{ brandstyles|raw }}

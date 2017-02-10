@@ -1,0 +1,62 @@
+{% extends ajax ? "antares/foundation::layouts.exception.exception_clear" : "antares/foundation::layouts.exception.exception_details" %}
+{% block content %}
+    <div style="margin:20px;" >
+        <h1>{{ data['type'] }}</h1>
+        <p class="message">
+            {{ data['message'] }}        
+        </p>
+        <div class="source">
+            <p class="file">
+                {{ data['file'] }} "{{ data['line'] }}"            
+            </p>
+            {{ closure(renderSourceCode,data['file'], data['line'], maxSourceLines)|raw }}
+        </div>
+        <div class="traces">
+            <h2>
+                {{ trans('Stack Trace')}}
+            </h2>
+            {% set count=0 %}        
+            <table style="width:100%;">
+                {%  for n,trace in data['traces']   %}                
+                    {% if closure(isCoreCode,trace) %}
+                        {% set cssClass = 'core collapsed' %}
+                    {% elseif ++count>3 %}    
+                        {% set cssClass = 'app collapsed' %}
+                    {% else %}
+                        {% set cssClass = 'app expanded' %}
+                        {% set code = closure(hasCode,trace['file']) %}
+                    {% endif %}    
+                    <tr class="trace {{ cssClass }}">
+                        <td class="number">
+                            #{{ n }}
+                        </td>
+                        <td class="content">
+                            <div class="trace-file">
+                                {% if code %}                                
+                                    <div class="plus">+</div>
+                                    <div class="minus">–</div>
+                                {% endif %}
+                                &nbsp;
+                                {{ trace['file'] }} ( {{ trace['line'] }} ) :
+                                {% if trace['class'] is not empty %}
+                                    <strong>{{ trace['class'] }}</strong>{{ trace['type'] }}
+                                {% endif %}    
+                                {% if trace['args'] is not empty %}                            
+                                    <strong>{{ trace['function'] }}</strong>
+                                    ({{ closure(argumentsToString,trace['args']) }})
+                                {% endif %}    
+                            </div>
+                            {% if code %}
+                                {{ closure(renderSourceCode,trace['file'], trace['line'], maxTraceSourceLines)|raw }}
+                            {% endif %}                            
+                        </td>
+                    </tr>
+                {% endfor   %}
+            </table>
+        </div>
+    </div>
+    <div class="version">
+        {{ "now"|date("Y-m-d H:i:s") }} {{ data['version'] }}
+    </div>    
+{% endblock %}
+

@@ -1,0 +1,20 @@
+{% block metas %}
+    <div class="{{ get_meta('header::class', 'page-header') }}">
+        {% if (get_meta('header::add-button')|length>0) %}
+            <div class="pull-right">
+                <a href="{{ app('url').current() }}/create" class="btn btn-primary">
+                    {{ trans('antares/foundation::label.add') }}
+                </a>
+            </div>
+        {% endif %}
+
+        <h2>
+            {{ get_meta('title', '') }}
+            {% if get_meta('description') is not empty %}
+                <small>{{ get_meta('description') or '' }}</small>
+            {% endif %}    
+
+        </h2>
+    </div>
+    {{ set_meta('header::class', 'page-header') }}
+{% endblock %}

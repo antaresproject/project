@@ -1,0 +1,28 @@
+<div class="email-additions">
+    <div class="btn-group flex">
+        {% if variables is not empty %}
+            {% for extension, variables_container in variables %}                            
+                <div class="ddown ddown--left mr-24">
+                    <div id="{{ extension }}" class="ddown__init btn btn--dropdown btn--bold btn--md btn--default mdl-js-button mdl-js-ripple-effect">
+                        {{ extension }}
+                    </div>
+                    <div class="ddown__content">
+                        <div class="ddown__arrow"></div>
+                        <ul class="ddown__menu">
+                            {% for value in variables_container %}
+                                <li>
+                                    <a class="mdl-js-button mdl-js-ripple-effect insert-variable" href="#" title="{{ extension|lower }}::{{ value['name'] }}" data-target="group"><i class="zmdi zmdi-file-plus"></i><span>{{ value['name'] }}</span><span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %} 
+        {% if instructions is not empty %}
+            {% for name, instruction in instructions %}
+                <a href="#" class="btn btn--md btn--bold btn--primary mdl-button mdl-js-button mdl-js-ripple-effect insert-instruction" title="{{ instruction.instruction }}">{{ name }}</a>
+            {% endfor %}  
+        {% endif %} 
+    </div>
+</div>

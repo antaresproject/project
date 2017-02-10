@@ -1,0 +1,10 @@
+{% extends  app.request.isXmlHttpRequest() ? "antares/foundation::layouts.antares.clear":  "antares/foundation::layouts.antares.main" %}   
+{% block main_content %}
+    <section class="main-content {{ panes|length>0 ? 'nopadding':'' }}">
+        {% include 'antares/foundation::components.messages'  %}              
+        <div class="grid-container grid-col--container grid-container--footer ">
+            {% block content %}
+            {% endblock %}            
+        </div>
+    </section>
+{% endblock %} 

@@ -1,0 +1,15 @@
+{% if breadcrumbs %}
+    {% for breadcrumb in breadcrumbs %}        
+        {% if (breadcrumb.url and not breadcrumb.last) or breadcrumb.force_link %}
+            <li>
+                <a href="{{ breadcrumb.url }}">
+                    {{ breadcrumb.title }}
+                </a>
+            </li>
+        {% else %}
+            <li class="active">
+                {{ breadcrumb.title }}
+            </li>
+        {% endif %}
+    {% endfor %}
+{% endif %}

@@ -1,0 +1,10 @@
+{% set user = auth_user() %}
+<div class="dark-blue rounded-top box">
+	<div class="box-padding pull-center">
+		<h3>{{ user.fullname }}</h3>
+	</div>
+</div>
+<div class="white rounded-bottom box no-padding list-group">
+	<a href="{{ handles('antares::account') }}" class="list-group-item">Profile</a>
+	<a href="{{ handles('logout') }}" class="list-group-item">Logout</a>
+</div>

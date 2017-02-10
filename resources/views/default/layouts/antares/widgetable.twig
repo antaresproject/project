@@ -1,0 +1,20 @@
+{% extends 'antares/foundation::layouts.antares.main' %}
+{% block sidebar_top_widgets %}
+    {% include 'antares/foundation::layouts.antares.partials._sidebar_top_widgets' %}    
+{% endblock %}    
+{% block main_content %}    
+    <section class="main-content">
+        {% include 'antares/foundation::components.messages' %} 
+        {% include 'antares/foundation::layouts.antares.partials._left_panel' %}
+        {% if app('antares.widgets.installed') %}
+            {% block gridable %}        
+                {% include 'antares/foundation::layouts.antares.partials._gridable' with {content: block('content')} %}
+            {% endblock %}                           
+        {% else %}
+            <div class="grid-col grid-col--container">
+                {% block content %}
+                {% endblock %}
+            </div>
+        {% endif %} 
+    </section>
+{% endblock %} 

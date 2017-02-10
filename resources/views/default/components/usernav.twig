@@ -1,0 +1,30 @@
+{% set user = auth_user() %}
+{% if get_meta('navigation::usernav', true) %}
+<ul class="nav navbar-nav navbar-right">
+    <li class="dropdown" id="user-menu">
+        <a href="#user-menu" rel="user-menu" class="dropdown-toggle" data-toggle="dropdown">
+            <i class="icon-user"></i> {% if user is null %} {{ trans('antares/foundation::title.login') }} {% else %} {{ user.fullname }} {%endif %}
+        </a>
+        {% if not user is null %}
+        <ul class="dropdown-menu">
+            <li>
+                <a href="{{ handles('antares::account') }}">
+                    {{ trans('antares/foundation::title.account.profile') }}
+                </a>
+            </li>
+            <li>
+                <a href="{{ handles('antares::account/password') }}">
+                    {{ trans('antares/foundation::title.account.password') }}
+                </a>
+            </li>
+            <li class="divider"></li>
+            <li>
+                <a href="{{ handles('logout') }}">
+                    {{ trans('antares/foundation::title.logout') }}
+                </a>
+            </li>
+        </ul>
+        {% endif %}
+    </li>
+</ul>
+{% endif %}

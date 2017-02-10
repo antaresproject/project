@@ -1,0 +1,33 @@
+{% extends "antares/foundation::layouts.quest.error" %}
+{% block content %}      
+    <div id="app-wrapper">
+        <div class="app-content page-error page-error--clean" >
+            <section class="main-content">
+                <div class="error-container">
+                    <div class="top-area">
+                        <div class="app-logo">
+                            <img src="{{ brand_logo('big','/img/theme/antares/logo/logo_mobile.png') }}" alt="{{ brand_title() }}">
+                        </div>
+                        <div class="error-message">
+                            <div class="error-message__bg"></div>
+                            <div class="error-message__text">
+                                <span class="error-code">404</span>
+                                <span class="error-desc">Page Not Found</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bottom-area">
+                        <div class="error-details">
+                            <p>The page you requested could not be found, either contact your webmaster or try again. Use your browsers <b>Back</b> button to navigate to the page you have previously come from.</p>
+                            <div class="btn-group">
+                                <a onclick="js:window.history.back();" href="#" class="go-back btn btn--md btn--default mdl-button mdl-js-button mdl-js-ripple-effect">
+                                    <i class="zmdi zmdi-long-arrow-left"></i> Back to previous page
+                                </a>                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>    
+{% endblock %}

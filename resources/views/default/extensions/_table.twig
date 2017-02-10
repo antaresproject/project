@@ -1,0 +1,64 @@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>{{ trans('antares/foundation::label.components.name') }}</th>            
+            <th>{{ trans('antares/foundation::label.description') }}</th>
+        </tr>
+    </thead>
+    <tbody>        
+        {% if extensions is empty %}
+            <tr>
+                <td colspan="2">{{ trans('antares/foundation::label.no-extension') }}</td>
+            </tr>
+        {% else %}
+            {% for name,extension  in extensions %}
+                {% set extension = fluent(extension) %}
+                        <tr>
+                            <td>
+                                <strong>
+                                    
+                                    {% set activated = app('antares.extension').activated(name) %}
+                                    {% set started = app('antares.extension').started(name) %}
+                                    {% if not started %}                                    
+                                        {{ extension.name }}
+                                    {% else %}
+                                        <a href="{{ handles("antares::extensions/"~name~"/configure") }}">
+                                            {{ extension.name }}
+                                        </a>
+                                     {% endif %}
+                                </strong>
+                            <div class="pull-right btn-group">
+                                {% if (not started) or (not activated) %}
+                                
+                                    <a href="{{ handles("antares::extensions/"~name~"/activate", {'csrf':true}) }}" class="btn btn-primary btn-mini">
+                                       {{ trans('antares/foundation::label.extensions.actions.activate') }}
+                                    </a>
+                                {% else %}
+                                    <a href="{{ handles("antares::extensions/"~name~"/deactivate", {'csrf':true}) }}" class="btn btn-warning btn-mini">
+                                        {{ trans('antares/foundation::label.extensions.actions.deactivate') }}
+                                    </a>
+                                {% endif %}
+                                <a href="{{ handles("antares::extensions/"~name~"/uninstall", {'csrf':true}) }}" class="btn btn-warning btn-mini">
+                                   {{ trans('antares/foundation::label.extensions.actions.uninstall') }}
+                                </a>
+                                <a href="{{ handles("antares::extensions/"~name~"/delete", {'csrf':true}) }}" class="btn btn-danger btn-mini">
+                                   {{ trans('antares/foundation::label.extensions.actions.delete') }}
+                                </a>
+
+                            </div>
+                        </td>
+                        <td>
+                            <p>
+                                {{ extension.description }}
+                            </p>
+                            
+                            <span class="meta">
+                                {{ trans('antares/foundation::label.extensions.version', {'version':extension.version}) }} |
+                                {{ trans('antares/foundation::label.extensions.author', {'author': '<a href="%s" target="_blank">%s</a>'|format(extension.url,extension.author) })|raw }}
+                            </span>
+                        </td>
+                </tr>
+        {% endfor %}
+    {% endif %}
+</tbody>
+</table>

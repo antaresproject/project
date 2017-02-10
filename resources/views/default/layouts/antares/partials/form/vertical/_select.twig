@@ -1,0 +1,19 @@
+{% if control.hasWrapper %}
+    <div class="{{ control.getWrapper('class') }}" >
+    {% endif %}
+    <div class="col-16 mb2">
+        {{ Form.label(control.name, control.label,{'class':'form-block__name'})|raw }}    
+    </div>
+    <div class="col-16">
+        <div class="input-field input-field--desc {{ control.get('fieldClass')|raw }}">
+            {{ control.get('prepend')|raw }}
+            {{ control.getField(row, control, [])|raw }}
+            {% include 'antares/foundation::layouts.antares.partials.form.vertical._description' %}             
+        </div>
+    </div>
+    <span id="{{ control.id }}_error" class="error col-13 col-mb-11">
+        {{ errors.first(control.name, format)|raw }}
+    </span>
+    {% if control.hasWrapper %}
+    </div>
+{% endif %}    

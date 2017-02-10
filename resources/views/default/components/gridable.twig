@@ -1,0 +1,43 @@
+{% block gridable %}    
+    <div class="clearfix"></div>
+    <div class="container-fluid">
+        <div class="row">                        
+
+            {% set content_params=content_params() %}
+            {% if content_params %}
+                <div class="gridable-container">
+                    <div class="grid-stack">  
+                        <div class="grid-stack-item" id="{{ content_params.id }}" 
+                             data-gs-x="{{ content_params.x }}" 
+                             data-gs-y="{{ content_params.y }}" 
+                             data-gs-width="{{ content_params.width }}" 
+                             data-gs-height="{{ content_params.height }}"
+                             data-gs-max-width="{{ content_params.max_width }}"
+                             data-gs-max-height="{{ content_params.max_height }}"
+                             data-gs-min-width="{{ content_params.min_width }}"
+                             data-gs-min-height="{{ content_params.min_height }}" 
+                             data-gs-no-resize="{{ content_params.resizable=="true"?false:true }}"
+                             data-gs-no-move="{{ content_params.draggable=="true"?false:true }}"
+                             >                                                         
+                            <div class="grid-stack-item-content panel panel-default" data-scroll-area>
+                                <input type="hidden" name="current" value="{{ content_params.id }}" />
+                                {{ content|raw }}
+                            </div>
+                            <div class="widget-overlay"></div>
+                        </div>
+
+                        <div class="clearfix"></div>
+                        {% set widgets=widgets() %}                        
+                        {% for widget in widgets %}
+                            {{ widget(widget)|raw }}    
+                        {% endfor %}   
+                    </div>                
+                </div>
+                {% include "antares/widgets::admin.partials._modal_delete" %}
+            {% else %}
+                {{ content|raw }}
+            {% endif %}
+        </div>        
+    </div>
+    <div class="clearfix"></div>
+{% endblock %}

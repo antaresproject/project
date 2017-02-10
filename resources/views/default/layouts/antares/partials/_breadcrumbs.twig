@@ -1,0 +1,22 @@
+<div class="burgericon">
+    <a class="" href="#">
+        <span class="line line-1"></span>
+        <span class="line line-2"></span>
+        <span class="line line-3"></span>
+    </a>
+</div>
+<ul class="breadcrumbs">
+    {{ breadcrumbs|raw }}
+    {% if not auth_user() is null %}        
+        {% set panes=app('antares.widget').make('pane.menu.top') %}                                
+        {% if(panes|length>0) %}                      
+            {% for id,pane in panes %}                                    
+                {% if pane.html is not empty  %}
+                    {{ pane.html|raw }}
+                {% else %}
+                    {{ pane.content.render()|raw }}
+                {% endif %}
+            {% endfor %}              
+        {% endif %}   
+    {% endif %}         
+</ul>

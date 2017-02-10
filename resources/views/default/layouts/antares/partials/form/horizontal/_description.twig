@@ -1,0 +1,12 @@
+<div class="col-16 nopadding">
+    {% if control.inlineHelp|length>1 %}
+        <div class="input-field__desc">
+            {{ control.inlineHelp|raw }}
+        </div>
+    {% endif %}
+    {% if control.help|length>1 %}
+        <div class="input-field__desc">
+            {{ control.help|raw }}
+        </div>
+    {% endif %}
+</div>

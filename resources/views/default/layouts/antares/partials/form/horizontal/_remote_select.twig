@@ -1,0 +1,17 @@
+{% if control.hasWrapper %}
+    <div class="{{ control.getWrapper('class') }}" >
+    {% endif %}
+    <div class="col-16 mb2">
+        {{ Form.label(control.name, control.label,{'class':'form-block__name'})|raw }}    
+    </div>
+    <div class="col-16">
+        <div class="input-field {{ (field.inlineHelp|length>1 or field.help|length>1) ? 'input-field--desc' : ''  }}">        
+            {{ control.getField(row, control, [])|raw }}
+            {% if field.inlineHelp|length>1 or field.help|length>1 %}
+                {% include 'antares/foundation::layouts.antares.partials.form.horizontal._description' %}             
+            {% endif %}
+        </div>
+    </div>
+    {% if control.hasWrapper %}
+    </div>
+{% endif %}    

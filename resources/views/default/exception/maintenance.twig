@@ -1,0 +1,29 @@
+{% extends "antares/foundation::layouts.quest.error" %}
+{% block content %}      
+    <div id="app-wrapper">
+        <div class="app-content page-error page-error--clean" >
+            <section class="main-content">
+                <div class="error-container">
+                    <div class="top-area">
+                        <div class="app-logo">
+                            <img src="{{ asset('_dist/img/theme/antares/logo/full-logo-white.svg') }}" alt="{{ brand_title() }}">
+                        </div>
+                        <div class="error-message">
+                            <div class="error-message__bg"></div>
+                            <div class="error-message__text">
+                                <span class="error-code"></span>
+                                <span class="error-desc">Maintenance Mode</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bottom-area">
+                        <div class="error-details">
+
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>    
+{% endblock %}

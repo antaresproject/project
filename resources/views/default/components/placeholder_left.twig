@@ -1,0 +1,28 @@
+<ul class="menu-aside">
+    {% for item in menu %}
+        <li class="{{ item.childs is not empty ? 'has-submenu':'' }} {{ item.isChildActive() ? 'is-active' : '' }}">
+            <a href="{{ item.link }}" class="mdl-js-button mdl-js-ripple-effect">
+                {% if item.icon %}
+                    <i class="zmdi {{ item.icon }}"></i>
+                {% endif %}
+                <span>
+                    {{ item.title }}
+                </span>
+            </a>
+            {% if item.childs is not empty  %}
+                <ul class="menu-aside__submenu">
+                    {% for child in item.childs %}
+                        <li {{ child.isChildActive()?'class="is-active"':'' }}>
+                            <a href="{{ child.link}}" class="mdl-js-button mdl-js-ripple-effect">                                
+                                <i class="zmdi {{ item.icon }}"></i>
+                                <span>
+                                    {{ child.title}}
+                                </span>
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>

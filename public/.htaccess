@@ -1,0 +1,52 @@
+<IfModule mod_rewrite.c>
+        <files *.js.gz>
+	  AddType "text/javascript" .gz
+	  AddEncoding gzip .gz
+	</files>
+        <files *.gz.js>
+	  AddType "text/javascript" .gz
+	  AddEncoding gzip .gz
+	</files>
+	<files *.css.gz>
+	  AddType "text/css" .gz
+	  AddEncoding gzip .gz
+	</files>
+        <files *.gz.css>
+	  AddType "text/css" .gz
+	  AddEncoding gzip .gz
+	</files>
+	<IfModule mod_negotiation.c>
+		Options -MultiViews
+	</IfModule>
+
+	RewriteEngine On
+
+	# Redirect Trailing Slashes If Not A Folder...
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteRule ^(.*)/$ /$1 [L,R=301]
+
+	RewriteCond %{HTTP:Authorization} ^(.*)
+        RewriteRule .* - [e=HTTP_AUTHORIZATION:%1]
+
+	# Secure Front Themes...
+	RewriteRule ^themes/.*\.(blade.php|php)$ - [F,L,NC]
+
+	# Handle Front Controller...
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteRule ^ index.php [L]
+</IfModule>
+<FilesMatch "\.(ico|pdf|flv|jpg|jpeg|png|gif|js|css|swf)(\.gz)?$">
+  Header set Expires "Thu, 15 Apr 2020 20:00:00 GMT"
+</FilesMatch>
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresDefault "access plus 1 year"
+    ExpiresByType text/css "access plus 1 year"    
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType application/x-javascript "access plus 1 year"
+    ExpiresByType application/javascript "access plus 1 year"
+    ExpiresByType application/x-icon "access plus 1 year"
+</IfModule>

@@ -1,0 +1,21 @@
+{% extends 'antares/foundation::layouts.antares.main' %}
+{% block sidebar_top_widgets %}
+
+{% endblock %}    
+{% block main_content %}
+    <section class="main-content">
+        {% include 'antares/foundation::components.messages'  %}                                    
+        {% block content %}
+        {% endblock %}         
+        {% if app('antares.widgets.installed') %}            
+            <div class="grid-stack">                
+                {{ widget_forced('user_details',{'width':2,'height':7,'disabled':false,'x':0,'y':0})|raw }}                        
+                {{ widget_forced('items_widget',{'width':7,'height':14,'disabled':false,'x':2,'y':0})|raw }}                                                        
+                {{ widget_forced('activity_logs',{'width':7,'height':12,'disabled':false,'x':2,'y':17})|raw }}                                        
+                {{ widget_forced('tags',{'width':3,'height':3,'disabled':false,'x':9,'y':0})|raw }}
+                {{ widget_forced('comments',{'width':3,'height':12,'disabled':false,'x':9,'y':9})|raw }}                                                      
+                {{ widget_forced('notifications_widget',{'width':3,'height':9,'disabled':false,'x':9,'y':20})|raw }}                                
+            </div>                            
+        {% endif %}
+    </section>
+{% endblock %} 

@@ -1,0 +1,49 @@
+{% extends "antares/foundation::layouts.quest.main" %}   
+{% block content %}
+    {% set formbuilder=app('form') %}   
+    {% set request=app('request') %}   
+    <div id="app-wrapper">
+        <div class="app-content page-login">
+            <section class="main-content">
+                <div class="login-box">
+                    <div class="login-box__header"><img src="{{ brand_logo('big','/_dist/img/theme/antares/logo/logo_mobile.png') }}" alt=""></div>                        
+                        {% set formbuilder = app('form') %}
+                        {{ formbuilder.open({'url':handles("antares::forgot/reset"), 'method':'POST'})|raw }}
+                    <input type="hidden" name="token" value="{{ token }}">
+
+                    <div class="mdl-textfield mdl-textfield--billevo mdl-js-textfield mdl-textfield--floating-label {{ errors.has('email')?'is-invalid':'' }}" >
+                        {{ formbuilder.input('email', 'email', request.old('email'), {'required':true,'class':'mdl-textfield__input','id':'email'})|raw }}                        
+                        <label class="mdl-textfield__label" for="Email">
+                            {{ trans('antares/foundation::label.users.email') }}                                                        
+                        </label>
+                        {% if errors.has('email') %}
+                            {{ errors.first('email', '<span class="mdl-textfield__error">:message</span>')|raw }}                        
+                        {% endif %}
+                    </div>
+                    <div class="mdl-textfield mdl-textfield--billevo mdl-js-textfield mdl-textfield--floating-label mt8 mb24 {{ errors.has('password')?'is-invalid':'' }}" >
+                        {{ formbuilder.input('password', 'password', '', {'required':true, 'class':'mdl-textfield__input','id':'password'})|raw }}
+                        <label class="mdl-textfield__label" for="password">
+                            {{ trans('antares/foundation::label.users.password') }}                            
+                        </label>
+                        {% if errors.has('password') %}
+                            {{ errors.first('password', '<span class="mdl-textfield__error">:message</span>')|raw }}                        
+                        {% endif %}                        
+                    </div>
+                    <div class="mdl-textfield mdl-textfield--billevo mdl-js-textfield mdl-textfield--floating-label mt8 mb24 {{ errors.has('password_confirmation')?'is-invalid':'' }}" >
+                        {{ formbuilder.input('password', 'password_confirmation', '', {'required':true, 'class':'mdl-textfield__input','id':'password_confirmation'})|raw }}
+                        <label class="mdl-textfield__label" for="password_confirmation">
+                            {{ trans('antares/foundation::label.account.confirm_password') }}                            
+                        </label>
+                        {% if errors.has('password_confirmation') %}
+                            {{ errors.first('password_confirmation', '<span class="mdl-textfield__error">:message</span>')|raw }}                        
+                        {% endif %}                        
+                    </div>
+                    <button class="btn btn--submit btn--s-xxl btn--primary mdl-button mdl-js-button mdl-js-ripple-effect"  type="submit">
+                        {{ get_meta('title', 'Submit') }}
+                    </button>
+                    {{ formbuilder.close()|raw }}       
+                </div>
+            </section>
+        </div>
+    </div>
+{% endblock %}    

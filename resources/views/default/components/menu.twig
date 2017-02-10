@@ -1,0 +1,46 @@
+<ul class="nav navbar-nav" role="menu">
+    {% for item in menu %}
+        {% if item.childs|length<1 %}   
+            <li>
+                <a href="{{ item.link }}">
+                    {{ item.title }}
+                </a>
+            </li>
+        {% else %}
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ item.title }}</a>
+                <ul class="dropdown-menu">                    
+                    {% if ( not (item.link=="#" and item.link is not empty) ) %}                    
+                        <li>
+                            <a href="{{ item.link }}">
+                                {{ item.title }}
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                    {% endif %}
+                    {% for child in item.childs %}
+                    {% set grands = child.childs %}
+                    <li class="{% if (grands is not empty) %} dropdown-submenu {% else %} normal {% endif %}">
+                        <a href="{{ child.link }}">
+                             {{ child.title }}
+                         </a>
+                         {% if (child.childs is not empty) %}
+                         <ul class="dropdown-menu">
+                             {% for grand in child.childs %}
+                             <li>
+                                 <a href="{{ grand.link }}">
+                                     {{ grand.title }}
+                                 </a>
+                             </li>
+                             {% endfor %}
+                         </ul>
+                         {% endif %}
+                     </li>
+                    {% endfor %}
+                </ul>
+            </li>
+        {% endif %}
+    {% endfor %}
+</ul>
+
+    

@@ -1,0 +1,155 @@
+
+.error-container ol,ul{list-style:none;}
+.error-container blockquote,q{quotes:none;}
+.error-container blockquote:before,.error-container blockquote:after,.error-container q:before,.error-container q:after{content:none;}
+.error-container :focus{outline:0;}
+.error-container ins{text-decoration:none;}
+.error-container del{text-decoration:line-through;}
+.error-container table{border-collapse:collapse;border-spacing:0;}
+
+.error-container{
+    font: normal 9pt "Verdana";
+    color: #000;
+    background: #fff;
+}
+
+.error-container h1 {
+    font: normal 18pt "Verdana";
+    color: #f00;
+    margin-bottom: .5em;
+}
+
+.error-container h2 {
+    font: normal 14pt "Verdana";
+    color: #800000;
+    margin-bottom: .5em;
+}
+
+.error-container h3 {
+    font: bold 11pt "Verdana";
+}
+
+.error-container pre {
+    font: normal 11pt Menlo, Consolas, "Lucida Console", Monospace;
+}
+
+.error-container pre span.error {
+    display: block;
+    background: #fce3e3;
+}
+
+.error-container pre span.ln {
+    color: #999;
+    padding-right: 0.5em;
+    border-right: 1px solid #ccc;
+}
+
+.error-container pre span.error-ln {
+    font-weight: bold;
+}
+
+.error-container .container {
+    margin: 1em 4em;
+}
+
+.error-container .version {
+    color: gray;
+    font-size: 8pt;
+    border-top: 1px solid #aaa;
+    padding-top: 1em;
+    margin-bottom: 1em;
+}
+
+.error-container .message {
+    color: #000;
+    padding: 1em;
+    font-size: 11pt;
+    background: #f3f3f3;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    margin-bottom: 1em;
+    line-height: 160%;
+}
+
+.error-container .source {
+    margin-bottom: 1em;
+}
+
+.error-container .code pre {
+    background-color: #ffe;
+    margin: 0.5em 0;
+    padding: 0.5em;
+    line-height: 125%;
+    border: 1px solid #eee;
+}
+
+.error-container .source .file {
+    margin-bottom: 1em;
+    font-weight: bold;
+}
+
+.error-container .traces {
+    margin: 2em 0;
+}
+
+.error-container .trace {
+    margin: 0.5em 0;
+    padding: 0.5em;
+}
+
+.error-container .trace.app {
+    border: 1px dashed #c00;
+}
+
+.error-container .trace .number {
+    text-align: right;
+    width: 2em;
+    padding: 0.5em;
+}
+
+.error-container .trace .content {
+    padding: 0.5em;
+}
+
+.error-container .trace .plus,
+.error-container .trace .minus {
+    display:inline;
+    vertical-align:middle;
+    text-align:center;
+    border:1px solid #000;
+    color:#000;
+    font-size:10px;
+    line-height:10px;
+    margin:0;
+    padding:0 1px;
+    width:10px;
+    height:10px;
+}
+
+.error-container .trace.collapsed .minus,
+.error-container .trace.expanded .plus,
+.error-container .trace.collapsed pre {
+    display: none;
+}
+
+.error-container .trace-file {
+    cursor: pointer;
+    padding: 0.2em;
+}
+
+.error-container .trace-file:hover {
+    background: #f0ffff;
+}
+.error-container .footer{
+    position:fixed;
+    right:0;
+    bottom:0;            
+}
+.error-container .footer a{
+    border-bottom-right-radius: 0px;  
+    border-bottom-left-radius: 0px;
+    border-top-right-radius: 0px;
+    padding-left:100px;
+    padding-right:100px;
+}

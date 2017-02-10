@@ -1,0 +1,23 @@
+{% set user = auth_user() %}
+{% if get_meta('navigation::usernav', true) %}
+    <header>    
+        <img src="{{ asset('packages/antares/foundation/img/konrad-avatar.png') }}" alt="">
+        <div class="description">
+            <span class="name">
+                {% if user is null %} {{ trans('antares/foundation::title.login') }} {% else %} {{ user.fullname }} {%endif %}            
+            </span>
+            <span class="badge badge--success">Active</span>
+            <span class="company">INBS.software</span>
+            {% if not user is null %}
+                <div class="btn-group flex-group"  role="group">                
+                    <a class="btn btn--default" href="{{ handles('antares::account') }}">
+                        {{ trans('antares/foundation::title.account.profile') }}
+                    </a>                    
+                    <a class="btn btn--default" href="{{ handles('antares::account/password') }}">
+                        {{ trans('antares/foundation::title.account.password') }}
+                    </a>                    
+                </div>
+            {% endif %}
+        </div>                                      
+    </header>    
+{% endif %}

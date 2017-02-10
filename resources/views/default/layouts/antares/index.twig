@@ -1,0 +1,19 @@
+{% extends  app.request.isXmlHttpRequest() ? "antares/foundation::layouts.antares.clear":  "antares/foundation::layouts.antares.main" %}   
+{% block main_content %}
+    {% set panes=app('antares.widget').make('pane.left') %}    
+    <section class="main-content {{ (panes|length>0 or _context.form is defined) ? 'nopadding':'' }}">        
+        {% include 'antares/foundation::components.messages'  %}                      
+        {% set formClass=_context.form is defined ? ((panes|length<=0)?'grid-container--1col full-height grid-container--footer' : 'grid-container--footer'):'' %}
+        <div class="{{ panes|length>0 ? 'grid-container grid-container--2col grid-container--no-padd '~formClass:((formClass|length>0)?'grid-container '~formClass:'grid-container-display') }}">
+            {% include 'antares/foundation::layouts.antares.partials._left_panel' with {panes: panes} %}
+            {% if panes|length>0 or _context.form is defined %}
+                <div class="grid-col grid-col--container">
+                {% endif %}
+                {% block content %}
+                {% endblock %}
+                {% if panes|length>0 or _context.form is defined %}
+                </div>
+            {% endif %}            
+        </div>
+    </section>            
+{% endblock %} 

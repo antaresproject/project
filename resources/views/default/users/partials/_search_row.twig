@@ -1,0 +1,12 @@
+<div class="type--contact flex-block">
+    <div class="avatar avatar--active avatar--xs">
+        <img width="40" height="40"  src="{{ profile_picture(model.email) }}" /><div></div>            
+    </div>
+    <div class="flex-block__content">
+        <span class="flex-block__title">#{{ model.id }}, {{ model.fullname|raw }}</span>
+        <div class="flex-block__desc">{{ model.email|raw }}</div>
+    </div>
+    <div class="flex-block__badge">
+        {{ user_status(model)|raw }}
+    </div>
+</div>

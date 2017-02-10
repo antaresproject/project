@@ -1,0 +1,55 @@
+{% extends ajax ? "antares/foundation::layouts.exception.exception_clear" : "antares/foundation::layouts.exception.exception" %}
+{% block content %}     
+    <div id="app-wrapper">
+        <div class="app-content error-page error-page--clean page-error error-page--clean">
+            <section class="main-content">
+                <div class="error-container">
+                    <div class="top-area">
+                        <div class="app-logo">
+                            <img src="{{ brand_logo('big','/img/theme/antares/logo/logo_mobile.png') }}" alt="{{ brand_title() }}">
+                        </div>
+                        <div class="error-message">
+                            <div class="error-message__bg"></div>
+                            <div class="error-message__text">
+                                <span class="error-code">500</span>
+                                <span class="error-desc">Internal Server Error</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bottom-area">
+                        <div class="error-details">
+                            <h3>Reason</h3>
+                            <p> 
+                                The server encountered an internal error or misconfiguration and was unable to complete your request.
+                                Please contact the site administrator, and inform them of the time the error occurred, and anything you might have done that may have caused the error.
+                                More information about this error may be available in the server error log.
+                            </p>
+                            {% if solution %}
+                                <h3>Possible Solution</h3>
+                                <p>
+                                    {{ solution|raw }}
+                                </p>
+                            {% endif %}
+                            <div class="btn-group">
+                                <a onclick="js:window.history.back();" href="#" class="go-back btn btn--md btn--default mdl-button mdl-js-button mdl-js-ripple-effect"><i class="zmdi zmdi-long-arrow-left"></i> Back to previous page</a>
+                                <a href="#" class="open-modal btn-link btn--md btn--primary mdl-button mdl-js-button mdl-js-ripple-effect" data-target=".send-notification">
+                                    Can't solve the problem?
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    {% if installed  %}
+        <input type="hidden" class="auto-send-url" name="auto_send_url" value="{{ handles('antares::logger/report',{'csrf':true}) }}" />
+        <input type="hidden" class="auto-send-localization" name="localization" value="{{ url }}" />
+        <input type="hidden" class="auto-send-description" name="description" value="{{ description }}" />
+        <div class="exception-container hidden">
+            {{ content }}
+        </div>
+    {% endif %}
+{% endblock %}
+

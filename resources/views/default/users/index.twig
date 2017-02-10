@@ -1,0 +1,5 @@
+{% extends "antares/foundation::layouts.antares.index" %}
+{% block content %}    
+    {{ dataTable.scripts()|raw }}
+    {{ dataTable.tableDeferred()|raw }}
+{% endblock %}

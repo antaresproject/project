@@ -1,0 +1,28 @@
+{% extends  app.request.isXmlHttpRequest() ? "antares/foundation::layouts.antares.clear":  "antares/foundation::layouts.antares.main" %}   
+{% block content %}       
+    {% block main_content %}
+        {% set panes=app('antares.widget').make('pane.left') %}        
+        <div class="error-container">
+            <div class="top-area">
+                <div class="app-logo">
+                    <img src="{{ asset('_dist/img/theme/antares/logo/full-logo-white.svg') }}" alt="{{ brand_title() }}">
+                </div>
+                <div class="error-message">
+                    <div class="error-message__bg"></div>
+                    <div class="error-message__text">
+                        <span class="error-code">400</span>
+                        <span class="error-desc">Entity Not Found</span>
+                    </div>
+                </div>
+            </div>
+            <div class="bottom-area">
+                <div class="error-details">
+                    <p>The object you requested could not be found, either contact your webmaster or try again. Use your browsers <b>Back</b> button to navigate to the page you have previously come from.</p>
+                    <div class="btn-group">
+                        <a href="javascript:window.history.go(-1);" class="go-back btn btn--md btn--default mdl-button mdl-js-button mdl-js-ripple-effect"><i class="zmdi zmdi-long-arrow-left"></i> Back to previous page</a>                            
+                    </div>
+                </div>
+            </div>
+        </div>            
+    {% endblock %} 
+{% endblock %}     

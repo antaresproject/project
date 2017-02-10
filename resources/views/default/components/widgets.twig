@@ -1,0 +1,15 @@
+<div class="clearfix"></div>
+<div class="container-fluid">
+    <div class="row">                                               
+        <div class="gridable-container">
+            <div class="grid-stack">    
+                {% set widgets=widgets() %}
+                {% for widget in widgets %}
+                    {{ widget(widget)|raw }}    
+                {% endfor %}   
+            </div>                
+        </div>
+    </div>        
+    <div class="clearfix"></div>
+    {% include "antares/widgets::admin.partials._modal_delete" %}
+</div>

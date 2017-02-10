@@ -1,0 +1,132 @@
+{% extends "antares/foundation::layouts.antares.index" %}   
+{% block content %}  
+    <div class="col-16">
+        <div class="card card--chart-small card--primary-light">
+            <div class="card__header">
+                <div class="card__header--top">
+                    <span>Module installer</span>
+                </div>                               
+            </div>
+            {% if modules|length<=0 %}
+                <div class="card__header-chart" >
+                    <span class="card__indicator">
+                        No modules available {% if category is not empty %} in {{ category }} category {% endif %}
+                    </span>
+                </div>
+                <div class="card__content">                                
+                    {% if can('antares::module-create') %}
+                        If you want to install your own module, please go to:                                
+                        <a class="btn btn-default btn-lg" href="{{ handles('antares::modules/'~category|default('addons')~'/create') }}" role="button">
+                            Module installer »
+                        </a>
+                    {% endif %}
+                </div>
+            {%else %}                        
+                {% if can('antares::module-create') %}
+                    <div class="card__content"> 
+                        <div class="col-group">
+                            <div class="col-16">
+                                If you want to install your own module, please go to:
+                            </div>
+                            <div class="col-16">
+                                <a class="btn btn--s-extra-large btn--primary mdl-button mdl-js-button mdl-js-ripple-effect" href="{{ handles('antares::modules/'~category|default('addons')~'/create') }}" data-upgraded=",MaterialButton,MaterialRipple">
+                                    Module installer »
+                                </a>  
+                            </div>
+                        </div>
+                    </div>                            
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
+    <div class="col-16">                  
+        <div class="col-group">
+            {% for module in modules %}
+                <div class="col-8">
+                    <div class="card card--chart-small card--primary-light">
+                        <div class="card__header">
+                            <div class="card__header--top">
+                                <span>{{ module.activated==false ? 'inactive' : 'activated' }}</span>
+                            </div>                               
+                        </div>
+                        <div class="card__header-chart" >
+                            <span class="card__indicator">{{  module.full_name }}</span>
+                        </div>
+                        <div class="card__content">                                
+                            {{  module.description }}
+                            <ul class="demo-list-item mdl-list">
+                                <li class="mdl-list__item">
+                                    <span class="mdl-list__item-primary-content">
+                                        <span>{{ trans('Category') }}:</span>
+                                    </span>
+                                    <strong>{{  module.category }}</strong>
+                                </li>
+                                <li class="mdl-list__item">
+                                    <span class="mdl-list__item-primary-content">
+                                        <span>{{ trans('Version') }}:</span>
+                                    </span>
+                                    <strong>{{  module.version }}</strong>
+                                </li>
+                                <li class="mdl-list__item">
+                                    <span class="mdl-list__item-primary-content">
+                                        <span>{{ trans('Author') }}:</span>
+                                    </span>
+                                    <strong>{{  module.author }}</strong>
+                                </li>
+                                <li class="mdl-list__item">
+                                    <span class="mdl-list__item-primary-content">
+                                        <span>{{ trans('Documentation') }}:</span>
+                                    </span>
+                                    <strong>{{  module.url }}</strong>
+                                </li>
+                                <li class="mdl-list__item">
+                                    <span class="mdl-list__item-primary-content">
+                                        <span>{{ trans('Namespace') }}:</span>
+                                    </span>
+                                    <strong>{{  module.name }}</strong>
+                                </li>
+                            </ul>
+                            {% if  module.activated==false %}
+                                <div class="col-11">
+                                    <span class="label-basic label-basic--danger">{{ trans('Not installed') }}</span>                  
+                                </div>                                
+                                <div class="col-md-6 text-right">        
+                                    {% if can('antares::module-delete') %}
+                                        <a href="{{ handles("antares::modules/"~module.category~"/"~module.name~"/delete", {'csrf':true}) }}" 
+                                           class="btn btn--md btn--red mdl-button mdl-js-button mdl-js-ripple-effect triggerable confirm" data-title = "{{ trans("Are you sure?") }}" data-description="{{ trans('Deleting module')~' '~module.full_name }}" >
+                                            {{ trans('Delete') }}
+                                        </a>
+                                    {% endif %}
+                                    {% if can('antares::module-activate') %}
+                                        <a href="{{ handles('antares::modules/'~module.category~'/'~module.name~'/activate/prepare', {'csrf':true}) }}"  class="btn btn--md btn--blue mdl-button mdl-js-button mdl-js-ripple-effect triggerable confirm" data-title = "{{ trans("Are you sure?") }}" data-description="{{ trans('Installing module')~' '~module.full_name }}" >
+                                            {{ trans('Install') }}
+                                        </a>                             
+                                    {% endif %}
+                                </div>
+
+                            {% else %}
+                                <div class="col-group">
+                                    <div class="col-11">
+                                        <span class="label-basic label-basic--success">{{ trans('Installed') }}</span>                                              
+                                    </div>
+                                    <div class="col-5 text-right">
+                                        {% if can('antares::module-uninstall') %}
+                                            <a href="{{ handles("antares::modules/"~module.category~"/"~module.name~"/uninstall", {'csrf':true}) }}"  class="btn btn--md btn--red mdl-button mdl-js-button mdl-js-ripple-effect triggerable confirm" data-title = "{{ trans("Are you sure?") }}" data-description="{{ trans('Installing module')~' '~module.full_name }}">
+                                                {{ trans('Uninstall') }}
+                                            </a> 
+                                        {%endif %}
+                                        {% if can('antares::module-configure') %}
+                                            <a href="{{ handles("antares::modules/"~module.category~"/"~module.name~"/configure", {'csrf':true}) }}" class="btn btn--md btn--orange mdl-button mdl-js-button mdl-js-ripple-effect" >
+                                                {{ trans('Configure') }}
+                                            </a> 
+                                        {%endif %}
+                                    </div>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>    
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}  

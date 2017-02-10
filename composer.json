@@ -1,0 +1,186 @@
+{
+    "name": "antares/project",
+    "description": "Antares Provides Functionalities For Custom Products Development",
+    "homepage": "http://antaresproject.io",
+    "keywords": [
+        "framework",
+        "laravel",
+        "antares",
+        "antares-project",
+        "boilerplate"
+    ],
+    "license": "BSD 3-Clause",
+    "type": "project",
+    "prefer-stable": true,
+    "minimum-stability": "dev",
+    "authors": [{
+            "name": "Antares Team",
+            "email": "contact@antaresproject.io",
+            "homepage": "http://antaresproject.io",
+            "role": "developer"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "git",
+            "url": "http://git.mglocal/core/core.git"
+        },
+        {
+            "type": "git",
+            "url": "http://git.mglocal/components/module.git"
+        },
+        {
+            "type": "git",
+            "url": "http://git.mglocal/components/logger.git"
+        },
+        {
+            "type": "git",
+            "url": "http://git.mglocal/components/updater.git"
+        },
+        {
+            "type": "git",
+            "url": "http://git.mglocal/components/translations.git"
+        },
+        {
+            "type": "git",
+            "url": "http://git.mglocal/components/widgets.git"
+        },
+        {
+            "type": "git",
+            "url": "http://git.mglocal/components/tester.git"
+        },
+        {
+            "type": "git",
+            "url": "http://git.mglocal/components/reports.git"
+        },
+        {
+            "type": "git",
+            "url": "http://git.mglocal/components/notifications.git"
+        },
+        {
+            "type": "git",
+            "url": "http://git.mglocal/components/customfields.git"
+        },
+        {
+            "type": "git",
+            "url": "http://git.mglocal/components/control.git"
+        },
+        {
+            "type": "git",
+            "url": "http://git.mglocal/components/automation.git"
+        },
+        {
+            "type": "git",
+            "url": "http://git.mglocal/components/search.git"
+        },
+        {
+            "type": "git",
+            "url": "http://git.mglocal/components/api.git"
+        },
+        {
+            "type": "git",
+            "url": "http://git.mglocal/components/ban_management.git"
+        },
+        {
+            "type": "git",
+            "url": "http://git.mglocal/components/two_factor_auth.git"
+        }
+    ],
+    "require": {
+        "antares/core": "master",
+        "components/module": "master",
+        "components/logger": "master",
+        "components/updater": "master",
+        "components/translations": "master",
+        "components/widgets": "master",
+        "components/tester": "master",
+        "components/reports": "master",
+        "components/notifications": "master",
+        "components/customfields": "master",
+        "components/control": "master",
+        "components/automation": "master",
+        "components/search": "master",
+        "components/api": "master",
+        "components/ban_management": "master",
+        "components/two_factor_auth": "master",
+        "laravel/framework": "5.2.*",
+        "mnsami/composer-custom-directory-installer": "1.1.*",
+        "laravie/html": "~5.2.1",
+        "laravelcollective/html": "5.2.*",
+        "barryvdh/laravel-ide-helper": "^2.0@dev",
+        "barryvdh/laravel-debugbar": "^2.2@dev",
+        "phpunit/phpunit": "5.0.*",
+        "doctrine/dbal": "master",
+        "tymon/jwt-auth": "1.0.*",
+        "brainboxlabs/brain-socket": "^1.0",
+        "kriswallsmith/assetic": "^1.3",
+        "guzzlehttp/guzzle": "^6.2",
+        "predis/predis": "v1.1.*",
+        "barryvdh/laravel-cors": "v0.8.*",
+        "twig/twig": "v1.30.0",                                 
+        "rcrowe/twigbridge": "^0.9.0"
+    },
+    "require-dev": {
+        "symfony/security-core": "master",
+        "fzaninotto/faker": "master",
+        "mockery/mockery": "0.9.*"
+    },
+    "autoload": {
+        "classmap": [
+            "resources/database",
+            "src/core",
+            "src/components",
+            "src/modules"
+        ],
+        "psr-4": {
+            "App\\": "app/",
+            "Installer\\": "app/Installer/src",
+            "Antares\\Control\\": "src/components/control/src",
+            "Antares\\Brands\\": "src/core/brands/src",
+            "Antares\\Users\\": "src/components/users/src"
+        }
+    },
+    "autoload-dev": {
+        "classmap": [
+            "src/core/tests/TestCase.php"
+        ]
+    },
+    "extra": {
+        "installer-paths": {
+            "./src/core": ["antares/core"],
+            "./src/components/module": ["components/module"],
+            "./src/components/logger": ["components/logger"],
+            "./src/components/updater": ["components/updater"],
+            "./src/components/translations": ["components/translations"],
+            "./src/components/widgets": ["components/widgets"],
+            "./src/components/tester": ["components/tester"],
+            "./src/components/reports": ["components/reports"],
+            "./src/components/notifications": ["components/notifications"],
+            "./src/components/customfields": ["components/customfields"],
+            "./src/components/control": ["components/control"],
+            "./src/components/automation": ["components/automation"],
+            "./src/components/search": ["components/search"],
+            "./src/components/api": ["components/api"],
+            "./src/components/ban_management": ["components/ban_management"],
+            "./src/components/two_factor_auth": ["components/two_factor_auth"]            
+        }
+    },    
+    "scripts": {
+        "post-install-cmd": [
+            "php artisan clear-compiled",
+            "php artisan ide-helper:generate",
+            "php artisan key:generate"
+        ],
+        "post-update-cmd": [
+            "php artisan clear-compiled",
+            "php artisan ide-helper:generate"
+        ],
+        "post-create-project-cmd": [
+            "php artisan key:generate"
+        ]
+    },
+    "config": {
+        "preferred-install": "dist",
+        "secure-http": false
+    }    
+}

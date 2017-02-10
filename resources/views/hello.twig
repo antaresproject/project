@@ -1,0 +1,32 @@
+{% extends "antares/foundation::layouts.quest.main" %}
+{% block content %}
+    <div id="app-wrapper">
+        <div class="app-content page-login">
+            <section class="main-content">
+                <div class="login-box">
+                    <div class="login-box__header">
+                        <img src="{{ brand_logo('big')|raw }}" >
+                    </div>
+                    {{  app('form').open({'url':handles('antares/foundation::login'),'action':'POST','id':'login-form'})|raw }}
+                    {% for area in areas %}
+                        <a href="/{{ (area.area) ? area.area : default }}/login" class="btn btn--submit btn--s-xxl btn--primary mdl-button mdl-js-button mdl-js-ripple-effect" >
+                            {{ trans('Log In As') }} {{ area.name|str_humanize }}
+                        </a>
+                    {% endfor %}
+                    <a href="/register/create" class="btn btn--submit btn--s-xxl btn--primary mdl-button mdl-js-button mdl-js-ripple-effect" >
+                        {{ trans('Register') }}
+                    </a>                    
+                    <div class="form-block">
+                        <div class="col-16 no-padding">
+                            <div class="input-field__desc">
+                                Please note that the demo environment is wiped every hour.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="separator"></div>
+                    {{ app('form').close()|raw }}       
+                </div>
+            </section>
+        </div>
+    </div>
+{% endblock %}

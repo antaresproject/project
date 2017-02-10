@@ -1,0 +1,45 @@
+{{ Form.open(form|merge({'class':'form--hor'}))|raw }}
+{% if(token) %}
+    {{ Form.token() }}
+{% endif %}
+{% for hidden in hiddens %}
+    {{ hidden|raw }}
+{% endfor %}
+<div class="col-group">
+    {% block fieldsets %}
+        <div class="col-dt-8 col-mb-16">
+            {% for fieldset in fieldsets %}
+                {% if fieldset.hasLayout() %}
+                    {{ fieldset.render()|raw }}
+                {% else %}    
+                    <fieldset name="inputs">
+                        {% if fieldset.legend|length>0 %}
+                            <legend>{{ fieldset.legend }}</legend>
+                        {% endif %}
+                        <div class="col-group">
+                            {% for control in fieldset.controls() %}
+                                <div class="form-block {{control.getBlock('class')}}" role="{{control.getBlock('role')}}">
+                                    {% include 'antares/foundation::layouts.antares.partials.form.vertical._'~control.type|replace({':': '_'}) with {control: control} %}
+                                </div>
+                            {%endfor %}
+                        </div>
+                    </fieldset>
+                {% endif %}
+            {%endfor %}            
+        </div>
+    {% endblock %}
+</div>
+{% if buttons is not empty %}
+    <div class="col-group">
+        <div class="col-dt-14 col-13 col-mb-11">
+            {% for button in fieldsets[0].types('button') %}    
+                {{ button.getField(row, button, [])|raw }}
+            {% endfor %}
+            {% for test in tests %}
+                {{ test|raw }}
+            {% endfor %} 
+        </div>
+    </div>
+{% endif %}
+
+{{ Form.close()|raw }}

@@ -1,0 +1,33 @@
+{% set htmlbuilder = app('html') %}
+{% set attributes = {'row':attributes['row'],'table':htmlbuilder.decorate(attributes['table'], {'class':'table table-striped'})} %}
+<table{{ htmlbuilder.attributes(attributes['table'])|raw }}>
+    <thead>
+        <tr>
+            {% for col in columns %}			
+                <th{{ htmlbuilder.attributes(col.headers ?: [])|raw }}>
+                    {{ col.label|raw }}
+                </th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in rows %}
+            <tr{{ htmlbuilder.attributes(call_user_func(attributes['row'], row) ?: [])|raw }}>
+                {% for col in columns %}
+                    <td{{ htmlbuilder.attributes(call_user_func(col.attributes['attributes'], row))|raw }}>
+                        {{ col.getValue(row)|raw }}
+                    </td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+        {% if (rows|length<=0) and (empty==true)%}                    
+            <tr class="norecords">
+                <td colspan="{{ columns|length }}">
+                    {{ empty|raw }}
+                </td>
+            </tr>
+        {% endif %}                
+    </tbody>
+</table>
+
+{{ pagination|raw }}

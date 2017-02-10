@@ -1,0 +1,25 @@
+{% if control.hasWrapper %}
+    <div class="{{ control.getWrapper('class') }}" >
+    {% endif %}    
+    <div class="col-16 mb2">
+        <label class="form-block__name p0">
+            <span>{{ control.label }}</span>
+            {% if control.has('tooltip') %}
+                <i class="zmdi zmdi-help-outline help--trigger" data-tooltip-inline="{{ control.tooltip }}"></i>
+            {% endif %}
+            <div class="input-field input-field--short ml-auto">
+                <label class="switch">
+                    {{ control.getField(row, control, [])|raw }}
+                    <div class="switch-container">
+                        <div class="switch-handle"></div>
+                    </div>
+                </label>
+            </div>        
+        </label>
+        <span id="{{ control.id }}_error" class="error">
+            {{ errors.first(control.name, format)|raw }}
+        </span>
+    </div>
+    {% if control.hasWrapper %}
+    </div>
+{% endif %}

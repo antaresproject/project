@@ -1,0 +1,26 @@
+<div class="controls">
+    <span class="glyphicon glyphicon-refresh indicator"></span>
+    <div class="widget-selector hidden">
+        {% set panes=app('antares.widget').make('menu.top.right').items() %}                    
+        {% for pane in panes %}         
+            <div class="dropdown">
+                <button class="btn btn-flat dropdown-toggle" type="button" data-toggle="dropdown" >
+                    {{ pane.title }}
+                    <span class="caret"></span>
+                </button>        
+                <ul class="dropdown-menu" >
+                    {% for child in pane.childs %}         
+                        <li class="{{ child.attributes.attributes.disabled ? '' : 'hidden' }}" >
+                            <a x="{{child.attributes.attributes.x}}" y="{{child.attributes.attributes.y}}" width="{{child.attributes.attributes.width}}" height="{{child.attributes.attributes.height}}" class="add-widget ajaxable" rel="{{ child.id }}" href="{{ child.link }}">
+                                <i class="{{ child.icon }}" ></i>                                    
+                                {{ child.title }}
+                            </a>
+                        </li>
+                    {% endfor %}       
+                </ul>
+            </div> 
+        {% endfor %}  
+    </div>
+    <div class="clearfix"></div>              
+    <i class="icon-grid icons"></i>    
+</div>    

@@ -1,0 +1,36 @@
+<div class="col-6">
+    <div class="form-block">
+        <div class="input-field">
+            <div id="DropzoneFavicon" class="dropzone dropzone-form brand-favicon">
+                <div class="dz-message" data-dz-message>
+                    <div class="dz-m__current">
+                        {% if field.get('value') %}
+                            <img src="{{ asset('img/logos/'~field.get('value'))}}" alt="">
+                        {% else %}    
+                            <img src="{{ asset('_dist/img/theme/antares/logo/logo_tear.png')}}" alt="">
+                        {% endif %}
+                    </div>
+                    <div class="dz-m__header">
+                        <i class="zmdi zmdi-wallpaper"></i>
+                    </div>
+                    <div class="dz-m__content">
+                        <span>Drag &amp; drop,</span>
+                        <span>or click to upload</span>
+                    </div>
+                </div>
+            </div>
+            {{ input|raw }}
+        </div>        
+        <label class="form-block__name p0 mt8">
+            <span>Favicon</span>
+            <i class="zmdi zmdi-help-outline help--trigger" data-tooltip="true"></i>
+            <div class="tooltip-content">
+                <p>Logo used in the invoices, as well as in the login page.</p>
+                <p class="tooltip__header mt16">Recommended format:</p>
+                <p>PNG (without background)</p>
+                <p class="tooltip__header mt16">Recommended minimum size:</p>
+                <p>310x310 px</p>
+            </div>
+        </label>
+    </div>
+</div>

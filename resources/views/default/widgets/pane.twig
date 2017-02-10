@@ -1,0 +1,18 @@
+{% set panes=app('antares.widget').make('pane.left') %}
+{% for id,pane in panes %}    
+    {% set attributes = htmlbuilder.decorate(pane.attributes.attributes, {'class':'panel'}) %}           
+    <div {{ htmlbuilder.attributes(attributes)|raw }} >
+        {% if pane.html is not empty  %}
+            
+        {% else %}
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{ pane.title }} - widget</h3>
+                </div>
+                <div class="panel-body">
+                    this is custom left pane
+                </div>
+            </div>
+        {% endif %}
+    </div>
+{% endfor %}

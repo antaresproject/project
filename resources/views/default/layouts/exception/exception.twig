@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        {% include 'antares/foundation::layouts.exception.partials._head_webpack' %} 
+    </head>
+    <body>
+        {% block content %}
+            <div id="app-wrapper">
+                <div class="app-content error-page error-page--clean">
+                    <section class="main-content">
+                    </section>
+                </div>
+            </div>
+        {% endblock %} 
+        <div class="modal modal-problem send-notification w700" rel="{{ handles('antares::logger/report',{'csrf':true}) }}" data-title="{{ trans('Send notification to Customer Service') }}" data-error="{{ trans('Unable to load support service.') }}" >
+            <div class="col-16 modal-container">
+
+            </div>
+        </div> 
+        {% include 'antares/foundation::layouts.exception.partials._scripts_webpack' %}     
+    </body>
+</html>

@@ -1,0 +1,85 @@
+{% if not auth_user() is null %}        
+    <div class="mobile-ddowns__sgl">
+        <div class="mobile-ddowns__desc">
+            <div class="mobile-ddowns__label">Logged as:</div>
+            <div class="mobile-ddowns__text">{{ auth_user().fullname }}</div>
+        </div>
+        <div class="mobile-ddowns__icon">
+            <i class="zmdi zmdi-caret-down"></i>
+        </div>
+        <ul class="mobile-ddowns__menu mobile-ddowns__menu--user">
+            <li class="mobile-ddowns__menu-header">
+                <a href="#">
+                    <div class="flex-block">
+                        <div class="avatar avatar--xs">
+                            <img src="{{ profile_picture(auth_user().email,60,60) }}" alt="Avatar" />
+                        </div>
+                        <div class="flex-block__content">
+                            <span class="flex-block__title">{{ auth_user().email }}</span>
+                            <span class="flex-block__desc">{{ auth_user().fullname }}</span>
+                        </div>
+                        <div class="flex-block__badge"><i class="zmdi zmdi-check"></i></div>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="{{ handles('antares/foundation::account') }}">
+                    <span>My Account</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ handles('antares/foundation::logout') }}">
+                    <span>Sign Out</span>
+                </a>
+            </li>
+        </ul>
+    </div>    
+{% endif %}
+<div class="mobile-ddowns__sgl">
+    <div class="mobile-ddowns__desc">
+        <div class="mobile-ddowns__label">Brand:</div>
+        <div class="mobile-ddowns__text">INBS.software</div>
+    </div>
+    <div class="mobile-ddowns__icon">
+        <i class="zmdi zmdi-caret-down"></i>
+    </div>
+    <ul class="mobile-ddowns__menu mobile-ddowns__menu--brand">
+        <li class="mdl-js-button mdl-js-ripple-effect">
+            <a href="#">
+                <div class="flex-block">
+                    <div class="avatar avatar--xs">
+                        <img src="/img/brand-inbs.png" alt="Avatar" />
+                    </div>
+                    <div class="flex-block__content">
+                        <span class="flex-block__title">INBS.software</span>
+                    </div>
+                    <div class="flex-block__badge"><i class="zmdi zmdi-check"></i></div>
+                </div>
+            </a>
+        </li>
+        <li class="mdl-js-button mdl-js-ripple-effect is-selected">
+            <a href="#">
+                <div class="flex-block">
+                    <div class="avatar avatar--xs">
+                        <img src="/img/brand-rsstudio.png" alt="Avatar" />
+                    </div>
+                    <div class="flex-block__content">
+                        <span class="flex-block__title">RS STUDIO</span>
+                    </div>
+                </div>
+            </a>
+        </li>
+        <li class="mobile-ddowns-new mdl-js-button mdl-js-ripple-effect">
+            <a href="#">
+                <div class="flex-block">
+                    <div class="avatar avatar--xs">
+                        <i class="zmdi zmdi-plus-circle-o"></i>
+                    </div>
+                    <div class="flex-block__content">
+                        <span class="flex-block__title">Add new brand</span>
+                    </div>
+                </div>
+            </a>
+        </li>
+    </ul>
+</div>

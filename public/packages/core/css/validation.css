@@ -1,0 +1,12 @@
+div.errorSummary
+{
+    border: 2px solid #C00;
+    padding: 10px 7px 12px 7px;
+    background: #FEE;
+    font-size: 0.9em;
+    display:none;
+}
+div.error{
+    color:#a94442;
+    font-size: 0.9em;
+}

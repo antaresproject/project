@@ -1,0 +1,121 @@
+<!-- Main Menu -->
+{% set menu=app('antares.platform.menu') %}
+{% set secondaryActive=false %}
+{% for item1 in app('antares.platform.menu') %}
+    {% if item1.isActive() %}
+        {% set secondaryActive=item1.attributes['type'] is same as ('secondary') %}
+    {% endif %}
+{% endfor %}
+{% set secondaryElements=[] %}
+{% for item2 in app('antares.platform.menu') if item2.type is same as('secondary') %}
+    {% set secondaryElements=secondaryElements|merge([item2]) %}
+{% endfor %}
+<div class="menu-scroll">
+    <ul class="main-menu main-menu--brand">
+        {% block navigation_brand_primary %}
+            {% include 'antares/foundation::layouts.antares.partials.navigation._navigation_brand' %}
+        {% endblock %}
+    </ul>
+    <ul class="main-menu main-menu--primary {{ secondaryActive ? 'is-hidden' : '' }}">
+        {% block navigation_primary %}
+            {% for item in menu if item.type is not same as ('secondary') %}
+                {% if item.childs|length<1 %}
+                    <li data-name='{{ item.title }}' class="{{ item.isActive()?'is-active':'' }}">
+                        <a href="{{ item.link }}" title="{{ item.title }}">
+                            <i class="zmdi {{ item.icon }}"></i>
+                            <span class="text">{{ item.title }}</span>
+                        </a>
+                    </li>
+                {% else %}
+                    <li data-name='{{ item.title }}' class="{{ item.isActive()?'is-active':'' }}">
+                        <a href="{{ item.link }}" title="{{ item.title }}">
+                            <i class="zmdi {{ item.icon }}"></i>
+                            <span class="text">{{ item.title }}</span>
+                        </a>
+                        <div class="submenu flex-fs">
+                            <a href="{{ item.link }}" class="submenu__mobile-return">
+                                <i class="zmdi zmdi-arrow-left"></i>
+                                <span>{{ item.title }}</span>
+                            </a>
+                            <section>
+                                <header><h3>{{ item.title }}</h3></header>
+                                <div class="submenu__content">
+                                    <ul class="data-list">
+                                        {% for child in item.childs %}
+                                            <li class="{{ child.isFirstChildActive()?'is-active':'' }}">
+                                                <a href="{{ child.link }}">
+                                                    {% if child.attributes.html %}
+                                                        {{ child.html|raw }}
+                                                    {% else %}
+                                                        <span>{{ child.title }}</span>
+                                                    {% endif %}
+                                                </a>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </section>
+                        </div>
+                    </li>
+                {% endif %}
+            {% endfor %}
+            {% if menu.items|length>0 and secondaryElements|length>0  %}
+                <li data-name="more" class="more-trigger">
+                    <a href="#" title="more">
+                        <i class="zmdi zmdi-caret-right-circle"></i>
+                        <span class="text">More</span>
+                    </a>
+                </li>
+            {% endif %}
+        {% endblock %}
+    </ul>
+    <ul class="main-menu main-menu--secondary  {{ secondaryActive ? '' : 'is-hidden' }} ">
+        {% for item in secondaryElements %}
+            {% if item.childs|length<1 %}
+                <li data-name='{{ item.title }}' class="{{ item.isActive()?'is-active':'' }}">
+                    <a href="{{ item.link }}" title="{{ item.title }}">
+                        <i class="zmdi {{ item.icon }}"></i>
+                        <span class="text">{{ item.title }}</span>
+                    </a>
+                </li>
+            {% else %}
+                <li data-name='{{ item.title }}' class="{{ item.isActive()?'is-active':'' }}">
+                    <a href="{{ item.childs|first.link }}" title="{{ item.title }}">
+                        <i class="zmdi {{ item.icon }}"></i>
+                        <span class="text">{{ item.title }}</span>
+                    </a>
+                    <div class="submenu flex-fs">
+                        <a href="{{ item.link }}" class="submenu__mobile-return">
+                            <i class="zmdi zmdi-arrow-left"></i>
+                            <span>{{ item.title }}</span>
+                        </a>
+                        <section>
+                            <header><h3>{{ item.title }}</h3></header>
+                            <div class="submenu__content">
+                                <ul class="data-list">
+                                    {% for child in item.childs %}
+                                        <li class="{{ child.isFirstChildActive()?'is-active':'' }}">
+                                            <a href="{{ child.link }}">
+                                                {% if child.attributes.html %}
+                                                    {{ child.html|raw }}
+                                                {% else %}
+                                                    <span>{{ child.title }}</span>
+                                                {% endif %}
+                                            </a>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </section>
+                    </div>
+                </li>
+            {% endif %}
+        {% endfor %}
+        <li data-name="more-back" class="more-trigger">
+            <a href="#" title="more">
+                <i class="zmdi zmdi-caret-left-circle"></i>
+                <span class="text">More</span>
+            </a>
+        </li>
+    </ul>
+</div>

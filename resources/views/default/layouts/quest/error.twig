@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% block head %}
+            {% include 'antares/foundation::layouts.quest.partials._head' %}
+        {% endblock %}       
+    </head>
+    <body>
+        {% include 'antares/foundation::components.messages'  %}                                
+        {% block content %}
+        {% endblock %}
+        {% include 'antares/foundation::layouts.quest.partials._scripts' %}
+
+    </body>
+</html>

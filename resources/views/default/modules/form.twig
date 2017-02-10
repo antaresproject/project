@@ -1,0 +1,35 @@
+{% set formbuilder=app('form') %}
+{% set htmlbuilder=app('html') %}
+{% set class='form-horizontal ' ~ (form.class is not null ? form.class : 'form-horizontal') %}
+{{ formbuilder.open(form|merge({'class':class}))|raw }}
+{% if token is not null %}
+    {{ formbuilder.token()|raw }}
+{% endif %}    
+{% for hidden in hiddens %}
+    {{ hidden|raw }}
+{% endfor %}    
+<div class="col-group">
+    {% set submits = [] %}
+    {% for fieldset in fieldsets %}
+        <div class="col-ld-10 col-dt-16 ">
+            {% for control in fieldset.controls() %}                
+                {% if control.type=='button' %}
+                    {% set submits=submits|merge([control]) %}        
+                {% else %}   
+                    {% include 'antares/foundation::layouts.antares.partials.form._'~control.type|replace({':': '_'}) with {control: control} %}
+                {% endif %}
+            {%endfor %}
+        </div>
+    {%endfor %}    
+</div>
+<div class="col-group">
+    <div class="form-block">
+        <button type="submit" class="btn btn--md btn--primary btn--forced-hover mdl-button mdl-js-button mdl-js-ripple-effect" disabled="disabled">
+            Continue
+        </button>   
+    </div>
+</div>
+
+
+
+{{ formbuilder.close()|raw }}

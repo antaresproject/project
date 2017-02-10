@@ -1,0 +1,8 @@
+<div class="col col-4">
+    {% for control in controls %}
+        <label class="checkbox">
+            {{ control.getField(row, control, [])|raw }}
+            <i></i>{{ control.label|raw }}
+        </label>
+    {% endfor %}
+</div>

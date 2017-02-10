@@ -1,0 +1,19 @@
+{% extends "antares/foundation::layouts.antares.index" %}   
+{% block content %} 
+    <div class="card card--info">
+        <div class="card__header">
+            <div class="card__header-left">
+                <span>Module Configuration</span>
+            </div>
+        </div>
+        <div class="card__content">
+            <section class="generals-form">
+                <div class="col-group">
+                    {{ form|raw }}
+                    {{ placeholder('antares.extensions') }}
+                    {{ placeholder('antares.helps') }}
+                </div>
+            </section>
+        </div>
+    </div>
+{% endblock %}    

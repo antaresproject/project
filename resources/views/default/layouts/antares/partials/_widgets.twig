@@ -1,0 +1,3 @@
+<div class="grid-stack">
+    {% set widgets=widgets() %}{% for widget in widgets %}{{ widget(widget)|raw }}{% endfor %}
+</div>                
