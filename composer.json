@@ -23,86 +23,85 @@
     "repositories": [
         {
             "type": "git",
-            "url": "https://github.com/antaresproject/core/core.git"
+            "url": "https://github.com/antaresproject/core.git"
         },
         {
             "type": "git",
-            "url": "https://github.com/antaresproject/components/module.git"
+            "url": "https://github.com/antaresproject/module.git"
         },
         {
             "type": "git",
-            "url": "https://github.com/antaresproject/components/logger.git"
+            "url": "https://github.com/antaresproject/logger.git"
         },
         {
             "type": "git",
-            "url": "https://github.com/antaresproject/components/updater.git"
+            "url": "https://github.com/antaresproject/reports.git"
         },
         {
             "type": "git",
-            "url": "https://github.com/antaresproject/components/translations.git"
+            "url": "https://github.com/antaresproject/updater.git"
         },
         {
             "type": "git",
-            "url": "https://github.com/antaresproject/components/widgets.git"
+            "url": "https://github.com/antaresproject/translations.git"
         },
         {
             "type": "git",
-            "url": "https://github.com/antaresproject/components/tester.git"
+            "url": "https://github.com/antaresproject/widgets.git"
         },
         {
             "type": "git",
-            "url": "https://github.com/antaresproject/components/reports.git"
+            "url": "https://github.com/antaresproject/tester.git"
         },
         {
             "type": "git",
-            "url": "https://github.com/antaresproject/components/notifications.git"
+            "url": "https://github.com/antaresproject/notifications.git"
         },
         {
             "type": "git",
-            "url": "https://github.com/antaresproject/components/customfields.git"
+            "url": "https://github.com/antaresproject/customfields.git"
         },
         {
             "type": "git",
-            "url": "https://github.com/antaresproject/components/control.git"
+            "url": "https://github.com/antaresproject/control.git"
         },
         {
             "type": "git",
-            "url": "https://github.com/antaresproject/components/automation.git"
+            "url": "https://github.com/antaresproject/automation.git"
         },
         {
             "type": "git",
-            "url": "https://github.com/antaresproject/components/search.git"
+            "url": "https://github.com/antaresproject/search.git"
         },
         {
             "type": "git",
-            "url": "https://github.com/antaresproject/components/api.git"
+            "url": "https://github.com/antaresproject/api.git"
         },
         {
             "type": "git",
-            "url": "https://github.com/antaresproject/components/ban_management.git"
+            "url": "https://github.com/antaresproject/ban_management.git"
         },
         {
             "type": "git",
-            "url": "https://github.com/antaresproject/components/two_factor_auth.git"
+            "url": "https://github.com/antaresproject/two_factor_auth.git"
         }
     ],
     "require": {
-        "antares/core": "master",
-        "components/module": "master",
-        "components/logger": "master",
-        "components/updater": "master",
-        "components/translations": "master",
-        "components/widgets": "master",
-        "components/tester": "master",
-        "components/reports": "master",
-        "components/notifications": "master",
-        "components/customfields": "master",
-        "components/control": "master",
-        "components/automation": "master",
-        "components/search": "master",
-        "components/api": "master",
-        "components/ban_management": "master",
-        "components/two_factor_auth": "master",
+        "antaresproject/core": "master",
+        "antaresproject/component-module": "master",
+        "antaresproject/component-logger": "master",
+        "antaresproject/component-updater": "master",
+        "antaresproject/component-translations": "master",
+        "antaresproject/component-widgets": "master",
+        "antaresproject/component-tester": "master",
+        "antaresproject/component-notifications": "master",
+        "antaresproject/component-customfields": "master",
+        "antaresproject/component-control": "master",
+        "antaresproject/component-automation": "master",
+        "antaresproject/component-search": "master",
+        "antaresproject/component-api": "master",
+        "antaresproject/component-ban-management": "master",
+        "antaresproject/component-two-factor-auth": "master",
         "laravel/framework": "5.2.*",
         "mnsami/composer-custom-directory-installer": "1.1.*",
         "laravie/html": "~5.2.1",
@@ -147,22 +146,22 @@
     },
     "extra": {
         "installer-paths": {
-            "./src/core": ["antares/core"],
-            "./src/components/module": ["components/module"],
-            "./src/components/logger": ["components/logger"],
-            "./src/components/updater": ["components/updater"],
-            "./src/components/translations": ["components/translations"],
-            "./src/components/widgets": ["components/widgets"],
-            "./src/components/tester": ["components/tester"],
-            "./src/components/reports": ["components/reports"],
-            "./src/components/notifications": ["components/notifications"],
-            "./src/components/customfields": ["components/customfields"],
-            "./src/components/control": ["components/control"],
-            "./src/components/automation": ["components/automation"],
-            "./src/components/search": ["components/search"],
-            "./src/components/api": ["components/api"],
-            "./src/components/ban_management": ["components/ban_management"],
-            "./src/components/two_factor_auth": ["components/two_factor_auth"]            
+            "./src/core": ["antaresproject/core"],
+            "./src/components/module": ["antaresproject/component-module"],
+            "./src/components/logger": ["antaresproject/component-logger"],
+            "./src/components/updater": ["antaresproject/component-updater"],
+            "./src/components/translations": ["antaresproject/component-translations"],
+            "./src/components/widgets": ["antaresproject/component-widgets"],
+            "./src/components/tester": ["antaresproject/component-tester"],
+            "./src/components/reports": ["antaresproject/component-reports"],
+            "./src/components/notifications": ["antaresproject/component-notifications"],
+            "./src/components/customfields": ["antaresproject/component-customfields"],
+            "./src/components/control": ["antaresproject/component-control"],
+            "./src/components/automation": ["antaresproject/component-automation"],
+            "./src/components/search": ["antaresproject/component-search"],
+            "./src/components/api": ["antaresproject/component-api"],
+            "./src/components/ban_management": ["antaresproject/component-ban-management"],
+            "./src/components/two_factor_auth": ["antaresproject/component-two-factor-auth"]            
         }
     },    
     "scripts": {
