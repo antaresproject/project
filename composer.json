@@ -90,6 +90,7 @@
         "antaresproject/core": "master",
         "antaresproject/component-module": "master",
         "antaresproject/component-logger": "master",
+        "antaresproject/component-reports": "master",
         "antaresproject/component-updater": "master",
         "antaresproject/component-translations": "master",
         "antaresproject/component-widgets": "master",
