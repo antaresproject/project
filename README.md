@@ -1,6 +1,13 @@
 # Antares Project Application Skeleton
 
+[![Join the chat at https://gitter.im/antaresproject](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/antaresproject?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 An open source package by [Antares Project](http://antaresproject.io), code well, rock on!
+
+[![GitHub issues](https://img.shields.io/github/issues/antaresproject/api.svg)](https://github.com/antaresproject/api/issues)
+[![GitHub forks](https://img.shields.io/github/forks/antaresproject/api.svg)](https://github.com/antaresproject/api/network)
+[![GitHub stars](https://img.shields.io/github/stars/antaresproject/api.svg)](https://github.com/antaresproject/api/stargazers)
+[![GitHub license](https://img.shields.io/badge/license-New%20BSD-blue.svg)](https://raw.githubusercontent.com/antaresproject/api/master/LICENSE)
 
 ## Documentation
 

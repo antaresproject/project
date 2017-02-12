@@ -1,10 +1,26 @@
 {
     "name": "antaresproject/project",
-    "description": "Antares Provides Functionalities For Custom Products Development",
+    "description": "Create management system for your employees, your customers and for yourself. Experience a completely new way of building standalone and SaaS applications.",
     "homepage": "http://antaresproject.io",
     "keywords": [
-        "framework",
+        "php",
         "laravel",
+        "composer",
+        "automation",
+        "updater",
+        "material-design",
+        "rest-api",
+        "logger",
+        "installer",
+        "logger",
+        "user-management",
+        "twofactorauth",
+        "laravel-admin",
+        "laravel-application",
+        "updaters",
+        "two-factor-authentication",
+        "access-control",
+        "updater",
         "antares",
         "antares-project",
         "boilerplate"
@@ -20,88 +36,22 @@
             "role": "developer"
         }
     ],
-    "repositories": [
-        {
-            "type": "git",
-            "url": "https://github.com/antaresproject/core.git"
-        },
-        {
-            "type": "git",
-            "url": "https://github.com/antaresproject/module.git"
-        },
-        {
-            "type": "git",
-            "url": "https://github.com/antaresproject/logger.git"
-        },
-        {
-            "type": "git",
-            "url": "https://github.com/antaresproject/reports.git"
-        },
-        {
-            "type": "git",
-            "url": "https://github.com/antaresproject/updater.git"
-        },
-        {
-            "type": "git",
-            "url": "https://github.com/antaresproject/translations.git"
-        },
-        {
-            "type": "git",
-            "url": "https://github.com/antaresproject/widgets.git"
-        },
-        {
-            "type": "git",
-            "url": "https://github.com/antaresproject/tester.git"
-        },
-        {
-            "type": "git",
-            "url": "https://github.com/antaresproject/notifications.git"
-        },
-        {
-            "type": "git",
-            "url": "https://github.com/antaresproject/customfields.git"
-        },
-        {
-            "type": "git",
-            "url": "https://github.com/antaresproject/control.git"
-        },
-        {
-            "type": "git",
-            "url": "https://github.com/antaresproject/automation.git"
-        },
-        {
-            "type": "git",
-            "url": "https://github.com/antaresproject/search.git"
-        },
-        {
-            "type": "git",
-            "url": "https://github.com/antaresproject/api.git"
-        },
-        {
-            "type": "git",
-            "url": "https://github.com/antaresproject/ban_management.git"
-        },
-        {
-            "type": "git",
-            "url": "https://github.com/antaresproject/two_factor_auth.git"
-        }
-    ],
     "require": {
-        "antaresproject/core": "master",
-        "antaresproject/component-module": "master",
-        "antaresproject/component-logger": "master",
-        "antaresproject/component-updater": "master",
-        "antaresproject/component-translations": "master",
-        "antaresproject/component-widgets": "master",
-        "antaresproject/component-tester": "master",
-        "antaresproject/component-notifications": "master",
-        "antaresproject/component-customfields": "master",
-        "antaresproject/component-control": "master",
-        "antaresproject/component-automation": "master",
-        "antaresproject/component-search": "master",
-        "antaresproject/component-api": "master",
-        "antaresproject/component-ban-management": "master",
-        "antaresproject/component-two-factor-auth": "master",
+        "antaresproject/core": "dev-master",
+        "antaresproject/component-module": "dev-master",
+        "antaresproject/component-logger": "dev-master",
+        "antaresproject/component-updater": "dev-master",
+        "antaresproject/component-translations": "dev-master",
+        "antaresproject/component-widgets": "dev-master",
+        "antaresproject/component-tester": "dev-master",
+        "antaresproject/component-notifications": "dev-master",
+        "antaresproject/component-customfields": "dev-master",
+        "antaresproject/component-control": "dev-master",
+        "antaresproject/component-automation": "dev-master",
+        "antaresproject/component-search": "dev-master",
+        "antaresproject/component-api": "dev-master",
+        "antaresproject/component-ban-management": "dev-master",
+        "antaresproject/component-two-factor-auth": "dev-master",
         "laravel/framework": "5.2.*",
         "mnsami/composer-custom-directory-installer": "1.1.*",
         "laravie/html": "~5.2.1",
@@ -145,6 +95,9 @@
         ]
     },
     "extra": {
+        "branch-alias": {
+            "dev-master": "0.9.0-dev"
+        },
         "installer-paths": {
             "./src/core": ["antaresproject/core"],
             "./src/components/module": ["antaresproject/component-module"],
