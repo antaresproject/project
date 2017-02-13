@@ -3,6 +3,8 @@
 [![Join the chat at https://gitter.im/antaresproject](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/antaresproject?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 An open source package by [Antares Project](http://antaresproject.io), code well, rock on!
+
+
 [![Code Climate](https://codeclimate.com/github/antaresproject/project/badges/gpa.svg)](https://codeclimate.com/github/antaresproject/project)
 [![GitHub issues](https://img.shields.io/github/issues/antaresproject/project.svg)](https://github.com/antaresproject/project/issues)
 [![GitHub forks](https://img.shields.io/github/forks/antaresproject/project.svg)](https://github.com/antaresproject/project/network)
