@@ -1,10 +1,29 @@
 <?php
 
+/**
+ * Part of the Antares Project package.
+ *
+ * NOTICE OF LICENSE
+ *
+ * Licensed under the 3-clause BSD License.
+ *
+ * This source file is subject to the 3-clause BSD License that is
+ * bundled with this package in the LICENSE file.
+ *
+ * @package    Widgets
+ * @version    0.9.0
+ * @author     Antares Team
+ * @license    BSD License (3-clause)
+ * @copyright  (c) 2017, Antares Project
+ * @link       http://antaresproject.io
+ */
+
 namespace Installer;
 
 use Composer\Script\Event;
 
-abstract class System {
+abstract class System
+{
 
     /**
      * @var Environment
@@ -20,9 +39,10 @@ abstract class System {
      * System constructor.
      * @param Environment $environment
      */
-    public function __construct(Environment $environment, $basePath) {
-        $this->environment  = $environment;
-        $this->basePath     = $this->getPath(rtrim($basePath, '/'));
+    public function __construct(Environment $environment, $basePath)
+    {
+        $this->environment = $environment;
+        $this->basePath    = $this->getPath(rtrim($basePath, '/'));
     }
 
     /**
@@ -30,14 +50,16 @@ abstract class System {
      *
      * @param $msg
      */
-    public function text($msg) {
+    public function text($msg)
+    {
         print "\n\n$msg\n\n";
     }
 
     /**
      * @return string
      */
-    public function getBasePath() {
+    public function getBasePath()
+    {
         return $this->basePath;
     }
 
@@ -45,7 +67,8 @@ abstract class System {
      * @param string $path
      * @return string
      */
-    public function getFullPath($path) {
+    public function getFullPath($path)
+    {
         $fullPath = $this->getBasePath() . '/' . ltrim($path, '/');
 
         return $this->getPath($fullPath);
@@ -55,11 +78,13 @@ abstract class System {
      * @param string $path
      * @return string
      */
-    public function getPath($path) {
+    public function getPath($path)
+    {
         return str_replace('/', DIRECTORY_SEPARATOR, $path);
     }
 
-    public function runCommand($command, $message = null) {
+    public function runCommand($command, $message = null)
+    {
         $this->text($message ?: sprintf('Running %s ...', $command));
         system($command);
     }
@@ -69,5 +94,4 @@ abstract class System {
      * @return void
      */
     public abstract function run(Event $event);
-
 }

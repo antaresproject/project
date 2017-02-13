@@ -4,10 +4,10 @@
 
 An open source package by [Antares Project](http://antaresproject.io), code well, rock on!
 
-[![GitHub issues](https://img.shields.io/github/issues/antaresproject/api.svg)](https://github.com/antaresproject/api/issues)
-[![GitHub forks](https://img.shields.io/github/forks/antaresproject/api.svg)](https://github.com/antaresproject/api/network)
-[![GitHub stars](https://img.shields.io/github/stars/antaresproject/api.svg)](https://github.com/antaresproject/api/stargazers)
-[![GitHub license](https://img.shields.io/badge/license-New%20BSD-blue.svg)](https://raw.githubusercontent.com/antaresproject/api/master/LICENSE)
+[![GitHub issues](https://img.shields.io/github/issues/antaresproject/project.svg)](https://github.com/antaresproject/project/issues)
+[![GitHub forks](https://img.shields.io/github/forks/antaresproject/project.svg)](https://github.com/antaresproject/project/network)
+[![GitHub stars](https://img.shields.io/github/stars/antaresproject/project.svg)](https://github.com/antaresproject/project/stargazers)
+[![GitHub license](https://img.shields.io/badge/license-New%20BSD-blue.svg)](https://raw.githubusercontent.com/antaresproject/project/master/LICENSE)
 
 ## Documentation
 

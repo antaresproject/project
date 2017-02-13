@@ -1,5 +1,23 @@
 <?php
 
+/**
+ * Part of the Antares Project package.
+ *
+ * NOTICE OF LICENSE
+ *
+ * Licensed under the 3-clause BSD License.
+ *
+ * This source file is subject to the 3-clause BSD License that is
+ * bundled with this package in the LICENSE file.
+ *
+ * @package    Widgets
+ * @version    0.9.0
+ * @author     Antares Team
+ * @license    BSD License (3-clause)
+ * @copyright  (c) 2017, Antares Project
+ * @link       http://antaresproject.io
+ */
+
 namespace Installer;
 
 use Composer\Script\Event;
@@ -10,38 +28,38 @@ class ComposerScripts
 
     /**
      * Handle the pre-update or pre-install Composer event.
+     * @todo Add application stability
      *
      * @param  \Composer\Script\Event  $event
-     *
      * @return void
      */
     public static function postUpdate(Event $event)
     {
-        $base             = getcwd();
-        $target           = $base . DIRECTORY_SEPARATOR . 'public' . DIRECTORY_SEPARATOR . '_dist';
-        $from             = $base . DIRECTORY_SEPARATOR . 'storage' . DIRECTORY_SEPARATOR . 'temp' . DIRECTORY_SEPARATOR . 'antares' . DIRECTORY_SEPARATOR;
-        $targetAssets     = $base . DIRECTORY_SEPARATOR . 'public' . DIRECTORY_SEPARATOR . 'assets';
-        $gzipTargetAssets = $base . DIRECTORY_SEPARATOR . 'public' . DIRECTORY_SEPARATOR . 'gzip_assets';
-
-        if (!file_exists($from)) {
-            return;
-        }
-        if (!self::isEmpty($from) and ! self::isEmpty($from . '_dist') and ! self::isEmpty($from . 'assets') and ! self::isEmpty($from . 'gzip_assets')) {
-            if (is_dir($target)) {
-                self::clearTargetDirectory($target);
-            }
-            if (is_dir($targetAssets)) {
-                self::clearTargetDirectory($targetAssets);
-            }
-            if (is_dir($gzipTargetAssets)) {
-                self::clearTargetDirectory($gzipTargetAssets);
-            }
-            chdir($base);
-            print "\nMigrating script files...\n\n";
-            self::moveDistDirectory($from, $target);
-            self::moveAssetsDirectory($from, $targetAssets);
-            self::moveGzipAssetsDirectory($from, $gzipTargetAssets);
-        }
+//        $base             = getcwd();
+//        $target           = $base . DIRECTORY_SEPARATOR . 'public' . DIRECTORY_SEPARATOR . '_dist';
+//        $from             = $base . DIRECTORY_SEPARATOR . 'storage' . DIRECTORY_SEPARATOR . 'temp' . DIRECTORY_SEPARATOR . 'antares' . DIRECTORY_SEPARATOR;
+//        $targetAssets     = $base . DIRECTORY_SEPARATOR . 'public' . DIRECTORY_SEPARATOR . 'assets';
+//        $gzipTargetAssets = $base . DIRECTORY_SEPARATOR . 'public' . DIRECTORY_SEPARATOR . 'gzip_assets';
+//
+//        if (!file_exists($from)) {
+//            return;
+//        }
+//        if (!self::isEmpty($from) and ! self::isEmpty($from . '_dist') and ! self::isEmpty($from . 'assets') and ! self::isEmpty($from . 'gzip_assets')) {
+//            if (is_dir($target)) {
+//                self::clearTargetDirectory($target);
+//            }
+//            if (is_dir($targetAssets)) {
+//                self::clearTargetDirectory($targetAssets);
+//            }
+//            if (is_dir($gzipTargetAssets)) {
+//                self::clearTargetDirectory($gzipTargetAssets);
+//            }
+//            chdir($base);
+//            print "\nMigrating script files...\n\n";
+//            self::moveDistDirectory($from, $target);
+//            self::moveAssetsDirectory($from, $targetAssets);
+//            self::moveGzipAssetsDirectory($from, $gzipTargetAssets);
+//        }
     }
 
     /**
