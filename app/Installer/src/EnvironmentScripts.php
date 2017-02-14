@@ -79,7 +79,7 @@ class EnvironmentScripts
     protected static function checkEnvironmentFile()
     {
         try {
-            $source = getcwd() . DIRECTORY_SEPARATOR . '._env.example';
+            $source = getcwd() . DIRECTORY_SEPARATOR . '.env.example';
             $target = getcwd() . DIRECTORY_SEPARATOR . '.env';
             if (file_exists($target)) {
                 return;
