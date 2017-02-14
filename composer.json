@@ -72,7 +72,9 @@
     "require-dev": {
         "symfony/security-core": "master",
         "fzaninotto/faker": "master",
-        "mockery/mockery": "0.9.*"
+        "mockery/mockery": "0.9.*",
+        "davejamesmiller/laravel-breadcrumbs": "dev-master",
+        "linfo/linfo": "dev-master"
     },
     "autoload": {
         "classmap": [
