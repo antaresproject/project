@@ -1,4 +1,3 @@
-
 # Created by https://www.gitignore.io/api/laravel,phpstorm,netbeans,osx,vim,sublimetext,linux
 
 ### Laravel ###
@@ -152,3 +151,25 @@ Session.vim
 tags
 
 # End of https://www.gitignore.io/api/laravel,phpstorm,netbeans,osx,vim,sublimetext,linux
+
+/nbproject/*
+composer.lock
+.env
+_ide_helper.php
+/vendor/
+/vendor/*
+/vendor/*/*
+/ide_helper.php
+/composer.lock
+/storage/framework/cache/*
+/storage/framework/sessions/*
+/storage/framework/views/*
+/storage/app/*
+/public/packages/antares/core
+/storage/debugbar
+/public/screens
+/auth.json
+/.idea
+/src/core/*
+public/apidocs/*
+/nbproject

@@ -2,7 +2,7 @@
 
 error_reporting(-1);
 ini_set('display_errors', '1');
-
+set_time_limit(60);
 
 
 if (isset($_GET['sandbox']) && !empty($_GET['sandbox'])) {

@@ -20,7 +20,7 @@ return [
      */
     'optional' => [
         'components/search',
-        'components/multibrand',
+        'components/module',
     ],
 ];
 

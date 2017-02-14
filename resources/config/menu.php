@@ -19,6 +19,7 @@ return [
         \Antares\BanManagement\Http\Handlers\Menu::class            => 888,
         Antares\Api\Http\Handlers\ApiLogsMenuHandler::class,
         \Antares\Logger\Http\Handlers\SystemMenu::class,
+        \Antares\Foundation\Http\Handlers\ComponentsMainMenu::class
     ],
     'antares.ready: menu.after.general-settings' => [
         \Antares\Foundation\src\Http\Handlers\SecurityMenu::class,
