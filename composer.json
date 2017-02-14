@@ -36,6 +36,72 @@
             "role": "developer"
         }
     ],
+    "repositories": [
+        {
+            "type": "git",
+            "url": "https://github.com/antaresproject/core.git"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/antaresproject/module.git"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/antaresproject/logger.git"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/antaresproject/reports.git"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/antaresproject/updater.git"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/antaresproject/translations.git"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/antaresproject/widgets.git"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/antaresproject/tester.git"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/antaresproject/notifications.git"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/antaresproject/customfields.git"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/antaresproject/control.git"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/antaresproject/automation.git"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/antaresproject/search.git"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/antaresproject/api.git"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/antaresproject/ban_management.git"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/antaresproject/two_factor_auth.git"
+        }
+    ],
     "require": {
         "antaresproject/core": "dev-master",
         "antaresproject/component-module": "dev-master",
