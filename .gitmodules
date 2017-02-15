@@ -1,0 +1,8 @@
+[submodule "src/components/automation"]
+	path = src/components/automation
+	url = https://github.com/antaresproject/automation
+[submodule "src/components/search"]
+	path = src/components/search
+	url = https://github.com/antaresproject/search
+[submodule "src/core"]
+	url = https://github.com/antaresproject/core
