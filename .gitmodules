@@ -6,3 +6,39 @@
 	url = https://github.com/antaresproject/search
 [submodule "src/core"]
 	url = https://github.com/antaresproject/core
+[submodule "src/components/widgets"]
+	path = src/components/widgets
+	url = https://github.com/antaresproject/widgets
+[submodule "src/components/logger"]
+	path = src/components/logger
+	url = https://github.com/antaresproject/logger
+[submodule "src/components/api"]
+	path = src/components/api
+	url = https://github.com/antaresproject/api
+[submodule "src/components/two_factor_auth"]
+	path = src/components/two_factor_auth
+	url = https://github.com/antaresproject/two_factor_auth
+[submodule "src/components/ban_management"]
+	path = src/components/ban_management
+	url = https://github.com/antaresproject/ban_management
+[submodule "src/components/module"]
+	path = src/components/module
+	url = https://github.com/antaresproject/module
+[submodule "src/components/control"]
+	path = src/components/control
+	url = https://github.com/antaresproject/control
+[submodule "src/components/customfields"]
+	path = src/components/customfields
+	url = https://github.com/antaresproject/customfields
+[submodule "src/components/notifications"]
+	path = src/components/notifications
+	url = https://github.com/antaresproject/notifications
+[submodule "src/components/tester"]
+	path = src/components/tester
+	url = https://github.com/antaresproject/tester
+[submodule "src/components/translations"]
+	path = src/components/translations
+	url = https://github.com/antaresproject/translations
+[submodule "src/components/updater"]
+	path = src/components/updater
+	url = https://github.com/antaresproject/updater
