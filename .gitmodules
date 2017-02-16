@@ -5,7 +5,8 @@
 	path = src/components/search
 	url = https://github.com/antaresproject/search.git
 [submodule "src/core"]
-	url = https://github.com/antaresproject/core
+	url = https://github.com/antaresproject/core.git
+	path = src/core
 [submodule "src/components/widgets"]
 	path = src/components/widgets
 	url = https://github.com/antaresproject/widgets.git
@@ -42,6 +43,3 @@
 [submodule "src/components/updater"]
 	path = src/components/updater
 	url = https://github.com/antaresproject/updater.git
-[submodule "src/components/core"]
-	path = src/components/core
-	url = https://github.com/antaresproject/core.git
