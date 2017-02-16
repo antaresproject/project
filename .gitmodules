@@ -42,3 +42,6 @@
 [submodule "src/components/updater"]
 	path = src/components/updater
 	url = https://github.com/antaresproject/updater.git
+[submodule "src/components/core"]
+	path = src/components/core
+	url = https://github.com/antaresproject/core.git
