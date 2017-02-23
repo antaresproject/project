@@ -125,11 +125,11 @@
         "tymon/jwt-auth": "1.0.*",
         "brainboxlabs/brain-socket": "^1.0",
         "kriswallsmith/assetic": "^1.3",
-        "guzzlehttp/guzzle": "^6.2",
         "predis/predis": "v1.1.*",
         "barryvdh/laravel-cors": "v0.8.*",
         "twig/twig": "v1.30.0",                                 
-        "rcrowe/twigbridge": "^0.9.0"
+        "rcrowe/twigbridge": "^0.9.0",
+        "satooshi/php-coveralls": "~0.7"
     },
     "require-dev": {
         "symfony/security-core": "master",

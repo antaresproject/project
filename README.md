@@ -4,7 +4,7 @@
 
 An open source package by [Antares Project](http://antaresproject.io), code well, rock on!
 
-
+[![Build Status](https://travis-ci.org/antaresproject/project.svg?branch=master)](https://travis-ci.org/antaresproject/project)
 [![Code Climate](https://codeclimate.com/github/antaresproject/project/badges/gpa.svg)](https://codeclimate.com/github/antaresproject/project)
 [![GitHub issues](https://img.shields.io/github/issues/antaresproject/project.svg)](https://github.com/antaresproject/project/issues)
 [![GitHub forks](https://img.shields.io/github/forks/antaresproject/project.svg)](https://github.com/antaresproject/project/network)
