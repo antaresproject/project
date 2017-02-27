@@ -18,6 +18,7 @@ return [
         \Antares\Translations\Http\Handlers\TranslationsMenu::class => 990,
         \Antares\BanManagement\Http\Handlers\Menu::class            => 888,
         Antares\Api\Http\Handlers\ApiLogsMenuHandler::class,
+        Antares\Notifications\Http\Handlers\NotificationLogsMenu::class,
         \Antares\Logger\Http\Handlers\SystemMenu::class,
         \Antares\Foundation\Http\Handlers\ComponentsMainMenu::class
     ],

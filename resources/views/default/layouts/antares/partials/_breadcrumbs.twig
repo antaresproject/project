@@ -8,7 +8,7 @@
 <ul class="breadcrumbs">
     {{ breadcrumbs|raw }}
     {% if not auth_user() is null %}        
-        {% set panes=app('antares.widget').make('pane.menu.top') %}                                
+        {% set panes=app('antares.widget').make('pane.menu.top') %}
         {% if(panes|length>0) %}                      
             {% for id,pane in panes %}                                    
                 {% if pane.html is not empty  %}
