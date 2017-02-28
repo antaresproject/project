@@ -97,7 +97,9 @@
                         <div class="btn btn--md btn--primary mdl-js-button mdl-js-ripple-effect" data-url="{{ handles('antares::notifications/sidebar/clear/alerts') }}">Clear All</div>
                     </div>    
                 </aside>
+                {% block sidebar_preview %}
 
+                {% endblock %}
                 {% block main_content %}
 
                 {% endblock %}
