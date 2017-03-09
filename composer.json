@@ -99,20 +99,20 @@
         }
     ],
     "require": {
-        "antaresproject/core": "dev-master",
+        "antaresproject/core": "0.9.2.x-dev",
         "antaresproject/component-module": "dev-master",
-        "antaresproject/component-logger": "dev-master",
-        "antaresproject/component-updater": "dev-master",
-        "antaresproject/component-translations": "dev-master",
-        "antaresproject/component-widgets": "dev-master",
-        "antaresproject/component-tester": "dev-master",
-        "antaresproject/component-notifications": "dev-master",
-        "antaresproject/component-customfields": "dev-master",
-        "antaresproject/component-control": "dev-master",
-        "antaresproject/component-automation": "dev-master",
-        "antaresproject/component-search": "dev-master",
-        "antaresproject/component-api": "dev-master",
-        "antaresproject/component-ban-management": "dev-master",
+        "antaresproject/component-logger": "0.9.2.x-dev",
+        "antaresproject/component-updater": "0.9.2.x-dev",
+        "antaresproject/component-translations": "0.9.2.x-dev",
+        "antaresproject/component-widgets": "0.9.2.x-dev",
+        "antaresproject/component-tester": "0.9.2.x-dev",
+        "antaresproject/component-notifications": "0.9.2.x-dev",
+        "antaresproject/component-customfields": "0.9.2.x-dev",
+        "antaresproject/component-control": "0.9.2.x-dev",
+        "antaresproject/component-automation": "0.9.2.x-dev",
+        "antaresproject/component-search": "0.9.2.x-dev",
+        "antaresproject/component-api": "0.9.2.x-dev",
+        "antaresproject/component-ban-management": "0.9.2.x-dev",
         "antaresproject/component-two-factor-auth": "dev-master",
         "laravel/framework": "5.2.*",
         "mnsami/composer-custom-directory-installer": "1.1.*",
@@ -153,14 +153,9 @@
             "Antares\\Users\\": "src/components/users/src"
         }
     },
-    "autoload-dev": {
-        "classmap": [
-            "src/core/tests/TestCase.php"
-        ]
-    },
     "extra": {
         "branch-alias": {
-            "dev-master": "0.9.0-dev"
+            "0.9.2.x-dev": "0.9.0-dev"
         },
         "installer-paths": {
             "./src/core": ["antaresproject/core"],
@@ -196,7 +191,8 @@
         ],
         "post-update-cmd": [
             "php artisan clear-compiled",
-            "php artisan ide-helper:generate"
+            "php artisan ide-helper:generate",
+            "php artisan key:generate"
         ],
         "post-create-project-cmd": [
             "php artisan key:generate"
