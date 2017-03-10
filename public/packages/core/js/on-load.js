@@ -120,6 +120,7 @@ var ConfirmModal = (function () {
                 return this.isGetHttpMethod() ? 'GET' : 'POST';
             },
             ConfirmModal.prototype.buildForm = function () {
+
                 var $footer = this.getFooter();
 
                 var $methodInput = $('<input/>', {
@@ -162,6 +163,7 @@ var ConfirmModal = (function () {
         form.submit();
     };
     ConfirmModal.prototype.open = function () {
+
         var self = this;
         var isMassAction = self.from.hasClass('mass-action');
         if (isMassAction) {
@@ -363,7 +365,7 @@ $(document).ready(function () {
     $('.mail-change-driver', document).on("change", function (e) {
         var handler = $(this), driver = handler.val();
 
-        handler.closest('form').find('input').each(function (index, item) {
+        handler.closest('form').find('.mail-control').each(function (index, item) {
             var element = $(item).closest('.form-block');
             if (element.attr('role') === driver) {
                 element.removeClass('hidden-block');

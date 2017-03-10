@@ -11,9 +11,7 @@ return [
                 return [
                     'title'      => trans('antares/users::messages.dependable.' . $title),
                     'url'        => handles('antares/foundation::users/' . $model->id . '/status'),
-                    //
                     'attributes' => [
-                        'class'            => 'triggerable confirm',
                         'data-icon'        => $model->status ? 'minus' : 'check',
                         'data-title'       => trans("antares/users::messages.dependable.user_change_status_question"),
                         'data-description' => trans('antares/users::messages.dependable.' . $description, ['fullname' => $model->fullname])]

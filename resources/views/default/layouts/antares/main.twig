@@ -105,7 +105,11 @@
                 {% endblock %}
             </div>
         </div>                  
+        <template id="sweet-alert-template">
+            <div class="sweet-overlay" tabIndex="-1"></div><div class="sweet-alert" style="display: none" tabIndex="-1"><div class="icon error"><span class="x-mark"><span class="line left"></span><span class="line right"></span></span></div><div class="icon warning"> <span class="body"></span> <span class="dot"></span> </div> <div class="icon info"></div> <div class="icon success"> <span class="line tip"></span> <span class="line long"></span> <div class="placeholder"></div> <div class="fix"></div> </div> <img class="sweet-image"> <div class="header"><h2>Title</h2><i class="zmdi zmdi-close swal__close"></i></div><div class="sweet-content">Text</div><hr class="sweet-spacer"><div class="footer"><button class="sweet-confirm">OK</button><button class="sweet-cancel">Cancel</button></div></div>
+        </template>
         {% include 'antares/foundation::layouts.antares.partials._spinner' %}
         {% include 'antares/foundation::layouts.antares.partials._scripts_webpack' %}                
+
     </body>
 </html>

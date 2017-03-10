@@ -36,7 +36,7 @@
     {% if buttons is not empty %}
         <div class="app-content__footer">
             <div class="btn-group">
-                {% for button in buttons %}  
+                {% for button in buttons %}                      
                     {% if button.attributes.attributes.type not in ['submit','button'] %}
                         {% set links = links|merge([button]) %}
                     {% else %}
@@ -45,14 +45,15 @@
                         {% endif %}
                     {% endif %}
                 {% endfor %}
+                {% for test in tests %}
+                    {{ test|raw }}
+                {% endfor %} 
                 {% for link in links %}  
                     {% if not link.hasWrapper() %}
                         {{ link.getField(row, link, [])|raw }}
                     {% endif %}
                 {% endfor %}
-                {% for test in tests %}
-                    {{ test|raw }}
-                {% endfor %} 
+
             </div>
         </div>
         {% for button in buttons %}  

@@ -388,6 +388,9 @@ aside.main-sidebar ul.main-menu > li > a .text{
 .separator-small{
     height:5px;
 }
+.separator-medium{
+    height:20px;
+}
 
 .tbl-c table tr td img{
     max-height: 29px;
@@ -475,4 +478,7 @@ table.possible-additional-row tr.new-tr:hover td{
 }
 form fieldset .form-block span.error{
     padding-top:0px;
+}
+.form-block .input-field.input-field--desc input{
+    margin:0px;
 }
