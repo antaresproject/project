@@ -25,7 +25,6 @@ return [
     'antares.ready: menu.after.general-settings' => [
         \Antares\Foundation\src\Http\Handlers\SecurityMenu::class,
         \Antares\Foundation\src\Http\Handlers\MailConfigurationMenu::class,
-        \Antares\Notifications\Http\Handlers\NotificationsConfigurationMenu::class,
         \Antares\Api\Http\Handlers\Menu::class,
     ],
     'antares.ready: menu.after.logger'           => [

@@ -544,7 +544,6 @@ $(document).ready(function () {
             var previewUrl = card.data('preview-url');
             $.modal.close();
             var gridStackItem = $('.grid-stack-item[id=' + id + ']'), overlayPreloader = gridStackItem.find('.grid-stack-item-content');
-
             overlayPreloader.LoadingOverlay('show');
             //overlayPreloader.divPreload('on');
             $.ajax({
@@ -608,7 +607,7 @@ $(document).ready(function () {
                 },
                 complete: function () {
                     bigCard.LoadingOverlay('hide');
-                    //$('.card > * > *, .tbl-c > *,form,.grid-stack').css('opacity', '1');
+                    $('.card > * > *, .tbl-c > *,form,.grid-stack').css('opacity', '1');
                 }
             });
             return false;
