@@ -482,3 +482,15 @@ form fieldset .form-block span.error{
 .form-block .input-field.input-field--desc input{
     margin:0px;
 }
+.zero-data{
+    margin:35px 0;
+
+}
+.zero-data .zero-data__indicator{
+    padding-left:20%;
+    padding-right:30px;
+
+}
+.zero-data .zero-data__txt, .zero-data .zero-data__txt a{
+    text-align:left;
+}
