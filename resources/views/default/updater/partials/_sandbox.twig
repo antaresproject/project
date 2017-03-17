@@ -1,8 +1,8 @@
 {% if sandbox is not null %}    
     <div class="col-8">
         <div class="col-group">
-            <div class="col-7">
-                <h1>
+            <div class="col-8">
+                <h1 class="sandbox-mode-title">
                     {{ trans('You are in Sandbox Mode') }} {{ sandbox }}         
                 </h1>
             </div>            
@@ -14,7 +14,7 @@
                 </div>
             {% endif %}
             <div class="col-3">
-                <a href="{{ handles('admin',{'sandbox':false}) }}" class="btn btn-default btn--s-small btn--orange mdl-button mdl-js-button mdl-js-ripple-effect btn-primary">
+                <a href="{{ handles('/',{'sandbox':false}) }}" class="btn btn-default btn--s-small btn--orange mdl-button mdl-js-button mdl-js-ripple-effect btn-primary">
                     <i class="zmdi zmdi-long-arrow-return"></i> {{ trans('back to primary') }}
                 </a>
             </div>
