@@ -418,15 +418,7 @@ $(document).ready(function () {
         e.preventDefault(), e.stopPropagation(), sidebar.removeClass(openClass);
     });
 
-    $('.admins-select-status', document).on('change', function (e) {
-        var table = $(this).closest('.tbl-c').find('[data-table-init]');
-        if (table.length < 0) {
-            return false;
-        }
-        var api = table.dataTable().api();
-        var val = $.fn.dataTable.util.escapeRegex($(this).val());
-        api.column(6).search(val, false, false).draw();
-    });
+
     $('.confirm', document).on('click', function (e) {
         var
                 $this = $(this),
