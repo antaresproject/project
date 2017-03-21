@@ -25,7 +25,7 @@
         "antares-project",
         "boilerplate"
     ],
-    "license": "BSD 3-Clause",
+    "license": "BSD-3-Clause",
     "type": "project",
     "prefer-stable": true,
     "minimum-stability": "dev",

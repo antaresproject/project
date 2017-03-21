@@ -1,3 +1,4 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.23.0/polyfill.js"></script>
 {% block javascripts %}
     {%  set asset = app('antares.asset').container('antares/foundation::application').script('app_cache',    '/webpack/app_cache.js') %}     
     {{ asset.styles()|raw }} 
@@ -9,7 +10,6 @@
         $('.grid-stack,form').css('opacity', '1');
         $('.grid-stack-item-content').css('opacity', '1');
         $('.card > * > *').css('opacity', '1');
-
     });
 </script>
 

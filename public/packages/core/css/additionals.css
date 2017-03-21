@@ -494,3 +494,12 @@ form fieldset .form-block span.error{
 .zero-data .zero-data__txt, .zero-data .zero-data__txt a{
     text-align:left;
 }
+#app-wrapper form.form--hor .form-block label.form-block__name{
+    padding-top:0px;
+}
+.form-block{
+    margin-bottom: 8px;
+}
+.form--hor fieldset .col-group{
+    margin-bottom: 10px !important;
+}

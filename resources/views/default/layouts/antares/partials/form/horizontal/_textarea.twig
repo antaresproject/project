@@ -1,12 +1,9 @@
-<div class="child-align-top col-dt-2 col-3 col-mb-5 {{ control.getLabelWrapper('class') }}">
+<div class="child-align-top col-dt-2 col-2 col-mb-2 {{ control.getLabelWrapper('class') }}">
     {{ Form.label(control.name, control.label,{'class':'form-block__name'})|raw }}    
 </div>
-<div class="col-dt-14 col-13 col-mb-11 {{ control.getWrapper('class') }}">
+<div class="col-dt-6 col-6 col-mb-6 {{ control.getWrapper('class') }}">
     <div class="input-field {{ (control.inlineHelp|length>1 or control.help|length>1) ? 'input-field--desc' : ''  }}">        
         {{ control.getField(row, control, [])|raw }}
-        {% if control.inlineHelp|length>1 or control.help|length>1 %}
-            {% include 'antares/foundation::layouts.antares.partials.form.horizontal._description' %}             
-        {% endif %}
     </div>
     <span id="{{ control.id }}_error" class="error col-13 col-mb-11">
         {{ errors.first(control.name, format)|raw }}
