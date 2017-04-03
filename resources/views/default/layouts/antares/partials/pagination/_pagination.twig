@@ -1,15 +1,48 @@
-<div class="pagination mb16 mt16">
-    <div class="pagination-pages">
-        <div class="pagination-pages__prev">
-            {{ previousButton|raw }}
+{% if paginator.hasPages() %}
+    <div class="pagination mb16 mt16">
+        <div class="pagination-pages">
+            <div class="pagination-pages__prev">
+                <a href="{{ (paginator.onFirstPage()) ? '#' : paginator.previousPageUrl() }}" class="mdl-js-button mdl-js-ripple-effect" rel="prev">                
+                    <i class="zmdi zmdi-chevron-left"></i>
+                    <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span>
+                </a>
+            </div>
+            <ul class="pagination-pages__list">
+                {% for element in elements %}
+                    {% if element is iterable %}
+                        {% for page,url in element %}
+                            {% if page == paginator.currentPage() %}
+                                <li class="pagination-pages__sgl--active">
+                                    <a class="mdl-js-button mdl-js-ripple-effect" href="#" >
+                                        {{ page }}
+                                        <span class="mdl-button__ripple-container">
+                                            <span class="mdl-ripple"></span>
+                                        </span>
+                                    </a>
+                                </li>
+                            {% else %}
+                                <li>
+                                    <a class="mdl-js-button mdl-js-ripple-effect ajaxable pagination-ajax" href="{{ url }}" >
+                                        {{ page }}<span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span>
+                                    </a>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                    {% else %}  
+                        <li class="disabled">
+                            <span>{{ element }}</span>
+                        </li>
+                    {% endif %}                    
+                {% endfor %}  
+            </ul>
+            <div class="pagination-pages__next">
+                <a href="{{ (paginator.hasMorePages()) ? paginator.nextPageUrl() : '#' }}" class="mdl-js-button mdl-js-ripple-effect" rel="next">                
+                    <i class="zmdi zmdi-chevron-right"></i>
+                    <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span>
+                </a>
+            </div>
         </div>
-        <ul class="pagination-pages__list">
-            {{ links|raw }}
-        </ul>
-        <div class="pagination-pages__next">
-            {{ nextButton|raw }}
-        </div>
-    </div>
+    {% endif %}        
     <div class="pagination-filter">
         <ul>
             <li class="{{ perPage==10?'pagination-filter__sgl--active':'' }}">

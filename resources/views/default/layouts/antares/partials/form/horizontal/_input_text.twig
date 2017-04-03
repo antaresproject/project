@@ -1,5 +1,7 @@
 <div class="col-dt-2 col-2 col-mb-2 {{ control.getLabelWrapper('class') }}">
-    {{ Form.htmlLabel(control)|raw }}    
+    {% if control.hasLabel() %}
+        {{ Form.htmlLabel(control)|raw }}    
+    {% endif %}
 </div>
 <div class="col-dt-6 col-6 col-mb-6 {{ control.getWrapper('class') }}">
     <div class="input-field {{ (control.inlineHelp|length>1 or control.help|length>1) ? 'input-field--desc' : ''  }} {{ control.get('fieldClass')|raw }}">                

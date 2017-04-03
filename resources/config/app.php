@@ -165,7 +165,7 @@ return [
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Baum\Providers\BaumServiceProvider::class,
         Arcanedev\LogViewer\LogViewerServiceProvider::class,
-        Barryvdh\Snappy\ServiceProvider::class,
+        //Barryvdh\Snappy\ServiceProvider::class,
         Antares\Licensing\LicenseServiceProvider::class,
         Antares\Breadcrumb\ServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
@@ -173,7 +173,6 @@ return [
         Thomaswelton\LaravelGravatar\LaravelGravatarServiceProvider::class,
         Dingo\Api\Provider\LaravelServiceProvider::class,
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
-        BrainSocket\BrainSocketServiceProvider::class,
         Barryvdh\Cors\ServiceProvider::class,
     //Barryvdh\Debugbar\ServiceProvider::class
     ],

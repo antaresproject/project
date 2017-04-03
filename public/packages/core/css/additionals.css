@@ -503,3 +503,9 @@ form fieldset .form-block span.error{
 .form--hor fieldset .col-group{
     margin-bottom: 10px !important;
 }
+.sweet-container .CB--type2 .footer .sweet-cancel{
+    margin-right: 16px;
+}
+.sweet-container .CB--type2 .footer .sweet-confirm{
+    margin-right: 0px;
+}
