@@ -1,5 +1,5 @@
-{% if paginator.hasPages() %}
-    <div class="pagination mb16 mt16">
+<div class="pagination mb16 mt16">
+    {% if paginator.hasPages() %}    
         <div class="pagination-pages">
             <div class="pagination-pages__prev">
                 <a href="{{ (paginator.onFirstPage()) ? '#' : paginator.previousPageUrl() }}" class="mdl-js-button mdl-js-ripple-effect" rel="prev">                
@@ -42,29 +42,30 @@
                 </a>
             </div>
         </div>
-    {% endif %}        
-    <div class="pagination-filter">
-        <ul>
-            <li class="{{ perPage==10?'pagination-filter__sgl--active':'' }}">
-                <a class="mdl-js-button mdl-js-ripple-effect pagination-ajax" href="{{ url~'&per_page=10' }}">
-                    10
-                </a>
-            </li>
-            <li class="{{ perPage==20?'pagination-filter__sgl--active':'' }}">
-                <a class="mdl-js-button mdl-js-ripple-effect pagination-ajax" href="{{ url~'&per_page=20' }}">
-                    20
-                </a>
-            </li>
-            <li class="{{ perPage==30?'pagination-filter__sgl--active':'' }}">
-                <a class="mdl-js-button mdl-js-ripple-effect pagination-ajax" href="{{ url~'&per_page=30' }}">
-                    30
-                </a>
-            </li>
-            <li class="{{ perPage==50?'pagination-filter__sgl--active':'' }}">
-                <a class="mdl-js-button mdl-js-ripple-effect pagination-ajax" href="{{ url~'&per_page=50' }}">
-                    50
-                </a>
-            </li>
-        </ul>
-    </div>
+
+        <div class="pagination-filter">
+            <ul>
+                <li class="{{ perPage==10?'pagination-filter__sgl--active':'' }}">
+                    <a class="mdl-js-button mdl-js-ripple-effect pagination-ajax" href="{{ url~'&per_page=10' }}">
+                        10
+                    </a>
+                </li>
+                <li class="{{ perPage==20?'pagination-filter__sgl--active':'' }}">
+                    <a class="mdl-js-button mdl-js-ripple-effect pagination-ajax" href="{{ url~'&per_page=20' }}">
+                        20
+                    </a>
+                </li>
+                <li class="{{ perPage==30?'pagination-filter__sgl--active':'' }}">
+                    <a class="mdl-js-button mdl-js-ripple-effect pagination-ajax" href="{{ url~'&per_page=30' }}">
+                        30
+                    </a>
+                </li>
+                <li class="{{ perPage==50?'pagination-filter__sgl--active':'' }}">
+                    <a class="mdl-js-button mdl-js-ripple-effect pagination-ajax" href="{{ url~'&per_page=50' }}">
+                        50
+                    </a>
+                </li>
+            </ul>
+        </div>
+    {% endif %}      
 </div>

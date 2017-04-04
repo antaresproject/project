@@ -34,7 +34,7 @@ return [
             // When set to true, the generated templates have a __toString() method
             // that you can use to display the generated nodes.
             // default: false
-            'debug'               => false,
+            'debug'               => true,
             // The charset used by the templates.
             // default: utf-8
             'charset'             => 'utf-8',
@@ -44,7 +44,7 @@ return [
             // An absolute path where to store the compiled templates, or false to disable caching. If null
             // then the cache file path is used.
             // default: cache file storage path
-            'cache'               => storage_path('twigs'),
+            'cache'               => false,
             // When developing with Twig, it's useful to recompile the template
             // whenever the source code changes. If you don't provide a value
             // for the auto_reload option, it will be determined automatically based on the debug value.

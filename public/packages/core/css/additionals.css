@@ -509,3 +509,6 @@ form fieldset .form-block span.error{
 .sweet-container .CB--type2 .footer .sweet-confirm{
     margin-right: 0px;
 }
+form.form--hor .form-block span.error p{
+    padding-top: 2px !important;
+}

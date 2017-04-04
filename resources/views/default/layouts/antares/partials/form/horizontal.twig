@@ -17,10 +17,10 @@
                     {% endif %}
                     <div class="col-group">
                         {% for control in fieldset.controls() %}
-                            <div class="form-block">
+                            <div class="form-block {{control.getBlock('class')}}" role="{{control.getBlock('role')}}">
                                 {% include 'antares/foundation::layouts.antares.partials.form.horizontal._'~control.type|replace({':': '_'}) with {control: control} %}
                             </div>
-                            <div class="form-block">
+                            <div class="form-block  form-block-desc {{control.getBlock('class')}}" role="{{control.getBlock('role')}}">
                                 {% if control.inlineHelp|length>1 or control.help|length>1 %}
                                     {% include 'antares/foundation::layouts.antares.partials.form.horizontal._description' %}             
                                 {% endif %}

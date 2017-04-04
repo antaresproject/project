@@ -366,12 +366,15 @@ $(document).ready(function () {
         var handler = $(this), driver = handler.val();
 
         handler.closest('form').find('.mail-control').each(function (index, item) {
-            var element = $(item).closest('.form-block');
+            var element = $(item).closest('.form-block'), desc = $('.form-block-desc[role="' + element.attr('role') + '"]');
             if (element.attr('role') === driver) {
                 element.removeClass('hidden-block');
+                desc.removeClass('hidden-block');
             } else {
                 element.addClass('hidden-block');
+                desc.addClass('hidden-block');
             }
+
         });
         return false;
     });

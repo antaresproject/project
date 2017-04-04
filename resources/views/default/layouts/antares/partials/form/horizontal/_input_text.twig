@@ -8,7 +8,7 @@
         {{ control.get('before')|raw }}            
         {{ control.getField(row, control, [])|raw }}                
     </div>    
-    <span id="{{ control.id }}_error" class="error col-13 col-mb-11">
+    <span id="{{ control.id }}_error" class="error col-13 col-mb-11 nopadding">
         {{ errors.first(control.name, format)|raw }}
     </span>
 </div>

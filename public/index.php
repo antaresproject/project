@@ -60,10 +60,18 @@ if (isset($_GET['sandbox']) && !empty($_GET['sandbox'])) {
       | and wonderful application we have prepared for them.
       |
      */
+
+    ini_set('display_errors', '1');
+    set_time_limit(60);
+
+
     $kernel   = $app->make(Illuminate\Contracts\Http\Kernel::class);
     $response = $kernel->handle(
             $request  = Illuminate\Http\Request::capture()
     );
+
+    ini_set('display_errors', '1');
+    set_time_limit(60);
 
 
     $response->send();
