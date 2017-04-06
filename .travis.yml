@@ -5,9 +5,6 @@ sudo: false
 php:
   - 7.1
 
-env:
-  global:
-    - coverage=yes
     
 before_script:
   - travis_retry composer install --prefer-dist --no-interaction
@@ -15,16 +12,9 @@ before_script:
   - chmod +x coveralls.phar
   
 script: 
-    - mkdir -p build/logs
-    - ./vendor/bin/phpunit -c phpunit.xml --coverage-clover build/logs/clover.xml;
+    - mkdir -p ./build/logs
+    - ./vendor/bin/phpunit -c phpunit.xml --coverage-clover ./build/logs/clover.xml;
 
 after_script:
   - php coveralls.phar -v;
 
-matrix:
-  include:
-    - php: 7.1
-      env: coverage=yes
-  allow_failures:
-    - env: coverage=yes
-  fast_finish: true  
