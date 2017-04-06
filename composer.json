@@ -100,7 +100,7 @@
     ],    
     "require": {
         "antaresproject/core": "0.9.2.x-dev",        
-        "antaresproject/component-logger": "0.9.2.1-dev",
+        "antaresproject/component-logger": "0.9.2.x-dev",
         "antaresproject/component-updater": "0.9.2.x-dev",        
         "antaresproject/component-translations": "0.9.2.x-dev",
         "antaresproject/component-widgets": "0.9.2.x-dev",
