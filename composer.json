@@ -132,10 +132,8 @@
         "prettus/laravel-request-logger": "^1.0",
         "barryvdh/laravel-snappy": "^0.3.3",
         "tymon/jwt-auth": "1.0.*",
-        "phpunit/phpunit": "~5.7",
         "sensiolabs/ansi-to-html": "^1.1",
-        "antaresproject/component-installer-plugin": "dev-master"
-        "phpunit/phpunit": "~5.7",
+        "antaresproject/component-installer-plugin": "dev-master",
         "laravel/browser-kit-testing": "^1.0",
         "satooshi/php-coveralls": "^1.0"
     },
@@ -145,7 +143,8 @@
         "mockery/mockery": "0.9.*",
         "symfony/security-core": "master",
         "davejamesmiller/laravel-breadcrumbs": "dev-master",
-        "linfo/linfo": "dev-master"
+        "linfo/linfo": "dev-master",
+        "phpunit/phpunit": "~5.7"
     },
     "autoload": {
         "classmap": [
