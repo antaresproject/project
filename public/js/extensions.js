@@ -8,12 +8,13 @@ $(document).ready(function() {
             description = $this.data('description'),
             actionUrl = $this.data('action-url');
 
-        APP.swal.init('skin2', 'typeInfo', {
+        swal({
             title: title,
             type: 'warning',
             text: description,
             showCancelButton: true,
-            closeOnConfirm: false
+            closeOnConfirm: false,
+            customClass: 'CB CB--type1'
         }, function() {
             var
                 $container = $('.sweet-container'),
@@ -23,10 +24,11 @@ $(document).ready(function() {
             $container.find('.footer').find('button').attr('disabled', 'disabled').prop('disabled', true);
 
             $.get(url).then(function(response) {
-                APP.swal.init('skin2', 'typeInfo', {
+                swal({
                     title: title,
                     showCancelButton: false,
                     showConfirmButton: false,
+                    customClass: 'CB CB--type1',
                     html: response
                 });
 
@@ -44,7 +46,6 @@ $(document).ready(function() {
                     initProgress($console, previewUrl);
                 });
             });
-
         });
 
         function initProgress($console, url) {
@@ -58,7 +59,10 @@ $(document).ready(function() {
 
                     if(response.redirect) {
                         $console.html(text + "\nRefreshing browser...").scrollTop( $console.get(0).scrollHeight );
-                        window.location.replace(response.redirect);
+
+                        setTimeout(function() {
+                            window.location.replace(response.redirect);
+                        }, 2500);
                     }
                     else {
                         setTimeout(refresh, 1000);

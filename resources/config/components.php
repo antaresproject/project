@@ -19,7 +19,6 @@ return [
         'antaresproject/component-api' => '0.9.2.1-dev',
         'antaresproject/component-ban-management' => '0.9.2.1-dev',
         'antaresproject/component-two-factor-auth' => '0.9.2.1-dev',
-        //'marcinkozak/component-abrakadabra' => 'dev-master',
     ],
 
     /**
@@ -46,7 +45,6 @@ return [
         'antaresproject/component-api',
         'antaresproject/component-ban-management',
         'antaresproject/component-two-factor-auth',
-        //'marcinkozak/component-abrakadabra',
     ],
 
 ];
