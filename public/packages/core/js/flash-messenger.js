@@ -6,8 +6,8 @@ function generate(type, text) {
         maxVisible: 10,
         timeout: 3000,
         animation: {
-            open: 'animated bounceInRight',
-            close: 'animated bounceOutRight',
+            open: 'animated slideInRight',
+            close: 'animated slideOutRight',
             easing: 'swing',
             speed: 500
         }

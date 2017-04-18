@@ -19,8 +19,8 @@ $(document).ready(function () {
                 maxVisible: 10,
                 timeout: 3000,
                 animation: {
-                    open: 'animated bounceInRight',
-                    close: 'animated bounceOutRight',
+                    open: 'animated',
+                    close: 'animated',
                     easing: 'swing',
                     speed: 500
                 }
@@ -36,8 +36,8 @@ $(document).ready(function () {
                 maxVisible: 10,
                 timeout: 3000,
                 animation: {
-                    open: 'animated bounceInRight',
-                    close: 'animated bounceOutRight',
+                    open: 'animated',
+                    close: 'animated',
                     easing: 'swing',
                     speed: 500
                 }

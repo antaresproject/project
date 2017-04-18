@@ -16,7 +16,8 @@ var ConfirmModal = (function () {
     ConfirmModal.prototype.getConfig = function () {
         return $.extend({}, APP.swal.cb1Warning(), {
             title: this.title,
-            text: this.description
+            text: this.description,
+            animation: false
         });
     };
     ConfirmModal.prototype.getModal = function () {

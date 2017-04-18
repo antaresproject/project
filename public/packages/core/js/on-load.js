@@ -13,6 +13,15 @@ function AjaxLoader() {
             }
 }
 $(document).ready(function () {
+    $('.app-install .app-content__footer button, .app-install .app-content__footer a').on('click', function () {
+
+        if ($('.app-install form')[0].checkValidity()) {
+            $(this).addClass('is-refreshing');
+            $('.app-install').LoadingOverlay('show');
+        }
+
+        return true;
+    });
     $.ajaxSetup({
         cache: false,
         timeout: 120000,
