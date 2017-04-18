@@ -14,7 +14,9 @@ $(document).ready(function() {
             text: description,
             showCancelButton: true,
             closeOnConfirm: false,
-            customClass: 'CB CB--type1'
+            customClass: 'CB CB--type1',
+            allowEscapeKey: false,
+            allowOutsideClick: false
         }, function() {
             var
                 $container = $('.sweet-container'),
@@ -29,6 +31,8 @@ $(document).ready(function() {
                     showCancelButton: false,
                     showConfirmButton: false,
                     customClass: 'CB CB--type1',
+                    allowEscapeKey: false,
+                    allowOutsideClick: false,
                     html: response
                 });
 
