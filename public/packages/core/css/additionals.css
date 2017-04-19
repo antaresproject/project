@@ -512,3 +512,61 @@ form fieldset .form-block span.error{
 form.form--hor .form-block span.error p{
     padding-top: 2px !important;
 }
+.menu-aside.menu-aside--steps:before{
+    top:100px;
+    height:56%;
+}
+.menu-aside.menu-aside--steps .install-logo img{
+    width:80%;
+    padding-left:40px;
+    margin:10px;    
+}
+.app-install .grid-container--2col .app-content__footer{
+    left:auto;
+}
+@-webkit-keyframes pace-spinner{
+    0%{
+        -webkit-transform:rotate(0deg);
+        transform:rotate(0deg);
+    }
+    100%{
+        -webkit-transform:rotate(360deg);
+        transform:rotate(360deg);
+    }
+}
+@keyframes pace-spinner{
+    0%{
+        -webkit-transform:rotate(0deg);
+        transform:rotate(0deg);
+    }
+    100%{
+        -webkit-transform:rotate(360deg);
+        transform:rotate(360deg);
+    }
+}
+button.is-refreshing:before{
+    content:'';
+    width:20px;
+    height:20px;
+    padding:0px;
+    position:absolute;
+    top:calc(82% - 25px);
+    left:calc(90% - 25px);
+    border-radius:50%;
+    z-index:9999;
+    display:-webkit-flex;
+    display:-ms-flexbox;
+    display:flex;
+    -webkit-align-items:center;
+    -ms-flex-align:center;
+    align-items:center;
+    -webkit-justify-content:center !important;
+    -ms-flex-pack:center !important;
+    justify-content:center !important;
+    border:solid 2px transparent;
+    border-top-color:#FFF;
+    border-left-color:#FFF;
+    border-radius:100%;
+    -webkit-animation:pace-spinner 400ms linear infinite;
+    animation:pace-spinner 400ms linear infinite;
+}

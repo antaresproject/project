@@ -16,7 +16,8 @@ return [
                         'data-title'       => trans("antares/users::messages.dependable.user_change_status_question"),
                         'data-description' => trans('antares/users::messages.dependable.' . $description, ['fullname' => $model->fullname])]
                 ];
-            }]],
+            }]
+    ],
     'mass_actions' => [
         User::class => [
             'status' => function() {
