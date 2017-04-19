@@ -134,7 +134,6 @@
         "tymon/jwt-auth": "1.0.*",
         "sensiolabs/ansi-to-html": "^1.1",
         "antaresproject/component-installer-plugin": "dev-master",
-        "laravel/browser-kit-testing": "^1.0",
         "satooshi/php-coveralls": "^1.0"
     },
     "require-dev": {
@@ -144,7 +143,8 @@
         "symfony/security-core": "master",
         "davejamesmiller/laravel-breadcrumbs": "dev-master",
         "linfo/linfo": "dev-master",
-        "phpunit/phpunit": "~5.7"
+        "phpunit/phpunit": "~5.7",
+        "laravel/browser-kit-testing": "^1.0"
     },
     "autoload": {
         "classmap": [
