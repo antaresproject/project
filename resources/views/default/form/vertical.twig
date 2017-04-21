@@ -1,0 +1,27 @@
+{% if decorator.hasWrapper %}
+    <div {{ decorator.getWrapper|stringify }} >
+{% endif %}
+    <div {{ labelWrapper|stringify }}>
+        {{ label|raw }}
+    </div>
+    <div {{ inputWrapper|stringify }}>
+        <div class="input-field">
+            {{ control.prependHtml|raw }}
+            {{ input|raw }}
+            {{ control.appendHtml|raw }}
+        </div>
+    </div>
+    {% if control.inlineHelp|length>1 or control.help|length>1 %}
+        {% include 'antares/foundation::layouts.antares.partials.form.vertical._description' %}
+    {% endif %}
+    {% if errors != null %}
+    <span id="{{ control.id }}_error" class="error col-dt-14 col-13 col-mb-11">
+        {% for error in errors %}
+            {{ error }}
+        {% endfor %}
+    </span>
+    {% endif %}
+
+{% if decorator.hasWrapper %}
+    </div>
+{% endif %}

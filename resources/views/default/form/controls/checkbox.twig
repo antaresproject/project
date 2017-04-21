@@ -1,0 +1,8 @@
+{% if control.useHiddenElement() %}
+    <input type='hidden' name='{{ control.getName() }}' value='{{ control.getUncheckedValue() }}'/>
+{% endif %}
+<input type='checkbox' name='{{ control.getName() }}'
+       {% if control.getValue() == control.getCheckedValue() %}checked{% endif %}
+       value='{{ control.getValue() }}'
+       {{ control.getAttributes()|stringify }}
+/>

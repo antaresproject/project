@@ -1,0 +1,11 @@
+{% if decorator.hasWrapper %}
+    <div {{ decorator.getWrapper|stringify }} >
+{% endif %}
+
+{{ control.prependHtml|raw }}
+{{ input|raw }}
+{{ control.appendHtml|raw }}
+
+{% if decorator.hasWrapper %}
+    </div>
+{% endif %}

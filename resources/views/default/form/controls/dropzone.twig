@@ -1,0 +1,16 @@
+<div id="{{ control.getName() }}" class="dropzone dropzone-form brand-logo" >
+    <div class="dz-message" data-dz-message>
+        <div class="dz-m__current" >
+            <img height="80" src="{{ profile_picture(auth_user().email,80,80) }}" />
+        </div>
+        <div class="dz-m__header"  ><i class="zmdi zmdi-wallpaper"></i></div>
+        <div class="dz-m__content" >
+            <span>Drag &amp; drop,</span>
+            <span>or click to upload</span>
+        </div>
+    </div>
+</div>
+<input type="file" name="{{ control.getName() }}"
+       value="{{ control.getValue() }}"
+        {{ control.getAttributes()|stringify }}
+/>
