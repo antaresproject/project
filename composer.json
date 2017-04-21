@@ -157,8 +157,7 @@
             "App\\": "app/",
             "Installer\\": "app/Installer/src",
             "Antares\\Control\\": "src/components/control/src",
-            "Antares\\Brands\\": "src/core/brands/src",
-            "Antares\\Users\\": "src/components/users/src"
+            "Antares\\Brands\\": "src/core/brands/src"
         }
     },
     "extra": {

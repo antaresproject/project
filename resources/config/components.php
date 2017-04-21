@@ -33,13 +33,13 @@ return [
         'antaresproject/component-automation',
         'antaresproject/component-customfields',
         'antaresproject/component-tester',
+        'antaresproject/component-module',
     ],
     /**
      * List of optional extensions with selected by default.
      */
     'optional' => [
         'antaresproject/component-search',
-        'antaresproject/component-module',
         'antaresproject/component-api',
         'antaresproject/component-ban-management',
         'antaresproject/component-two-factor-auth',
