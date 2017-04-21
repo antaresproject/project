@@ -7,7 +7,7 @@ return [
     'branches' => [
         'antaresproject/component-widgets'         => '0.9.2.x-dev',
         'antaresproject/component-logger'          => '0.9.2.x-dev',
-        'antaresproject/component-translations'    => '0.9.2.x-dev',
+        'antaresproject/component-translations'    => 'dev-master',
         'antaresproject/component-updater'         => '0.9.2.x-dev',
         'antaresproject/component-control'         => '0.9.2.x-dev',
         'antaresproject/component-notifications'   => '0.9.2.x-dev',
@@ -15,10 +15,10 @@ return [
         'antaresproject/component-customfields'    => '0.9.2.x-dev',
         'antaresproject/component-tester'          => '0.9.2.x-dev',
         'antaresproject/component-search'          => '0.9.2.x-dev',
-        'antaresproject/component-module'          => '0.9.2.x-dev',
+        'antaresproject/component-module'          => 'dev-master',
         'antaresproject/component-api'             => '0.9.2.x-dev',
         'antaresproject/component-ban-management'  => '0.9.2.x-dev',
-        'antaresproject/component-two-factor-auth' => '0.9.2.x-dev',
+        'antaresproject/component-two-factor-auth' => 'dev-master',
     ],
     /**
      * Extensions required on installation.
