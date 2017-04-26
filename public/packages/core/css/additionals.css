@@ -570,3 +570,6 @@ button.is-refreshing:before{
     -webkit-animation:pace-spinner 400ms linear infinite;
     animation:pace-spinner 400ms linear infinite;
 }
+.opacity-forced{
+    opacity:0!important;
+}

@@ -19,6 +19,7 @@ return [
         'antaresproject/component-api'             => '0.9.2.x-dev',
         'antaresproject/component-ban-management'  => '0.9.2.x-dev',
         'antaresproject/component-two-factor-auth' => 'dev-master',
+        'antaresproject/component-files'           => 'dev-master',
     ],
     /**
      * Extensions required on installation.

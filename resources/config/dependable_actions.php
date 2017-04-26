@@ -5,6 +5,23 @@ use Antares\Model\User;
 return [
     'actions' => [
         User::class => [
+            'user-login-as' => function($user) {
+
+                if (auth()->guest()) {
+                    return [];
+                }
+
+                $uid = $user->id;
+                if (user()->id !== $uid && app('antares.acl')->make('antares/control')->can('login-as-user')) {
+                    return [
+                        'title'      => trans('antares/control::label.login_as', ['fullname' => $user->fullname]),
+                        'url'        => handles("login/with/{$uid}"),
+                        'attributes' => [
+                            'data-icon' => 'odnoklassniki']
+                    ];
+                }
+                return [];
+            },
             'status' => function($model) {
                 $description = $model->status ? 'deactivate_description' : 'activate_description';
                 $title       = $model->status ? 'deactivate_title' : 'activate_title';

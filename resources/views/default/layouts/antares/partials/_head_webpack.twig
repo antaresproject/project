@@ -1,6 +1,6 @@
 <meta charset="UTF-8" >
 {% set title=get_meta('title') %}
-<title>{{ get_base_meta_title('name')|raw }}  {{ title|length > 0 ? '- '~title:'' }}</title>
+<title>{{ brand_title()|default('Antares Project') }}  {{ title|length > 0 ? '- '~title:'' }}</title>
 <meta name="description" content="Thank you for choosing Antares Project as a foundation for your application. You can find the latest updates and documentation at: http://antaresproject.io" >
 <meta name="keywords" content="Antares Project, User Management, Platform, Laravel, Two-Factor Authentication, REST API,Notifications, Automation, Open Source, Installer, Updater" >
 <meta name="author" content="INBS Software" >
