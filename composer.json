@@ -150,8 +150,7 @@
         "classmap": [
             "resources/database",
             "src/core",
-            "src/components",
-            "src/modules"
+            "src/components"
         ],
         "psr-4": {
             "App\\": "app/",
