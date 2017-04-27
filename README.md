@@ -1,9 +1,5 @@
 # Antares Project Application Skeleton
 
-[![Join the chat at https://gitter.im/antaresproject](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/antaresproject?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
-An open source package by [Antares Project](http://antaresproject.io), code well, rock on!
-
 [![Laravel 5.4](https://img.shields.io/badge/Laravel-5.4-orange.svg)](http://laravel.com)
 [![Coverage Status](https://coveralls.io/repos/github/antaresproject/project/badge.svg?branch=master)](https://coveralls.io/github/antaresproject/project?branch=master)
 [![Build Status](https://travis-ci.org/antaresproject/project.svg?branch=master)](https://travis-ci.org/antaresproject/project)
@@ -15,33 +11,38 @@ An open source package by [Antares Project](http://antaresproject.io), code well
 
 ## Documentation
 
-Reader-friendly Documentation can be found here. [Antares Project Documenation](http://antaresproject.io).
+Antares Project Application Skeleton documentation can be found at [antaresproject.io/docs/site/antares_concepts/core_&_files_structure/index.html](http://antaresproject.io/docs/site/antares_concepts/core_&_files_structure/index.html).
 
-Raw files can be found via this projects docs/version branch.
+Full Antares Project documentation can be found at [antaresproject.io/docs](http://antaresproject.io/docs).
 
-- [0.9.0](https://github.com/antaresproject/docs)
 
-## Change Log
+## Changelog
 
-Important versions listed below. Refer to the [Change Log](CHANGELOG.md) for a full history of the project.
+Antares Project Application Skeleton changelog can be found in release notes [antaresproject.io/docs/site/getting_started/changelog](http://antaresproject.io/docs/site/getting_started/changelog/index.html).
 
-## Support
+You can find full Antares Project changelog in Antares Project Documentation [antaresproject.io/docs/site/getting_started/changelog](http://antaresproject.io/docs/site/getting_started/changelog/index.html).
 
-The following support channels can be used for contact.
+## Issues
 
-- [Webpage](http://antaresproject.io)
-- [Email](mailto:contact@antaresproject.io)
+The issue list of this repo is **exclusively** for bug reports and feature requests.
 
-Bug reports, feature requests, and pull requests can be submitted by following our [Contribution Guide](CONTRIBUTING.md).
+Please follow [Issue Reporting Guide](http://antaresproject.io/docs/site/getting_started/issues_reporting_guide/index.html) before opening an issue. Issues not following the guide will be closed without further investigation.
 
-## Contributing & Protocols
+## Contribution
 
-- [Versioning](CONTRIBUTING.md#versioning)
-- [Coding Standards](CONTRIBUTING.md#coding-standards)
-- [Pull Requests](CONTRIBUTING.md#pull-requests)
+Please follow [Contribution Guide](http://antaresproject.io/docs/site/getting_started/contributing/index.html) before making a pull request.
+
+## Community
+
+* Twitter: @antaresproject
+* Forum: (coming soon)
+* Blog: (coming soon)
+* Email: contact (at) antaresproject.io
+
 
 ## License
 
-This software is released under the [BSD 3-Clause](LICENSE) License.
+This software is released under the BSD 3-Clause License.
 
-© 2017 Antares Project, All rights reserved.
+© 2017 INBS.Software , all rights reserved.
+
