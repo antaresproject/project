@@ -6,11 +6,11 @@ return [
      */
     'branches' => [
         'antaresproject/component-widgets'         => '0.9.2.x-dev',
+        'antaresproject/component-notifications'   => '0.9.2.x-dev',
         'antaresproject/component-logger'          => '0.9.2.x-dev',
         'antaresproject/component-translations'    => 'dev-master',
         'antaresproject/component-updater'         => '0.9.2.x-dev',
         'antaresproject/component-control'         => '0.9.2.x-dev',
-        'antaresproject/component-notifications'   => '0.9.2.x-dev',
         'antaresproject/component-automation'      => '0.9.2.x-dev',
         'antaresproject/component-customfields'    => '0.9.2.x-dev',
         'antaresproject/component-tester'          => '0.9.2.x-dev',
@@ -26,23 +26,24 @@ return [
      */
     'required' => [
         'antaresproject/component-widgets',
+        'antaresproject/component-notifications',
         'antaresproject/component-logger',
         'antaresproject/component-translations',
         'antaresproject/component-updater',
         'antaresproject/component-control',
-        'antaresproject/component-notifications',
         'antaresproject/component-automation',
         'antaresproject/component-customfields',
         'antaresproject/component-tester',
-        'antaresproject/component-module',
     ],
     /**
      * List of optional extensions with selected by default.
      */
     'optional' => [
+        'antaresproject/component-module',
         'antaresproject/component-search',
         'antaresproject/component-api',
         'antaresproject/component-ban-management',
         'antaresproject/component-two-factor-auth',
     ],
 ];
+

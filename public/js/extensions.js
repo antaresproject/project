@@ -16,6 +16,7 @@ $(document).ready(function () {
             closeOnConfirm: false,
             customClass: 'CB CB--type1',
             allowEscapeKey: false,
+            animation: false,
             allowOutsideClick: false
         }, function () {
             var
@@ -33,6 +34,7 @@ $(document).ready(function () {
                     customClass: 'CB CB--type1',
                     allowEscapeKey: false,
                     allowOutsideClick: false,
+                    animation: false,
                     html: response
                 });
 
