@@ -43,10 +43,6 @@
         },
         {
             "type": "git",
-            "url": "https://github.com/antaresproject/module.git"
-        },
-        {
-            "type": "git",
             "url": "https://github.com/antaresproject/logger.git"
         },
         {
@@ -99,6 +95,10 @@
         },
         {
             "type": "git",
+            "url": "https://github.com/antaresproject/sample_module.git"
+        },
+        {
+            "type": "git",
             "url": "https://github.com/antaresproject/component-installer-plugin.git"
         }
     ],    
@@ -136,8 +136,8 @@
     },
     "require-dev": {
         "antaresproject/component-translations": "dev-master",
-        "antaresproject/component-module": "dev-master",
         "antaresproject/component-two-factor-auth": "dev-master",
+        "antaresproject/sample_module": "dev-master",
         "fzaninotto/faker": "master",
         "mockery/mockery": "0.9.*",
         "symfony/security-core": "master",
