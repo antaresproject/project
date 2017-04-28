@@ -1,7 +1,7 @@
 {% extends "antares/foundation::layouts.antares.clear" %}
 
 {% block content %}
-    <div id="install-progress-console" data-url="{{ previewUrl }}"></div>
+    <div id="install-progress-console" data-preview-url="{{ previewUrl }}" data-stop-url="{{ stopUrl }}"></div>
 
     <style>
         #install-progress-console {
