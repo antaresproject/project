@@ -15,7 +15,7 @@ return [
         'antaresproject/component-customfields'    => '0.9.2.x-dev',
         'antaresproject/component-tester'          => '0.9.2.x-dev',
         'antaresproject/component-search'          => '0.9.2.x-dev',
-        'antaresproject/sample_module'             => 'dev-master',
+        'antaresproject/component-sample_module'   => 'dev-master',
         'antaresproject/component-api'             => '0.9.2.x-dev',
         'antaresproject/component-ban-management'  => '0.9.2.x-dev',
         'antaresproject/component-two-factor-auth' => 'dev-master',
@@ -39,7 +39,7 @@ return [
      * List of optional extensions with selected by default.
      */
     'optional' => [
-        'antaresproject/sample_module',
+        'antaresproject/component-sample_module',
         'antaresproject/component-search',
         'antaresproject/component-api',
         'antaresproject/component-ban-management',

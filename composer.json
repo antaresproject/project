@@ -137,7 +137,7 @@
     "require-dev": {
         "antaresproject/component-translations": "dev-master",
         "antaresproject/component-two-factor-auth": "dev-master",
-        "antaresproject/sample_module": "dev-master",
+        "antaresproject/component-sample_module": "dev-master",
         "fzaninotto/faker": "master",
         "mockery/mockery": "0.9.*",
         "symfony/security-core": "master",

@@ -23,6 +23,7 @@ return [
         \Antares\Foundation\src\Http\Handlers\SecurityMenu::class,
         \Antares\Foundation\src\Http\Handlers\MailConfigurationMenu::class,
         \Antares\Api\Http\Handlers\Menu::class,
+    //\Antares\SampleModule\Http\Handler\ModulePaneMenu::class
     ],
     'antares.ready: menu.after.logger'           => [
         \Antares\Logger\Http\Handlers\System::class => 993,

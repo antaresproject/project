@@ -22,7 +22,7 @@
                 </nav>
             </aside> 
             {{ placeholder('left-menu') }}
-            <div class="app-content {{content_class}}">
+            <div class="app-content {{content_class|default('page-dashboard')}}">
                 {% block widgets %}
                     {% if app('antares.widgets.installed') %}
                         {% include 'antares/foundation::layouts.antares.partials.placeholder.widget_select' %}
