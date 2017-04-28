@@ -178,7 +178,6 @@
             "php artisan ide-helper:generate"
         ],
         "post-update-cmd": [
-            "php artisan key:generate",
             "php artisan ide-helper:generate",
             "php artisan clear-compiled"
         ],

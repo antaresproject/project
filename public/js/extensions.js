@@ -6,7 +6,9 @@ $(document).ready(function () {
                 url = $this.attr('href'),
                 title = $this.data('title'),
                 description = $this.data('description'),
-                actionUrl = $this.data('action-url');
+                actionUrl = $this.data('action-url'),
+                isOnBottom = false,
+                stopPreview = false;
 
         swal({
             title: title,
@@ -38,15 +40,36 @@ $(document).ready(function () {
                     html: response
                 });
 
-                var
-                        $console = $('#install-progress-console'),
-                        previewUrl = $console.data('url');
+                $(document).one('click', '.swal__close', function() {
+                    stopPreview = true;
 
-                $console.closest('.sweet-content').css({
+                    $content.css({
+                        position: 'static',
+                        marginBottom: '70px',
+                        minHeight: 'auto'
+                    });
+
+                    $.get(stopUrl);
+                });
+
+                var
+                    $console = $('#install-progress-console'),
+                    stopUrl = $console.data('stop-url'),
+                    previewUrl = $console.data('preview-url');
+
+                $console.on('scroll', function() {
+                    var $this = $(this);
+
+                    isOnBottom = ($this.scrollTop() + $this.innerHeight() >= $this[0].scrollHeight);
+                });
+
+                $content.css({
                     position: 'relative',
                     marginBottom: 0,
                     minHeight: '400px'
                 });
+
+                console.log(previewUrl);
 
                 $.get(actionUrl).success(function () {
                     initProgress($console, previewUrl);
@@ -59,8 +82,10 @@ $(document).ready(function () {
                 $.get(url).then(function (response) {
                     var text = response.console.replace(/\r\n/g, "\n");
 
-                    if (text !== $console.html()) {
-                        $console.html(text).scrollTop($console.get(0).scrollHeight);
+                    $console.html(text);
+
+                    if (isOnBottom) {
+                        $console.scrollTop($console.get(0).scrollHeight);
                     }
 
                     if (response.redirect) {
@@ -69,7 +94,7 @@ $(document).ready(function () {
                         setTimeout(function () {
                             window.location.replace(response.redirect);
                         }, 2500);
-                    } else {
+                    } else if( ! stopPreview) {
                         setTimeout(refresh, 1000);
                     }
                 });
