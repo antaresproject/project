@@ -174,11 +174,10 @@
         "post-install-cmd": [
             "Installer\\ComposerScripts::postUpdate",
             "php artisan clear-compiled",
-            "php artisan key:generate",
-            "php artisan ide-helper:generate"
+            "php artisan key:generate"
         ],
         "post-update-cmd": [
-            "php artisan ide-helper:generate",
+            "php artisan key:generate",
             "php artisan clear-compiled"
         ],
         "post-create-project-cmd": [
