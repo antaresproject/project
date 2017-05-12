@@ -8,12 +8,11 @@
         {% block content %}
         {% endblock %}         
 
-        {% if app('antares.widgets.installed') %}            
+        {% if app('antares.ui-components.installed') %}            
             <div class="grid-stack">
-                {{ event_gridable()|raw }}
-                {% set widgets=widgets() %}                
-                {% for widget in widgets %}
-                    {{ widget(widget)|raw }}
+                {% set components=components() %}                
+                {% for component in components %}
+                    {{ component(component)|raw }}
                 {% endfor %}                
             </div>                       
         {% endif %}

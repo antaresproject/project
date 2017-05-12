@@ -5,7 +5,6 @@ return [
      * List of available components and their branches. It is the main repository.
      */
     'branches' => [
-        'antaresproject/component-widgets'         => '0.9.2.x-dev',
         'antaresproject/component-notifications'   => '0.9.2.x-dev',
         'antaresproject/component-logger'          => '0.9.2.x-dev',
         'antaresproject/component-translations'    => 'dev-master',
@@ -25,7 +24,6 @@ return [
      * Extensions required on installation.
      */
     'required' => [
-        'antaresproject/component-widgets',
         'antaresproject/component-notifications',
         'antaresproject/component-logger',
         'antaresproject/component-translations',

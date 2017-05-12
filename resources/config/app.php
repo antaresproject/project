@@ -151,6 +151,7 @@ return [
         Antares\Users\UsersServiceProvider::class,
         Antares\Brands\BrandsServiceProvider::class,
         \Antares\Foundation\Providers\DependableActionsServiceProvider::class,
+        Antares\UI\UIComponents\UiComponentsServiceProvider::class,
         /*
          * Antares Platform Optional Service Providers...
          */

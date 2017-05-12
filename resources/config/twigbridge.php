@@ -98,8 +98,8 @@ return [
             'Antares\Twig\Extension\Laravel\Handles',
             'Antares\Twig\Extension\Laravel\Form',
             'Antares\Twig\Extension\Laravel\Html',
-            'Antares\Widgets\Twig\Widget',
-            'Antares\Widgets\Twig\WidgetResolver',
+            'Antares\UI\UIComponents\Twig\Component',
+            'Antares\UI\UIComponents\Twig\Resolver',
             /**
              * custom extensions
              */
