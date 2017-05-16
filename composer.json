@@ -73,7 +73,11 @@
         "antaresproject/module-two-factor-auth": "dev-master",
         "antaresproject/module-search": "0.9.2.x-dev",
         "antaresproject/module-sample_module": "0.9.2.2-dev",
-        "barryvdh/laravel-debugbar": "^2.2@dev"        
+        "barryvdh/laravel-debugbar": "^2.2@dev",
+        "regulus/activity-log": "^0.6.7",
+        "arcanedev/log-viewer": "^4.3",
+        "prettus/laravel-request-logger": "^1.0",
+        "davejamesmiller/laravel-breadcrumbs": "dev-master"
     },    
     "autoload": {
         "classmap": [
