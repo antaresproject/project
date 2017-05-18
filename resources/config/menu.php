@@ -13,7 +13,6 @@ return [
         \Antares\Logger\Http\Handlers\Menu::class                   => 997,
         \Antares\Notifications\Http\Handlers\Menu::class            => 999,
         \Antares\Translations\Http\Handlers\TranslationsMenu::class => 990,
-        \Antares\Logger\Http\Handlers\SystemMenu::class,
         \Antares\Foundation\Http\Handlers\ComponentsMainMenu::class,
         \Antares\Notifications\Http\Handlers\NotificationLogsMenu::class,
         \Antares\Automation\Http\Handlers\AutomationLogsMenu::class,
@@ -22,8 +21,7 @@ return [
     'antares.ready: menu.after.general-settings' => [
         \Antares\Foundation\src\Http\Handlers\SecurityMenu::class,
         \Antares\Foundation\src\Http\Handlers\MailConfigurationMenu::class,
-        \Antares\Api\Http\Handlers\Menu::class,
-    //\Antares\SampleModule\Http\Handler\ModulePaneMenu::class
+    //\Antares\Api\Http\Handlers\Menu::class
     ],
     'antares.ready: menu.after.logger'           => [
         \Antares\Logger\Http\Handlers\System::class => 993,
