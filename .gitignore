@@ -174,3 +174,4 @@ _ide_helper.php
 public/apidocs/*
 /nbproject
 /src/modules/
+/src/
