@@ -7,7 +7,7 @@ $(document).ready(function () {
                 title = $this.data('title'),
                 description = $this.data('description'),
                 actionUrl = $this.data('action-url'),
-                isOnBottom = false,
+                isOnBottom = true,
                 stopPreview = false;
 
         swal({
@@ -61,6 +61,8 @@ $(document).ready(function () {
                     var $this = $(this);
 
                     isOnBottom = ($this.scrollTop() + $this.innerHeight() >= $this[0].scrollHeight);
+
+                    console.log(isOnBottom);
                 });
 
                 $content.css({
@@ -68,8 +70,6 @@ $(document).ready(function () {
                     marginBottom: 0,
                     minHeight: '400px'
                 });
-
-                console.log(previewUrl);
 
                 $.get(actionUrl).success(function () {
                     initProgress($console, previewUrl);
