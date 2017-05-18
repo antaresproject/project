@@ -6,7 +6,7 @@
         {% endblock %}         
         {% if app('antares.widgets.installed') %}                        
             <div class="grid-stack"  style="opacity:0">
-                {{ widget_forced('activity_logs',{'width':12,'height':25,'disabled':false})|raw }}                        
+                {{ component_forced('activity_logs',{'width':12,'height':25,'disabled':false})|raw }}                        
             </div>                            
         {% endif %}
     </section>

@@ -146,11 +146,12 @@ return [
         Antares\Foundation\Providers\FoundationServiceProvider::class,
         Antares\Foundation\Providers\RouteServiceProvider::class,
         Antares\Area\AreaServiceProvider::class,
-        Antares\Widget\WidgetServiceProvider::class,
+        Antares\UI\UIServiceProvider::class,
         Antares\GeoIP\GeoIPServiceProvider::class,
         Antares\Users\UsersServiceProvider::class,
         Antares\Brands\BrandsServiceProvider::class,
         \Antares\Foundation\Providers\DependableActionsServiceProvider::class,
+        Antares\UI\UIComponents\UiComponentsServiceProvider::class,
         /*
          * Antares Platform Optional Service Providers...
          */
@@ -163,7 +164,6 @@ return [
         App\Providers\ExtensionServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Antares\Datatables\DatatablesServiceProvider::class,
-        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Baum\Providers\BaumServiceProvider::class,
         Arcanedev\LogViewer\LogViewerServiceProvider::class,
         //Barryvdh\Snappy\ServiceProvider::class,

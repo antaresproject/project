@@ -2,8 +2,8 @@
 
 return [
     'areas'   => [
-        'administrators' => 'Administrators',
-        'users' => 'Users',
+        'admin' => 'Admin',
+        'user'  => 'User',
     ],
-    'default' => 'administrators'
+    'default' => 'admin'
 ];

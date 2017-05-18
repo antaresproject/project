@@ -573,3 +573,6 @@ button.is-refreshing:before{
 .opacity-forced{
     opacity:0!important;
 }
+.widget-ajax-response{
+    height: 100%;
+}

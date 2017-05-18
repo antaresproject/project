@@ -24,8 +24,8 @@
             {{ placeholder('left-menu') }}
             <div class="app-content {{content_class|default('page-dashboard')}}">
                 {% block widgets %}
-                    {% if app('antares.widgets.installed') %}
-                        {% include 'antares/foundation::layouts.antares.partials.placeholder.widget_select' %}
+                    {% if app('antares.ui-components.installed') %}
+                        {% include 'antares/foundation::layouts.antares.partials.placeholder.ui_component_select' %}
                     {% endif %}    
                 {% endblock %} 
                 <section class="main-head">

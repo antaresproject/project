@@ -2,8 +2,13 @@
 <html lang="en">
     <head>        
         {% block head %}
-            {% include 'antares/foundation::layouts.antares.partials._head_webpack' %}
-        {% endblock %}                    
+            {% embed "antares/foundation::layouts.antares.partials._head_webpack" %}
+                {% block head_title %}
+                    {% set title=get_meta('title') %}
+                    <title>Antares Installer  {{ title|length > 0 ? '- '~title:'' }}</title>
+                {% endblock %}
+            {% endembed %}        
+        {% endblock %}                       
     </head>
     <body>
         <div id="app-wrapper" class="app-install">
