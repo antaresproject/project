@@ -24,7 +24,7 @@
         "antares",
         "antares-project",
         "boilerplate"
-    ],
+    ],        
     "license": "BSD-3-Clause",
     "type": "project",
     "prefer-stable": true,
@@ -71,10 +71,6 @@
         },
         {
             "type": "git",
-            "url": "https://github.com/antaresproject/updater.git"
-        },
-        {
-            "type": "git",
             "url": "https://github.com/antaresproject/translations.git"
         },
         {
@@ -111,7 +107,6 @@
         "antaresproject/module-sample_module": "0.9.2.2-dev",
 
         "antaresproject/component-logger": "0.9.2.2-dev",
-        "antaresproject/component-updater": "0.9.2.2-dev",
         "antaresproject/component-translations": "dev-master",
         "antaresproject/component-tester": "0.9.2.2-dev",
         "antaresproject/component-notifications": "0.9.2.2-dev",
