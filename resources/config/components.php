@@ -12,10 +12,10 @@ return [
         'antaresproject/component-automation'    => '0.9.2.x-dev',
         'antaresproject/component-customfields'  => '0.9.2.x-dev',
         'antaresproject/component-tester'        => '0.9.2.x-dev',
-        'antaresproject/module-search'           => '0.9.2.x-dev',
-        'antaresproject/module-sample_module'    => '0.9.2.2-dev',
-        'antaresproject/module-api'              => '0.9.2.x-dev',
-        'antaresproject/module-ban-management'   => '0.9.2.x-dev',
+        'antaresproject/module-search'           => 'dev-master',
+        'antaresproject/module-sample_module'    => 'dev-master',
+        'antaresproject/module-api'              => 'dev-master',
+        'antaresproject/module-ban-management'   => 'dev-master',
         'antaresproject/module-two-factor-auth'  => 'dev-master'
     ],
     /**
