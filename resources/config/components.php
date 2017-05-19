@@ -12,11 +12,11 @@ return [
         'antaresproject/component-automation'    => '0.9.2.x-dev',
         'antaresproject/component-customfields'  => '0.9.2.x-dev',
         'antaresproject/component-tester'        => '0.9.2.x-dev',
-        'antaresproject/module-search'          => 'dev-master',
-        'antaresproject/module-sample_module'   => '0.9.2.2-dev',
-        'antaresproject/module-api'             => '0.9.2.x-dev',
-        'antaresproject/module-ban-management'  => '0.9.2.x-dev',
-        'antaresproject/module-two-factor-auth' => 'dev-master'
+        'antaresproject/module-search'           => 'dev-master',
+        'antaresproject/module-sample_module'    => '0.9.2.2-dev',
+        'antaresproject/module-api'              => '0.9.2.x-dev',
+        'antaresproject/module-ban-management'   => '0.9.2.x-dev',
+        'antaresproject/module-two-factor-auth'  => 'dev-master'
     ],
     /**
      * Extensions required on installation.
@@ -37,8 +37,8 @@ return [
         'antaresproject/module-sample_module',
         'antaresproject/module-search',
         'antaresproject/module-api',
-        'antaresproject/module-ban-management',
-        'antaresproject/module-two-factor-auth',
+        'antaresproject/module-ban_management',
+        'antaresproject/module-two_factor_auth',
     ],
 ];
 
