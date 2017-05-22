@@ -87,7 +87,7 @@
         },
         {
             "type": "git",
-            "url": "https://github.com/antaresproject/control.git"
+            "url": "https://github.com/antaresproject/acl.git"
         },
         {
             "type": "git",
@@ -112,7 +112,7 @@
         "antaresproject/component-tester": "0.9.2.x-dev",
         "antaresproject/component-notifications": "0.9.2.x-dev",
         "antaresproject/component-customfields": "0.9.2.x-dev",
-        "antaresproject/component-control": "0.9.2.x-dev",
+        "antaresproject/component-acl": "dev-master",
         "antaresproject/component-automation": "0.9.2.x-dev",    
 
         "barryvdh/laravel-debugbar": "^2.2@dev",
