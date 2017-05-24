@@ -1,0 +1,348 @@
+@font-face {
+    font-family: 'Roboto-Bold';
+    src: local('âş'), url('/fonts/roboto/Roboto-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Roboto-Medium';
+    src: local('âş'), url('/fonts/roboto/Roboto-Medium.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Roboto-Regular';
+    src: local('âş'), url('/fonts/roboto/Roboto-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+* {
+    font-family: 'Roboto-Medium'
+}
+.grid-container--2col .app-content__footer {
+    left: auto;
+}
+.grid-container--2col .app-content__footer .btn--primary i {
+    color: white
+}
+.menu-aside.menu-aside--steps:before {
+    height: 65%;
+}
+.col-group .form-block .form-block__name {
+    padding-right: 0;
+    text-align: right;
+    display: block;
+    font-weight: 500
+}
+@media only screen and (max-width: 767px) {
+    /* RWDxs installer MENU */
+    .grid-container.grid-container--2col .grid-col--container {
+        margin-top: 210px;
+        overflow: hidden;
+    }
+
+    .grid-container.grid-container--2col .grid-col--menu {
+        display: block !important;
+        position: absolute;
+        width: 100%;
+        z-index: 20;
+        min-width: auto;
+    }
+
+    .menu-aside-container.menu-aside-container--fixed {
+        height: 220px;
+        width: 100%;
+        position: absolute;
+    }
+
+    .menu-aside.menu-aside--steps .install-logo img {
+        height: 40px;
+        padding-left: 0;
+        width: 85%;
+    }
+
+    .menu-aside-container {
+        height: 220px;
+        overflow: hidden;
+    }
+
+    .menu-aside-container ul {
+        height: 220px;
+        overflow: auto !important;
+    }
+
+    .menu-aside.menu-aside--steps:before {
+        height: 85%;
+    }
+    /* RWDxs installer MENU END*/
+
+    .col-group .form-block .form-block__name{
+        text-align: left !important
+    }
+}
+
+@media only screen and (min-width: 768px)  and (max-width: 1200px) {
+    /* RWD768-1200 installer MENU END*/
+    .grid-container.grid-container--2col .grid-col--container {
+        margin-top: 340px;
+        overflow: hidden;
+        min-height: auto;
+    }
+
+    .grid-container.grid-container--2col .grid-col--menu {
+        display: block !important;
+        position: absolute;
+        width: 100%;
+        z-index: 20;
+    }
+
+    .menu-aside-container.menu-aside-container--fixed {
+        height: 356px;
+        width: 100%;
+        position: absolute;
+    }
+
+    .menu-aside.menu-aside--steps .install-logo img {
+        height: 40px;
+        padding-left: 0;
+        width: 100%
+    }
+    /* RWD768-1200 installer MENU END*/
+}
+
+
+/*----------------------------------FIRST STEP START----------------------------------*/
+
+
+/*First step installer default*/
+.app-install__step-1 .col-group .form-block .input-field {
+    position: absolute;
+    top: 50%;
+    height: 24px;
+    transform: translateY(-50%);
+    width: 28px;
+    display: block;
+    text-align: center;
+}
+.app-install__step-1 .col-group .form-block:last-child {
+    margin-bottom: 0;
+}
+.app-install__step-1 .col-group .form-block .input-field .zmdi-check {
+    font-size: 24px;
+    color: #5ec250;
+}
+.app-install__step-1 .col-group .form-block .input-field .zmdi-close {
+    font-size: 24px;
+    color: #f44336;
+}
+/*First step installer default END*/
+
+
+/*First step installer podgroup System Requirements*/
+.app-install__step-1 .system .col-group .form-block {
+    position: relative;
+}
+.app-install__step-1 .system .col-group .form-block .col-6 {
+    height: 24px;
+}
+
+.app-install__step-1 .system .col-group .form-box > div {
+    padding: 0;
+}
+.app-install__step-1 .system .col-group .form-block__desc .input-field span {
+    color: #3b404b;
+}
+.app-install__step-1 .system .col-group .form-block-desc .input-field__desc .solution {
+    color: red;
+}
+/*First step installer podgroup System Requirements END*/
+
+/*First step installer podgroup Database Settings */
+.app-install__step-1 .database-settings .form-block {
+    position: relative;
+}
+.app-install__step-1 .database-settings .form-block .col-dt-2 {
+    padding-left: 0;
+    padding-right: 0;
+}
+.app-install__step-1 .database-settings .form-block:nth-child(4) {
+    margin-bottom: 16px;
+    margin-top: 8px;
+}
+.app-install__step-1 .database-settings .form-block input {
+    flex: none;
+    width: 37px;
+    margin: 0;
+    margin-right: 4px;
+    margin-top: 6px
+}
+.app-install__step-1 .database-settings .form-block .alert {
+    color: red;
+    padding: 0;
+}
+.app-install__step-1 .database-settings .form-block .alert i {
+    font-size: 25px;
+    padding-right: 8px;
+    margin-left: 2px
+}
+.app-install__step-1 .database-settings .form-block .alert p {
+    line-height: 18px;
+}
+.app-install__step-1 .database-settings .alert p {
+    font-size: 13px;
+    margin-top: 4px
+}
+.app-install__step-1 .database-settings .form-box > div {
+    color: #3b404b;
+}
+.app-install__step-1 .database-settings .form-block-desc > div {
+    padding-left: 0;
+    padding-bottom: 0
+}
+.app-install__step-1 .database-settings .col-group .form-block .input-field {
+    display: block;
+    text-align: center;
+}
+/*First step installer podgroup Database Settings END */
+
+
+@media only screen and (max-width: 767px) {
+
+    /*RWDxs First step installer default*/
+    .app-install__step-1 .app-install form {
+        line-height: 48px;
+    }
+    .app-install__step-1 .col-group .form-block .input-field {
+        left: 5px;
+    }
+    .app-install__step-1 .col-group .form-block-desc .input-field__desc {
+        margin-left: 24px;
+    }
+    .app-install__step-1 .form-block .form-block__name {
+        margin-left: 24px;
+    }
+    .app-install__step-1 .col-group .form-block .input-field {
+        width: 14px;
+    }
+
+    /*RWDxs First step installer default END*/
+
+    /* RWDxs First step installer podgroup System Requirements */
+    .app-install__step-1 .system {
+        margin-bottom: 16px
+    }
+    /* RWDxs First step installer podgroup System Requirements END*/
+
+
+    /* RWDxs First step installer podgroup Database Settings */
+    .app-install__step-1 .database-settings .form-block .alert {
+        width: 140px
+    }
+
+    .app-install__step-1 .database-settings .form-block .form-block__name, .app-install .system .col-group .form-block .form-block__name {
+        text-align: left
+    }
+    .app-install__step-1 .database-settings .form-block .w370 {
+        width: 60% !important;
+    }
+
+    .app-install__step-1 .database-settings .input-field {
+        width: 85%;
+    }
+
+    /* RWDxs First step installer podgroup Database Settings END */
+}
+
+/*RWD First step installer default columt padding between 992 and 1200*/
+@media only screen and (min-width: 992px) and (max-width: 1100px) {
+    .app-install__step-1 .form-box > div:first-child > .form-block > div:last-child {
+        padding-left: 10px;
+    }
+    .app-install__step-1 .database-settings .form-block > div:last-child,.app-install__step-1 .system .form-block > div:last-child  {
+        padding-left: 16px;
+    }
+}
+@media only screen and (min-width: 1201px) and (max-width: 1420px) {
+    .app-install__step-1 .form-box > div:first-child > .form-block > div:last-child {
+        padding-left: 10px;
+    }
+    .app-install__step-1 .database-settings .form-block > div:last-child,.app-install__step-1 .system .form-block > div:last-child  {
+        padding-left: 16px;
+    }
+}
+/*RWD First step installer default END*/
+
+/*-----------------------------------FIRST STEP END-----------------------------------*/
+
+
+
+.app-install__step-2 .form-block-desc, .app-install__step-3 .form-block-desc {
+    margin-bottom: 16px
+}
+.app-install__step-1 .col-group, .app-install__step-2 .col-group, .app-install__step-3 .col-group{
+    margin-bottom: 50px;
+}
+
+@media only screen and (max-width: 767px) {
+    .app-install__step-2 .menu-aside.menu-aside--steps:before {
+        height: 100%;
+    }
+    .app-install__step-2 .form-block-desc, .app-install__step-3 .form-block-desc {
+        margin-bottom: 24px
+    }
+}
+
+
+
+@media only screen and (max-width: 767px) {
+    .app-install__step-3 .ai-c{
+        position: relative;
+    }
+    .app-install__step-3 .form-block .input-field__desc{
+        margin-left: 30px
+    }
+    .app-install__step-3 .ai-c div .form-block__name{
+        padding-left: 30px;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    .app-install__step-3 .form-box>div{
+        padding-left: 0;
+        padding-right: 0
+    }
+}
+
+
+#install-progress-console{
+    width:100%;
+    box-sizing:border-box;
+    border:none;
+    border-radius:0;
+    color:white;
+    font-family: "Consolas", "Ubuntu Mono", "Monaco", monospace;
+    font-size:12px;
+    height:calc(100vh - 200px);
+    overflow-y:scroll;
+    overflow-x:hidden;
+    position:relative;
+    white-space: normal
+}
+#install-progress-console form{
+    height: 100%
+}
+.CodeMirror{
+    height: 100%;
+}
+.card.card--chart-small .card__content{
+    padding: 0
+}
+.title-legend{
+    color: #3b404b;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 24px;
+    padding: 8px 0 24px;
+}
