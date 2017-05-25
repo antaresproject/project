@@ -16,7 +16,9 @@
         {% block app_wrapper %}            
         {% endblock %}
     </div>
-    {% include 'antares/foundation::layouts.antares.partials._scripts_webpack' %}                
+    {% include 'antares/foundation::layouts.antares.partials._scripts_webpack' %}                    
+    {{ app('antares.asset').container('antares/installer').styles()|raw }}
+    {{ app('antares.asset').container('antares/installer').scripts()|raw }}
     <script src="/webpack/forms_basic.js"></script>
 
     <script>
@@ -24,5 +26,6 @@
             $('.card > * > *, .tbl-c > *,form').css('opacity', '1');
         });
     </script>   
+
 </body>
 </html>
