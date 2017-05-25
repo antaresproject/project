@@ -150,23 +150,17 @@
         }
     },    
     "scripts": {
-        "pre-update-cmd": [
-            "Installer\\EnvironmentScripts::preUpdate"
-        ],
-        "pre-install-cmd": [
-            "Installer\\EnvironmentScripts::preInstall"
-        ],
-        "post-install-cmd": [
-            "Installer\\ComposerScripts::postUpdate",
-            "php artisan clear-compiled",
-            "php artisan key:generate"
-        ],
-        "post-update-cmd": [
-            "php artisan key:generate",
-            "php artisan clear-compiled"
+        "post-root-package-install": [
+            "php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ],
         "post-create-project-cmd": [
             "php artisan key:generate"
+        ],
+        "post-install-cmd": [
+            "php artisan clear:compiled"
+        ],
+        "post-update-cmd": [
+            "php artisan clear:compiled"
         ]
     },
     "config": {
