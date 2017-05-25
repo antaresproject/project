@@ -16,7 +16,7 @@ return [
         'antaresproject/component-brands'        => 'dev-master',
         'antaresproject/component-users'         => 'dev-master',
         'antaresproject/module-search'           => 'dev-master',
-        //'antaresproject/module-sample_module'    => '0.9.2.2-dev',
+        'antaresproject/module-sample_module'    => '0.9.2.2-dev',
         'antaresproject/module-api'              => '0.9.2.x-dev',
         'antaresproject/module-ban-management'   => '0.9.2.x-dev',
         'antaresproject/module-two-factor-auth'  => 'dev-master',
@@ -40,7 +40,7 @@ return [
      * List of optional extensions with selected by default.
      */
     'optional' => [
-        //'antaresproject/module-sample_module',
+        'antaresproject/module-sample_module',
         'antaresproject/module-search',
         'antaresproject/module-api',
         'antaresproject/module-ban_management',

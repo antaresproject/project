@@ -101,6 +101,10 @@
         {
             "type": "git",
             "url": "https://github.com/antaresproject/branding.git"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/antaresproject/sample_module.git"
         }
     ],          
     "require": {
@@ -126,6 +130,8 @@
         "antaresproject/component-installer": "dev-master",
         "antaresproject/component-brands": "dev-master",
         "antaresproject/component-users": "dev-master",    
+
+        "antaresproject/module-sample_module": "0.9.2.2-dev",
 
         "barryvdh/laravel-debugbar": "^2.2@dev",
         "regulus/activity-log": "^0.6.7",
