@@ -18,11 +18,9 @@
                 window.location.replace(response.redirect);
             } else {
                 var text = response.console.replace(/\r\n/g, "\n");
-                if (response.hash !== lastHash) {
-                    editor.getDoc().setValue(text);
-                    $console.scrollTop($console.get(0).scrollHeight);
-                    lastHash = response.hash;
-                }
+                editor.getDoc().setValue(text);
+                console.log($console.get(0).scrollHeight);
+                editor.execCommand('goDocEnd');
                 setTimeout(refresh, 1000);
             }
         });
