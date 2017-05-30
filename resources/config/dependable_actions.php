@@ -12,9 +12,9 @@ return [
                 }
 
                 $uid = $user->id;
-                if (user()->id !== $uid && app('antares.acl')->make('antares/control')->can('login-as-user')) {
+                if (user()->id !== $uid && app('antares.acl')->make('antares/acl')->can('login-as-user')) {
                     return [
-                        'title'      => trans('antares/control::label.login_as', ['fullname' => $user->fullname]),
+                        'title'      => trans('antares/acl::label.login_as', ['fullname' => $user->fullname]),
                         'url'        => handles("login/with/{$uid}"),
                         'attributes' => [
                             'data-icon' => 'odnoklassniki']

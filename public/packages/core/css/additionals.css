@@ -576,3 +576,6 @@ button.is-refreshing:before{
 .widget-ajax-response{
     height: 100%;
 }
+.text-small{
+    font-size: 10px;
+}
