@@ -5,9 +5,9 @@
                 <div class="dz-message" data-dz-message>
                     <div class="dz-m__current">
                         {% if field.get('value') %}
-                            <img src="{{ asset('img/logos/'~field.get('value'))}}" alt="">
+                            <img src="{{ asset('img/logos/'~field.get('value'))}}" width="51">
                         {% else %}    
-                            <img src="{{ asset('_dist/img/theme/antares/logo/logo_tear.png')}}" alt="">
+                            <img src="{{ asset('/img/logos/logo_default_tear.png')}}" width="51">
                         {% endif %}
                     </div>
                     <div class="dz-m__header">

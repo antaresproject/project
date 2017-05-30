@@ -1,0 +1,8 @@
+<label class="file-upload" for="{{ control.getName() }}">
+    <a class="btn btn--md btn--primary mdl-button mdl-js-button mdl-js-ripple-effect mr16">Select Files</a>
+    <input type="text" placeholder="File path" class="disabled file-path" disabled>
+    <input type="file" name="{{ control.getName() }}"
+           value="{{ control.getValue() }}"
+            {{ control.getAttributes()|stringify }}
+    />
+</label>

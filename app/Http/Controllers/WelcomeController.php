@@ -22,6 +22,8 @@ class WelcomeController extends Controller
      */
     public function index()
     {
+//        vdump(user(), request()->session());
+//        exit;
         if (($redirection = $this->redirectWhenAuthenticated()) !== false) {
             return $redirection;
         }

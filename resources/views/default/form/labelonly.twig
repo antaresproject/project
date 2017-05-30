@@ -1,0 +1,18 @@
+{% if control.hasWrapper %}
+<div {{ control.getWrapper|stringify }} >
+    {% endif %}
+    <div class="form-block">
+        <div style="width: {{ control.width }};">
+            {{ label|raw }}
+            {% if errors != null %}
+                <span id="{{ control.id }}_error" class="error col-13 col-mb-11">
+                    {% for error in errors %}
+                        {{ error }}
+                    {% endfor %}
+                </span>
+            {% endif %}
+        </div>
+    </div>
+    {% if control.hasWrapper %}
+</div>
+{% endif %}

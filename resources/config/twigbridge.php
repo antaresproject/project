@@ -34,7 +34,7 @@ return [
             // When set to true, the generated templates have a __toString() method
             // that you can use to display the generated nodes.
             // default: false
-            'debug'               => false,
+            'debug'               => true,
             // The charset used by the templates.
             // default: utf-8
             'charset'             => 'utf-8',
@@ -98,8 +98,8 @@ return [
             'Antares\Twig\Extension\Laravel\Handles',
             'Antares\Twig\Extension\Laravel\Form',
             'Antares\Twig\Extension\Laravel\Html',
-            'Antares\Widgets\Twig\Widget',
-            'Antares\Widgets\Twig\WidgetResolver',
+            'Antares\UI\UIComponents\Twig\Component',
+            'Antares\UI\UIComponents\Twig\Resolver',
             /**
              * custom extensions
              */

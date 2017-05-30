@@ -1,8 +1,8 @@
 <!-- Main Menu -->
 {% set menu=app('antares.platform.menu') %}
 {% set secondaryActive=false %}
-{% for item1 in app('antares.platform.menu') %}
-    {% if item1.isActive() %}
+{% for item1 in app('antares.platform.menu') %}            
+    {% if item1.isActive() or item1.active is sameas(true) %}            
         {% set secondaryActive=item1.attributes['type'] is same as ('secondary') %}
     {% endif %}
 {% endfor %}
@@ -10,6 +10,11 @@
 {% for item2 in app('antares.platform.menu') if item2.type is same as('secondary') %}
     {% set secondaryElements=secondaryElements|merge([item2]) %}
 {% endfor %}
+{% if secondaryActive==false %}
+    {% set secondaryActive=has_active_in_childs(secondaryElements) %}
+{% endif %}
+
+
 <div class="menu-scroll">
     <ul class="main-menu main-menu--brand">
         {% block navigation_brand_primary %}
@@ -22,7 +27,11 @@
                 {% if item.childs|length<1 %}
                     <li data-name='{{ item.title }}' class="{{ item.isActive()?'is-active':'' }}">
                         <a href="{{ item.link }}" title="{{ item.title }}">
-                            <i class="zmdi {{ item.icon }}"></i>
+                            {% if item.attributes.icon %}
+                                <i class="zmdi {{ item.attributes.icon }}"></i>
+                            {% else %}
+                                <i class="zmdi zmdi-widgets"></i>
+                            {% endif %}
                             <span class="text">{{ item.title }}</span>
                         </a>
                     </li>
@@ -42,7 +51,7 @@
                                 <div class="submenu__content">
                                     <ul class="data-list">
                                         {% for child in item.childs %}
-                                            <li class="{{ child.isFirstChildActive()?'is-active':'' }}">
+                                            <li class="{{ child.isFirstChildActive()?'is-active':'' }}" >
                                                 <a href="{{ child.link }}">
                                                     {% if child.attributes.html %}
                                                         {{ child.html|raw }}
@@ -72,14 +81,14 @@
     <ul class="main-menu main-menu--secondary  {{ secondaryActive ? '' : 'is-hidden' }} ">
         {% for item in secondaryElements %}
             {% if item.childs|length<1 %}
-                <li data-name='{{ item.title }}' class="{{ item.isActive()?'is-active':'' }}">
+                <li data-name='{{ item.title }}' class="{{ item.isActive() ?'is-active':'' }}">
                     <a href="{{ item.link }}" title="{{ item.title }}">
                         <i class="zmdi {{ item.icon }}"></i>
                         <span class="text">{{ item.title }}</span>
                     </a>
                 </li>
             {% else %}
-                <li data-name='{{ item.title }}' class="{{ item.isActive()?'is-active':'' }}">
+                <li data-name='{{ item.title }}' class="{{ (item.isActive() or item.active is sameas(true)) ?'is-active':'' }}">
                     <a href="{{ item.childs|first.link }}" title="{{ item.title }}">
                         <i class="zmdi {{ item.icon }}"></i>
                         <span class="text">{{ item.title }}</span>
@@ -93,8 +102,8 @@
                             <header><h3>{{ item.title }}</h3></header>
                             <div class="submenu__content">
                                 <ul class="data-list">
-                                    {% for child in item.childs %}
-                                        <li class="{{ child.isFirstChildActive()?'is-active':'' }}">
+                                    {% for child in item.childs %}                                        
+                                        <li class="{{ (child.isFirstChildActive() or child.active is sameas(true)) ?'is-active':'' }}">
                                             <a href="{{ child.link }}">
                                                 {% if child.attributes.html %}
                                                     {{ child.html|raw }}

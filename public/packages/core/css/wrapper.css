@@ -188,7 +188,7 @@
 .msie--11 .dz-bugfix>.col-16,
 .msie--11 .dz-bugfix>.form-block,
 .msie--11 .dz-bugfix>.input-field,
-.msie--11 .dz-bugfix>.input-field__inner,
+.msie--11 .dz-bugfix>.input-field__inner
 {
     height: 100%!important
 }
@@ -219,10 +219,6 @@
     right: 0;
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.6);
-}
-
-.main-head {
-    // z-index:0;
 }
 
 #app-wrapper .tbl-c table tr th:first-child:after {

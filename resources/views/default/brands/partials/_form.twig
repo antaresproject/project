@@ -1,4 +1,4 @@
-{{ Form.open(form)|raw }}
+{{ Form.open(form|merge({'class':'form--hor'}))|raw }}
 {% if(token) %}
     {{ Form.token() }}
 {% endif %}    
@@ -6,7 +6,7 @@
     {{ hidden|raw }}
 {% endfor %}
 <div class="col-group">    
-    <div class="col-dt-8">
+    <div class="col-dt-16 col-mb-16">
         <fieldset name="inputs">
             <div class="col-group">
                 {% if fieldsets[0].name|length>0 %}
@@ -15,7 +15,7 @@
                 {% for control in fieldsets[0].controls() %}                                                
                     <div class="col-group">
                         <div class="form-block">
-                            {% include 'antares/foundation::layouts.antares.partials.form.vertical._'~control.type|replace({':': '_'}) with {control: control} %}                            
+                            {% include 'antares/foundation::layouts.antares.partials.form.horizontal._'~control.type|replace({':': '_'}) with {control: control} %}                            
                         </div>
                     </div>
                 {%endfor %}
@@ -29,7 +29,7 @@
                 {% for control in fieldset.controls() %}                
                     <div class="col-group">
                         <div class="form-block">
-                            {% include 'antares/foundation::layouts.antares.partials.form.vertical._'~control.type|replace({':': '_'}) with {control: control} %}                            
+                            {% include 'antares/foundation::layouts.antares.partials.form.horizontal._'~control.type|replace({':': '_'}) with {control: control} %}                            
                         </div>
                     </div>
                 {%endfor %}

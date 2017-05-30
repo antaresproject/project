@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     /*
       |--------------------------------------------------------------------------
       | Default Session Driver
@@ -28,7 +27,7 @@ return [
       |
      */
     'lifetime'        => 120,
-    'expire_on_close' => false,
+    'expire_on_close' => true,
     /*
       |--------------------------------------------------------------------------
       | Session Encryption
@@ -61,7 +60,7 @@ return [
       | correspond to a connection in your database configuration options.
       |
      */
-    'connection'      => null,
+    'connection'      => 'mysql',
     /*
       |--------------------------------------------------------------------------
       | Session Database Table

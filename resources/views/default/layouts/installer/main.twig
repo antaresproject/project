@@ -1,70 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
+    <head>        
         {% block head %}
-            {% include 'antares/foundation::layouts.antares.partials._head_webpack' %}
-        {% endblock %}                    
+            {% embed "antares/foundation::layouts.antares.partials._head_webpack" %}
+                {% block head_title %}
+                    {% set title=get_meta('title') %}
+                    <title>Antares Installer  {{ title|length > 0 ? '- '~title:'' }}</title>                    
+                {% endblock %}
+            {% endembed %}        
+        {% endblock %}                       
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
+        <link media="all" type="text/css" rel="stylesheet" href="/packages/core/css/install.css">
     </head>
-    <body>
-        <!-- ||||||||||||||||||||||||||||||||||||||||||||||||||||||| -->
-        <div id="app-wrapper">
-            <!-- App sidebar -->
-            <aside class="main-sidebar">
-                <nav>
-                    <!-- Main Menu -->
-                    <ul class="main-menu">
-                        <li data-name='brand' class="main-menu__brand">
-                            <a href="#" >
-                                <div class="main-sidebar__logo" title="Antares Project"></div>
-                            </a>
-                        </li>    
-                        {% block navigation %}
-                            {% include 'antares/foundation::layouts.installer.partials.navigation._navigation' %}
-                        {% endblock %}                              
-                    </ul>
-                    <div class="mobile-ddowns">
-                        {% block navigation_mobile %}
-                            {% include 'antares/foundation::layouts.antares.partials.navigation._navigation_mobile' %}
-                        {% endblock %} 
-                    </div>
-                </nav>
-            </aside>            
+    <body>        
+        {% block app_wrapper %}            
+        {% endblock %}
+    </div>
+    {% include 'antares/foundation::layouts.antares.partials._scripts_webpack' %}                    
+    {{ app('antares.asset').container('antares/installer').styles()|raw }}
+    {{ app('antares.asset').container('antares/installer').scripts()|raw }}
+    <script src="/webpack/forms_basic.js"></script>
 
-            <div class="app-content">                
-                <section class="main-head">
-                    {% block breadcrumbs %}
-                        {% include 'antares/foundation::layouts.antares.partials._breadcrumbs' %}
-                    {% endblock %} 
-                    {% block sidebar_top %}
-                        {% include 'antares/foundation::layouts.installer.partials._sidebar_top' %}
-                    {% endblock %}                    
-                </section>
+    <script>
+        $(document).ready(function () {
+            $('.card > * > *, .tbl-c > *,form').css('opacity', '1');
+        });
+    </script>   
 
-                <section class="main-content nopadding">
-                    <div class="grid-container grid-container--2col grid-container--no-padd {{grid_container_class}}">                       
-                        <div class="grid-col grid-col--menu">                            
-                            <div class="menu-aside-container">
-                                {% block left_panel_content %}
-                                    {% include 'antares/foundation::layouts.installer.partials._left_panel' %}
-                                {% endblock %}                                
-                            </div>
-                        </div>
-                        <div class="grid-col grid-col--container">
-                            {{ set_meta('header::class', 'main-header') }}
-                            {% block metas %}            {% endblock %}                    
-                            {% include 'antares/foundation::components.messages' %}                            
-                            {% block content %}
-                            {% endblock %}    
-                        </div>
-                    </div>
-                </section>
-            </div>
-        </div>
-        {% include 'antares/foundation::layouts.antares.partials._scripts_webpack' %}                
-        <script>
-            $(document).ready(function () {
-                $('.card > * > *, .tbl-c > *,form').css('opacity', '1');
-            });
-        </script>   
-    </body>
+</body>
 </html>

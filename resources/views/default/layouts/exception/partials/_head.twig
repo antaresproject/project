@@ -1,8 +1,8 @@
 <meta charset="UTF-8">
 {% set title=get_meta('title') %}
-<title>Antares Project {{ title|length > 0 ? '- '~title:'' }}</title>
-<meta name="description" content="Thank you for choosing Antares Project as a foundation for your application. You can find the latest updates and documentation at: http://antaresproject.io" >
-<meta name="keywords" content="Antares Project, User Management, Platform, Laravel, Two-Factor Authentication, REST API,Notifications, Automation, Open Source, Installer, Updater" >
+<title>Antares {{ title|length > 0 ? '- '~title:'' }}</title>
+<meta name="description" content="Thank you for choosing Antares as a foundation for your application. You can find the latest updates and documentation at: http://antaresproject.io" >
+<meta name="keywords" content="Antares, User Management, Platform, Laravel, Two-Factor Authentication, REST API,Notifications, Automation, Open Source, Installer, Updater" >
 <meta name="author" content="INBS Software" >
 <meta name="viewport" content="user-scalable=no,width=device-width,initial-scale=1,maximum-scale=1">
 <meta name="theme-color" content="#27ae60">
@@ -13,7 +13,6 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#27ae60">
 {% block javascripts %}    
     {%  set asset = app('antares.asset').container('antares.header')               
-               .style('bower_assets', '/css/bower_assets.css')
                .style('external_css', '/css/external.css')
                .style('antares_css', '/css/antares.css')
                .style('additionals', '/packages/core/css/additionals.css')                               

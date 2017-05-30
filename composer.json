@@ -1,5 +1,5 @@
 {
-    "name": "antaresproject/project",
+    "name": "antaresproject/project",    
     "description": "Create management system for your employees, your customers and for yourself. Experience a completely new way of building standalone and SaaS applications.",
     "homepage": "http://antaresproject.io",
     "keywords": [
@@ -24,8 +24,8 @@
         "antares",
         "antares-project",
         "boilerplate"
-    ],
-    "license": "BSD 3-Clause",
+    ],        
+    "license": "BSD-3-Clause",
     "type": "project",
     "prefer-stable": true,
     "minimum-stability": "dev",
@@ -35,51 +35,15 @@
             "homepage": "http://antaresproject.io",
             "role": "developer"
         }
-    ],
+    ],    
     "repositories": [
         {
             "type": "git",
             "url": "https://github.com/antaresproject/core.git"
-        },
+        },       
         {
             "type": "git",
-            "url": "https://github.com/antaresproject/module.git"
-        },
-        {
-            "type": "git",
-            "url": "https://github.com/antaresproject/logger.git"
-        },
-        {
-            "type": "git",
-            "url": "https://github.com/antaresproject/updater.git"
-        },
-        {
-            "type": "git",
-            "url": "https://github.com/antaresproject/translations.git"
-        },
-        {
-            "type": "git",
-            "url": "https://github.com/antaresproject/widgets.git"
-        },
-        {
-            "type": "git",
-            "url": "https://github.com/antaresproject/tester.git"
-        },
-        {
-            "type": "git",
-            "url": "https://github.com/antaresproject/notifications.git"
-        },
-        {
-            "type": "git",
-            "url": "https://github.com/antaresproject/customfields.git"
-        },
-        {
-            "type": "git",
-            "url": "https://github.com/antaresproject/control.git"
-        },
-        {
-            "type": "git",
-            "url": "https://github.com/antaresproject/automation.git"
+            "url": "https://github.com/antaresproject/component-installer-plugin.git"
         },
         {
             "type": "git",
@@ -96,110 +60,115 @@
         {
             "type": "git",
             "url": "https://github.com/antaresproject/two_factor_auth.git"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/antaresproject/logger.git"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/antaresproject/translations.git"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/antaresproject/tester.git"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/antaresproject/notifications.git"
+        },
+
+        {
+            "type": "git",
+            "url": "https://github.com/antaresproject/customfields.git"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/antaresproject/acl.git"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/antaresproject/automation.git"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/antaresproject/users.git"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/antaresproject/installation.git"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/antaresproject/branding.git"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/antaresproject/sample_module.git"
         }
-    ],
+    ],          
     "require": {
-        "antaresproject/core": "dev-master",
-        "antaresproject/component-module": "dev-master",
-        "antaresproject/component-logger": "dev-master",
-        "antaresproject/component-updater": "dev-master",
-        "antaresproject/component-translations": "dev-master",
-        "antaresproject/component-widgets": "dev-master",
-        "antaresproject/component-tester": "dev-master",
-        "antaresproject/component-notifications": "dev-master",
-        "antaresproject/component-customfields": "dev-master",
-        "antaresproject/component-control": "dev-master",
-        "antaresproject/component-automation": "dev-master",
-        "antaresproject/component-search": "dev-master",
-        "antaresproject/component-api": "dev-master",
-        "antaresproject/component-ban-management": "dev-master",
-        "antaresproject/component-two-factor-auth": "dev-master",
-        "laravel/framework": "5.2.*",
+        "antaresproject/core": "0.9.2.x-dev",
+        "laravel/framework": "5.4.*",
+        "laravie/html": "5.4.*",
         "mnsami/composer-custom-directory-installer": "1.1.*",
-        "laravie/html": "~5.2.1",
-        "laravelcollective/html": "5.2.*",
-        "barryvdh/laravel-ide-helper": "^2.0@dev",
+        "antaresproject/component-installer-plugin": "0.9.2.1-dev",
+
+        "antaresproject/module-api": "0.9.2.x-dev",
+        "antaresproject/module-ban-management": "0.9.2.x-dev",
+        "antaresproject/module-two_factor_auth": "dev-master",
+        "antaresproject/module-ban_management": "0.9.2.x-dev",
+        "antaresproject/module-search": "dev-master",        
+
+        "antaresproject/component-logger": "0.9.2.x-dev",
+        "antaresproject/component-translations": "dev-master",
+        "antaresproject/component-tester": "0.9.2.x-dev",
+        "antaresproject/component-notifications": "0.9.2.x-dev",
+        "antaresproject/component-customfields": "0.9.2.x-dev",
+        "antaresproject/component-acl": "dev-master",
+        "antaresproject/component-automation": "0.9.2.x-dev",    
+
+        "antaresproject/component-installer": "dev-master",
+        "antaresproject/component-brands": "dev-master",
+        "antaresproject/component-users": "dev-master",    
+
+        "antaresproject/module-sample_module": "0.9.2.2-dev",        
+
         "barryvdh/laravel-debugbar": "^2.2@dev",
-        "phpunit/phpunit": "5.0.*",
-        "doctrine/dbal": "master",
-        "tymon/jwt-auth": "1.0.*",
-        "brainboxlabs/brain-socket": "^1.0",
-        "kriswallsmith/assetic": "^1.3",
-        "predis/predis": "v1.1.*",
-        "barryvdh/laravel-cors": "v0.8.*",
-        "twig/twig": "v1.30.0",                                 
-        "rcrowe/twigbridge": "^0.9.0",
-        "satooshi/php-coveralls": "~0.7"
-    },
-    "require-dev": {
-        "symfony/security-core": "master",
-        "fzaninotto/faker": "master",
-        "mockery/mockery": "0.9.*",
-        "davejamesmiller/laravel-breadcrumbs": "dev-master",
-        "linfo/linfo": "dev-master"
-    },
+        "regulus/activity-log": "^0.6.7",
+        "arcanedev/log-viewer": "^4.3",
+        "prettus/laravel-request-logger": "^1.0",
+        "davejamesmiller/laravel-breadcrumbs": "dev-master"
+    },        
     "autoload": {
         "classmap": [
             "resources/database",
-            "src/core",
-            "src/components",
+            "src/core/src/modules",
             "src/modules"
         ],
         "psr-4": {
             "App\\": "app/",
-            "Installer\\": "app/Installer/src",
-            "Antares\\Control\\": "src/components/control/src",
-            "Antares\\Brands\\": "src/core/brands/src",
-            "Antares\\Users\\": "src/components/users/src"
+            "Installer\\": "app/Installer/src"        
         }
     },
-    "autoload-dev": {
-        "classmap": [
-            "src/core/tests/TestCase.php"
-        ]
-    },
     "extra": {
-        "branch-alias": {
-            "dev-master": "0.9.0-dev"
-        },
         "installer-paths": {
-            "./src/core": ["antaresproject/core"],
-            "./src/components/module": ["antaresproject/component-module"],
-            "./src/components/logger": ["antaresproject/component-logger"],
-            "./src/components/updater": ["antaresproject/component-updater"],
-            "./src/components/translations": ["antaresproject/component-translations"],
-            "./src/components/widgets": ["antaresproject/component-widgets"],
-            "./src/components/tester": ["antaresproject/component-tester"],
-            "./src/components/reports": ["antaresproject/component-reports"],
-            "./src/components/notifications": ["antaresproject/component-notifications"],
-            "./src/components/customfields": ["antaresproject/component-customfields"],
-            "./src/components/control": ["antaresproject/component-control"],
-            "./src/components/automation": ["antaresproject/component-automation"],
-            "./src/components/search": ["antaresproject/component-search"],
-            "./src/components/api": ["antaresproject/component-api"],
-            "./src/components/ban_management": ["antaresproject/component-ban-management"],
-            "./src/components/two_factor_auth": ["antaresproject/component-two-factor-auth"]            
+            "./src/core": ["antaresproject/core"]
         }
     },    
     "scripts": {
-        "pre-update-cmd": [
-            "Installer\\EnvironmentScripts::preUpdate"
-        ],
-        "pre-install-cmd": [
-            "Installer\\EnvironmentScripts::preInstall"
-        ],
-        "post-install-cmd": [
-            "Installer\\ComposerScripts::postUpdate",
-            "php artisan clear-compiled",
-            "php artisan key:generate"
-        ],
-        "post-update-cmd": [
-            "php artisan clear-compiled",
-            "php artisan key:generate"
+        "post-root-package-install": [
+            "php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ],
         "post-create-project-cmd": [
             "php artisan key:generate"
-        ]
+        ],
+        "post-install-cmd": [
+            "php artisan clear-compiled"
+        ],
+        "post-update-cmd": [
+            "php artisan clear-compiled"
+        ]        
     },
     "config": {
         "preferred-install": "dist",

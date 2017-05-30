@@ -1,8 +1,10 @@
 <meta charset="UTF-8" >
-{% set title=get_meta('title') %}
-<title>Antares Project {{ title|length > 0 ? '- '~title:'' }}</title>
-<meta name="description" content="Thank you for choosing Antares Project as a foundation for your application. You can find the latest updates and documentation at: http://antaresproject.io" >
-<meta name="keywords" content="Antares Project, User Management, Platform, Laravel, Two-Factor Authentication, REST API,Notifications, Automation, Open Source, Installer, Updater" >
+{% block head_title %}
+    {% set title=get_meta('title') %}
+    <title>{{ brand_title()|default('Antares') }}  {{ title|length > 0 ? '- '~title:'' }}</title>
+{% endblock %}
+<meta name="description" content="Thank you for choosing Antares as a foundation for your application. You can find the latest updates and documentation at: http://antaresproject.io" >
+<meta name="keywords" content="Antares, User Management, Platform, Laravel, Two-Factor Authentication, REST API,Notifications, Automation, Open Source, Installer, Updater" >
 <meta name="author" content="INBS Software" >
 <META NAME="robots" content="noindex, nofollow">
 <meta name="viewport" content="user-scalable=no,width=device-width,initial-scale=1,maximum-scale=1">
@@ -13,13 +15,7 @@
 <meta name="msapplication-navbutton-color" content="#27ae60">
 <meta name="apple-mobile-web-app-status-bar-style" content="#27ae60">
 {% block javascripts %}
-    {%  set asset = app('antares.asset').container('antares.header')               
-               .style('bower_assets', asset('/css/bower_assets.css'))
-               .style('external_css', '/css/external.css')
-               .style('antares_css', '/css/antares.css')
-               .style('additionals', 'packages/core/css/additionals.css')                               
-               .style('wrapper', 'packages/core/css/wrapper.css')                               
-    %} 
+    {%  set asset = app('antares.asset').container('antares.header').style('external_css', '/css/external.css').style('antares_css', '/css/antares.css').style('additionals', 'packages/core/css/additionals.css').style('wrapper', 'packages/core/css/wrapper.css') %} 
     {{ asset.styles()|raw }}
 {% endblock %}
 {{ brand_styles()|raw }}

@@ -3,11 +3,11 @@
     {% endif %}
     {% if control.hasLabel() %}
         <div class="col-16 mb2">        
-            {{ Form.htmlLabel(control)|raw }}    
+            {{ Form.htmlLabel(control)|raw }}              
         </div>
     {% endif %}
     <div class="col-16">
-        <div class="input-field {{ (control.inlineHelp|length>1 or control.help|length>1) ? 'input-field--desc' : ''  }} {{ control.get('fieldClass')|raw }} ">        
+        <div class="input-field {{ (control.inlineHelp|length>1 or control.help|length>1) ? 'input-field--desc' : ''  }} {{ control.get('fieldClass')|raw }}">        
             {{ control.get('before')|raw }}            
             {{ control.getField(row, control, [])|raw }}           
         </div>

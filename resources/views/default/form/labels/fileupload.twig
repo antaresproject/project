@@ -1,0 +1,5 @@
+<label {{ label.getAttributes()|stringify }} for="{{ controlName }}">
+    <a class="btn btn--md btn--primary mdl-button mdl-js-button mdl-js-ripple-effect mr16">Select Files</a>
+    <input type="text" placeholder="File path" class="disabled file-path" disabled>
+    {{ controlHtml|raw }}
+</label>

@@ -6,13 +6,14 @@
     <section class="main-content">
         {% include 'antares/foundation::components.messages'  %}                                    
         {% block content %}
-        {% endblock %}         
-        {% if app('antares.widgets.installed') %}            
+        {% endblock %}                 
+        {% if app('antares.ui-components.installed') %}            
             <div class="grid-stack">                
-                {{ widget_forced('user_details',{'width':3,'height':8,'disabled':false,'x':0,'y':0})|raw }}                        
-                {{ widget_forced('items_widget',{'width':5,'height':14,'disabled':false,'x':3,'y':0})|raw }}                                                        
-                {{ widget_forced('activity_logs',{'width':9,'height':12,'disabled':false,'x':3,'y':17})|raw }}                                        
-                {{ widget_forced('notifications_widget',{'width':4,'height':9,'disabled':false,'x':9,'y':20})|raw }}                                
+                {{ component_forced('user_details',{'width':2,'height':14,'disabled':false,'x':0,'y':0})|raw }}                        
+                {{ component_forced('items_widget',{'width':7,'height':15,'disabled':false,'x':2,'y':0})|raw }}                                                        
+                {{ component_forced('activity_logs',{'width':6,'height':15,'disabled':false,'x':0,'y':17})|raw }}                                        
+                {{ component_forced('notifications_widget',{'width':3,'height':7,'disabled':false,'x':9,'y':0})|raw }}                                
+                {{ component_forced('graph1',{'width':6,'height':15,'disabled':false,'x':7,'y':15})|raw }}                                        
             </div>                            
         {% endif %}
     </section>

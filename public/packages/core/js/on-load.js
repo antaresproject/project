@@ -13,6 +13,15 @@ function AjaxLoader() {
             }
 }
 $(document).ready(function () {
+    $('.app-install .app-content__footer button, .app-install .app-content__footer a').on('click', function () {
+
+        if ($('.app-install form')[0].checkValidity()) {
+            $(this).addClass('is-refreshing');
+            $('.app-install').LoadingOverlay('show');
+        }
+
+        return true;
+    });
     $.ajaxSetup({
         cache: false,
         timeout: 120000,
@@ -120,6 +129,7 @@ var ConfirmModal = (function () {
                 return this.isGetHttpMethod() ? 'GET' : 'POST';
             },
             ConfirmModal.prototype.buildForm = function () {
+
                 var $footer = this.getFooter();
 
                 var $methodInput = $('<input/>', {
@@ -162,6 +172,7 @@ var ConfirmModal = (function () {
         form.submit();
     };
     ConfirmModal.prototype.open = function () {
+
         var self = this;
         var isMassAction = self.from.hasClass('mass-action');
         if (isMassAction) {
@@ -363,13 +374,16 @@ $(document).ready(function () {
     $('.mail-change-driver', document).on("change", function (e) {
         var handler = $(this), driver = handler.val();
 
-        handler.closest('form').find('input').each(function (index, item) {
-            var element = $(item).closest('.form-block');
+        handler.closest('form').find('.mail-control').each(function (index, item) {
+            var element = $(item).closest('.form-block'), desc = $('.form-block-desc[role="' + element.attr('role') + '"]');
             if (element.attr('role') === driver) {
                 element.removeClass('hidden-block');
+                desc.removeClass('hidden-block');
             } else {
                 element.addClass('hidden-block');
+                desc.addClass('hidden-block');
             }
+
         });
         return false;
     });
@@ -416,24 +430,7 @@ $(document).ready(function () {
         e.preventDefault(), e.stopPropagation(), sidebar.removeClass(openClass);
     });
 
-    $('.users-select-status', document).on('change', function (e) {
-        var table = $(this).closest('.tbl-c').find('[data-table-init]');
-        if (table.length < 0) {
-            return false;
-        }
-        var api = table.dataTable().api();
-        var val = $.fn.dataTable.util.escapeRegex($(this).val());
-        api.column(5).search(val, true, false).draw();
-    });
-    $('.admins-select-status', document).on('change', function (e) {
-        var table = $(this).closest('.tbl-c').find('[data-table-init]');
-        if (table.length < 0) {
-            return false;
-        }
-        var api = table.dataTable().api();
-        var val = $.fn.dataTable.util.escapeRegex($(this).val());
-        api.column(6).search(val, false, false).draw();
-    });
+
     $('.confirm', document).on('click', function (e) {
         var
                 $this = $(this),
@@ -542,7 +539,6 @@ $(document).ready(function () {
             var previewUrl = card.data('preview-url');
             $.modal.close();
             var gridStackItem = $('.grid-stack-item[id=' + id + ']'), overlayPreloader = gridStackItem.find('.grid-stack-item-content');
-
             overlayPreloader.LoadingOverlay('show');
             //overlayPreloader.divPreload('on');
             $.ajax({
@@ -606,7 +602,7 @@ $(document).ready(function () {
                 },
                 complete: function () {
                     bigCard.LoadingOverlay('hide');
-                    //$('.card > * > *, .tbl-c > *,form,.grid-stack').css('opacity', '1');
+                    $('.card > * > *, .tbl-c > *,form,.grid-stack').css('opacity', '1');
                 }
             });
             return false;

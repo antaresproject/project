@@ -1,0 +1,6 @@
+<label {{ label.getAttributes()|stringify }} for="{{ control.getName() }}">
+    {{ label.name }}
+    {% if label.hasInfo() %}
+        <i class="zmdi zmdi-help-outline help--trigger" data-tooltip-inline="{{ label.info }}"></i>
+    {% endif %}
+</label>

@@ -1,2 +1,3 @@
 *
 !.gitignore
+!/core/js/extensions.js

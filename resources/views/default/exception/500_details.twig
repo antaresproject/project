@@ -9,7 +9,6 @@
             <p class="file">
                 {{ data['file'] }} "{{ data['line'] }}"            
             </p>
-            {{ closure(renderSourceCode,data['file'], data['line'], maxSourceLines)|raw }}
         </div>
         <div class="traces">
             <h2>
