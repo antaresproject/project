@@ -18,3 +18,8 @@ script:
 after_script:
   - php coveralls.phar -v;
 
+matrix:
+  include:
+    - php: 7.1
+      env: coverage=yes
+  fast_finish: true  
