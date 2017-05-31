@@ -1,0 +1,1 @@
+{"name":"antaresproject\/component-installer-plugin","type":"composer-plugin","license":"MIT","prefer-stable":true,"minimum-stability":"dev","require":{"composer\/composer":"^1.4","composer-plugin-api":"^1.1"},"autoload":{"psr-4":{"Antares\\ComponentPlugin\\":"src\/"}},"extra":{"class":"Antares\\ComponentPlugin\\Plugin"},"time":"2017-05-15 13:13:02"}
