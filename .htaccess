@@ -39,7 +39,7 @@
         
             
         RewriteCond %{REQUEST_URI} !^public
-        RewriteRule ^(?:[^/]*/)*([^/.]+\.(?:jpe?g|gif|bmp|png|tiff|css|js))$ /public/$0 [R=301,L,NC]
+        RewriteRule ^(?:[^/]*/)*([^/.]+\.(?:jpe?g|gif|bmp|png|tiff|css|js|woff2|eot|svg|ttf|csv|xls|xlsx))$ /public/$0 [R=301,L,NC]
 
         
         RewriteCond %{REQUEST_FILENAME} !-f
