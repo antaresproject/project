@@ -18,8 +18,8 @@ return [
         'antaresproject/module-search'           => 'dev-master',
         'antaresproject/module-sample_module'    => 'dev-master',
         'antaresproject/module-api'              => 'dev-master',
-        'antaresproject/module-ban-management'   => 'dev-master',
-        'antaresproject/module-two-factor-auth'  => 'dev-master',
+        'antaresproject/module-ban_management'   => 'dev-master',
+        'antaresproject/module-two_factor_auth'  => 'dev-master',
     ],
     /**
      * Extensions required on installation.
