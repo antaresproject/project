@@ -4,16 +4,18 @@
     <section class="main-content {{ (panes|length>0 or _context.form is defined) ? 'nopadding':'' }}">        
         {% include 'antares/foundation::components.messages'  %}                      
         {% set formClass=_context.form is defined ? ((panes|length<=0)?'grid-container--1col full-height grid-container--footer' : 'grid-container--footer'):'' %}
-        <div class="{{ panes|length>0 ? 'grid-container grid-container--2col grid-container--no-padd '~formClass:((formClass|length>0)?'grid-container '~formClass:'grid-container-display') }}">
+        <div class="grid-container grid-container--1col grid-container--footer grid-container--no-padd">
             {% include 'antares/foundation::layouts.antares.partials._left_panel' with {panes: panes} %}
-            {% if panes|length>0 or _context.form is defined %}
-                <div class="grid-col grid-col--container">
-                {% endif %}
-                {% block content %}
-                {% endblock %}
+            {% block grid_col__container %}
                 {% if panes|length>0 or _context.form is defined %}
-                </div>
-            {% endif %}            
+                    <div class="grid-col grid-col--container">
+                    {% endif %}
+                    {% block content %}
+                    {% endblock %}
+                    {% if panes|length>0 or _context.form is defined %}
+                    </div>
+                {% endif %}            
+            {% endblock %}
         </div>
     </section>            
 {% endblock %} 

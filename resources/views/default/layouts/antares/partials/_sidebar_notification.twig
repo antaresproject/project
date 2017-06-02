@@ -1,12 +1,13 @@
-<div data-action="#" class="notification-item sidebar__sgl flex-block" data-id="{{id}}">
-    <div class="flex-block__close" ><i class="zmdi zmdi-close"></i></div>            
+<div data-action="#" class="notification-item flex-block sidebar__sgl" data-id="{{id}}">
+    <div class="flex-block__close" data-tooltip-inline="Dismiss Notification"><i class="zmdi zmdi-close"></i></div>            
         {% if author %}        
-        <div class="avatar avatar--active avatar--xs"> 
+        <div class="avatar avatar--xs avatar--active"> 
             <img src="{{ profile_picture(author.email) }}" alt="{{ author.firstname }} {{ author.lastname }}"> 
         </div>
     {% endif %}
     <div class="flex-block__content">
         <div class="flex ai-center jc-flex-start">
+            <span class="label-basic label-basic--md label-basic--success mr8">NEW</span>
             <span class="flex-block__title item-title">
                 {{ title|raw }} {{ format_x_days(created_at)|raw }} {{ priority|raw }}
             </span>
