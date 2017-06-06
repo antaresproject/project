@@ -10,17 +10,23 @@
     $console.perfectScrollbar();
 
     (function refresh() {
-        $.get(url).then(function (response) {
-            if (parseInt(response.progress) > parseInt($progress.text())) {
-                $progress.text(response.progress);
-            }
-            if (response.redirect) {
-                window.location.replace(response.redirect);
-            } else {
-                var text = response.console.replace(/\r\n/g, "\n");
-                editor.getDoc().setValue(text);
-                editor.execCommand('goDocEnd');
-                setTimeout(refresh, 1000);
+        $.ajax({
+            url: url,
+            success: function (response) {
+                if (parseInt(response.progress) > parseInt($progress.text())) {
+                    $progress.text(response.progress);
+                }
+                if (response.redirect) {
+                    window.location.replace(response.redirect);
+                } else {
+                    var text = response.console.replace(/\r\n/g, "\n");
+                    editor.getDoc().setValue(text);
+                    editor.execCommand('goDocEnd');
+                    setTimeout(refresh, 1000);
+                }
+            },
+            error: function () {
+                window.location.replace('/');
             }
         });
     })();

@@ -5,6 +5,7 @@
     {{ asset.scripts()|raw }}
 {% endblock %}
 {{  app('antares.asset').container('antares/foundation::scripts').webpack()|raw }}        
+
 <script>
     window.addEventListener("load", function (event) {
         $('.grid-stack,form').css('opacity', '1');
