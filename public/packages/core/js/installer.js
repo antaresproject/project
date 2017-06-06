@@ -19,7 +19,6 @@
             } else {
                 var text = response.console.replace(/\r\n/g, "\n");
                 editor.getDoc().setValue(text);
-                console.log($console.get(0).scrollHeight);
                 editor.execCommand('goDocEnd');
                 setTimeout(refresh, 1000);
             }
