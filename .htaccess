@@ -1,0 +1,47 @@
+<IfModule mod_rewrite.c>
+        <files *.js.gz>
+	  AddType "text/javascript" .gz
+	  AddEncoding gzip .gz
+	</files>
+        <files *.gz.js>
+	  AddType "text/javascript" .gz
+	  AddEncoding gzip .gz
+	</files>
+	<files *.css.gz>
+	  AddType "text/css" .gz
+	  AddEncoding gzip .gz
+	</files>
+        <files *.gz.css>
+	  AddType "text/css" .gz
+	  AddEncoding gzip .gz
+	</files>
+	<IfModule mod_negotiation.c>
+		Options -MultiViews
+	</IfModule>
+
+	RewriteEngine On
+
+	# Redirect Trailing Slashes If Not A Folder...
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteRule ^(.*)/$ /$1 [L,R=301]
+        
+
+	RewriteCond %{HTTP:Authorization} ^(.*)
+        RewriteRule .* - [e=HTTP_AUTHORIZATION:%1]
+
+	# Secure Front Themes...
+	RewriteRule ^themes/.*\.(blade.php|php)$ - [F,L,NC]
+
+        RewriteBase /    
+        # Handle Front Controller...
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteCond %{REQUEST_FILENAME} !-f
+        
+            
+        RewriteCond %{REQUEST_URI} !^public
+        RewriteRule ^(?:[^/]*/)*([^/.]+\.(?:jpe?g|gif|bmp|png|tiff|css|js|woff2|eot|svg|ttf|csv|xls|xlsx))$ /public/$0 [R=301,L,NC]
+
+        
+        RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteRule ^ index.php [L]
+</IfModule>
