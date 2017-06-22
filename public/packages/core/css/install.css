@@ -357,3 +357,14 @@
 .CodeMirror pre{
     line-height: 18px !important;
 }
+.has-error .input-field input{
+    border-color: #a94442;
+
+}
+.has-error .checkbox, .has-error .checkbox-inline, .has-error label, .has-error .help-block, .has-error .radio, .has-error .radio-inline, .has-error.checkbox label, .has-error.checkbox-inline label, .has-error.radio label, .has-error.radio-inline label{
+    color: #a94442;
+}
+.help-block.with-errors ul{
+    list-style:none;
+    padding:0px;
+}

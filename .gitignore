@@ -175,3 +175,4 @@ public/apidocs/*
 /nbproject
 /src/modules/
 /src/
+/cache/*

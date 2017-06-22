@@ -1,22 +1,22 @@
-{% if not auth_user() is null %}        
-    <div class="item-grp-single" data-tooltip-inline="{{ trans('Notifications') }}" data-tooltip-my-position="top left" data-tooltip-target-position="bottom right">
-        <span id="notification-counter" class="badge badge--green badge--md badge--top-right notification-counter" data-count="" data-host="{{ hostname() }}">0</span>
-        <div class="mdl-js-button mdl-js-ripple-effect" id="main-notifications" data-url="{{ handles('antares::notifications/sidebar/read') }}">
-            <div class="main-head__alerts"><i class="icon--alert"></i></div>
+<div class="item-grp-single" data-tooltip-inline="{{ trans('Notifications') }}">
+    <span id="notification-counter" class="badge badge--top-right badge--md badge--green notification-counter" data-count="" data-host="{{ hostname() }}">0</span>
+    <div class="mdl-js-button mdl-js-button mdl-js-ripple-effect" id="main-notifications" data-url="{{ handles('antares::notifications/sidebar/read') }}">
+        <div class="main-head__alerts"><i class="icon--alert"></i></div>
+    </div>
+</div>
+<div class="item-grp-single mr16" data-tooltip-inline="{{ trans('Alerts') }}">
+    <span class="badge badge--top-right badge--md badge--green">0</span>
+    <div class="mdl-js-button mdl-js-button mdl-js-ripple-effect" id="main-alerts" data-url="{{ handles('antares::notifications/sidebar/read/alerts') }}">
+        <div class="main-head__settings"><i class="zmdi zmdi-alert-triangle"></i>
         </div>
     </div>
-    <div class="item-grp-single" data-tooltip-inline="{{ trans('Alerts') }}">
-        <span class="badge badge--green badge--md badge--top-right">0</span>
-        <div class="mdl-js-button mdl-js-ripple-effect" id="main-alerts" data-url="{{ handles('antares::notifications/sidebar/read/alerts') }}">
-            <div class="main-head__settings"><i class="zmdi zmdi-alert-triangle"></i>
-            </div>
-        </div>
-    </div>   
+</div>           
+{% if not auth_user() is null %}        
     <div class="item-grp-single">
         <div class="ddown ddown--user">
             <div class="ddown__init ddown__init--clean mdl-js-button mdl-js-ripple-effect">
                 <div class="avatar avatar--xs">
-                    <img width="40" height="40" src="{{ profile_picture(auth_user().email) }}" alt="{{ auth_user().fullname }}" />
+                    <img width="40" height="40" class="gravatar" src="{{ profile_picture(auth_user().email) }}" alt="{{ auth_user().fullname }}" />
                 </div>
             </div>
             <div class="ddown__content">
@@ -27,7 +27,7 @@
                             <a class="mdl-js-button mdl-js-ripple-effect" href="{{ handles('antares/foundation::account') }}">
                                 <div class="flex-block">
                                     <div class="avatar avatar--lg">
-                                        <img width="60" height="60" src="{{ profile_picture(auth_user().email,60,60) }}" alt="{{ auth_user().fullname }}" />
+                                        <img width="60" height="60" class="gravatar" src="{{ profile_picture(auth_user().email,60,60) }}" alt="{{ auth_user().fullname }}" />
                                     </div>
                                     <div class="flex-block__content">
                                         <span class="flex-block__title">{{ auth_user().fullname }}</span>

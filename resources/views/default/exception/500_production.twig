@@ -6,7 +6,7 @@
                 <div class="error-container">
                     <div class="top-area">
                         <div class="app-logo">
-                            <img src="{{ brand_logo('big','/img/logos/logo_default_full.png') }}" alt="{{ brand_title() }}">
+                            <img src="{{ brand_logo('white','/img/logos/logo_default_full.png') }}" alt="{{ brand_title() }}">
                         </div>
                         <div class="error-message">
                             <div class="error-message__bg"></div>
@@ -32,9 +32,11 @@
                             {% endif %}
                             <div class="btn-group">
                                 <a onclick="js:window.history.back();" href="#" class="go-back btn btn--md btn--default mdl-button mdl-js-button mdl-js-ripple-effect"><i class="zmdi zmdi-long-arrow-left"></i> Back to previous page</a>
-                                <a href="#" class="open-modal btn-link btn--md btn--primary mdl-button mdl-js-button mdl-js-ripple-effect" data-target=".send-notification">
-                                    Can't solve the problem?
-                                </a>
+                                {% if enable_error_reporting %}
+                                    <a href="#" class="open-modal btn-link btn--md btn--primary mdl-button mdl-js-button mdl-js-ripple-effect" data-target=".send-notification">
+                                        Can't solve the problem?
+                                    </a>
+                                {% endif %}
                             </div>
                         </div>
                     </div>

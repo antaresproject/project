@@ -6,6 +6,8 @@ if (isset($_GET['sandbox']) && !empty($_GET['sandbox'])) {
     include_once __DIR__ . "/builds/build_{$name}/public/index.php";
 } else {
 
+    error_reporting(255);
+    ini_set('display_errors', '1');
 
 
     /**
@@ -67,3 +69,4 @@ if (isset($_GET['sandbox']) && !empty($_GET['sandbox'])) {
 
     $kernel->terminate($request, $response);
 }
+
