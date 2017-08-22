@@ -92,7 +92,7 @@
                     <a href="{{ item.childs|first.link }}" title="{{ item.title }}">
                         <i class="zmdi {{ item.icon }}"></i>
                         <span class="text">{{ item.title }}</span>
-                    </a>
+                    </a>                    
                     <div class="submenu flex-fs">
                         <a href="{{ item.link }}" class="submenu__mobile-return">
                             <i class="zmdi zmdi-arrow-left"></i>
@@ -103,7 +103,7 @@
                             <div class="submenu__content">
                                 <ul class="data-list">
                                     {% for child in item.childs %}                                        
-                                        <li class="{{ (child.isFirstChildActive() or child.active is sameas(true)) ?'is-active':'' }}">
+                                        <li class="{{ (child.isFirstChildActive() or child.active is sameas(true)) ?'is-active':'' }}" data-name='{{ child.title|str_slug|lower }}'>
                                             <a href="{{ child.link }}">
                                                 {% if child.attributes.html %}
                                                     {{ child.html|raw }}
@@ -114,9 +114,24 @@
                                         </li>
                                     {% endfor %}
                                 </ul>
+                                {% for child in item.childs %}
+                                    {% if child.has('help') %}
+                                        <div class="menu-tooltip" data-menu-item="{{ child.title|str_slug|lower }}">
+                                            <div class="menu-tooltip__header">
+                                                <i class="zmdi zmdi-info-outline"></i>
+                                                <span>{{ child.title }}</span>
+                                            </div>                                        
+                                            <div class="menu-tooltip__content">
+                                                {{ child.help|raw }}
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}    
+
                             </div>
                         </section>
                     </div>
+
                 </li>
             {% endif %}
         {% endfor %}
@@ -127,4 +142,5 @@
             </a>
         </li>
     </ul>
+
 </div>
