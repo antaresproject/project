@@ -1,3 +1,7 @@
+<Files ".env">
+    Order Allow,Deny
+    Deny from all
+</Files>
 <IfModule mod_rewrite.c>
         <files *.js.gz>
 	  AddType "text/javascript" .gz
