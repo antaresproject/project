@@ -1,14 +1,10 @@
 {% extends "antares/foundation::layouts.antares.index-no-grid" %}
 {% block content %}
-    <div class="grid-col grid-col--container grid-col--email-view">
-        {{ form|raw }}
-        <div class="email-preview">
-            <div class="preview-area">
-                <iframe id="preview" frameBorder="0">
-
-                </iframe>
-            </div>
-        </div>           
+    <div class="grid-col grid-col--container" style="z-index: 3">
+        <div class="menu-mobile-settings--box">
+            <select class="menu-mobile-settings" data-select2--class="menu-aside-settings--blue" data-selectAR--search="true" name="select"></select>
+        </div>
+        {{ form|raw }}        
         <div class="content hidden">
             <h1>Sample e-mail content</h1>
             <h1>H1</h1>
@@ -109,4 +105,11 @@
             </table>
         </div>
     </div>
+    <div class="email-preview grid-col grid-col--container">
+        <div class="preview-area">
+            <iframe id="preview" frameBorder="0">
+
+            </iframe>
+        </div>
+    </div>           
 {% endblock %}

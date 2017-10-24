@@ -22,8 +22,6 @@ class WelcomeController extends Controller
      */
     public function index()
     {
-//        vdump(user(), request()->session());
-//        exit;
         if (($redirection = $this->redirectWhenAuthenticated()) !== false) {
             return $redirection;
         }
@@ -47,6 +45,22 @@ class WelcomeController extends Controller
         if (can('antares.show-dashboard')) {
             return redirect(handles('antares::/'))->send();
         }
+    }
+
+    /**
+     * List all the users.
+     *
+     * GET (:antares)/users
+     *
+     * @return mixed
+     */
+    public function test(\Antares\Users\Http\Datatables\Test $datatable)
+    {
+        if (post()) {
+
+            return $datatable->ajax();
+        }
+        return $datatable->render('test');
     }
 
 }

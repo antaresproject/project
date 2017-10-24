@@ -1,14 +1,10 @@
-<div class="input-field {{ errors.has(control.name) ? 'input-field--error' : '' }} input-field--desc">
-    <div class="input-field__inner">
-        {{ control.getField(row, control, [])|raw }}
-        {% if errors.has(control.name) %}
-            <span class="input-field__icon">
-                <i class="zmdi zmdi-close"></i>
-            </span>
-        {% endif %}
-    </div>
-    <div id="{{ control.id }}_error" class="input-field__desc">
-        {{ errors.first(control.name, format)|raw }}
-    </div>
-    {% include 'antares/foundation::layouts.antares.partials.form.horizontal._description' %}        
-</div>
+{{ control.getField(row, control, [])|raw }}
+{% if errors.has(control.name) %}
+    <span class="input-field__icon">
+        <i class="zmdi zmdi-close"></i>
+    </span>
+{% endif %}
+<div id="{{ control.id }}_error" class="input-field__desc">
+    {{ errors.first(control.name, format)|raw }}
+</div>      
+

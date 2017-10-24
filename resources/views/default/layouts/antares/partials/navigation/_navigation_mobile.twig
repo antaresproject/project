@@ -1,61 +1,68 @@
-{% if not auth_user() is null %}        
-    <div class="mobile-ddowns__sgl">
+<div class="mobile-ddowns__sgl ddown--logged">
+    <div class="mobile-ddowns__desc">
+        <div class="mobile-ddowns__label">Logged as:</div>
+        <div class="mobile-ddowns__text">{{ auth_user().fullname }}</div>
+    </div>
+    <div class="mobile-ddowns__icon">
+        <i class="zmdi zmdi-caret-down"></i>
+    </div>
+    <ul class="mobile-ddowns__menu mobile-ddowns__menu--user">
+
+        <li class="mobile-ddowns__menu-header">
+            <a href="#">
+                <div class="flex-block">
+                    <div class="avatar avatar--xs">
+                        <img src="{{ profile_picture(auth_user().email,60,60) }}" alt="Avatar" />
+                    </div>
+                    <div class="flex-block__content">
+                        <span class="flex-block__title">{{ auth_user().email }}</span>
+                        <span class="flex-block__desc">{{ auth_user().fullname }}</span>
+                    </div>
+                    <div class="flex-block__badge"><i class="zmdi zmdi-check"></i></div>
+                </div>
+            </a>
+        </li>
+        <li>
+            <a href="{{ handles('antares/foundation::account') }}">
+                <span>My Account</span>
+            </a>
+        </li>
+        <li>
+            <a href="{{ handles('antares/foundation::logout') }}">
+                <span>Sign Out</span>
+            </a>
+        </li>
+    </ul>
+</div>    
+{% if can('antares/brands::add-brand') %}   
+
+
+    <div class="ddown--brand mobile-ddowns__sgl">
         <div class="mobile-ddowns__desc">
-            <div class="mobile-ddowns__label">Logged as:</div>
-            <div class="mobile-ddowns__text">{{ auth_user().fullname }}</div>
+            <div class="mobile-ddowns__label">Brand:</div>
+            <div class="mobile-ddowns__text">{{ brand_title()|default('Antares') }}</div>
         </div>
-        <div class="mobile-ddowns__icon">
-            <i class="zmdi zmdi-caret-down"></i>
-        </div>
-        <ul class="mobile-ddowns__menu mobile-ddowns__menu--user">
-            <li class="mobile-ddowns__menu-header">
-                <a href="#">
+        <div class="mobile-ddowns__icon"><i class="zmdi zmdi-caret-down"></i></div>
+        <ul class="mobile-ddowns__menu mobile-ddowns__menu--brand">
+            <li class="mdl-js-button mdl-js-ripple-effect is-selected" >
+                <a>
                     <div class="flex-block">
-                        <div class="avatar avatar--xs">
-                            <img src="{{ profile_picture(auth_user().email,60,60) }}" alt="Avatar" />
-                        </div>
-                        <div class="flex-block__content">
-                            <span class="flex-block__title">{{ auth_user().email }}</span>
-                            <span class="flex-block__desc">{{ auth_user().fullname }}</span>
-                        </div>
+                        <div class="avatar avatar--xs"><img src="/img/logos/logo_default_full_mobile.png" alt="{{ brand_title()|default('Antares') }}"></div>
+                        <div class="flex-block__content"><span class="flex-block__title">{{ brand_title()|default('Antares') }}</span></div>
                         <div class="flex-block__badge"><i class="zmdi zmdi-check"></i></div>
                     </div>
                 </a>
+                <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span>
             </li>
-            <li>
-                <a href="{{ handles('antares/foundation::account') }}">
-                    <span>My Account</span>
-                </a>
-            </li>
-            <li>
-                <a href="{{ handles('antares/foundation::logout') }}">
-                    <span>Sign Out</span>
-                </a>
-            </li>
-        </ul>
-    </div>    
-{% endif %}
-{% if can('antares/brands::add-brand') %}   
-    <div class="mobile-ddowns__sgl">
-        <div class="mobile-ddowns__desc">
-            <div class="mobile-ddowns__label">Brand:</div>
-            <div class="mobile-ddowns__text">Brand 1</div>
-        </div>
-        <div class="mobile-ddowns__icon">
-            <i class="zmdi zmdi-caret-down"></i>
-        </div>
-        <ul class="mobile-ddowns__menu mobile-ddowns__menu--brand">        
-            <li class="mobile-ddowns-new mdl-js-button mdl-js-ripple-effect">
+            <li class="mdl-js-button mdl-js-ripple-effect mobile-ddowns-new">
                 <a href="{{ handles('antares/foundation::brands/create') }}">
                     <div class="flex-block">
-                        <div class="avatar avatar--xs">
-                            <i class="zmdi zmdi-plus-circle-o"></i>
-                        </div>
-                        <div class="flex-block__content">
-                            <span class="flex-block__title">Add new brand</span>
+                        <div class="avatar avatar--xs"><i class="zmdi zmdi-plus-circle-o"></i></div>
+                        <div class="flex-block__content"><span class="flex-block__title">Add Brands</span>
                         </div>
                     </div>
                 </a>
+                <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span>
             </li>
         </ul>
     </div>

@@ -5,33 +5,26 @@
 {% for hidden in hiddens %}
     {{ hidden|raw }}
 {% endfor %}
-<div class="col-group">
-    <div class="col-dt-16 col-mb-16">
-        {% for fieldset in fieldsets %}
-            {% if fieldset.hasLayout() %}
-                {{ fieldset.render()|raw }}
-            {% else %}    
-                <fieldset name="inputs">
-                    {% if fieldset.legend|length>0 %}
-                        <legend>{{ fieldset.legend|raw }}</legend>
-                    {% endif %}
-                    <div class="col-group">
-                        {% for control in fieldset.controls() %}
-                            <div class="form-block {{control.getBlock('class')}}" role="{{control.getBlock('role')}}">
-                                {% include 'antares/foundation::layouts.antares.partials.form.horizontal._'~control.type|replace({':': '_'}) with {control: control} %}
-                            </div>
-                            <div class="form-block  form-block-desc {{control.getBlock('class')}}" role="{{control.getBlock('role')}}">
-                                {% if control.inlineHelp|length>1 or control.help|length>1 %}
-                                    {% include 'antares/foundation::layouts.antares.partials.form.horizontal._description' %}             
-                                {% endif %}
-                            </div>
-                        {%endfor %}
-                    </div>
-                </fieldset>
+
+{% for fieldset in fieldsets %}
+    {% if fieldset.hasLayout() %}
+        {{ fieldset.render()|raw }}
+    {% else %}    
+        <fieldset name="inputs">
+            {% if fieldset.legend|length>0 %}
+                <legend>{{ fieldset.legend|raw }}</legend>
             {% endif %}
-        {%endfor %}
-    </div>
-</div>
+            {% for control in fieldset.controls() %}
+                <div class="form-block {{control.getBlock('class')}}" role="{{control.getBlock('role')}}">
+                    {% include 'antares/foundation::layouts.antares.partials.form.horizontal._'~control.type|replace({':': '_'}) with {control: control} %}
+                    {% if control.inlineHelp|length>1 or control.help|length>1 %}
+                        {% include 'antares/foundation::layouts.antares.partials.form.horizontal._description' %}             
+                    {% endif %}
+                </div>                        
+            {%endfor %}
+        </fieldset>
+    {% endif %}
+{%endfor %}
 {% block buttons %}
     {% set links = [] %}
     {% if buttons is not empty %}
@@ -65,4 +58,4 @@
         {% endfor %}
     {% endif %}
 {% endblock %}
-{{ Form.close()|raw }}
+{{ Form.close()|raw }}  

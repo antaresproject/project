@@ -6,7 +6,7 @@
     {{ hidden|raw }}
 {% endfor %}
 <div class="col-group">    
-    <div class="col-dt-8">
+    <div class="col-mb-24">
         <fieldset name="inputs">
             <div class="col-group">
                 {% if fieldsets[0].name|length>0 %}
@@ -60,16 +60,15 @@
             </div>
         </fieldset>
     </div>    
-    {% if buttons|length>0 %}        
-        <div class="col-dt-16">
-            <div class="app-content__footer">
-                <div class="btn-group">
-                    {% for button in buttons %}
-                        {{ button.getField(row, button, [])|raw }}
-                    {% endfor %}                    
-                </div>
+    <div class="col-mb-24">
+        <div class="app-content__footer">
+            <div class="btn-group">
+                {% for button in buttons %}
+                    {{ button.getField(row, button, [])|raw }}
+                {% endfor %}                    
             </div>
         </div>
-    {% endif %}
+    </div>
 </div>
+
 {{ Form.close()|raw }}

@@ -15,16 +15,8 @@
     {%  set asset = app('antares.asset').container('antares.header')               
                .style('external_css', '/css/external.css')
                .style('antares_css', '/css/antares.css')
-               .style('additionals', '/packages/core/css/additionals.css')                               
                .style('login_css', '/css/login.css')
-               .style('wrapper', '/packages/core/css/wrapper.css')                               
     %}
     {{ asset.styles()|raw }}    
 {% endblock %}
 {{ brand_styles()|raw }}
-<style>
-    .card > * > *, .tbl-c >*, form {
-        opacity:0;
-        transition:250ms
-    }
-</style>

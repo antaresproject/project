@@ -11,7 +11,7 @@
 <div class="col-group">
     {% set submits = [] %}
     {% for fieldset in fieldsets %}
-        <div class="col-ld-10 col-dt-16 ">
+        <div class="col-ld-10 col-dt-24 ">
             {% for control in fieldset.controls() %}                
                 {% if control.type=='button' %}
                     {% set submits=submits|merge([control]) %}        

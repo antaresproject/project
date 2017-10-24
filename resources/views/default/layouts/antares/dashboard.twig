@@ -6,15 +6,14 @@
     <section class="main-content">
         {% include 'antares/foundation::components.messages'  %}                                    
         {% block content %}
-        {% endblock %}         
+        {% endblock %}
+        <div class="grid-stack">
+            {% set components=components() %}                
+            {% for component in components %}
+                {{ component(component)|raw }}
+            {% endfor %}
+        </div>
 
-        {% if app('antares.ui-components.installed') %}            
-            <div class="grid-stack">
-                {% set components=components() %}                
-                {% for component in components %}
-                    {{ component(component)|raw }}
-                {% endfor %}                
-            </div>                       
-        {% endif %}
+
     </section>
 {% endblock %} 

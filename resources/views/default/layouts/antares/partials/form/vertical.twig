@@ -7,7 +7,7 @@
 {% endfor %}
 <div class="col-group">
     {% block fieldsets %}        
-        <div class="{{ form.class|default('col-dt-8') }} col-mb-16">
+        <div class="{{ form.class|default('col-dt-12') }} col-mb-24">
             {% for fieldset in fieldsets %}
                 {% if fieldset.hasLayout() %}
                     {{ fieldset.render()|raw }}

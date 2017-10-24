@@ -1,15 +1,13 @@
 function AjaxLoader() {
     this.reInit = function () {
         AntaresForms.elements.select(),
-                AntaresForms.elements.checkAndRadio(),
                 AntaresForms.elements.tooltip(),
-                AntaresForms.elements.datepicker(),
                 AntaresForms.elements.rangeSlider(),
                 AntaresForms.elements.readOnly(),
                 componentHandler.upgradeAllRegistered()
     },
             this.reValidate = function () {
-                AntaresForms.validation.jqueryStage()
+
             }
 }
 $(document).ready(function () {
@@ -30,7 +28,6 @@ $(document).ready(function () {
                 window.location.href = '/';
             } else {
                 try {
-                    $('.card > * > *, .tbl-c > *,form').css('opacity', '1');
                     AntaresForms.init();
                     APP.init();
                     componentHandler.upgradeAllRegistered();
@@ -565,8 +562,6 @@ $(document).ready(function () {
                         gridStackItem.find('.grid-stack-item-content').html(content);
                     }
                     overlayPreloader.LoadingOverlay('hide');
-                    //overlayPreloader.divPreload('off');
-                    //$('.card > * > *, .tbl-c > *,form,.grid-stack').css('opacity', '1');
                 }
             });
         }).appendTo(element);
@@ -582,7 +577,6 @@ $(document).ready(function () {
             }
             bigCard.modal();
             bigCard.LoadingOverlay('show');
-            //$('.card > * > *, .tbl-c > *,form,.grid-stack').css('opacity', '1');
             $.ajax({
                 url: previewUrl,
                 data: {
@@ -602,7 +596,6 @@ $(document).ready(function () {
                 },
                 complete: function () {
                     bigCard.LoadingOverlay('hide');
-                    $('.card > * > *, .tbl-c > *,form,.grid-stack').css('opacity', '1');
                 }
             });
             return false;
@@ -669,8 +662,7 @@ $(document).ready(function () {
                     "background-color": settings.color,
                     "background-image": (settings.image ? "url(" + settings.image + ")" : "none"),
                     "background-position": "center center",
-                    "background-repeat": "no-repeat",
-                    "opacity": 1
+                    "background-repeat": "no-repeat"
                 }
             });
 

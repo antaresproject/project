@@ -1,4 +1,7 @@
 {% extends "antares/foundation::layouts.antares.index" %}
-{% block content %}
-    {{ form|raw }}  
-{% endblock %}
+{% block app_content %}        
+    <div class="app-content page-forms page-forms--hor">
+    {% endblock %} 
+    {% block content %}
+        {{ form|raw }}  
+    {% endblock %}

@@ -182,7 +182,7 @@ function dtContextMenu() {
         }), {
             items: elements
         })
-    }, $(".billevo-table tbody tr").each(function (index, item) {
+    }, $(".antares-table tbody tr").each(function (index, item) {
         $.contextMenu({
             selector: ".billevo-table tbody tr",
             build: function (trigger, e) {

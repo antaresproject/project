@@ -1,0 +1,15 @@
+{
+    "name": "Antares Foundation",
+    "short_name": "Antares",
+    "start_url": "/",
+    "display": "fullscreen",
+    "background_color": "#12a8f0",
+    "description": "Antares is a foundation for your application. You can find the latest updates and documentation at: http://antaresproject.io",
+    "icons": [
+        {
+            "src": "/img/theme/antares/logo_tear.png",
+            "sizes": "380x380",
+            "type": "image/png"
+        }
+    ]
+}
