@@ -25,10 +25,11 @@
 
 {% block javascripts %}
     {%  set asset = app('antares.asset').container('antares.header')
-            .style('external_css', '//51.254.36.218:71/css/external.css?t='~random(1000))
-            .style('antares_css', '//51.254.36.218:71/css/antares.css?t='~random(1000))
+            .style('external_css', '//10.10.10.35:71/css/external.css?t='~random(1000))
+            .style('antares_css', '//10.10.10.35:71/css/antares.css?t='~random(1000))
     %} 
     {{ asset.styles()|raw }}
+    {{ brand_styles()|raw }}
 {% endblock %}
 <style>
 
@@ -125,6 +126,19 @@
     .grid-stack-item-content .card.card--pagination .pagination{
         bottom:auto;
     }
-
+    .antares-dropjs-filter--out .dropjs-wrapper ul{
+        list-style: none;
+        padding:0px;
+        margin:0px;
+    }
+    .antares-dropjs-filter--out .dropjs-wrapper ul li a{
+        width: 100%;
+    }
+    #app-wrapper .card .card-ctrls.tab-search .filters .swiper-filters--box .swiper-filters .swiper-slide .filter .ddown__init span{
+        max-width:auto;
+    }
+    .page-datatables .card-ctrls__right .filters .ddown .btn-with-selected{
+        display:flex !important;
+    }    
 </style>
 <link rel="manifest" href="/manifest.json">

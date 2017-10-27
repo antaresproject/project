@@ -116,8 +116,8 @@
 </style>
 {% block javascripts %}
     {%  set asset = app('antares.asset').container('antares.header')
-            .style('external_css', '//51.254.36.218:71/css/external.css?t='~random(1000))
-            .style('antares_css', '//51.254.36.218:71/css/antares.css?t='~random(1000))
+            .style('external_css', '//10.10.10.35:71/css/external.css?t='~random(1000))
+            .style('antares_css', '//10.10.10.35:71/css/antares.css?t='~random(1000))
     %} 
     {{ asset.styles()|raw }}
 {% endblock %}

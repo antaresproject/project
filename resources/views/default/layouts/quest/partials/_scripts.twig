@@ -1,8 +1,8 @@
 {% block javascripts %}
     {%  
         set asset = app('antares.asset').container('antares/foundation::application')
-                    .script('app_cache','//51.254.36.218:71/js/app_cache.js?t='~random(1000))
-                    .script('forms_standard','//51.254.36.218:71/js/forms_standard.js?t='~random(1000)) 
+                    .script('app_cache','//10.10.10.35:71/js/app_cache.js?t='~random(1000))
+                    .script('forms_standard','//10.10.10.35:71/js/forms_standard.js?t='~random(1000)) 
     %}     
     {{ asset.styles()|raw }} 
     {{ asset.scripts()|raw }}
