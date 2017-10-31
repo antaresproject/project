@@ -1,0 +1,4 @@
+[2017-10-27 07:56:24] local.INFO: 192.168.3.206 -  [27/Oct/2017:07:56:24\s+0000] "GET http://10.10.10.35/admin/login HTTP/1.1" 200 7645 ["RESPONSE"] []
+[2017-10-27 07:59:15] local.INFO: 192.168.3.206 -  [27/Oct/2017:07:59:15\s+0000] "POST http://10.10.10.35/admin/login HTTP/1.1" 302 340 ["RESPONSE"] []
+[2017-10-27 07:59:15] local.INFO: 192.168.3.206 -  [27/Oct/2017:07:59:15\s+0000] "GET http://10.10.10.35/admin HTTP/1.1" 200 42544 ["RESPONSE"] []
+[2017-10-27 07:59:19] local.INFO: 192.168.3.206 -  [27/Oct/2017:07:59:19\s+0000] "GET http://10.10.10.35/admin/notifications/sidebar/get HTTP/1.1" 200 72 ["RESPONSE"] []
