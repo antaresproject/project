@@ -11,12 +11,12 @@
             {% block content %}
             {% endblock %}    
             {% if app('antares.ui-components.installed') %}            
-                <div class="grid-stack clients-details-gridstack clients-details--vue">                
-                    {{ component_forced('user_details',{'width':5,'height':15,'disabled':false,'x':0,'y':0})|raw }}                                           
-                    {{ component_forced('items_widget',{'width':10,'height':18,'disabled':false,'x':5,'y':0})|raw }}
-                    {{ component_forced('graph1', {'width': 9, 'height': 12, 'disabled': false, 'x': 21, 'y': 16}) | raw}}
-                    {{ component_forced('activity_logs', {'width': 14, 'height': 14, 'disabled': false, 'x': 5, 'y': 19}) | raw}}
-                    {{ component_forced('notifications_widget', {'width': 5, 'height': 6, 'disabled': false, 'x': 19, 'y': 19}) | raw}}         
+                <div class="grid-stack clients-details-gridstack clients-details--vue" >                
+                    {{ component_forced('user_details',{'width':5,'height':15,'disabled':false,'x':0,'y':0,'desktop':[0, 0, 5, 20],'tablet':[0, 0, 8, 20],'mobile':[0, 0, 9, 20]})|raw }}
+                    {{ component_forced('items_widget',{'width':14,'height':19,'disabled':false,'x':5,'y':0,'desktop':[5, 0, 10, 19],'tablet':[8, 0, 16, 18],'mobile':[9, 0, 15, 18]})|raw }}                    
+                    {{ component_forced('graph1', {'width': 9, 'height': 10, 'disabled': false, 'x': 21, 'y': 16,'desktop':[15, 16, 9, 10],'tablet':[8, 10, 16, 14],'mobile':[9, 10, 15, 14]}) | raw}}
+                    {{ component_forced('logs', {'width': 14, 'height': 9, 'disabled': false, 'x': 5, 'y': 19,'desktop':[5, 19, 14, 9],'tablet':[8, 19, 16, 14],'mobile':[9, 10, 15, 14]}) | raw}}
+                    {{ component_forced('notifications_widget', {'width': 5, 'height': 5, 'disabled': false, 'x': 19, 'y': 20,'desktop':[19, 20, 5, 7],'tablet':[0, 21, 8, 7],'mobile':[0, 21, 9, 7]}) | raw}}                   
                 </div>                            
             {% endif %}
         </section>

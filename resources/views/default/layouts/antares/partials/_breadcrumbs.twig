@@ -21,16 +21,69 @@
             {% endif %}   
         {% endif %}         
     </ul>
-{% else %}
-    <ul class="breadcrumbs"></ul>
-    <div class="notification-block"></div>
-    {% for id,pane in app('antares.widget').make('pane.menu.top') %}                                    
+{% else %}  
+    <ul class="breadcrumbs">
+        {{ breadcrumbs|raw }}
+    </ul>
+    <div class="notification-block"></div>    
+    {% for pane in app('antares.widget').make('pane.menu.top') %}                                    
         {% if pane.html is not empty  %}
             {{ pane.html|raw }}
         {% else %}
             {{ pane.content.render()|raw }}
         {% endif %}
     {% endfor %}    
+    {% set panes=app('antares.widget').make('menu.control.pane') %}
+    {% if panes|length>0 %}
+        <div class="ddown ddown--new-service">            
+            {% for item in panes %}
+                {% if loop.index<=2 and breadcrumbs_data.0.title!=item.title %}
+                    <a href="{{ item.link }}" title="{{ item.title|raw }}"  class="mdl-js-button mdl-js-ripple-effect btn btn--md btn--brand ddown__init ddown__init--white ml16">            
+                        <i class="zmdi {{ item.icon }} pr16 fs24"></i>
+                        {{ item.title|raw }}                        
+                    </a>
+                {% endif %}     
+            {% endfor %}    
+            {% if panes|length>2 %}
+                <a title="More"  class="mdl-js-button mdl-js-ripple-effect btn btn--md btn--brand ddown__init ddown__init--white ml16">            
+                    More
+                    <i class="zmdi zmdi-more-vert pl8 fs24"></i>
+                </a>
+                <div class="ddown__content">
+                    <ul class="ddown__menu ddown__menu--innerpadd" >
+                        {% for item in panes %}
+                            {% if loop.index<=2 %}
+                                <li class="{{ item.isChildActive() ? 'is-active' : '' }}">
+                                    <a href="{{ item.link }}" class="mdl-js-button mdl-js-ripple-effect">
+                                        <i class="zmdi {{ item.icon }} pr16 fs24"></i>
+                                        <span>
+                                            {{ item.title }}
+                                        </span>
+                                    </a>
+                                    {% if item.childs is not empty  %}
+                                        <div class="ddown__content">
+                                            <ul class="ddown__menu ddown__menu--innerpadd" >
+                                                {% for child in item.childs %}
+                                                    <li {{ child.isChildActive()?'class="is-active"':'' }}>
+                                                        <a href="{{ child.link}}" class="mdl-js-button mdl-js-ripple-effect">
+                                                            <i class="zmdi {{ item.icon }}"></i>
+                                                            <span>
+                                                                {{ child.title}}
+                                                            </span>
+                                                        </a>
+                                                    </li>            
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                    {% endif %}
+                                </li>
+                            {% endif %}
+                        {% endfor %}       
+                    </ul>
+                </div>
+            {% endif %}      
+        </div>      
+    {% endif %}
 {% endif %}    
 
 

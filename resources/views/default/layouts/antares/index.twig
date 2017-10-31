@@ -1,7 +1,6 @@
 {% extends  app.request.isXmlHttpRequest() ? "antares/foundation::layouts.antares.clear":  "antares/foundation::layouts.antares.main" %}   
 {% set shortMenu=brand_composition('short_top_menu') %}
 {% set panes=shortMenu? [] : app('antares.widget').make('pane.left') %}
-
 {% block app_content %}    
     {% if _context.form is defined  %}
         <div class="app-content page-forms page-forms--hor {{ panes|length>0 ? '':'page-single-form' }}">

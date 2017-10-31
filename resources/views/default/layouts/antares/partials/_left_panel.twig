@@ -1,4 +1,4 @@
-{% if(panes|length>0) %}    
+{% if not brand_composition('short_top_menu') and panes|length>0  %}    
     <div class="grid-col grid-col--menu" >
         <div class="menu-aside-container" data-disable-scroll>
             {% for id,pane in panes %}    
