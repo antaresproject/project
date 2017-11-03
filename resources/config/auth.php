@@ -64,7 +64,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\User::class,
+            'model' => \Antares\Model\User::class,
         ],
     ],
     /*
