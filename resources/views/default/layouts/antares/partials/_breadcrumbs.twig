@@ -6,8 +6,9 @@
     </a>
 </div>
 {% if not brand_composition('short_top_menu') %}
-    <ul class="breadcrumbs">
+    {% if new_breadcrumbs %}
         {{ breadcrumbs|raw }}
+
         {% if not auth_user() is null %}
             {% set panes=app('antares.widget').make('pane.menu.top') %}
             {% if(panes|length>0) %}
@@ -20,7 +21,25 @@
                 {% endfor %}
             {% endif %}
         {% endif %}
-    </ul>
+    {% else %}
+        <ul class="breadcrumbs">
+            {{ breadcrumbs|raw }}
+
+            {% if not auth_user() is null %}
+                {% set panes=app('antares.widget').make('pane.menu.top') %}
+                {% if(panes|length>0) %}
+                    {% for id,pane in panes %}
+                        {% if pane.html is not empty  %}
+                            {{ pane.html|raw }}
+                        {% else %}
+                            {{ pane.content.render()|raw }}
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            {% endif %}
+        </ul>
+    {% endif %}
+
 {% else %}
     {% if new_breadcrumbs %}
         {{ breadcrumbs|raw }}
