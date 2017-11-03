@@ -47,20 +47,4 @@ class WelcomeController extends Controller
         }
     }
 
-    /**
-     * List all the users.
-     *
-     * GET (:antares)/users
-     *
-     * @return mixed
-     */
-    public function test(\Antares\Users\Http\Datatables\Test $datatable)
-    {
-        if (post()) {
-
-            return $datatable->ajax();
-        }
-        return $datatable->render('test');
-    }
-
 }
