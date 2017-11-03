@@ -32,18 +32,23 @@
         {% else %}
             {{ pane.content.render()|raw }}
         {% endif %}
-    {% endfor %}    
+    {% endfor %}        
     {% set panes=app('antares.widget').make('menu.control.pane') %}
+    {% if panes|length<=0 %}
+        {% set panes=app('antares.widget').make('menu.brands.pane') %}
+    {% endif %}
     {% if panes|length>0 %}
         <div class="ddown ddown--new-service">            
             {% for item in panes %}
                 {% if loop.index<=2 and breadcrumbs_data.0.title!=item.title %}
                     <a href="{{ item.link }}" title="{{ item.title|raw }}"  class="mdl-js-button mdl-js-ripple-effect btn btn--md btn--brand ddown__init ddown__init--white ml16">            
-                        <i class="zmdi {{ item.icon }} pr16 fs24"></i>
+                        {% if item.icon|length>0 %}
+                            <i class="zmdi {{ item.icon }} pr16 fs24"></i>
+                        {% endif %}
                         {{ item.title|raw }}                        
                     </a>
                 {% endif %}     
-            {% endfor %}    
+            {% endfor %}                
             {% if panes|length>2 %}
                 <a title="More"  class="mdl-js-button mdl-js-ripple-effect btn btn--md btn--brand ddown__init ddown__init--white ml16">            
                     More
@@ -52,10 +57,12 @@
                 <div class="ddown__content">
                     <ul class="ddown__menu ddown__menu--innerpadd" >
                         {% for item in panes %}
-                            {% if loop.index<=2 %}
+                            {% if loop.index>2 %}
                                 <li class="{{ item.isChildActive() ? 'is-active' : '' }}">
                                     <a href="{{ item.link }}" class="mdl-js-button mdl-js-ripple-effect">
-                                        <i class="zmdi {{ item.icon }} pr16 fs24"></i>
+                                        {% if item.icon|length>0 %}
+                                            <i class="zmdi {{ item.icon }} pr16 fs24"></i>
+                                        {% endif %}
                                         <span>
                                             {{ item.title }}
                                         </span>
@@ -66,7 +73,9 @@
                                                 {% for child in item.childs %}
                                                     <li {{ child.isChildActive()?'class="is-active"':'' }}>
                                                         <a href="{{ child.link}}" class="mdl-js-button mdl-js-ripple-effect">
-                                                            <i class="zmdi {{ item.icon }}"></i>
+                                                            {% if item.icon|length>0 %}
+                                                                <i class="zmdi {{ item.icon }}"></i>
+                                                            {% endif %}
                                                             <span>
                                                                 {{ child.title}}
                                                             </span>

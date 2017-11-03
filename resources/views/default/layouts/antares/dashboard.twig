@@ -8,11 +8,10 @@
         {% block content %}
         {% endblock %}
         <div class="grid-stack">
-            {#{% set components=components() %}                
+            {% set components=components() %}                
             {% for component in components %}
                 {{ component(component)|raw }}
-            {% endfor %}                        #}
-            {{ component_forced('files_widget',{'width':15,'height':20,'disabled':false,'x':0,'y':0})|raw }}
+            {% endfor %}
         </div>
     </section>
 {% endblock %} 
