@@ -105,7 +105,7 @@
         "antaresproject/component-brands": "0.9.2.x-dev",
         "antaresproject/component-users": "0.9.2.x-dev",   
 
-        "antaresproject/component-files": "dev-master",
+        "antaresproject/module-files": "dev-master",
         "antaresproject/module-comments": "dev-master", 
         "antaresproject/module-tags": "dev-master",   
 
