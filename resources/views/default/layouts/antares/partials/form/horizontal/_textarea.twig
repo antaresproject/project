@@ -4,7 +4,7 @@
             {{ Form.htmlLabel(control)|raw }}
         </div>
     {% endif %}
-    <div class="{{ control.getWrapper('class')|default('col-mb-16 col-18 col-dt-10 col-ld-4') }}">
+    <div class="{{ control.getWrapper('class')|default('col-mb-16 col-18 col-dt-10 col-ld-7') }}">
         <div class="input-field {{ control.get('fieldClass')|raw }}">
             {{ control.get('before')|raw }}            
             {{ control.getField(row, control, [])|raw }}                
