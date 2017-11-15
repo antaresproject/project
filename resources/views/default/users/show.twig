@@ -1,20 +1,38 @@
 {% extends 'antares/foundation::layouts.antares.main' %}
-{% block sidebar_top_widgets %}
+{% block app_content %}
+    <div class="app-content page-dashboard page-dashboard-html widgets-html-page page-clients-details app-content--gridstack widgets-html-page">
+    {% endblock %} 
+    {% block sidebar_top_widgets %}
 
-{% endblock %}    
-{% block main_content %}
-    <section class="main-content">
-        {% include 'antares/foundation::components.messages'  %}                                    
-        {% block content %}
-        {% endblock %}                 
-        {% if app('antares.ui-components.installed') %}            
-            <div class="grid-stack">                
-                {{ component_forced('user_details',{'width':2,'height':14,'disabled':false,'x':0,'y':0})|raw }}                        
-                {{ component_forced('items_widget',{'width':7,'height':15,'disabled':false,'x':2,'y':0})|raw }}                                                        
-                {{ component_forced('activity_logs',{'width':6,'height':15,'disabled':false,'x':0,'y':17})|raw }}                                        
-                {{ component_forced('notifications_widget',{'width':3,'height':7,'disabled':false,'x':9,'y':0})|raw }}                                
-                {{ component_forced('graph1',{'width':6,'height':15,'disabled':false,'x':7,'y':15})|raw }}                                        
-            </div>                            
-        {% endif %}
-    </section>
-{% endblock %} 
+    {% endblock %}    
+    {% block main_content %}
+        <section class="main-content">
+            {% include 'antares/foundation::components.messages'  %}                                    
+            {% block content %}
+            {% endblock %}    
+            {% if app('antares.ui-components.installed') %}            
+                <div class="grid-stack clients-details-gridstack clients-details--vue" >                
+
+
+                    {{ component_forced('user_details',{'width':5,'height':15,'disabled':false,'x':0,'y':0,
+                        'desktop':[0, 0, 5, 20],
+                        'tablet':[0, 0, 8, 20],
+                        'mobile':[0, 0, 9, 20]}) |raw
+                    }}
+                    {{ component_forced('items_widget',{'width':14,'height':19,'disabled':false,'x':5,'y':0,
+                        'desktop':[5, 0, 10, 10],
+                        'tablet':[8, 0, 16, 18],
+                        'mobile':[9, 0, 15, 18]}) |raw
+                    }}                   
+                    {{ component_forced('graph1', {'width': 9, 'height': 10, 'disabled': false, 'x': 21, 'y': 16,
+                        'desktop':[15, 16, 9, 10],
+                        'tablet':[8, 10, 16, 14],
+                        'mobile':[9, 10, 15, 14]})|raw
+                    }}                  
+                    {{ component_forced('logs', {'width': 14, 'height': 9, 'disabled': false, 'x': 5, 'y': 19})|raw
+                    }}
+                    {{ component_forced('notifications_widget', {'width': 5, 'height': 9, 'disabled': false, 'x': 19, 'y': 19}) | raw}}
+                </div>                            
+            {% endif %}
+        </section>
+    {% endblock %} 

@@ -1,6 +1,5 @@
 $(document).ready(function () {
     $(document).on('click', '.component-prompt-modal', function (e) {
-
         var
                 $this = $(this),
                 url = $this.attr('href'),
@@ -40,7 +39,7 @@ $(document).ready(function () {
                     html: response
                 });
 
-                $(document).one('click', '.swal__close', function() {
+                $(document).one('click', '.swal__close', function () {
                     stopPreview = true;
 
                     $content.css({
@@ -53,16 +52,15 @@ $(document).ready(function () {
                 });
 
                 var
-                    $console = $('#install-progress-console'),
-                    stopUrl = $console.data('stop-url'),
-                    previewUrl = $console.data('preview-url');
+                        $console = $('#install-progress-console'),
+                        stopUrl = $console.data('stop-url'),
+                        previewUrl = $console.data('preview-url');
 
-                $console.on('scroll', function() {
+                $console.on('scroll', function () {
                     var $this = $(this);
 
                     isOnBottom = ($this.scrollTop() + $this.innerHeight() >= $this[0].scrollHeight);
 
-                    console.log(isOnBottom);
                 });
 
                 $content.css({
@@ -94,7 +92,7 @@ $(document).ready(function () {
                         setTimeout(function () {
                             window.location.replace(response.redirect);
                         }, 2500);
-                    } else if( ! stopPreview) {
+                    } else if (!stopPreview) {
                         setTimeout(refresh, 1000);
                     }
                 });

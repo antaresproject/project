@@ -1,16 +1,14 @@
-{% if(panes|length>0) %}    
-    <div class="grid-col grid-col--menu">
-        <div class="menu-aside-container">
+{% if not brand_composition('short_top_menu') and panes|length>0  %}    
+    <div class="grid-col grid-col--menu" >
+        <div class="menu-aside-container" data-disable-scroll>
             {% for id,pane in panes %}    
                 {% if pane.html is not empty or  pane.content is not empty  %}
                     {% set attributes = htmlbuilder.decorate(pane.attributes.attributes, {'class':'panel'}) %}                           
-                    <div {{ htmlbuilder.attributes(attributes)|raw }} >
-                        {% if pane.html is not empty  %}
-                            {{ pane.html|raw }}
-                        {% else %}
-                            {{ pane.content|raw }}
-                        {% endif %}
-                    </div>
+                    {% if pane.html is not empty  %}
+                        {{ pane.html|raw }}
+                    {% else %}
+                        {{ pane.content|raw }}
+                    {% endif %}
                 {% endif %}
             {% endfor %}      
             {% if(panes.items|length>0 and panes is instanceof('Antares\\Widget\\Handlers\\Pane') and panes.items[0].link is not null) %}                    

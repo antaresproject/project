@@ -1,12 +1,16 @@
-<div class="col-dt-2 col-2 col-mb-2 {{ control.getLabelWrapper('class') }}">
-    {{ Form.label(control.name, control.label,{'class':'form-block__name'})|raw }}    
-</div>
-<div class="col-dt-6 col-6 col-mb-6 {{ control.getWrapper('class') }}">
-    <div class="input-field input-field--desc {{ control.get('fieldClass')|raw }}">        
-        {{ control.get('prepend')|raw }}
-        {{ control.getField(row, control, [])|raw }}        
+<div class="col-group {{ control.hasError(errors) ? 'error' : '' }}">
+    {% if control.hasLabel() %}
+        <div class="{{ control.getLabelWrapper('class')|default('col-mb-8 col-6 col-dt-4 col-ld-3') }}">
+            {{ Form.label(control.name, control.label,{'class':'form-block__name'})|raw }}    
+        </div>
+    {% endif %}
+    <div class="{{ control.getWrapper('class')|default('col-mb-16 col-18 col-dt-10 col-ld-4') }}">
+        <div class="input-field {{ control.get('fieldClass')|raw }}">            
+            {{ control.get('prepend')|raw }}
+            {{ control.getField(row, control, [])|raw }}                
+        </div>
+        <span id="{{ control.id }}_error" class="error col-mb-16 col-18 col-dt-10 col-ld-4 nopadding">
+            {{ errors.first(control.name, format)|raw }}
+        </span>
     </div>
-    <span id="{{ control.id }}_error" class="error col-13 col-mb-11">
-        {{ errors.first(control.name, format)|raw }}
-    </span>
-</div>      
+</div>

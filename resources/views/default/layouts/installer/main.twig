@@ -1,31 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>        
+    <head>
         {% block head %}
-            {% embed "antares/foundation::layouts.antares.partials._head_webpack" %}
-                {% block head_title %}
-                    {% set title=get_meta('title') %}
-                    <title>Antares Installer  {{ title|length > 0 ? '- '~title:'' }}</title>                    
-                {% endblock %}
-            {% endembed %}        
-        {% endblock %}                       
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
-        <link media="all" type="text/css" rel="stylesheet" href="/packages/core/css/install.css">
+            {% include 'antares/foundation::layouts.quest.partials._head' %}
+        {% endblock %}        
+        <style>
+            .app-install__step-1 .zmdi-check{
+                font-size:24px;
+                color:#5ec250;
+            }
+            .app-install__step-1  .zmdi-close {
+                font-size: 24px;
+                color: #f44336;
+            }
+            .page-create{
+                margin:0;
+            }
+            .menu-aside.menu-aside--steps:before{
+                top:127px;
+                height:53%;
+            }
+            .install-logo{
+                margin:5% 12%;
+            }
+            .app-install__step-1 .form-block__name{
+                text-align: right;
+            }
+            .app-install__step-1 .input-field__desc, .app-install__step-1 .input-field__desc p{
+                font-weight:500;
+                line-height:24px;
+            }
+            .CodeMirror{
+                height:725px !important;                
+            }
+        </style>
     </head>
-    <body>        
+    <body>
+        {% include 'antares/foundation::components.messages'  %}                                
+
         {% block app_wrapper %}            
         {% endblock %}
-    </div>
-    {% include 'antares/foundation::layouts.antares.partials._scripts_webpack' %}                    
-    {{ app('antares.asset').container('antares/installer').styles()|raw }}
-    {{ app('antares.asset').container('antares/installer').scripts()|raw }}
-    <script src="/webpack/forms_basic.js"></script>
 
-    <script>
-        $(document).ready(function () {
-            $('.card > * > *, .tbl-c > *,form').css('opacity', '1');
-        });
-    </script>   
-
-</body>
+        {% include 'antares/foundation::layouts.quest.partials._scripts' %}
+        {% set container=app('antares.asset').container('antares/installer') %}
+        {{ container.styles()|raw }}
+        {{ container.scripts()|raw }}
+    </body>
 </html>

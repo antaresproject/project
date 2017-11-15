@@ -1,26 +1,37 @@
-<div class="item-grp-single" data-tooltip-inline="{{ trans('Notifications') }}">
-    <span id="notification-counter" class="badge badge--top-right badge--md badge--green notification-counter" data-count="" data-host="{{ hostname() }}">0</span>
+{% if brand_composition('short_top_menu') %}
+    <div class="item-grp-single" >
+        <div class="mdl-js-button mdl-js-ripple-effect widget-edit" id="widgets-edit" >
+            <i class="icon--widgets-edit"></i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </div>
+    </div>
+{% endif %} 
+<div class="item-grp-single" data-tooltip-inline="{{ trans('Notifications') }}" data-tooltip-my-position="top left" data-tooltip-target-position="bottom right">
+    <span id="notification-counter" class="badge badge--md badge--green badge--top-right notification-counter" data-count="" data-host="{{ hostname() }}">0</span>
     <div class="mdl-js-button mdl-js-button mdl-js-ripple-effect" id="main-notifications" data-url="{{ handles('antares::notifications/sidebar/read') }}">
         <div class="main-head__alerts"><i class="icon--alert"></i></div>
     </div>
 </div>
-<div class="item-grp-single mr16" data-tooltip-inline="{{ trans('Alerts') }}">
-    <span class="badge badge--top-right badge--md badge--green">0</span>
-    <div class="mdl-js-button mdl-js-button mdl-js-ripple-effect" id="main-alerts" data-url="{{ handles('antares::notifications/sidebar/read/alerts') }}">
-        <div class="main-head__settings"><i class="zmdi zmdi-alert-triangle"></i>
+{% if not brand_composition('short_top_menu') %}
+    <div class="item-grp-single" data-tooltip-inline="{{ trans('Alerts') }}">
+        <span class="badge badge--md badge--green badge--top-right">0</span>
+        <div class="mdl-js-button mdl-js-button mdl-js-ripple-effect" id="main-alerts" data-url="{{ handles('antares::notifications/sidebar/read/alerts') }}">
+            <div class="main-head__settings"><i class="zmdi zmdi-alert-triangle"></i>
+            </div>
         </div>
-    </div>
-</div>           
+    </div>           
+{% endif %} 
 {% if not auth_user() is null %}        
     <div class="item-grp-single">
         <div class="ddown ddown--user">
-            <div class="ddown__init ddown__init--clean mdl-js-button mdl-js-ripple-effect">
+            <div class="mdl-js-button mdl-js-ripple-effect ddown__init ddown__init--clean">
                 <div class="avatar avatar--xs">
                     <img width="40" height="40" class="gravatar" src="{{ profile_picture(auth_user().email) }}" alt="{{ auth_user().fullname }}" />
                 </div>
             </div>
             <div class="ddown__content">
-                <div class="ddown__arrow"></div>
                 <ul class="ddown__menu">
                     {% if can('antares::user-update') %}   
                         <li class="ddown__header">
@@ -36,7 +47,6 @@
                                 </div>
                             </a>
                         </li>
-
                         <li>
                             <a class="mdl-js-button mdl-js-ripple-effect" href="{{ handles('antares/foundation::account') }}">
                                 <i class="zmdi zmdi-account-box"></i> {{ trans('My Account') }}

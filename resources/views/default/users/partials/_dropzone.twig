@@ -1,9 +1,9 @@
-<div class="col-16 mb2">
-    <label class="form-block__name">{{ field.label|raw }}</label>    
-</div>
-<div class="col-16">
-    <div class="form-block">
-        <div class="input-field">            
+<div class="col-group">
+    <div class="{{ control.getLabelWrapper('class')|default('col-mb-8 col-6 col-dt-4 col-ld-3') }}">
+        <label class="form-block__name">{{ field.label|raw }}</label>
+    </div>
+    <div class="{{ control.getWrapper('class')|default('col-mb-16 col-18 col-dt-10 col-ld-4') }}">
+        <div class="input-field {{ control.get('fieldClass')|raw }}">
             <div id="{{ id }}" class="dropzone dropzone-form brand-logo" >
                 <div class="dz-message" data-dz-message>
                     <div class="dz-m__current" >
@@ -16,15 +16,16 @@
                     </div>
                 </div>            
             </div>
-            {{ input|raw }}            
-        </div>    
+            {{ input|raw }}               
+        </div>
     </div>
-</div>   
+</div>
 {% if user_meta('picture') is not null %}
-    <div class="col-16 mb2">
-        <label class="form-block__name">
+    <div class="col-group">     
+        <div class="col-mb-8 col-6 col-dt-4 col-ld-3"></div>
+        <div class="col-mb-16 col-18 col-dt-10 col-ld-4">
             <a href="{{ handles('antares/foundation::account/gravatar') }}" class="user-use-gravatar">{{ trans('antares/foundation::messages.use_gravatar') }}</a>
-        </label>    
-    </div>        
+        </div>        
+    </div>
 {% endif %}
 

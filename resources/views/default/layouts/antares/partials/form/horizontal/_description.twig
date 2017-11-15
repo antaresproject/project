@@ -1,15 +1,17 @@
-<div class="col-dt-2 col-2 col-mb-2">
-    <label class="form-block__name">&nbsp;</label>
-</div>
-<div class="col-dt-14 col-14 col-mb-14 ">
-    {% if control.inlineHelp|length>1 %}
-        <div class="input-field__desc">
-            {{ control.inlineHelp|raw }}
-        </div>
-    {% endif %}
-    {% if control.help|length>1 %}
-        <div class="input-field__desc">
-            {{ control.help|raw }}
-        </div>
-    {% endif %}
+<div class="col-group ">
+    <div class="col-mb-8 col-6 col-dt-4 col-ld-3 {{ control.getLabelWrapper('class') }}">
+        <label class="form-block__name">&nbsp;</label>
+    </div>
+    <div class="col-mb-16 col-16 col-dt-16 col-ld-16">
+        {% if control.inlineHelp|length>1 %}
+            <div class="input-field__desc">
+                {{ control.inlineHelp|raw }}
+            </div>
+        {% endif %}
+        {% if control.help|length>1 %}
+            <div class="input-field__desc">
+                {{ control.help|raw }}
+            </div>
+        {% endif %}
+    </div>
 </div>

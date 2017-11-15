@@ -6,7 +6,6 @@ return [
     'actions' => [
         User::class => [
             'user-login-as' => function($user) {
-
                 if (auth()->guest()) {
                     return [];
                 }
@@ -33,13 +32,14 @@ return [
                         'data-title'       => trans("antares/users::messages.dependable.user_change_status_question"),
                         'data-description' => trans('antares/users::messages.dependable.' . $description, ['fullname' => $model->fullname])]
                 ];
-            }]
+            }
+        ]
     ],
     'mass_actions' => [
         User::class => [
             'status' => function() {
                 return [
-                    'title'      => trans('antares/users::messages.dependable.mass_actions.change_status_title'),
+                    'title'      => trans('antares/users::messages.dependable.mass_actions.activate_status_title'),
                     'url'        => handles('antares/foundation::users/status'),
                     'attributes' => [
                         'class'            => 'triggerable confirm',

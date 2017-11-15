@@ -1,4 +1,11 @@
 <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">        
+    {{ Form.open(form)|raw }}
+    {% if(token) %}    
+        {{ Form.token() }}
+    {% endif %}    
+    {% for hidden in hiddens %}
+        {{ hidden|raw }}
+    {% endfor %}        
     {% include 'antares/foundation::brands.partials._email_variables' %}    
     <div class="mdl-tabs__tab-bar">
         {% for number,fieldset in fieldsets %}
@@ -7,36 +14,24 @@
             </a>            
         {% endfor %}
     </div>
-    <div class="email-settings">
-        {{ Form.open(form)|raw }}
-        {% if(token) %}    
-            {{ Form.token() }}
-        {% endif %}    
-        {% for hidden in hiddens %}
-            {{ hidden|raw }}
-        {% endfor %}        
-        {% for number,fieldset in fieldsets %}
-            <div class="mdl-tabs__panel {{ loop.index0<=0 ? 'is-active':'' }}" id="{{ fieldset.attributes['panel_id'] }}">
-                <fieldset>
-                    {% if fieldset.name|length>0 %}
-                        <legend>{{ fieldset.name }}</legend>
-                    {% endif %}
-                    {% for control in fieldset.controls() %}
-                        {% include 'antares/foundation::layouts.antares.partials.form.plain._'~control.type|replace({':': '_'}) with {control: control} %}                                                
-                    {%endfor %}
-                </fieldset>
+    {% for number,fieldset in fieldsets %}
+        <div class="mdl-tabs__panel {{ loop.index0<=0 ? 'is-active':'' }}" id="{{ fieldset.attributes['panel_id'] }}">
+            <fieldset>
+                {% for control in fieldset.controls() %}
+                    {% include 'antares/foundation::layouts.antares.partials.form.plain._'~control.type|replace({':': '_'}) with {control: control} %}                                                
+                {%endfor %}
+            </fieldset>
+        </div>
+    {% endfor %}
+    {% if buttons|length>0 %}        
+        <div class="app-content__footer">
+            <div class="btn-group">
+                {% for button in buttons %}
+                    {{ button.getField(row, button, [])|raw }}
+                {% endfor %}                                
             </div>
-        {% endfor %}
-        {% if buttons|length>0 %}        
-            <div class="app-content__footer">
-                <div class="btn-group">
-                    {% for button in buttons %}
-                        {{ button.getField(row, button, [])|raw }}
-                    {% endfor %}                                
-                </div>
-            </div>
-        {% endif %}
-        {{ Form.close()|raw }}
-    </div>
+        </div>
+    {% endif %}
+    {{ Form.close()|raw }}
 </div>
 

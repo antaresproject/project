@@ -2,11 +2,11 @@
     <div class="{{ control.getWrapper('class') }}" >
     {% endif %}
     {% if control.hasLabel() %}
-        <div class="col-16 mb2">        
+        <div class="col-24 mb2">        
             {{ Form.htmlLabel(control)|raw }}              
         </div>
     {% endif %}
-    <div class="col-16">
+    <div class="col-24">
         <div class="input-field {{ (control.inlineHelp|length>1 or control.help|length>1) ? 'input-field--desc' : ''  }} {{ control.get('fieldClass')|raw }}">        
             {{ control.get('before')|raw }}            
             {{ control.getField(row, control, [])|raw }}           
@@ -15,7 +15,7 @@
     {% if control.inlineHelp|length>1 or control.help|length>1 %}
         {% include 'antares/foundation::layouts.antares.partials.form.vertical._description' %}             
     {% endif %}
-    <span id="{{ control.id }}_error" class="error col-13 col-mb-11">
+    <span id="{{ control.id }}_error" class="error col-13 col-mb-11 nopadding">
         {{ errors.first(control.name, format)|raw }}
     </span>
     {% if control.hasWrapper %}

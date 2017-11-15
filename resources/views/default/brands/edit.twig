@@ -1,4 +1,7 @@
 {% extends "antares/foundation::layouts.antares.index" %}
-{% block content %}
-    {{ form|raw }}  
-{% endblock %}
+{% block app_content %}        
+    <div class="app-content page-forms page-forms--hor {{ brand_composition('short_top_menu') ? 'page-single-form': '' }}">
+    {% endblock %} 
+    {% block content %}
+        {{ form|raw }}  
+    {% endblock %}

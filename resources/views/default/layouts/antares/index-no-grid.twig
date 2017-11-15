@@ -1,7 +1,7 @@
 {% extends  app.request.isXmlHttpRequest() ? "antares/foundation::layouts.antares.clear":  "antares/foundation::layouts.antares.main" %}   
 {% block main_content %}
     {% set panes=app('antares.widget').make('pane.left') %}        
-    <section class="main-content {{ panes|length>0 ? 'nopadding':'' }}">
+    <section class="main-content {{ panes|length>0 ? 'nopadding':'' }}" data-preload>
         {% include 'antares/foundation::components.messages'  %}      
 
         <div class="{{ panes|length>0 ? 'grid-container grid-container--2col grid-container--no-padd '~grid_container_class:'grid-col grid-col--container '~grid_container_class }}">

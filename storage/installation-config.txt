@@ -1,1 +1,0 @@
-a:1:{s:12:"installation";a:4:{s:5:"steps";i:16;s:7:"started";b:1;s:3:"pid";i:5;s:15:"completed_steps";i:16;}}
