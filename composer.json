@@ -104,7 +104,7 @@
         "arcanedev/log-viewer": "^4.3",
         "prettus/laravel-request-logger": "^1.0",
         "davejamesmiller/laravel-breadcrumbs": "3.0.3",
-        "barryvdh/laravel-cors": "v0.8.*",
+        "barryvdh/laravel-cors": "^0.10.0",
         "dingo/api": "~1.0"
     },        
     "autoload": {
