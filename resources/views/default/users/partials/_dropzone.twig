@@ -21,10 +21,11 @@
     </div>
 </div>
 {% if user_meta('picture') is not null %}
-    <div class="col-24 mb2">
-        <label class="form-block__name">
+    <div class="col-group">     
+        <div class="col-mb-8 col-6 col-dt-4 col-ld-3"></div>
+        <div class="col-mb-16 col-18 col-dt-10 col-ld-4">
             <a href="{{ handles('antares/foundation::account/gravatar') }}" class="user-use-gravatar">{{ trans('antares/foundation::messages.use_gravatar') }}</a>
-        </label>    
-    </div>        
+        </div>        
+    </div>
 {% endif %}
 

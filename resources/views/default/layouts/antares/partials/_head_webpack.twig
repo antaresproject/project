@@ -34,11 +34,16 @@
 <style>
 
     #app-wrapper aside.main-sidebar ul.main-menu li.main-menu__brand .main-sidebar__logo {
-        background-image: url({{ (brand_composition('big_sidemenu') or brand_composition('top_menu') or brand_composition('short_top_menu'))? brand_logo('white',asset('/img/logos/logo_default_full_mobile.png')) : brand_logo() }})
+        background-image: url({{ (brand_composition('big_sidemenu') or brand_composition('top_menu') or brand_composition('short_top_menu'))? brand_logo('big',asset('/img/logos/logo_default_full_mobile.png')) : brand_logo() }})
     }
     @media only screen and (max-width: 1023px) and (min-width: 768px){
         #app-wrapper aside.main-sidebar ul.main-menu li.main-menu__brand .main-sidebar__logo {
-            background-image: url({{ brand_logo('white',asset('/img/logos/logo_default_full_mobile.png'))  }}) !important;            
+            background-image: url({{ brand_logo('big',asset('/img/logos/logo_default_full_mobile.png'))  }}) !important;            
+        }
+    }
+    @media only screen and (max-width: 767px){
+        #app-wrapper aside.main-sidebar ul.main-menu li.main-menu__brand .main-sidebar__logo {
+            background-image: url({{ brand_logo('big',asset('/img/logos/logo_default_full_mobile.png'))  }}) !important;            
         }
     }
     @media only screen and (max-width: 1023px) {
@@ -142,6 +147,9 @@
     }
     .tbl-c table tr td:last-child{
         text-align:left;
+    }
+    .acl-node .acl-node__label:after{
+        top:4px;
     }
 </style>
 <link rel="manifest" href="/manifest.json">

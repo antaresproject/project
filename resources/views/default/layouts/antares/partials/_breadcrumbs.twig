@@ -6,51 +6,73 @@
     </a>
 </div>
 {% if not brand_composition('short_top_menu') %}
-    <ul class="breadcrumbs">   
+    {% if new_breadcrumbs %}
         {{ breadcrumbs|raw }}
-        {% if not auth_user() is null %}        
+
+        {% if not auth_user() is null %}
             {% set panes=app('antares.widget').make('pane.menu.top') %}
-            {% if(panes|length>0) %}                      
-                {% for id,pane in panes %}                                    
+            {% if(panes|length>0) %}
+                {% for id,pane in panes %}
                     {% if pane.html is not empty  %}
                         {{ pane.html|raw }}
                     {% else %}
                         {{ pane.content.render()|raw }}
                     {% endif %}
-                {% endfor %}              
-            {% endif %}   
-        {% endif %}         
-    </ul>
-{% else %}  
-    <ul class="breadcrumbs">
+                {% endfor %}
+            {% endif %}
+        {% endif %}
+    {% else %}
+        <ul class="breadcrumbs">
+            {{ breadcrumbs|raw }}
+            {% if not auth_user() is null %}
+                {% set panes=app('antares.widget').make('pane.menu.top') %}
+                {% if(panes|length>0) %}
+                    {% for id,pane in panes %}
+                        {% if pane.html is not empty  %}
+                            {{ pane.html|raw }}
+                        {% else %}
+                            {{ pane.content.render()|raw }}
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            {% endif %}
+        </ul>
+    {% endif %}
+{% else %}
+    {% if new_breadcrumbs %}
         {{ breadcrumbs|raw }}
-    </ul>
-    <div class="notification-block"></div>    
-    {% for pane in app('antares.widget').make('pane.menu.top') %}                                    
+    {% else %}
+        <ul class="breadcrumbs">
+            {{ breadcrumbs|raw }}
+        </ul>
+    {% endif %}
+
+    <div class="notification-block"></div>
+    {% for pane in app('antares.widget').make('pane.menu.top') %}
         {% if pane.html is not empty  %}
             {{ pane.html|raw }}
         {% else %}
             {{ pane.content.render()|raw }}
         {% endif %}
-    {% endfor %}        
+    {% endfor %}
     {% set panes=app('antares.widget').make('menu.control.pane') %}
     {% if panes|length<=0 %}
         {% set panes=app('antares.widget').make('menu.brands.pane') %}
     {% endif %}
     {% if panes|length>0 %}
-        <div class="ddown ddown--new-service">            
+        <div class="ddown ddown--new-service">
             {% for item in panes %}
                 {% if loop.index<=2 and breadcrumbs_data.0.title!=item.title %}
-                    <a href="{{ item.link }}" title="{{ item.title|raw }}"  class="mdl-js-button mdl-js-ripple-effect btn btn--md btn--brand ddown__init ddown__init--white ml16">            
+                    <a href="{{ item.link }}" title="{{ item.title|raw }}"  class="mdl-js-button mdl-js-ripple-effect btn btn--md btn--brand ddown__init ddown__init--white ml16">
                         {% if item.icon|length>0 %}
                             <i class="zmdi {{ item.icon }} pr16 fs24"></i>
                         {% endif %}
-                        {{ item.title|raw }}                        
+                        {{ item.title|raw }}
                     </a>
-                {% endif %}     
-            {% endfor %}                
+                {% endif %}
+            {% endfor %}
             {% if panes|length>2 %}
-                <a title="More"  class="mdl-js-button mdl-js-ripple-effect btn btn--md btn--brand ddown__init ddown__init--white ml16">            
+                <a title="More"  class="mdl-js-button mdl-js-ripple-effect btn btn--md btn--brand ddown__init ddown__init--white ml16">
                     More
                     <i class="zmdi zmdi-more-vert pl8 fs24"></i>
                 </a>
@@ -80,18 +102,18 @@
                                                                 {{ child.title}}
                                                             </span>
                                                         </a>
-                                                    </li>            
+                                                    </li>
                                                 {% endfor %}
                                             </ul>
                                         </div>
                                     {% endif %}
                                 </li>
                             {% endif %}
-                        {% endfor %}       
+                        {% endfor %}
                     </ul>
                 </div>
-            {% endif %}      
-        </div>      
+            {% endif %}
+        </div>
     {% endif %}
 {% endif %}    
 

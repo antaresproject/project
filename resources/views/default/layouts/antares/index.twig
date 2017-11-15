@@ -8,7 +8,7 @@
     {% endblock %} 
     {% block main_content %}
 
-        <section class="main-content nopadding" data-preload>
+        <section class="main-content nopadding">
             {% include 'antares/foundation::components.messages'  %}                                             
             {% set formClass=_context.form is defined ? ((panes|length<=0)?'grid-container--1col' : 'grid-container--2col'):'' %}
             <div class="grid-container {{ formClass|raw }} grid-container--footer grid-container--no-padd">
@@ -23,7 +23,7 @@
                     {% endif %}
                     {% if _context.form is defined  %}
                         {% block section %}
-                            <section class="generals-form gen-settings--full">
+                            <section class="generals-form gen-settings--full" data-preload>
                             {% endblock %}
                         {% endif %} 
                         {% block content %}

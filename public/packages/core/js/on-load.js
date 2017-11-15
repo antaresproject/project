@@ -253,6 +253,7 @@ $(document).ready(function () {
                 $('#notification-counter').html(notificationsCount);
                 $('#notification-counter').attr('data-count', notificationsCount);
 
+
                 var alerts = response.alerts.items, alertsCount = response.alerts.count;
                 $('#main-alerts').parent().find('span.badge').html(alertsCount);
 

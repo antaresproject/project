@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Antares\Model\Role;
-
 class WelcomeController extends Controller
 {
 
@@ -38,6 +36,7 @@ class WelcomeController extends Controller
      */
     protected function redirectWhenAuthenticated()
     {
+
         if (auth()->guest()) {
             return false;
         }

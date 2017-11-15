@@ -73,18 +73,6 @@
         {
             "type": "git",
             "url": "https://github.com/antaresproject/sample_module.git"
-        },
-        {
-            "type": "git",
-            "url": "http://git.antaresproject.io:zaq12wsx@git.mglocal/components/file_storages.git"
-        },
-        {
-            "type": "git",
-            "url": "http://git.antaresproject.io:zaq12wsx@git.mglocal/components/tags.git"
-        },
-        {
-            "type": "git",
-            "url": "http://git.antaresproject.io:zaq12wsx@git.mglocal/components/comments.git"
         }
     ],          
     "require": {
@@ -104,10 +92,6 @@
         "antaresproject/component-installer": "0.9.2.x-dev",
         "antaresproject/component-brands": "0.9.2.x-dev",
         "antaresproject/component-users": "0.9.2.x-dev",   
-
-        "antaresproject/module-files": "dev-master",
-        "antaresproject/module-comments": "dev-master", 
-        "antaresproject/module-tags": "dev-master",   
 
         "antaresproject/module-api": "0.9.2.x-dev",        
         "antaresproject/module-two_factor_auth": "0.9.2.x-dev",

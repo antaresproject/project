@@ -6,6 +6,7 @@
         {% endblock %}        
     </head>    
     <body data-id="{{ pageId }}">
+
         <div id="app-wrapper" class="{{ (brand_composition('top_menu') or brand_composition('short_top_menu'))  ? 'main-sidebar--top' : '' }} {{ brand_composition('short_top_menu') ? 'main-sidebar--ca':'' }} {{ brand_composition('big_sidemenu') ? 'main-sidebar--wide main-sidebar--expanded' : '' }}" >            
             {% include 'antares/foundation::layouts.antares.partials.navigation._aside' %}            
             {{ placeholder('left-menu') }}
