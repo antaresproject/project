@@ -12,11 +12,7 @@
                 {% if item.childs|length<1 %}
                     <li data-index={{ loop.index0 }} data-name='{{ item.title }}' class="{{ item.isActive()?'is-active':'' }}">
                         <a href="{{ item.link }}" title="{{ item.title }}">
-                            {% if item.attributes.icon %}
-                                <i class="zmdi {{ item.attributes.icon }}"></i>
-                            {% else %}
-                                <i class="zmdi zmdi-widgets"></i>
-                            {% endif %}
+                            <i class="zmdi {{ item.get('icon','zmdi-widgets') }}"></i>
                             <span class="text">{{ item.title }}</span>
                         </a>
                     </li>
