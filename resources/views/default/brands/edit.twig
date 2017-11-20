@@ -1,5 +1,8 @@
 {% extends "antares/foundation::layouts.antares.index" %}
 {% block app_content %}        
+    {% block sidebar_top_widgets %}    
+        {% include 'antares/foundation::layouts.antares.partials._sidebar_top_widgets' %}
+    {% endblock %}    
     <div class="app-content page-forms page-forms--hor {{ brand_composition('short_top_menu') ? 'page-single-form': '' }}">
     {% endblock %} 
     {% block content %}

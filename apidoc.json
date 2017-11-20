@@ -1,20 +1,6 @@
 {
-    "name": "Antares API Docs",
-    "version": "0.9.0",
-    "description": "Create management system for your employees, your customers and for yourself. Experience a completely new way of building standalone and SaaS applications. Go for Antares to automate your business and keep control of your assets.",
-    "header": {
-        "title": "Antares API Docs",
-        "filename": "public/apidocs/partials/header.md"
-    },
-    "footer": {
-        "title": "Antares API Docs",
-        "filename": "public/apidocs/partials/footer.md"
-    },
-    "order": [
-        "Index",
-        "Create",
-        "Update",
-        "Show",
-        "Delete"
-    ]
+    "name": "Antares API DOC",
+    "version": "1.0.0",
+    "description": "Antares API",
+    "url": "http://51.254.36.218/public/doc/"
 }
