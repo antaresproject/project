@@ -18,11 +18,12 @@
                 </form>
             </div>
         </div>            
-        <div class="card-bar__items widget-selector">        
+
+        <div class="card-bar__items widget-selector">               
             {% if components|length>0 %}                         
                 <input type="hidden" name="current-uri" id="current-uri"  value="{{ pane.uri }}" />
-                {% for child in components %}                                              
-                    <a class="card-bar__sgl add-widget ajaxable {{ child.attributes.attributes.disabled ? '' : 'hidden' }}" data-widget="{{child.title|str_slug|lower}}" x="{{child.attributes.attributes.x}}" y="{{child.attributes.attributes.y}}" width="{{child.attributes.attributes.width}}" height="{{child.attributes.attributes.height}}"  rel="{{ child.id }}" href="{{ child.link }}" data-attributes="{{ component_attributes(child) }}">
+                {% for child in components %}         
+                    <a class="card-bar__sgl add-widget ajaxable {{ child.attributes().attributes.disabled ? '' : 'hidden' }}" data-widget="{{child.title|str_slug|lower}}" x="{{child.attributes().attributes.x}}" y="{{child.attributes().attributes.y}}" width="{{child.attributes().attributes.width}}" height="{{child.attributes().attributes.height}}"  rel="{{ child.id }}" href="{{ child.link }}" data-attributes="{{ component_attributes(child) }}">
                         <div class="image"></div>                    
                         <span class="widget-name">{{ child.title|length > 20 ? child.title|slice(0, 20) ~ '...' : child.title }}</span>
                     </a>
@@ -35,7 +36,7 @@
 <style>
     {% for child in components %}
         [data-widget="{{child.title|str_slug|lower}}"] .image{
-            background-image:url('{{ asset(avatar_component(child.title)) }}');
+            background-image:url('{{ avatar_component(child.title) }}');
         }
     {% endfor %}
 </style>

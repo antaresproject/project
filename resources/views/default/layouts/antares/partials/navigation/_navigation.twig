@@ -31,19 +31,25 @@
                             <section>
                                 <header><h3>{{ item.title }}</h3></header>
                                 <div class="submenu__content">
-                                    <ul class="data-list">
-                                        {% for child in item.childs %}
-                                            <li class="{{ child.isFirstChildActive()?'is-active':'' }}" >
-                                                <a href="{{ child.link }}">
-                                                    {% if child.attributes.html %}
-                                                        {{ child.html|raw }}
-                                                    {% else %}
-                                                        <span>{{ child.title }}</span>
-                                                    {% endif %}
-                                                </a>
-                                            </li>
-                                        {% endfor %}
-                                    </ul>
+                                    <div class="menu-columns">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <ul class="data-list">                                        
+                                                    {% for child in item.childs %}
+                                                        <li class="{{ child.isFirstChildActive()?'is-active':'' }}" >
+                                                            <a href="{{ child.link }}">
+                                                                {% if child.attributes.html %}
+                                                                    {{ child.html|raw }}
+                                                                {% else %}
+                                                                    <span>{{ child.title }}</span>
+                                                                {% endif %}
+                                                            </a>
+                                                        </li>
+                                                    {% endfor %}
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </section>
                         </div>
@@ -77,19 +83,25 @@
                         <section>
                             <header><h3>{{ item.title }}</h3></header>
                             <div class="submenu__content">
-                                <ul class="data-list">
-                                    {% for child in item.childs %}                                        
-                                        <li class="{{ (child.isFirstChildActive() or child.active is sameas(true)) ?'is-active':'' }}" data-name='{{ child.title|str_slug|lower }}'>
-                                            <a href="{{ child.link }}">
-                                                {% if child.attributes.html %}
-                                                    {{ child.html|raw }}
-                                                {% else %}
-                                                    <span>{{ child.title }}</span>
-                                                {% endif %}
-                                            </a>
-                                        </li>
-                                    {% endfor %}
-                                </ul>
+                                <div class="menu-columns">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <ul class="data-list">
+                                                {% for child in item.childs %}                                        
+                                                    <li class="{{ (child.isFirstChildActive() or child.active is sameas(true)) ?'is-active':'' }}" data-name='{{ child.title|str_slug|lower }}'>
+                                                        <a href="{{ child.link }}">
+                                                            {% if child.attributes.html %}
+                                                                {{ child.html|raw }}
+                                                            {% else %}
+                                                                <span>{{ child.title }}</span>
+                                                            {% endif %}
+                                                        </a>
+                                                    </li>
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
 
                                 {% for child in item.childs %}                                    
                                     {% if is_translated('antares/foundation::menu.hints.'~child.title|str_slug|lower) %}                                        

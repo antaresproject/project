@@ -13,8 +13,7 @@ $(function () {
         });
         return false;
     });
-    $('.widget-selector').on('click', 'a.add-widget', function (e) {
-
+    $('body').on('click', 'a.add-widget', function (e) {
         e.preventDefault();
         var handler = $(this), grid = $('div.grid-stack:first').data('gridstack'), id = handler.attr('rel');
         $.ajax({
@@ -22,7 +21,7 @@ $(function () {
             data: {from: $('#current-uri').val(), attributes: handler.attr('data-attributes')},
             type: 'POST',
             success: function (response) {
-                grid.add_widget(response, handler.attr('x'), handler.attr('y'), handler.attr('width'), handler.attr('height'), false);
+                grid.addWidget(response, handler.attr('x'), handler.attr('y'), handler.attr('width'), handler.attr('height'), false);
                 id = $(response).attr('id');
                 $('div.widget-selector a.add-widget[rel=' + id + ']').addClass('hidden');
                 $('.widget-actions').removeClass('hidden');

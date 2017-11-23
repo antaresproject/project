@@ -1,7 +1,11 @@
 {% extends "antares/foundation::layouts.antares.index" %}
 {% block app_content %}        
     {% block sidebar_top_widgets %}    
-        {% include 'antares/foundation::layouts.antares.partials._sidebar_top_widgets' %}
+        <div class="item-grp-single is-hidden"  data-tooltip-inline="{{ trans('Widgets Edit Toggle') }}">
+            <div class="mdl-js-button mdl-js-ripple-effect widget-edit" id="widgets-edit">
+                <i class="icon--widgets-edit"></i>
+            </div>
+        </div>
     {% endblock %}    
     <div class="app-content page-forms page-forms--hor {{ brand_composition('short_top_menu') ? 'page-single-form': '' }}">
     {% endblock %} 
