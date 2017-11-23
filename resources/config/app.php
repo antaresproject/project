@@ -151,6 +151,7 @@ return [
         Antares\Brands\BrandsServiceProvider::class,
         \Antares\Foundation\Providers\DependableActionsServiceProvider::class,
         Antares\UI\UIComponents\UiComponentsServiceProvider::class,
+        Illuminate\Notifications\NotificationServiceProvider::class,
         /*
          * Antares Platform Optional Service Providers...
          */

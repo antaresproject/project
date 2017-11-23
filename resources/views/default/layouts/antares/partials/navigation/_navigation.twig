@@ -6,6 +6,7 @@
             </a>
         </li>
     </ul>
+
     <ul class="main-menu main-menu--primary">
         {% block navigation_primary %}
             {% for item in menu if item.type is not same as ('secondary') %}
@@ -18,7 +19,7 @@
                     </li>
                 {% else %}
                     <li data-index={{ loop.index0 }} data-name='{{ item.title }}' class="{{ item.childs|length>0 ? 'has-submenu' : '' }} {{ item.isActive() ? 'is-active' : '' }}">
-                        <a href="{{ item.link }}" title="{{ item.title }}">
+                        <a title="{{ item.title }}">
                             <i class="zmdi {{ item.icon }}"></i>
                             <span class="text">{{ item.title }}</span>
                         </a>
@@ -50,9 +51,10 @@
                 {% endif %}
             {% endfor %}            
         {% endblock %}
-    </ul>
-
-    <ul class="main-menu main-menu--secondary">
+        {%if not brand_composition('short_top_menu') %}
+        </ul>
+        <ul class="main-menu main-menu--secondary">
+        {% endif %}
         {% for item in secondaryElements %}
             {% if item.childs|length<1 %}
                 <li data-name='{{ item.title }}' class="{{ item.isActive() ?'is-active':'' }}">                   
@@ -68,7 +70,7 @@
                         <span class="text">{{ item.title }}</span>
                     </a>                    
                     <div class="submenu flex-fs">
-                        <a href="{{ item.link }}" class="submenu__mobile-return">
+                        <a  class="submenu__mobile-return">
                             <i class="zmdi zmdi-arrow-left"></i>
                             <span>{{ item.title }}</span>
                         </a>

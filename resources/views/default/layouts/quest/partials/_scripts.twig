@@ -7,3 +7,4 @@
     {{ asset.styles()|raw }} 
     {{ asset.scripts()|raw }}
 {% endblock %}       
+{{  app('antares.asset').container('antares/foundation::scripts').webpack()|raw }}
