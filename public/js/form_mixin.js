@@ -76,7 +76,7 @@ var formMixin = {
                     }
                 })
                 .fail(function(response) {
-                    component.errors.record(response.responseJSON);
+                    component.errors.record(response.responseJSON.errors);
                 });
         }
     }
