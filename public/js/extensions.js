@@ -1,4 +1,22 @@
 $(document).ready(function () {
+    $(document).on('click', '.component-error-modal', function (e) {
+        var
+            $this = $(this),
+            title = $this.data('title'),
+            errors = $this.data('errors');
+
+        swal({
+            title: title,
+            type: 'error',
+            html: '<span class="text-left pl20">' + errors.join('<br>') + '</span>',
+            closeOnConfirm: false,
+            customClass: 'CB CB--type1',
+            allowEscapeKey: false,
+            animation: false,
+            allowOutsideClick: false
+        });
+    });
+
     $(document).on('click', '.component-prompt-modal', function (e) {
         var
                 $this = $(this),
