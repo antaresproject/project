@@ -1,7 +1,8 @@
 {% set menu=app(container) %}
 {% if menu.items|length>0 and menu.items.first.childs|length>0 %}
     {% for key in menu.items.keys() %}
-        {{ event('breadcrumb.before.render.'~key,menu.items.get(key)) }}
+        {{ event('breadcrumb.before.render.'~key,menu.items.get(key)) }}        
+        {{ event('Antares\\Events\\Views\\BreadcrumbBeforeRender', key, menu.items.get(key))|raw }}
     {% endfor %} 
     {% if brand_composition('short_top_menu') %}
         <div class="ddown ddown--new-service">            

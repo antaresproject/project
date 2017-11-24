@@ -7,7 +7,7 @@
         </li>
     </ul>
 
-    <ul class="main-menu main-menu--primary">
+    <ul class="main-menu main-menu--{{ (brand_composition('short_top_menu') and secondaryActive) ? 'secondary' : 'primary' }}">
         {% block navigation_primary %}
             {% for item in menu if item.type is not same as ('secondary') %}
                 {% if item.childs|length<1 %}
