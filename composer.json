@@ -130,7 +130,7 @@
         ],
         "post-create-project-cmd": [
             "php artisan key:generate",
-            "chown -R www-data:www-data storage public bootstrap src vendor cache composer.lock composer.json",
+            "chown -R www-data:www-data storage public bootstrap src vendor cache composer.lock composer.json resources/lang",
             "chmod -R 777 storage public bootstrap"
         ],
         "post-install-cmd": [

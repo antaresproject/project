@@ -495,37 +495,6 @@ $(document).ready(function () {
         });
         return false;
     });
-    function frontendPace() {
-        $('body').removeClass('pace-done').addClass('pace-running');
-        $('div.pace').removeClass('pace-inactive').addClass('pace-active');
-        progress = $('div.pace div.pace-progress');
-        progress.addClass('pace-user');
-        progress.attr('data-progress-text', '0%');
-        progress.attr('data-progress', '0');
-        progress.css('width', '0%');
-        var i = 0;
-        stop = false;
-        setInterval(
-                function () {
-                    if (stop === false) {
-                        if (i >= 99) {
-                            stop = true;
-                        }
-                        ++i;
-                        progress.attr('data-progress-text', i + '%');
-                        progress.attr('data-progress', i);
-                        progress.css('width', i + '%');
-                    }
-                }, 300);
-
-        return true;
-    }
-    $('aside.main-sidebar a:not(.ajaxable)[href!="#"],.app-content__footer a,div.app-inner a:not(.ajaxable,.triggerable,.sf-dump-toggle,.paginate_button)[href!="#"]').filter(':not([data-toggle])').on('click', function (event) {
-        if ($(this).parent().hasClass('dataTables_length') || event.which === 2) {
-            return;
-        }
-        frontendPace();
-    });
     ready('.jquery-modal .card__header-right', function (item) {
         var element = $(item);
         element.find('.zmdi-window-maximize').remove();
