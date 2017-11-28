@@ -5,20 +5,21 @@
         {{ event('Antares\\Events\\Views\\BreadcrumbBeforeRender', key, menu.items.get(key))|raw }}
     {% endfor %} 
     {% if brand_composition('short_top_menu') %}
-        <div class="ddown ddown--new-service">            
-            {% for item in menu %}      
-                {% for child in item.childs %}
-                    {% if loop.index<=2 %}
-                        <a class="mdl-js-button mdl-js-ripple-effect btn btn--md btn--brand ml16 {{child.get('attributes').class}}" href="{{ child.link }}" {{child.get('attributes')|stringify}}>
-                            <i class="zmdi {{child.icon}} pr16 fs24"></i>
-                            <span>  {{ child.title }}</span>
-                            <span class="mdl-button__ripple-container">
-                                <span class="mdl-ripple"></span>                                            
-                            </span>
-                        </a>
-                    {% endif %}
-                {% endfor %}
-                {% if item.childs|length>2 %}
+
+        {% for item in menu %}      
+            {% for child in item.childs %}
+                {% if loop.index<=2 %}
+                    <a class="mdl-js-button mdl-js-ripple-effect btn btn--md btn--brand ml16 {{child.get('attributes').class}}" href="{{ child.link }}" {{child.get('attributes')|stringify}}>
+                        <i class="zmdi {{child.icon}} pr16 fs24"></i>
+                        <span>  {{ child.title }}</span>
+                        <span class="mdl-button__ripple-container">
+                            <span class="mdl-ripple"></span>                                            
+                        </span>
+                    </a>
+                {% endif %}
+            {% endfor %}
+            {% if item.childs|length>2 %}
+                <div class="ddown ddown--new-service">         
                     <a class="mdl-js-button mdl-js-ripple-effect btn btn--md btn--brand ddown__init ddown__init--white ml16">
                         <i class="zmdi zmdi-more-vert pr16 fs24"></i>
                         More
@@ -39,9 +40,10 @@
                             {% endfor %}
                         </ul>
                     </div>
-                {% endif %}
-            {% endfor %}
-        </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+
     {% else %}     
         <li>
             <div class="ddown">
