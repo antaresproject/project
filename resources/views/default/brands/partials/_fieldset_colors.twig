@@ -1,8 +1,9 @@
 <div class="cp-brand {{ controls[0].container }} mr16">
     <div class="cp-brand__preview">
-        <div class="cp-brand__ar-big"></div>
+        <div class="cp-brand__ar-big">
+            {{ controls[0].getField(row, controls[0], [])|raw }}
+        </div>
         <span class="cp-brand__title">{{ controls[0].label }}</span>        
-        {{ controls[0].getField(row, controls[0], [])|raw }}
     </div>
     <div class="cp-brand__pallete ">
         <div class="cp-brand__sgl"></div>

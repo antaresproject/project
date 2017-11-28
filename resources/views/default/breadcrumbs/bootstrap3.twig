@@ -8,7 +8,9 @@
             </li>
         {% else %}
             <li class="active">
-                {{ breadcrumb.title }}
+                <span class="breadcrumb-title">
+                    {{ breadcrumb.title }}
+                </span>
             </li>
         {% endif %}
     {% endfor %}

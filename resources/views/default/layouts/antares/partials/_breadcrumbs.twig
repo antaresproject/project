@@ -60,18 +60,19 @@
         {% set panes=app('antares.widget').make('menu.brands.pane') %}
     {% endif %}
     {% if panes|length>0 %}
-        <div class="ddown ddown--new-service">
-            {% for item in panes %}
-                {% if loop.index<=2 and breadcrumbs_data.0.title!=item.title %}
-                    <a href="{{ item.link }}" title="{{ item.title|raw }}"  class="mdl-js-button mdl-js-ripple-effect btn btn--md btn--brand ddown__init ddown__init--white ml16">
-                        {% if item.icon|length>0 %}
-                            <i class="zmdi {{ item.icon }} pr16 fs24"></i>
-                        {% endif %}
-                        {{ item.title|raw }}
-                    </a>
-                {% endif %}
-            {% endfor %}
-            {% if panes|length>2 %}
+
+        {% for item in panes %}
+            {% if loop.index<=2 and breadcrumbs_data.0.title!=item.title %}
+                <a href="{{ item.link }}" title="{{ item.title|raw }}"  class="mdl-js-button mdl-js-ripple-effect btn btn--md btn--brand ddown__init ddown__init--white ml16">
+                    {% if item.icon|length>0 %}
+                        <i class="zmdi {{ item.icon }} pr16 fs24"></i>
+                    {% endif %}
+                    {{ item.title|raw }}
+                </a>
+            {% endif %}
+        {% endfor %}
+        {% if panes|length>2 %}
+            <div class="ddown ddown--new-service">
                 <a title="More"  class="mdl-js-button mdl-js-ripple-effect btn btn--md btn--brand ddown__init ddown__init--white ml16">
                     More
                     <i class="zmdi zmdi-more-vert pl8 fs24"></i>
@@ -112,8 +113,9 @@
                         {% endfor %}
                     </ul>
                 </div>
-            {% endif %}
-        </div>
+            </div>
+        {% endif %}
+
     {% endif %}
 {% endif %}    
 
