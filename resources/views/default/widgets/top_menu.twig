@@ -9,7 +9,7 @@
         {% for item in menu %}      
             {% for child in item.childs %}
                 {% if loop.index<=2 %}
-                    <a class="mdl-js-button mdl-js-ripple-effect btn btn--md btm--primary ml16 {{child.get('attributes').class}}" href="{{ child.link }}" {{child.get('attributes')|stringify}}>
+                    <a class="mdl-js-button mdl-js-ripple-effect btn btn--md btn--primary ml16 {{child.get('attributes').class}}" href="{{ child.link }}" {{child.get('attributes')|stringify}}>
                         <i class="zmdi {{child.icon}} pr16 fs24"></i>
                         <span>  {{ child.title }}</span>
                         <span class="mdl-button__ripple-container">

@@ -1,9 +1,14 @@
-{% extends 'antares/foundation::layouts.antares.main' %}
-{% block app_content %}
+{% extends 'antares/foundation::layouts.antares.main' %} 
+
+{% block app_content %}    
     <div class="app-content page-dashboard page-dashboard-html widgets-html-page page-clients-details app-content--gridstack widgets-html-page">
     {% endblock %} 
     {% block sidebar_top_widgets %}
-
+        <div class="item-grp-single is-hidden"  data-tooltip-inline="{{ trans('Widgets Edit Toggle') }}">
+            <div class="mdl-js-button mdl-js-ripple-effect widget-edit" id="widgets-edit">
+                <i class="icon--widgets-edit"></i>
+            </div>
+        </div>
     {% endblock %}    
     {% block main_content %}
         <section class="main-content">
@@ -11,27 +16,36 @@
             {% block content %}
             {% endblock %}    
             {% if app('antares.ui-components.installed') %}            
-                <div class="grid-stack clients-details-gridstack clients-details--vue" >                
+                <div class="grid-stack clients-details-gridstack" >                
 
 
                     {{ component_forced('user_details',{'width':5,'height':15,'disabled':false,'x':0,'y':0,
                         'desktop':[0, 0, 5, 20],
-                        'tablet':[0, 0, 8, 20],
-                        'mobile':[0, 0, 9, 20]}) |raw
+                        'tablet':[0, 0, 8, 16],
+                        'mobile':[0, 0, 9, 16]}) |raw
                     }}
+                    {{ component_forced('graph1', {'width': 9, 'height': 10, 'disabled': false, 'x': 21, 'y': 16,
+                        'desktop':[15, 16, 9, 10],
+                        'tablet':[8, 10, 16, 11],
+                        'mobile':[9, 10, 15, 14]})|raw
+                    }}                  
                     {{ component_forced('items_widget',{'width':14,'height':19,'disabled':false,'x':5,'y':0,
                         'desktop':[5, 0, 10, 10],
                         'tablet':[8, 0, 16, 18],
                         'mobile':[9, 0, 15, 18]}) |raw
                     }}                   
-                    {{ component_forced('graph1', {'width': 9, 'height': 10, 'disabled': false, 'x': 21, 'y': 16,
-                        'desktop':[15, 16, 9, 10],
-                        'tablet':[8, 10, 16, 14],
-                        'mobile':[9, 10, 15, 14]})|raw
-                    }}                  
-                    {{ component_forced('logs', {'width': 14, 'height': 9, 'disabled': false, 'x': 5, 'y': 19})|raw
-                    }}
-                    {{ component_forced('notifications_widget', {'width': 5, 'height': 9, 'disabled': false, 'x': 19, 'y': 19}) | raw}}
+
+                    {{ component_forced('logs', {'width': 14, 'height': 9, 'disabled': false, 'x': 5, 'y': 19,
+                        'desktop':[5, 19, 14, 9],
+                        'tablet':[0, 35, 24, 9],
+                        'mobile':[9, 0, 15, 18]})|raw}}
+
+                    {{ component_forced('notifications_widget', {'width': 5, 'height': 9, 'disabled': false, 'x': 19, 'y': 19,
+                        'desktop':[19, 19, 5, 9],
+                        'tablet':[0, 16, 8, 9],
+                        'mobile':[9, 0, 15, 18]}) | raw}}
+
+
                 </div>                            
             {% endif %}
         </section>
