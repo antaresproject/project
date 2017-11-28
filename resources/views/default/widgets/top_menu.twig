@@ -9,7 +9,7 @@
         {% for item in menu %}      
             {% for child in item.childs %}
                 {% if loop.index<=2 %}
-                    <a class="mdl-js-button mdl-js-ripple-effect btn btn--md btn--brand ml16 {{child.get('attributes').class}}" href="{{ child.link }}" {{child.get('attributes')|stringify}}>
+                    <a class="mdl-js-button mdl-js-ripple-effect btn btn--md btm--primary ml16 {{child.get('attributes').class}}" href="{{ child.link }}" {{child.get('attributes')|stringify}}>
                         <i class="zmdi {{child.icon}} pr16 fs24"></i>
                         <span>  {{ child.title }}</span>
                         <span class="mdl-button__ripple-container">
@@ -20,7 +20,7 @@
             {% endfor %}
             {% if item.childs|length>2 %}
                 <div class="ddown ddown--new-service">         
-                    <a class="mdl-js-button mdl-js-ripple-effect btn btn--md btn--brand ddown__init ddown__init--white ml16">
+                    <a class="mdl-js-button mdl-js-ripple-effect btn btn--md btn--primary ddown__init ddown__init--white ml16">
                         <i class="zmdi zmdi-more-vert pr16 fs24"></i>
                         More
                     </a>

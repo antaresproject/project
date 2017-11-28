@@ -19,7 +19,7 @@
                     </li>
                 {% else %}
                     <li data-index={{ loop.index0 }} data-name='{{ item.title }}' class="{{ item.childs|length>0 ? 'has-submenu' : '' }} {{ item.isActive() ? 'is-active' : '' }}">
-                        <a title="{{ item.title }}">
+                        <a title="{{ item.title }}" >
                             <i class="zmdi {{ item.icon }}"></i>
                             <span class="text">{{ item.title }}</span>
                         </a>
@@ -32,8 +32,10 @@
                                 <header><h3>{{ item.title }}</h3></header>
                                 <div class="submenu__content">
                                     <div class="menu-columns">
-                                        <div class="row">
-                                            <div class="col-6">
+                                        {% if not brand_composition('short_top_menu') %}
+                                            <div class="row">
+                                                <div class="col-6">
+                                                {% endif %}
                                                 <ul class="data-list">                                        
                                                     {% for child in item.childs %}
                                                         <li class="{{ child.isFirstChildActive()?'is-active':'' }}" >
@@ -47,8 +49,10 @@
                                                         </li>
                                                     {% endfor %}
                                                 </ul>
+                                                {% if not brand_composition('short_top_menu') %}
+                                                </div>
                                             </div>
-                                        </div>
+                                        {% endif %}
                                     </div>
                                 </div>
                             </section>
@@ -84,8 +88,10 @@
                             <header><h3>{{ item.title }}</h3></header>
                             <div class="submenu__content">
                                 <div class="menu-columns">
-                                    <div class="row">
-                                        <div class="col-6">
+                                    {% if not brand_composition('short_top_menu') %}
+                                        <div class="row">
+                                            <div class="col-6">
+                                            {% endif %}
                                             <ul class="data-list">
                                                 {% for child in item.childs %}                                        
                                                     <li class="{{ (child.isFirstChildActive() or child.active is sameas(true)) ?'is-active':'' }}" data-name='{{ child.title|str_slug|lower }}'>
@@ -99,8 +105,10 @@
                                                     </li>
                                                 {% endfor %}
                                             </ul>
+                                            {% if not brand_composition('short_top_menu') %}
+                                            </div>
                                         </div>
-                                    </div>
+                                    {% endif %}
                                 </div>
 
                                 {% for child in item.childs %}                                    

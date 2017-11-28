@@ -6,7 +6,7 @@
         <div class="app-content page-login">
             <section class="main-content">
                 <div class="login-box">
-                    <div class="login-box__header"><img src="{{ brand_logo('big','/img/logos/logo_default_full.png') }}" alt=""></div>                        
+                    <div class="login-box__header"><img src="{{ brand_logo('big','/img/logos/logo_default_full_mobile.png') }}" alt=""></div>                        
                         {% set formbuilder = app('form') %}
                         {{ formbuilder.open({'url':handles("antares::forgot/reset"), 'method':'POST'})|raw }}
                     <input type="hidden" name="token" value="{{ token }}">

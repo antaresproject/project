@@ -17,9 +17,11 @@
                 {% endif %}
                 {% if panes|length>0 or _context.form is defined %}                    
                     <div class="grid-col grid-col--container">
-                        <div class="menu-mobile-settings--box">
-                            <select class="menu-mobile-settings" data-select2--class="menu-aside-settings--blue" data-selectAR--search="true" name="select"></select>
-                        </div>    
+                        {% if panes|length>0 %}
+                            <div class="menu-mobile-settings--box">
+                                <select class="menu-mobile-settings" data-select2--class="menu-aside-settings--blue" data-selectAR--search="true" name="select"></select>
+                            </div>    
+                        {% endif %}
                     {% endif %}
                     {% if _context.form is defined  %}
                         {% block section %}
