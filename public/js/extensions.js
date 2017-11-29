@@ -1,4 +1,9 @@
 $(document).ready(function () {
+    $('.tbl-c').on('dblclick', 'td', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+    });
+
     $(document).on('click', '.component-error-modal', function (e) {
         var
             $this = $(this),
