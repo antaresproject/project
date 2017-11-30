@@ -2,87 +2,150 @@
 
 ### [0.9.2]
 
+
 ##### New
 
-* Sample module as optional.
-* Remove unused directories.
-* Missing field views.
-* Manual merge with 0.9.2.x-module_extension_dev.
-* Manual merge with 0.9.2.x-module_extension_dev.
-* Updates assets, FIX: select field in horizontal.
-* Laravel 5.4 integration, composer.json validation.
-* Laravel 5.4 integration.
-* Laravel 5.4 integration.
-* Laravel 5.4 integration.
-* Laravel 5.3 integration.
-* Horizontal form view as default.
-* Project fixes and improvements for 0.9.2 release.
-* Refresh application assets and views.
-* Missing js files, views refactoring.
-* Configuration for version 0.9.2.
-* Notification logs menu handlers.
-* Twig block for notification logs preview.
-* Dependable actions menu trigger, notification logs menu item.
-* Coveralls configuration, code coverage badge.
-* Travis coverage, phpunits refactoring.
-* Application configuration before release 0.9.2.
-* Phpunit configuration.
-* Core as git submodule.
-* Git submodules configuration.
-* Code climate custom config.
-* Missing repository vcs.
-* Missing files.
-* Components menu item, CHG: change env.example filename.
-* Project installation updates.
-* Readme, contributing, changelog, units.
-* Readme, contributing, changelog, units.
+* Backend integration, add rwd. 
+* Support for laravel 5.5.* 
+* Missing of .env.example file. 
+* Packages version. 
+* Initial commit for laravel 5.5. 
+* Backend integration with new frontend. 
+* Installer scripts fixes. 
+* Installation. 
+* Post install commands. 
+* Htaccess. 
+* Change default versions. 
+* Missing js files, nginx support. 
+* Missing vue JS files CHG: auth user model provider. 
+* Backend integration. 
+* Backend integration with new frontend. 
+* Frontend integration. 
+* Add tooltips to menu. 
+* Modules separation. 
+* Views. 
+* Travis code coverage config file. 
+* New logos. 
+* Sample module to minimal requirements. 
+* Missing assets files. 
+* Code mirror repos. 
+* Installation steps with codemirror. 
+* Remove missing repo. 
+* Composer.json dependencies. 
+* Composer update. 
+* Stash apply. 
+
 
 ##### Changes
 
-* Change main readme.md.
-* Remove unused component.
-* Changes for default components config.
-* Quick search engine based on datatables results.
-* Simplify installation process, FIX: change css animations for noty and modals, CHG: remove unused twig partials.
-* Unit tests refactoring.
-* Refactoring unit tests after laravel 5.4 integration.
-* Composer.json changes, add coverage vendor.
-* Javascript files.
-* Assets and views for release 0.9.2.
-* Travis configuration.
-* Core change submodule path.
-* Package readme & composer updates.
+* Update of components version. 
+* Update of composer.json. 
+* Remove unused files. 
+* Refactoring files position. 
+* Module files name. 
+* Update of composer.json. 
+* Update breadcrumb version in composer.json. 
+* New layout integration. 
+* Removed unused service provider. 
+* :book: update of README.md. 
+* Composer.json update. 
+* Travis configuration. 
+* Change module names in composer.json. 
+* Remove codemirror. 
+* Change application requirements. 
 
 ##### Fixes
 
-* Scrolling console preview during installation FIX: removed key:generate command from composer update script.
-* Scrolling console preview during installation FIX: stop progress installation and AJAX requests after close preview window.
-* Sample module composer fixes.
-* Remove modules directory autoload from composer.json file.
-* Composer.json order of command php artisan key:generate.
-* _env.example invalid copying, ADD: missing composer vendors.
+* Missing icons in main menu. 
+* Invalid logos path. 
+* Installation fixes. 
+* Breadcrumbs view. 
+* Breadcrumbs view. 
+* Fixes for backend integration. 
+* Components.php - invalid version, ADD: .htaccess. 
+* README.MD. 
+* Installation. 
+* Add styles for code mirror while installation. 
+* Components and modules requirements. 
+* Manual merge with 0.9.2.2. 
+* Scrolling in extension preview console. 
+* Scrolling for installation preview INT: configured gitignore for storage directory in testing component. 
+* Composer.json. 
+* Remove src directory. 
+* Area names. 
 
 ##### Internal
 
-* Components and configuration changes.
+* Updated core dependencies. 
+* Components and configuration changes. 
 
 ##### Other
 
-* Added submodule src/components/api.
-* Updated submodule src/core.
-* Update composer.json.
-* Create .travis.yml.
-* Removed unnecesary ignores into gitignore.
-* Added gitignore files.
-* Update README.md.
-* Update README.md.
-* Update composer.json.
-* Update composer.json.
-* Changed project name on composer.
-* INITIAL COMPOSER COMMIT.
-* INIT ANTARES COMMIT.
-* Set theme jekyll-theme-minimal.
-* Set theme jekyll-theme-cayman.
-* Initial commit.
+* Merge branch '0.9.2' of https://github.com/antaresproject/project into 0.9.2. 
+* Merge branch '0.9.2' of https://github.com/antaresproject/project into 0.9.2. 
+* Rename env.example to .env.example. 
+* Merge pull request #59 from antaresproject/0.9.2-laravel5.5. 
 
+  0.9.2 laravel5.5
 
+* Merge branch '0.9.2' of https://github.com/antaresproject/project into 0.9.2. 
+
+  # Conflicts:
+  #	.env.example
+  #	src/core
+
+* Delete index.php. 
+* Create .htaccess. 
+* Create index.php. 
+* Update .htaccess. 
+* Update composer.json. 
+* Update CODE_OF_CONDUCT.md. 
+* Merge pull request #54 from antaresproject/add-code-of-conduct-1. 
+
+  Create CODE_OF_CONDUCT.md
+
+* Create CODE_OF_CONDUCT.md. 
+* Merge pull request #53 from antaresproject/0.9.2. 
+
+  0.9.2
+
+* Merge branch '0.9.2' of https://github.com/antaresproject/project into 0.9.2. 
+
+  # Conflicts:
+  #	resources/views/default/layouts/antares/partials/_head_webpack.twig
+  #	storage/installation.txt
+
+* Merge branch '0.9.2' of https://github.com/antaresproject/project into 0.9.2. 
+
+  # Conflicts:
+  #	resources/views/default/layouts/antares/partials/_breadcrumbs.twig
+
+* Merge remote-tracking branch 'origin/0.9.2' into 0.9.2. 
+* Update .env.example. 
+* Merge branch '0.9.2' of https://github.com/antaresproject/project into 0.9.2. 
+* Merge branch '0.9.2' of https://github.com/antaresproject/project into 0.9.2. 
+
+  # Conflicts:
+  #	public/.htaccess
+  #	public/index.php
+  #	resources/views/default/layouts/antares/partials/navigation/_navigation.twig
+
+* Create index.php. 
+* Update .htaccess. 
+* Merge branch '0.9.2' of https://github.com/antaresproject/project into 0.9.2. 
+* Update composer.json. 
+* Merge with master. 
+* Update composer.json. 
+* Create .env.example. 
+* Merge pull request #52 from antaresproject/0.9.2.2. 
+
+  0.9.2.2
+
+* Merge pull request #51 from antaresproject/0.9.2.2. 
+
+  0.9.2.2
+
+* . 
+* Merge branch '0.9.2' of https://github.com/antaresproject/project into 0.9.2. 
+* Update composer.json. 
+* Merge branch '0.9.2' of https://github.com/antaresproject/project into 0.9.2. 
