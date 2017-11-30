@@ -397,6 +397,12 @@ $(document).ready(function () {
             success: function () {
                 $('#notification-counter').attr('data-count', 0)
                 $('#notification-counter').text(0);
+            },
+            complete: function () {
+                return false;
+            },
+            always: function () {
+                return false;
             }
         });
         return false;
@@ -410,6 +416,12 @@ $(document).ready(function () {
             method: 'POST',
             success: function () {
                 $('#main-alerts').parent().find('span.badge').text(0);
+            },
+            complete: function () {
+                return false;
+            },
+            always: function () {
+                return false;
             }
         });
         return false;
