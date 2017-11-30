@@ -11,6 +11,9 @@ function AjaxLoader() {
             }
 }
 $(document).ready(function () {
+    if ($.fn.dataTableExt !== undefined) {
+        $.fn.dataTableExt.sErrMode = "none";
+    }
     $('.app-install .app-content__footer button, .app-install .app-content__footer a').on('click', function () {
 
         if ($('.app-install form')[0].checkValidity()) {
@@ -285,6 +288,12 @@ $(document).ready(function () {
                             if ((count - 1) <= 0) {
                                 $('.sidebar__footer').addClass('hidden');
                             }
+                        },
+                        complete: function () {
+                            return false;
+                        },
+                        always: function () {
+                            return false;
                         }
                     });
                 });
@@ -389,6 +398,7 @@ $(document).ready(function () {
 
     $("#main-notifications").on("click", function (e) {
         var sidebarNotifications = ($("#main-notifications"), $(".sidebar--notifications")), openClass = ($(".sidebar--notifications #close-sidebar"), "sidebar--open");
+        e.preventDefault();
         e.stopPropagation(), sidebarNotifications.addClass(openClass);
         var handler = $(this);
         $.ajax({
@@ -397,6 +407,7 @@ $(document).ready(function () {
             success: function () {
                 $('#notification-counter').attr('data-count', 0)
                 $('#notification-counter').text(0);
+                return false;
             },
             complete: function () {
                 return false;
@@ -409,6 +420,7 @@ $(document).ready(function () {
     });
     $("#main-alerts").on("click", function (e) {
         var sidebarNotifications = ($("#main-alerts"), $(".sidebar--alerts")), openClass = ($(".sidebar--alerts #close-sidebar"), "sidebar--open");
+        e.preventDefault();
         e.stopPropagation(), sidebarNotifications.addClass(openClass);
         var handler = $(this);
         $.ajax({
