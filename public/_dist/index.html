@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="user-scalable=no,width=device-width,initial-scale=1,maximum-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Dashboard</title>
+<meta name="theme-color" content="#02A8F3">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="icon" sizes="32x32" href="img/theme/antares/favicon/favicon-32.png">
+<link rel="icon" sizes="192x192" href="img/theme/antares/favicon/favicon-192.png">
+<meta name="theme-color" content="#02A8F3">
+<meta name="msapplication-navbutton-color" content="#02A8F3">
+<meta name="apple-mobile-web-app-status-bar-style" content="#02A8F3">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="application-name" content="Antares">
+<meta name="apple-mobile-web-app-title" content="Antares">
+<meta name="description" content="Antares is an open source user management platform developed in cooperation with ModulesGarden. It was designed to revolutionize and streamline the whole process of creating standalone and SaaS applications that are easy to use and scalable to enterprise level.">
+<meta name="robots" content="noindex,nofollow">
+<style>
+[data-preload] {
+        opacity: 0;
+    }
+
+    .grid-stack-item-content {
+        background: #fff;
+    }
+
+    .main-sidebar--top .main-menu.main-menu--secondary > li a i, .main-sidebar--top .main-menu.main-menu--primary > li a i{
+        font-size: 24px;
+        margin-right: 16px;
+    }
+    aside.main-sidebar {
+        width: 98px;
+        height: 100vh;
+    }
+    @media only screen and (min-width: 1024px) {
+         .app-content {
+            margin-left: 98px;
+        }
+    }
+    .app-content:before {
+        -webkit-transition: .3s;
+        -o-transition: .3s;
+        position: absolute;
+        left: 0;
+        width: calc(100vw - 98px);
+        height: 230px;
+        background: #02a8f3;
+        content: "";
+        opacity: 1;
+        transition: .3s;
+    }
+
+    #app-wrapper.main-sidebar--top .main-head, #app-wrapper.main-sidebar--top .main-content, #app-wrapper.main-sidebar--top .nav-container, #app-wrapper.main-sidebar--top .submenu section {
+        max-width: 1400px;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    #app-wrapper.main-sidebar--top .main-head--ca.main-head,
+    #app-wrapper.main-sidebar--top.main-sidebar--ca .main-content,
+    #app-wrapper.main-sidebar--top .main-menu-html--ca .nav-container,
+    #app-wrapper.main-sidebar--top .main-menu-html--ca .submenu section {
+        max-width: 1152px;
+    }
+
+    #app-wrapper.main-sidebar--top .main-menu-html--ca .more-trigger {
+        display: none;
+    }
+
+    #app-wrapper.main-sidebar--top .main-menu-html--ca .client-area .item-grp-single:nth-child(2) {
+        position: relative;
+    }
+
+    .badge {
+        display: none;
+    }
+</style>
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="css/external.css">
+<link rel="stylesheet" href="css/antares.css">
+</head>
+<body>
+<script type="text/x-template" id="vue-page-dashboard">
+<section class="main-content" v-cloak>
+        <div class="grid-stack">
+            <div class="grid-stack-item" data-gs-no-resize="1" data-gs-no-move="1" data-gs-x="0" data-gs-y="0"
+                 data-gs-width="12" data-gs-height="10"
+                 data-gs-min-width="8" data-gs-min-height="10">
+                <div class="grid-stack-item-content">
+                    <card-chart-billing data-preload></card-chart-billing>
+                </div>
+            </div>
+            <div class="grid-stack-item" data-gs-no-resize="1" data-gs-no-move="1" data-gs-x="12" data-gs-y="0"
+                 data-gs-width="12" data-gs-height="10"
+                 data-gs-min-width="8" data-gs-min-height="10">
+                <div class="grid-stack-item-content">
+                    <card-chart-subscriptions data-preload></card-chart-subscriptions>
+                </div>
+            </div>
+            <div class="grid-stack-item" data-gs-no-resize="1" data-gs-no-move="1" data-gs-x="0" data-gs-y="10"
+                 data-gs-width="12" data-gs-height="10"
+                 data-gs-min-width="8" data-gs-min-height="10">
+                <div class="grid-stack-item-content">
+                    <card-chart-orders data-preload></card-chart-orders>
+                </div>
+            </div>
+            <div class="grid-stack-item" data-gs-no-resize="1" data-gs-no-move="1" data-gs-x="12" data-gs-y="10"
+                 data-gs-width="12" data-gs-height="10"
+                 data-gs-min-width="8" data-gs-min-height="10">
+                <div class="grid-stack-item-content">
+                    <card-chart-tickets data-preload></card-chart-tickets>
+                </div>
+            </div>
+            <div class="grid-stack-item" data-gs-no-resize="1" data-gs-no-move="1" data-gs-x="0" data-gs-y="20"
+                 data-gs-width="6" data-gs-height="10"
+                 data-gs-min-width="6" data-gs-min-height="7" style="z-index: 1;">
+                <div class="grid-stack-item-content">
+                    <card-info data-preload></card-info>
+                </div>
+            </div>
+            <div class="grid-stack-item" data-gs-no-resize="1" data-gs-no-move="1" data-gs-x="6" data-gs-y="20"
+                 data-gs-width="6" data-gs-height="10"
+                 data-gs-min-width="6" data-gs-min-height="10">
+                <div class="grid-stack-item-content">
+                    <card-news data-preload></card-news>
+                </div>
+            </div>
+            <div class="grid-stack-item" data-gs-no-resize="1" data-gs-no-move="1" data-gs-x="12" data-gs-y="20"
+                 data-gs-width="12" data-gs-height="12"
+                 data-gs-min-width="8" data-gs-min-height="12" data-card-name="system-logs"
+                 data-anijs="if: mouseover, on: body, do: swing animated">
+                <div class="grid-stack-item-content">
+                    <card-logs data-preload></card-logs>
+                </div>
+            </div>
+        </div>
+
+    </section>
+</script>
+<div id="app-wrapper">
+<aside class="main-menu-html main-sidebar" data-menu-on-load="primary">
+<div class="nav-container">
+<nav>
+<div class="menu-scroll">
+<ul class="main-menu main-menu--brand">
+<li class="has-submenu main-menu__brand" data-index="0" data-name="brand">
+<a>
+<div class="main-sidebar__logo"></div>
+</a>
+<div class="submenu js-flex-start submenu--system">
+<a class="submenu__mobile-return">
+<i class="zmdi zmdi-arrow-left"></i> <span>Brand Menu</span>
+</a>
+<section class="section--2col">
+<div class="submenu__content standard">
+<div class="submenu__content-left">
+<div class="brand-logo"></div>
+</div>
+<div class="submenu__content-right"><span class="brand-name">564</span>
+<ul class="datarow">
+<li class="datarow__sgl">
+<div class="datarow__left"><span>Plan</span></div>
+<div class="datarow__right"><span>Lite</span></div>
+</li>
+<li class="datarow__sgl">
+<div class="datarow__left"><span>Payment</span></div>
+<div class="datarow__right"><span>Monthly</span></div>
+</li>
+<li class="datarow__sgl">
+<div class="datarow__left"><span>Support</span></div>
+<div class="datarow__right"><span>3 mo. left</span></div>
+</li>
+<li class="datarow__sgl">
+<div class="datarow__left"><span>Registered</span></div>
+<div class="datarow__right"><span>2 years ago</span></div>
+</li>
+</ul>
+<ul class="datarow">
+<li class="datarow__sgl">
+<div class="datarow__left"><span>Plan</span></div>
+<div class="datarow__right"><span>Lite ($99/mo)</span></div>
+</li>
+<li class="datarow__sgl">
+<div class="datarow__left"><span>Payment</span></div>
+<div class="datarow__right"><span>Monthly</span></div>
+</li>
+<li class="datarow__sgl">
+<div class="datarow__left"><span>Support</span></div>
+<div class="datarow__right"><span>3 mo. left</span></div>
+</li>
+<li class="datarow__sgl">
+<div class="datarow__left"><span>Registered</span></div>
+<div class="datarow__right"><span>2 years ago</span></div>
+</li>
+</ul>
+<ul class="datarow">
+<li class="datarow__sgl">
+<div class="datarow__left"><span>Plan</span></div>
+<div class="datarow__right"><span>Lite ($99/mo)</span></div>
+</li>
+<li class="datarow__sgl">
+<div class="datarow__left"><span>Payment</span></div>
+<div class="datarow__right"><span>Monthly</span></div>
+</li>
+<li class="datarow__sgl">
+<div class="datarow__left"><span>Support</span></div>
+<div class="datarow__right"><span>3 mo. left</span></div>
+</li>
+<li class="datarow__sgl">
+<div class="datarow__left"><span>Registered</span></div>
+<div class="datarow__right"><span>2 years ago</span></div>
+</li>
+</ul>
+</div>
+</div>
+<div class="submenu__content hidden simple">
+<ul class="data-list">
+<li data-name="clients_list">
+<a href="#"><span>Plan</span></a>
+<span class="badge badge--md badge--grey">12</span>
+</li>
+<li data-name="clients_list">
+<a href="#"><span>Payment</span></a>
+<span class="badge badge--md badge--grey">15</span>
+</li>
+<li data-name="clients_list">
+<a href="#"><span>Support</span></a>
+<span class="badge badge--md badge--grey">3 mo.</span>
+</li>
+<li data-name="clients_list">
+<a href="#"><span>Registered</span></a>
+<span class="badge badge--md badge--grey">2y</span>
+</li>
+</ul>
+</div>
+</section>
+</div>
+</li>
+</ul>
+<ul class="main-menu main-menu--primary">
+<li data-index="0" data-name="dashboard">
+<a href="index.html"><i class="zmdi zmdi-view-dashboard"></i> <span class="text">Dashboard</span></a>
+</li>
+<li data-index="1" data-name="pages" class="has-submenu">
+<a>
+<i class="zmdi zmdi-layers"></i>
+<span class="text">Pages</span>
+</a>
+<div class="submenu flex-fs">
+<a class="submenu__mobile-return">
+<i class="zmdi zmdi-arrow-left"></i><span>Pages</span></a>
+<section>
+<header>
+<h3>Upper Menu</h3>
+</header>
+<div class="submenu__content">
+<ul class="data-list data-list--first">
+<li data-name="clients_list">
+<a href="clients_list.html"><span>Clients List</span></a>
+<span class="badge badge--md badge--dark">99</span>
+</li>
+<li data-name="client_details">
+<a href="clients_details.html"><span>Client Details</span></a>
+<span class="badge badge--md badge--dark">21</span>
+</li>
+<li data-name="brand_settings">
+<a href="brand_settings.html"><span>Brand Settings</span></a>
+<span class="badge badge--md badge--dark">59</span>
+</li>
+<li data-name="email_settings">
+<a href="email_settings.html"><span>Email Settings</span></a>
+<span class="badge badge--md badge--dark">11</span>
+</li>
+<li data-name="steps_page">
+<a href="steps.html"><span>Steps Page</span></a>
+<span class="badge badge--md badge--dark">4</span>
+</li>
+<li data-name="login_page">
+<a href="login_page.html"><span>Login Page</span></a>
+<span class="badge badge--md badge--dark">2</span>
+</li>
+</ul>
+<ul class="data-list data-list--second">
+<li data-name="zero_data">
+<a href="zero_data.html"><span>Zero Data</span></a>
+<span class="badge badge--md badge--dark">52</span>
+</li>
+<li data-name="error_400">
+<a href="error_400.html"><span>Error 400</span></a>
+<span class="badge badge--md badge--dark">12</span>
+</li>
+<li data-name="error_404">
+<a href="error_404.html"><span>Error 404</span></a>
+<span class="badge badge--md badge--dark">5</span>
+</li>
+<li data-name="error_500">
+<a href="error_500.html"><span>Error 500</span></a>
+<span class="badge badge--md badge--dark">1</span>
+</li>
+</ul>
+<ul class="data-list data-list--thirt">
+</ul>
+<div data-menu-item="clients_list" class="menu-tooltip">
+<div class="menu-tooltip__header"><i class="zmdi zmdi-info-outline"></i> <span>Client list</span>
+</div>
+<div class="menu-tooltip__content">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s...
+<ul>
+<li>qweqwe1</li>
+<li>qweqwe2</li>
+<li>qweqwe3</li>
+<li>qweqwe4</li>
+<li>qweqwe5</li>
+</ul>
+</div>
+</div>
+<div data-menu-item="client_details" class="menu-tooltip">
+<div class="menu-tooltip__header"><i class="zmdi zmdi-info-outline"></i> <span>Client details</span>
+</div>
+<div class="menu-tooltip__content">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s...
+</div>
+</div>
+<div data-menu-item="brand_settings" class="menu-tooltip">
+<div class="menu-tooltip__header"><i class="zmdi zmdi-info-outline"></i> <span>Brand settings</span>
+</div>
+<div class="menu-tooltip__content">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s...
+</div>
+</div>
+<div data-menu-item="email_settings" class="menu-tooltip">
+<div class="menu-tooltip__header"><i class="zmdi zmdi-info-outline"></i> <span>Email settings</span>
+</div>
+<div class="menu-tooltip__content">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s...
+</div>
+</div>
+<div data-menu-item="steps_page" class="menu-tooltip">
+<div class="menu-tooltip__header"><i class="zmdi zmdi-info-outline"></i> <span>Steps page</span>
+</div>
+<div class="menu-tooltip__content">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s...
+</div>
+</div>
+<div data-menu-item="login_page" class="menu-tooltip">
+<div class="menu-tooltip__header"><i class="zmdi zmdi-info-outline"></i> <span>Login page</span>
+</div>
+<div class="menu-tooltip__content">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s...
+</div>
+</div>
+<div data-menu-item="zero_data" class="menu-tooltip">
+<div class="menu-tooltip__header"><i class="zmdi zmdi-info-outline"></i> <span>Zero data</span>
+</div>
+<div class="menu-tooltip__content">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s...
+</div>
+</div>
+<div data-menu-item="error_400" class="menu-tooltip">
+<div class="menu-tooltip__header"><i class="zmdi zmdi-info-outline"></i> <span>Error 400</span>
+</div>
+<div class="menu-tooltip__content">Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI века...
+</div>
+</div>
+<div data-menu-item="error_404" class="menu-tooltip">
+<div class="menu-tooltip__header"><i class="zmdi zmdi-info-outline"></i> <span>Error 404</span>
+</div>
+<div class="menu-tooltip__content">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s...
+</div>
+</div>
+<div data-menu-item="error_500" class="menu-tooltip">
+<div class="menu-tooltip__header"><i class="zmdi zmdi-info-outline"></i> <span>Error 500</span>
+</div>
+<div class="menu-tooltip__content">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s...
+</div>
+</div>
+</div>
+</section>
+</div>
+</li>
+<li data-index="2" data-name="UI elements" class="has-submenu">
+<a><i class="zmdi zmdi-check-all"></i> <span class="text">UI elem.</span></a>
+<div class="submenu flex-fs">
+<a class="submenu__mobile-return">
+<i class="zmdi zmdi-arrow-left"></i><span>UI elements</span></a>
+<section>
+<header>
+<h3>Upper Menu</h3>
+</header>
+<div class="submenu__content">
+<ul class="data-list">
+<li data-name="forms_vertical"><a href="forms.html"><span>Forms Vertical</span></a>
+<span class="badge badge--md badge--dark">23</span>
+</li>
+<li data-name="forms_horizontal"><a href="forms_hor.html"><span>Forms Horizontal</span></a>
+<span class="badge badge--md badge--dark">1</span></li>
+<li data-name="general_settings"><a href="general_settings.html"><span>Addidional UI</span>
+</a><span class="badge badge--md badge--dark">76</span>
+</li>
+<li data-name="widgets"><a href="widgets.html"><span>Widgets</span></a>
+<span class="badge badge--md badge--dark">40</span></li>
+</ul>
+<div data-menu-item="forms_vertical" class="menu-tooltip">
+<div class="menu-tooltip__header"><i class="zmdi zmdi-info-outline"></i> <span>Forms Vertical</span>
+</div>
+<div class="menu-tooltip__content">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s...
+</div>
+</div>
+<div data-menu-item="forms_horizontal" class="menu-tooltip">
+<div class="menu-tooltip__header"><i class="zmdi zmdi-info-outline"></i> <span>Forms Horizontal</span>
+</div>
+<div class="menu-tooltip__content">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s...
+</div>
+</div>
+<div data-menu-item="general_settings" class="menu-tooltip">
+<div class="menu-tooltip__header"><i class="zmdi zmdi-info-outline"></i> <span>Addidional UI</span>
+</div>
+<div class="menu-tooltip__content">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s...
+</div>
+</div>
+<div data-menu-item="widgets" class="menu-tooltip">
+<div class="menu-tooltip__header"><i class="zmdi zmdi-info-outline"></i> <span>Widgets</span>
+</div>
+<div class="menu-tooltip__content">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s...
+</div>
+</div>
+</div>
+</section>
+</div>
+</li>
+</ul>
+<ul class="main-menu main-menu--secondary">
+<li data-name="acl">
+<a href="acl.html">
+<i class="zmdi zmdi-code-setting"></i>
+<span class="text">ACL</span>
+</a>
+</li>
+<li data-name="notification_templates">
+<a href="notification_templates.html">
+<i class="zmdi zmdi-book-image"></i>
+<span class="text">Templates</span>
+</a>
+</li>
+</ul>
+</div>
+<div class="more-trigger">
+<div class="more-trigger__inner">
+<div class="main-close">
+<i class="zmdi zmdi-more"></i>
+<span class="text"></span>
+</div>
+<div class="alt-close">
+<div class="close close--one"></div>
+<div class="close close--two"></div>
+</div>
+</div>
+</div>
+<div class="mobile-ddowns">
+<div class="mobile-ddowns__sgl ddown--logged">
+<div class="mobile-ddowns__desc">
+<div class="mobile-ddowns__label">Logged As:</div>
+<div class="mobile-ddowns__text">Paweł Bis</div>
+</div>
+<div class="mobile-ddowns__icon"><i class="zmdi zmdi-caret-down"></i></div>
+<ul class="mobile-ddowns__menu mobile-ddowns__menu--user">
+<li class="mobile-ddowns__menu-header">
+<a>
+<div class="flex-block">
+<div class="avatar avatar--xs"><img src="img/brand/brand-inbs.png" alt="Logged In User Avatar"></div>
+<div class="flex-block__content"><span class="flex-block__title">Paweł Bis</span><span class="flex-block__desc">RS Studio</span></div>
+<div class="flex-block__badge"><i class="zmdi zmdi-check"></i></div>
+</div>
+</a>
+</li>
+<li><a><span>View Profile</span></a></li>
+<li><a><span>Upgrade Plan</span></a></li>
+<li><a><span>Account Billing Aight</span></a></li>
+<li><a><span>Logout</span></a></li>
+</ul>
+</div>
+<div class="ddown--brand mobile-ddowns__sgl">
+<div class="mobile-ddowns__desc">
+<div class="mobile-ddowns__label">Brands:</div>
+<div class="mobile-ddowns__text">INBS.software</div>
+</div>
+<div class="mobile-ddowns__icon"><i class="zmdi zmdi-caret-down"></i></div>
+<ul class="mobile-ddowns__menu mobile-ddowns__menu--brand">
+<li class="mdl-js-button mdl-js-ripple-effect is-selected" data-upgraded=",MaterialButton,MaterialRipple">
+<a>
+<div class="flex-block">
+<div class="avatar avatar--xs"><img src="img/brand/brand-inbs.png" alt="item.avatarAlt"></div>
+<div class="flex-block__content"><span class="flex-block__title">INBS.software</span></div>
+<div class="flex-block__badge"><i class="zmdi zmdi-check"></i></div>
+</div>
+</a><span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span>
+</li>
+<li class="mdl-js-button mdl-js-ripple-effect" data-upgraded=",MaterialButton,MaterialRipple">
+<a>
+<div class="flex-block">
+<div class="avatar avatar--xs"><img src="img/brand/brand-rsstudio.png" alt="item.avatarAlt"></div>
+<div class="flex-block__content"><span class="flex-block__title">RS Studio</span>
+</div>
+</div>
+</a><span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span>
+</li>
+<li class="mdl-js-button mdl-js-ripple-effect mobile-ddowns-new" data-upgraded=",MaterialButton,MaterialRipple">
+<a>
+<div class="flex-block">
+<div class="avatar avatar--xs"><i class="zmdi zmdi-plus-circle-o"></i></div>
+<div class="flex-block__content"><span class="flex-block__title">Add Brands</span>
+</div>
+</div>
+</a><span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</div>
+</aside>
+<div class="control-menu-panel">
+<form>
+<label>
+<input data-icheck="true" type="radio" name="type" id="standard-menu" value="Standard Menu">
+<span class="mr8">Standard</span>
+</label>
+<label>
+<input data-icheck="true" type="radio" name="type" id="top-menu" value="Top Menu">
+<span class="mr8">Top</span>
+</label>
+<label>
+<input data-icheck="true" type="radio" name="type" id="wide-menu" value="Wide Menu">
+<span class="mr8">Wide</span>
+</label>
+<a href="" class="btn btn--xs btn--default">Update Menu</a>
+<i class="zmdi zmdi-plus"></i>
+</form>
+</div>
+<div class="app-content page-dashboard dashboard--vue app-content--gridstack">
+<div class="card-bar" id="widgets-list">
+<div class="card-bar__rel">
+<div class="card-bar__search">
+<span class="card-bar__title">Available Widgets</span>
+<span class="card-bar__desc">You can drag and drop to place them on the dashboards</span>
+<div class="search-box search-box--darkbg">
+<i class="zmdi zmdi-search"></i>
+<form action="">
+<div class="mdl-js-textfield mdl-textfield search-box__mdl-textfield">
+<input class="mdl-textfield__input search-box__search-field" type="text" id="widget-search">
+<label class="mdl-textfield__label" for="sample2">Quick Search</label>
+</div>
+</form>
+</div>
+</div>
+<div class="card-bar__items">
+<a class="card-bar__sgl" data-widget="contact-list">
+<div class="image"></div>
+<span class="widget-name">Contact List</span>
+</a>
+<a class="card-bar__sgl" data-widget="clients-details">
+<div class="image"></div>
+<span class="widget-name">Clients Details</span>
+</a>
+<a class="card-bar__sgl" data-widget="something-else">
+<div class="image"></div>
+<span class="widget-name">Something Else</span>
+</a>
+<a class="card-bar__sgl" data-widget="comments">
+<div class="image"></div>
+<span class="card-bar__name">Comments</span>
+</a>
+<a class="card-bar__sgl" data-widget="contact-list">
+<div class="image"></div>
+<span class="widget-name">Contact List</span>
+</a>
+<a class="card-bar__sgl" data-widget="clients-details">
+<div class="image"></div>
+<span class="widget-name">Clients Details</span>
+</a>
+<a class="card-bar__sgl" data-widget="something-else">
+<div class="image"></div>
+<span class="widget-name">Something Else</span>
+</a>
+</div>
+<button name="" data-tooltip-inline="End Edit Mode" class="mdl-js-button mdl-js-ripple-effect card-bar__close mdl-button"><i class="zmdi zmdi-close"></i>
+</button>
+</div>
+</div>
+<section class="main-head">
+<div class="burgericon">
+<a class="">
+<span class="line line-1"></span>
+<span class="line line-2"></span>
+<span class="line line-3"></span>
+</a>
+</div>
+<ul class="breadcrumbs">
+<li class=""><a>Dashboard</a></li>
+<li>
+<div class="ddown">
+<div class="ddown__init ddown__init--white">
+<a>
+Vue Dashboard
+</a>
+</div>
+<div class="ddown__content">
+<ul class="ddown__menu">
+<li class="ddown__header"><a class="mdl-js-button mdl-js-ripple-effect"><i class="zmdi zmdi-account-add"></i><span>Add New Client</span></a></li>
+<li><a class="mdl-js-button mdl-js-ripple-effect"><i class="zmdi zmdi-file-plus"></i><span>Create Invoice</span></a></li>
+<li><a class="mdl-js-button mdl-js-ripple-effect"><i class="zmdi zmdi-email"></i><span>Send Email</span></a></li>
+<li><a class="mdl-js-button mdl-js-ripple-effect"><i class="zmdi zmdi-ticket-star"></i><span>Open New Ticket</span></a></li>
+<li><a class="mdl-js-button mdl-js-ripple-effect"><i class="zmdi zmdi-accounts-list"></i><span>Add Contact</span></a></li>
+<li><a class="mdl-js-button mdl-js-ripple-effect"><i class="zmdi zmdi-money-box"></i><span>Add Founds</span></a></li>
+<li><a class="mdl-js-button mdl-js-ripple-effect"><i class="zmdi zmdi-square-right"></i><span>Login As Client</span></a></li>
+<li class="ddown__footer">
+<a><span>More</span></a>
+<ul class="ddown__submenu">
+<li><a class="mdl-js-button mdl-js-ripple-effect"><i class="zmdi zmdi-account-add"></i><span>Add New Client</span></a></li>
+<li><a class="mdl-js-button mdl-js-ripple-effect"><i class="zmdi zmdi-money-box"></i><span>Add Founds</span></a></li>
+<li><a class="mdl-js-button mdl-js-ripple-effect"><i class="zmdi zmdi-money-box"></i><span>Add Founds</span></a></li>
+<li><a class="mdl-js-button mdl-js-ripple-effect"><i class="zmdi zmdi-ticket-star"></i><span>Open New Ticket</span></a></li>
+<li><a class="mdl-js-button mdl-js-ripple-effect"><i class="zmdi zmdi-money-box"></i><span>Add Founds</span></a></li>
+<li><a class="mdl-js-button mdl-js-ripple-effect"><i class="zmdi zmdi-money-box"></i><span>Add Founds</span></a></li>
+<li><a class="mdl-js-button mdl-js-ripple-effect"><i class="zmdi zmdi-ticket-star"></i><span>Open New Ticket</span></a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</li>
+</ul>
+<div class="search-box mr16">
+<i class="zmdi zmdi-search"></i>
+<input type="hidden" name="_protection" value="" class="search-protection">
+<form action="api/search_results.json" id="search-form" method="GET">
+<div class="mdl-js-textfield mdl-textfield mdl-textfield--AR mdl-textfield--floating-label search-box__mdl-textfiel">
+<input class="mdl-textfield__input search-box__search-field" type="text" name="main-search" id="main-search">
+<label class="mdl-textfield__label" for="main-search">Quick Search</label>
+</div>
+</form>
+<i class="zmdi zmdi-close mr16 search-box__close"></i>
+</div>
+<div class="item-grp item-grp--40">
+<div class="client-area">
+<div class="item-grp-single" data-tooltip-inline="Widget Edit Toggle">
+<div class="mdl-js-button mdl-js-ripple-effect widget-edit" id="widgets-edit">
+<i class="icon--widgets-edit"></i>
+</div>
+</div>
+<div class="item-grp-single" data-tooltip-inline="Notifications" data-tooltip-my-position="top left" data-tooltip-target-position="bottom right">
+<span class="badge badge--md badge--green badge--top-right">5</span>
+<div class="mdl-js-button mdl-js-ripple-effect" id="main-notifications">
+<div class="main-head__alerts"><i class="icon--alert"></i></div>
+</div>
+</div>
+<div class="item-grp-single" data-tooltip-inline="Alerts">
+<span class="badge badge--md badge--green badge--top-right">9</span>
+<div class="mdl-js-button mdl-js-ripple-effect" id="main-alerts">
+<div class="main-head__settings"><i class="zmdi zmdi-alert-triangle"></i></div>
+</div>
+</div>
+<div class="item-grp-single">
+<div class="ddown ddown--user">
+<div class="mdl-js-button mdl-js-ripple-effect ddown__init ddown__init--clean">
+<div class="avatar avatar--xs">
+<img src="img/avatars/avatar_sample_4.png" alt="Avatar">
+</div>
+</div>
+<div class="ddown__content">
+<ul class="ddown__menu">
+<li class="ddown__header">
+<a class="mdl-js-button mdl-js-ripple-effect">
+<div class="flex-block">
+<div class="avatar avatar--lg">
+<img src="img/brand/brand-rsstudio--lg.png" alt="RS Studio">
+</div>
+<div class="flex-block__content">
+<span class="flex-block__title">Paweł Bis</span>
+<span class="flex-block__desc">paul@rsstudio.net</span>
+</div>
+</div>
+</a>
+</li>
+<li>
+<a class="mdl-js-button mdl-js-ripple-effect">
+<i class="zmdi zmdi-file-plus"></i> View Profile
+</a>
+</li>
+<li>
+<a class="mdl-js-button mdl-js-ripple-effect">
+<i class="zmdi zmdi-email"></i> Something Else
+</a>
+</li>
+<li class="ddown__footer">
+<a class="mdl-js-button mdl-js-ripple-effect">
+<i class="zmdi zmdi-sign-in"></i> Sign Out
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ddown ddown--brand">
+<div class="mdl-js-button mdl-js-ripple-effect btn btn--md btn--brand ddown__init ddown__init--white">RS Studio</div>
+<div class="ddown__content">
+<ul class="ddown__menu">
+<li class="ddown__header"><span>Change Brand</span></li>
+<li>
+<a class="mdl-js-button mdl-js-ripple-effect">
+<div class="flex-block">
+<div class="avatar avatar--xs">
+<img src="img/brand/brand-rsstudio.png" alt="Avatar">
+</div>
+<div class="flex-block__content">
+<span class="flex-block__title">RS Studio</span>
+</div>
+</div>
+</a>
+</li>
+<li class="is-selected">
+<a class="mdl-js-button mdl-js-ripple-effect">
+<div class="flex-block">
+<div class="avatar avatar--xs">
+<img src="img/brand/brand-inbs.png" alt="Avatar">
+</div>
+<div class="flex-block__content">
+<span class="flex-block__title">INBS.software</span>
+</div>
+</div>
+</a>
+</li>
+<li class="ddown__footer">
+<a class="mdl-js-button mdl-js-ripple-effect" href="brand_settings.html">
+<i class="zmdi zmdi-settings"></i> Manage Brands
+</a>
+</li>
+</ul>
+</div>
+</div>
+</section>
+<aside class="sidebar sidebar--white sidebar--notifications">
+<div class="sidebar__header">
+<div class="sidebar__header-left">
+<span>Notifications</span>
+<span class="badge badge--md badge--green">8</span>
+</div>
+<div class="sidebar__header-right">
+<a class="mdl-js-button mdl-js-ripple-effect btn-more" id="close-sidebar">
+<i class="zmdi zmdi-close"></i>
+</a>
+</div>
+</div>
+<div class="sidebar__content">
+<div class="sidebar__list">
+<div data-action="" class="flex-block sidebar__sgl">
+<div class="flex-block__close" data-tooltip-inline="Dismiss Notification"><i class="zmdi zmdi-close"></i></div>
+<div class="avatar avatar--xs avatar--active">
+<img src="img/avatars/avatar_sample_2.png" alt="Avatar">
+</div>
+<div class="flex-block__content">
+<div class="ai-center flex jc-flex-start">
+<span class="mr8 label-basic label-basic--md label-basic--success">NEW</span>
+<span class="flex-block__title">Ticket Subject</span>
+</div>
+<span class="flex-block__desc">Lorem Ipsum dolor sit amet chujamet... <a class="mdl-js-button mdl-js-ripple-effect btn btn--dark btn--s-small">Relevant information</a></span>
+</div>
+</div>
+<div data-action="" class="flex-block sidebar__sgl">
+<div class="flex-block__close" data-tooltip-inline="Dismiss Notification"><i class="zmdi zmdi-close"></i></div>
+<div class="avatar avatar--xs avatar--active">
+<img src="img/avatars/avatar_sample_2.png" alt="Avatar">
+</div>
+<div class="flex-block__content">
+<div class="ai-center flex jc-flex-start">
+<span class="mr8 label-basic label-basic--md label-basic--success">NEW</span>
+<span class="flex-block__title">Ticket Subject</span>
+</div>
+<span class="flex-block__desc">Lorem Ipsum dolor sit amet chujamet...</span>
+</div>
+</div>
+<div data-action="" class="flex-block sidebar__sgl">
+<div class="flex-block__close" data-tooltip-inline="Dismiss Notification"><i class="zmdi zmdi-close"></i></div>
+<div class="avatar avatar--xs avatar--active">
+<img src="img/avatars/avatar_sample_2.png" alt="Avatar">
+</div>
+<div class="flex-block__content">
+<div class="ai-center flex jc-flex-start">
+<span class="mr8 label-basic label-basic--md label-basic--success">NEW</span>
+<span class="flex-block__title">Ticket Subject</span>
+</div>
+<span class="flex-block__desc">Lorem Ipsum dolor sit amet chujamet...</span>
+</div>
+</div>
+<div data-action="" class="flex-block sidebar__sgl">
+<div class="flex-block__close" data-tooltip-inline="Dismiss Notification"><i class="zmdi zmdi-close"></i></div>
+<div class="avatar avatar--xs avatar--active">
+<img src="img/avatars/avatar_sample_2.png" alt="Avatar">
+</div>
+<div class="flex-block__content">
+<div class="ai-center flex jc-flex-start">
+<span class="flex-block__title">Ticket Subject</span>
+</div>
+<span class="flex-block__desc">Lorem Ipsum dolor sit amet chujamet...</span>
+</div>
+</div>
+<div data-action="" class="flex-block sidebar__sgl">
+<div class="flex-block__close" data-tooltip-inline="Dismiss Notification"><i class="zmdi zmdi-close"></i></div>
+<div class="avatar avatar--xs avatar--active">
+<img src="img/avatars/avatar_sample_2.png" alt="Avatar">
+</div>
+<div class="flex-block__content">
+<div class="ai-center flex jc-flex-start">
+<span class="mr8 label-basic label-basic--md label-basic--success">NEW</span>
+<span class="flex-block__title">Ticket Subject</span>
+</div>
+<span class="flex-block__desc">Lorem Ipsum dolor sit amet chujamet...</span>
+</div>
+</div>
+<div data-action="" class="flex-block sidebar__sgl">
+<div class="flex-block__close" data-tooltip-inline="Dismiss Notification"><i class="zmdi zmdi-close"></i></div>
+<div class="avatar avatar--xs avatar--active">
+<img src="img/avatars/avatar_sample_2.png" alt="Avatar">
+</div>
+<div class="flex-block__content">
+<div class="ai-center flex jc-flex-start">
+<span class="mr8 label-basic label-basic--md label-basic--success">NEW</span>
+<span class="flex-block__title">Ticket Subject</span>
+</div>
+<span class="flex-block__desc">Lorem Ipsum dolor sit amet chujamet... sadf sdf s iffra... Lorem Ipsum dolor sit amet chujamet... sadf sdf s iffra... Lorem Ipsum dolor sit amet chujamet... sadf sdf s iffra... Lorem Ipsum dolor sit amet chujamet... sadf sdf s iffra... Lorem Ipsum dolor sit amet chujamet... sadf sdf s iffra... <strong>Elbrah Nocturmen!</strong> Lorem Ipsum dolor sit amet chujamet... sadf sdf s iffra... Lorem Ipsum dolor sit amet chujamet... sadf sdf s iffra... <a>Read All</a></span>
+</div>
+</div>
+<div data-action="" class="flex-block sidebar__sgl">
+<div class="flex-block__close" data-tooltip-inline="Dismiss Notification"><i class="zmdi zmdi-close"></i></div>
+<div class="avatar avatar--xs avatar--active">
+<img src="img/avatars/avatar_sample_2.png" alt="Avatar">
+</div>
+<div class="flex-block__content">
+<div class="ai-center flex jc-flex-start">
+<span class="mr8 label-basic label-basic--md label-basic--success">NEW</span>
+<span class="flex-block__title">Ticket Subject</span>
+</div>
+<span class="flex-block__desc">Lorem Ipsum dolor sit amet chujamet...</span>
+</div>
+</div>
+<div data-action="" class="flex-block sidebar__sgl">
+<div class="flex-block__close" data-tooltip-inline="Dismiss Notification"><i class="zmdi zmdi-close"></i></div>
+<div class="avatar avatar--xs avatar--active">
+<img src="img/avatars/avatar_sample_2.png" alt="Avatar">
+</div>
+<div class="flex-block__content">
+<div class="ai-center flex jc-flex-start">
+<span class="flex-block__title">Ticket Subject</span>
+</div>
+<span class="flex-block__desc">Lorem Ipsum dolor sit amet chujamet...</span>
+</div>
+</div>
+</div>
+</div>
+<div class="sidebar__footer">
+<div class="mdl-js-button mdl-js-ripple-effect btn btn--md btn--primary">Clear All</div>
+</div>
+</aside>
+<aside class="sidebar sidebar--white sidebar--alerts">
+<div class="sidebar__header">
+<div class="sidebar__header-left">
+<span>Alerts</span>
+<span class="badge badge--md badge--green">8</span>
+</div>
+<div class="sidebar__header-right">
+<a class="mdl-js-button mdl-js-ripple-effect btn-more" id="close-sidebar">
+<i class="zmdi zmdi-close"></i>
+</a>
+</div>
+</div>
+<div class="sidebar__content">
+<div class="sidebar__list">
+<div data-action="" class="flex-block sidebar__sgl">
+<div class="flex-block__close" data-tooltip-inline="Dismiss Notification"><i class="zmdi zmdi-close"></i></div>
+<div class="avatar avatar--xs avatar--active">
+<img src="img/avatars/avatar_sample_2.png" alt="Avatar">
+</div>
+<div class="flex-block__content">
+<div class="ai-center flex jc-flex-start">
+<span class="mr8 label-basic label-basic--md label-basic--success">NEW</span>
+<span class="flex-block__title">Ticket Subject</span>
+</div>
+<span class="flex-block__desc">Lorem Ipsum dolor sit amet chujamet... <a class="mdl-js-button mdl-js-ripple-effect btn btn--dark btn--s-small">Relevant information</a></span>
+</div>
+</div>
+<div data-action="" class="flex-block sidebar__sgl">
+<div class="flex-block__close" data-tooltip-inline="Dismiss Notification"><i class="zmdi zmdi-close"></i></div>
+<div class="avatar avatar--xs avatar--active">
+<img src="img/avatars/avatar_sample_2.png" alt="Avatar">
+</div>
+<div class="flex-block__content">
+<div class="ai-center flex jc-flex-start">
+<span class="mr8 label-basic label-basic--md label-basic--success">NEW</span>
+<span class="flex-block__title">Ticket Subject</span>
+</div>
+<span class="flex-block__desc">Lorem Ipsum dolor sit amet chujamet...</span>
+</div>
+</div>
+<div data-action="" class="flex-block sidebar__sgl">
+<div class="flex-block__close" data-tooltip-inline="Dismiss Notification"><i class="zmdi zmdi-close"></i></div>
+<div class="avatar avatar--xs avatar--active">
+<img src="img/avatars/avatar_sample_2.png" alt="Avatar">
+</div>
+<div class="flex-block__content">
+<div class="ai-center flex jc-flex-start">
+<span class="mr8 label-basic label-basic--md label-basic--success">NEW</span>
+<span class="flex-block__title">Ticket Subject</span>
+</div>
+<span class="flex-block__desc">Lorem Ipsum dolor sit amet chujamet...</span>
+</div>
+</div>
+<div data-action="" class="flex-block sidebar__sgl">
+<div class="flex-block__close" data-tooltip-inline="Dismiss Notification"><i class="zmdi zmdi-close"></i></div>
+<div class="avatar avatar--xs avatar--active">
+<img src="img/avatars/avatar_sample_2.png" alt="Avatar">
+</div>
+<div class="flex-block__content">
+<div class="ai-center flex jc-flex-start">
+<span class="flex-block__title">Ticket Subject</span>
+</div>
+<span class="flex-block__desc">Lorem Ipsum dolor sit amet chujamet...</span>
+</div>
+</div>
+<div data-action="" class="flex-block sidebar__sgl">
+<div class="flex-block__close" data-tooltip-inline="Dismiss Notification"><i class="zmdi zmdi-close"></i></div>
+<div class="avatar avatar--xs avatar--active">
+<img src="img/avatars/avatar_sample_2.png" alt="Avatar">
+</div>
+<div class="flex-block__content">
+<div class="ai-center flex jc-flex-start">
+<span class="mr8 label-basic label-basic--md label-basic--success">NEW</span>
+<span class="flex-block__title">Ticket Subject</span>
+</div>
+<span class="flex-block__desc">Lorem Ipsum dolor sit amet chujamet...</span>
+</div>
+</div>
+<div data-action="" class="flex-block sidebar__sgl">
+<div class="flex-block__close" data-tooltip-inline="Dismiss Notification"><i class="zmdi zmdi-close"></i></div>
+<div class="avatar avatar--xs avatar--active">
+<img src="img/avatars/avatar_sample_2.png" alt="Avatar">
+</div>
+<div class="flex-block__content">
+<div class="ai-center flex jc-flex-start">
+<span class="mr8 label-basic label-basic--md label-basic--success">NEW</span>
+<span class="flex-block__title">Ticket Subject</span>
+</div>
+<span class="flex-block__desc">Lorem Ipsum dolor sit amet chujamet... sadf sdf s iffra... Lorem Ipsum dolor sit amet chujamet... sadf sdf s iffra... Lorem Ipsum dolor sit amet chujamet... sadf sdf s iffra... Lorem Ipsum dolor sit amet chujamet... sadf sdf s iffra... Lorem Ipsum dolor sit amet chujamet... sadf sdf s iffra... <strong>Elbrah Nocturmen!</strong> Lorem Ipsum dolor sit amet chujamet... sadf sdf s iffra... Lorem Ipsum dolor sit amet chujamet... sadf sdf s iffra... <a>Read All</a></span>
+</div>
+</div>
+<div data-action="" class="flex-block sidebar__sgl">
+<div class="flex-block__close" data-tooltip-inline="Dismiss Notification"><i class="zmdi zmdi-close"></i></div>
+<div class="avatar avatar--xs avatar--active">
+<img src="img/avatars/avatar_sample_2.png" alt="Avatar">
+</div>
+<div class="flex-block__content">
+<div class="ai-center flex jc-flex-start">
+<span class="mr8 label-basic label-basic--md label-basic--success">NEW</span>
+<span class="flex-block__title">Ticket Subject</span>
+</div>
+<span class="flex-block__desc">Lorem Ipsum dolor sit amet chujamet...</span>
+</div>
+</div>
+<div data-action="" class="flex-block sidebar__sgl">
+<div class="flex-block__close" data-tooltip-inline="Dismiss Notification"><i class="zmdi zmdi-close"></i></div>
+<div class="avatar avatar--xs avatar--active">
+<img src="img/avatars/avatar_sample_2.png" alt="Avatar">
+</div>
+<div class="flex-block__content">
+<div class="ai-center flex jc-flex-start">
+<span class="flex-block__title">Ticket Subject</span>
+</div>
+<span class="flex-block__desc">Lorem Ipsum dolor sit amet chujamet...</span>
+</div>
+</div>
+</div>
+</div>
+<div class="sidebar__footer">
+<div class="mdl-js-button mdl-js-ripple-effect btn btn--md btn--primary">Clear All</div>
+</div>
+</aside>
+<div id="dashboard-container">
+<vue-page-dashboard></vue-page-dashboard>
+</div>
+</div>
+<script type="text/javascript" src="js/app_cache.js?80df1e7614c05aaf38af"></script><script type="text/javascript" src="js/view_gridstack.js?80df1e7614c05aaf38af"></script><script type="text/javascript" src="js/forms_standard.js?80df1e7614c05aaf38af"></script></div></body>
+</html>

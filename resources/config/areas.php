@@ -3,7 +3,7 @@
 return [
     'areas'   => [
         'admin' => 'Admin',
-        'user'  => 'User',
+        'users' => 'User',
     ],
     'default' => 'admin',
     /**
@@ -11,7 +11,7 @@ return [
      */
     'routes'  => [
         'frontend' => [
-            'user',
+            'users',
         ],
         'backend'  => [
             'admin'

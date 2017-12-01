@@ -1,9 +1,9 @@
 {% block javascripts %}
     {%  
         set asset = app('antares.asset').container('antares/foundation::application')
-                    .script('app_cache','//10.10.10.35:71/js/app_cache.js?t='~random(1000))
-                    .script('view_gridstack','//10.10.10.35:71/js/view_gridstack.js?t='~random(1000)) 
-                    .script('forms_standard','//10.10.10.35:71/js/forms_standard.js?t='~random(1000)) 
+                    .script('app_cache','/_dist/js/app_cache.js?t='~random(1000))
+                    .script('view_gridstack','/_dist/js/view_gridstack.js?t='~random(1000)) 
+                    .script('forms_standard','/_dist/js/forms_standard.js?t='~random(1000)) 
     %}     
     {{ asset.styles()|raw }} 
     {{ asset.scripts()|raw }}

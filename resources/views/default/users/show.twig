@@ -20,6 +20,7 @@
 
 
                     {{ component_forced('user_details',{'width':5,'height':15,'disabled':false,'x':0,'y':0,
+                        'autoresize':true,
                         'desktop':[0, 0, 5, 20],
                         'tablet':[0, 0, 8, 16],
                         'mobile':[0, 0, 9, 16]}) |raw
@@ -30,12 +31,14 @@
                         'mobile':[9, 10, 15, 14]})|raw
                     }}                  
                     {{ component_forced('items_widget',{'width':14,'height':19,'disabled':false,'x':5,'y':0,
+                        'autoresize':true,
                         'desktop':[5, 0, 10, 10],
                         'tablet':[8, 0, 16, 18],
                         'mobile':[9, 0, 15, 18]}) |raw
                     }}                   
 
                     {{ component_forced('logs', {'width': 14, 'height': 9, 'disabled': false, 'x': 5, 'y': 19,
+                        'autoresize':false,
                         'desktop':[5, 19, 14, 9],
                         'tablet':[0, 35, 24, 9],
                         'mobile':[9, 0, 15, 18]})|raw}}
