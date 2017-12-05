@@ -1,19 +1,41 @@
 {% extends  app.request.isXmlHttpRequest() ? "antares/foundation::layouts.antares.clear":  "antares/foundation::layouts.antares.main" %}   
-{% block main_content %}
-    {% set panes=app('antares.widget').make('pane.left') %}    
-    <section class="main-content {{ (panes|length>0 or _context.form is defined) ? 'nopadding':'' }}">        
-        {% include 'antares/foundation::components.messages'  %}                      
-        {% set formClass=_context.form is defined ? ((panes|length<=0)?'grid-container--1col full-height grid-container--footer' : 'grid-container--footer'):'' %}
-        <div class="{{ panes|length>0 ? 'grid-container grid-container--2col grid-container--no-padd '~formClass:((formClass|length>0)?'grid-container '~formClass:'grid-container-display') }}">
-            {% include 'antares/foundation::layouts.antares.partials._left_panel' with {panes: panes} %}
-            {% if panes|length>0 or _context.form is defined %}
-                <div class="grid-col grid-col--container">
+{% set shortMenu=brand_composition('short_top_menu') %}
+{% set panes=shortMenu? [] : app('antares.widget').make('pane.left') %}
+{% block app_content %}    
+    {% if _context.form is defined  %}
+        <div class="app-content page-forms page-forms--hor {{ panes|length>0 ? '':'page-single-form' }}">
+        {% endif %}        
+    {% endblock %} 
+    {% block main_content %}
+
+        <section class="main-content nopadding">
+            {% include 'antares/foundation::components.messages'  %}                                             
+            {% set formClass=_context.form is defined ? ((panes|length<=0)?'grid-container--1col' : 'grid-container--2col'):'' %}
+            <div class="grid-container {{ formClass|raw }} grid-container--footer grid-container--no-padd">
+                {% if not shortMenu %}
+                    {% include 'antares/foundation::layouts.antares.partials._left_panel' with {panes: panes} %}
                 {% endif %}
-                {% block content %}
-                {% endblock %}
-                {% if panes|length>0 or _context.form is defined %}
-                </div>
-            {% endif %}            
-        </div>
-    </section>            
-{% endblock %} 
+                {% if panes|length>0 or _context.form is defined %}                    
+                    <div class="grid-col grid-col--container">
+                        {% if panes|length>0 %}
+                            <div class="menu-mobile-settings--box">
+                                <select class="menu-mobile-settings" data-select2--class="menu-aside-settings--blue" data-selectAR--search="true" name="select"></select>
+                            </div>    
+                        {% endif %}
+                    {% endif %}
+                    {% if _context.form is defined  %}
+                        {% block section %}
+                            <section class="generals-form gen-settings--full" data-preload>
+                            {% endblock %}
+                        {% endif %} 
+                        {% block content %}
+                        {% endblock %}
+                        {% if _context.form is defined  %}
+                        </section>
+                    {% endif %} 
+                    {% if panes|length>0 or _context.form is defined %}
+                    </div>
+                {% endif %}            
+            </div>
+        </section>            
+    {% endblock %} 

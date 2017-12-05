@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Antares\Model\Role;
-
 class WelcomeController extends Controller
 {
 
@@ -22,8 +20,6 @@ class WelcomeController extends Controller
      */
     public function index()
     {
-//        vdump(user(), request()->session());
-//        exit;
         if (($redirection = $this->redirectWhenAuthenticated()) !== false) {
             return $redirection;
         }
@@ -34,12 +30,26 @@ class WelcomeController extends Controller
     }
 
     /**
+     * Show the application welcome screen to the user.
+     *
+     * @return mixed
+     */
+    public function demo()
+    {
+        if (($redirection = $this->redirectWhenAuthenticated()) !== false) {
+            return $redirection;
+        }
+        return view('demo');
+    }
+
+    /**
      * reidrects when user is authenticated
      * 
      * @return boolean|\Illuminate\Http\RedirectResponse
      */
     protected function redirectWhenAuthenticated()
     {
+
         if (auth()->guest()) {
             return false;
         }

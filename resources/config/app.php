@@ -133,7 +133,6 @@ return [
         Antares\View\DecoratorServiceProvider::class,
         Antares\Extension\ExtensionServiceProvider::class,
         Antares\Html\HtmlServiceProvider::class,
-        Antares\Notifier\MailServiceProvider::class,
         Antares\Memory\MemoryServiceProvider::class,
         Antares\Messages\MessagesServiceProvider::class,
         Antares\Notifier\NotifierServiceProvider::class,
@@ -152,6 +151,7 @@ return [
         Antares\Brands\BrandsServiceProvider::class,
         \Antares\Foundation\Providers\DependableActionsServiceProvider::class,
         Antares\UI\UIComponents\UiComponentsServiceProvider::class,
+        Illuminate\Notifications\NotificationServiceProvider::class,
         /*
          * Antares Platform Optional Service Providers...
          */

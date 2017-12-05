@@ -2,10 +2,13 @@
 
 use Illuminate\Routing\Router;
 
-$router->group(['middleware' => ['antares']], function (Router $router) {
-    $router->get('/', 'WelcomeController@index');
-});
+if (env('APP_DEMO')) {
 
+//    $router->group(['middleware' => 'guest'], function (Router $router) {
+//        $router->get('/', 'WelcomeController@demo');
+//    });
+//    $router->match(['GET', 'HEAD'], '/', '\Antares\Foundation\Http\Controllers\DashboardController@show')->name('antares.dashboard')->middleware('auth');
+}
 
 
 

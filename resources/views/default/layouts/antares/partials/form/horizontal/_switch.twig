@@ -1,25 +1,26 @@
 {% if control.hasWrapper %}
     <div class="{{ control.getWrapper('class') }}" >
     {% endif %}    
-    <div class="col-16 mb2">
-        <label class="form-block__name p0">
-            <div class="col-dt-3 col-3 col-mb-3 nopadding {{ control.getLabelWrapper('class') }}">
-                <span>{{ control.label }}</span>
+    <div class="col-group {{ control.hasError(errors) ? 'error' : '' }}">
+        <div class="{{ control.getLabelWrapper('class')|default('col-mb-8 col-6 col-dt-4 col-ld-3') }}">
+            <label class="form-block__name">
+                {{ control.label }}
                 {% if control.has('tooltip') %}
                     <i class="zmdi zmdi-help-outline help--trigger" data-tooltip-inline="{{ control.tooltip }}"></i>
                 {% endif %}
+            </label>
+        </div>
+
+        <div class="{{ control.getWrapper('class')|default('col-mb-16 col-18 col-dt-10 col-ld-4') }}">
+            <div class="input-field input-field--short">
+                <label class="switch">
+                    {{ control.getField(row, control, [])|raw }}
+                    <div class="switch-container">
+                        <div class="switch-handle"></div>
+                    </div>
+                </label>
             </div>
-            <div class="col-dt-6 col-6 col-mb-6 nopadding {{ control.getWrapper('class') }}">
-                <div class="input-field input-field--short ml-auto">
-                    <label class="switch">
-                        {{ control.getField(row, control, [])|raw }}
-                        <div class="switch-container">
-                            <div class="switch-handle"></div>
-                        </div>
-                    </label>
-                </div>        
-            </div>
-        </label>
+        </div>
         <span id="{{ control.id }}_error" class="error">
             {{ errors.first(control.name, format)|raw }}
         </span>

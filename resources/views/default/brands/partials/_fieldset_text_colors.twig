@@ -1,16 +1,18 @@
 <div class="cp-brand cp-brand--typo {{ attributes.classname }} mr16">
     <div class="cp-brand__preview"><span class="cp-brand__big">Aa</span>        
         <div class="cp-brand__picker">
-            <div class="cp-brand__p-sgl cp-brand__p-sgl--left"></div>
+            <div class="cp-brand__p-sgl cp-brand__p-sgl--left">
+                {{ controls[0].getField(row, controls[0], [])|raw }}
+            </div>
             <input type="hidden" class="color-saver" id="brand-c{{controls[0].attributes.attributes.num}}" name="brand-c{{controls[0].attributes.attributes.num}}"> 
-        </div>
-        {{ controls[0].getField(row, controls[0], [])|raw }}
+        </div>        
     </div>
     <div class="cp-brand__preview"> <span class="cp-brand__big">Aa</span>
         <div class="cp-brand__picker">
-            <div class="cp-brand__p-sgl cp-brand__p-sgl--right"></div>
+            <div class="cp-brand__p-sgl cp-brand__p-sgl--right">
+                {{ controls[1].getField(row, controls[1], [])|raw }}        
+            </div>
             <input type="hidden" class="color-saver" id="brand-c{{controls[1].attributes.attributes.num}}" name="brand-c{{controls[1].attributes.attributes.num}}"> 
-        </div>
-        {{ controls[1].getField(row, controls[1], [])|raw }}        
+        </div>        
     </div>    
 </div>

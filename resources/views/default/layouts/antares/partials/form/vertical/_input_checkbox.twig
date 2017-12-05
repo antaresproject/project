@@ -1,11 +1,11 @@
-<div class="col-16">
-    <label class="form-block__name">
+<div class="col-24">
+    <label class="form-block__name {{ control.has('labelClass') ? control.labelClass : '' }}">
         <div class="input-field input-field--short">
             {{ control.getField(row, control, [])|raw }}
         </div>
         <span>{{ control.label }}  {{ tooltip(control) }}</span>
     </label>
-    <span id="{{ control.id }}_error" class="error col-13 col-mb-11">
+    <span id="{{ control.id }}_error" class="error col-13 col-mb-11 nopadding">
         {{ errors.first(control.name, format)|raw }}
     </span>
 </div>

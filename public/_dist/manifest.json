@@ -1,0 +1,15 @@
+{
+  "name": "AntaresFrontEnd",
+  "short_name": "Antares",
+  "start_url": "index.html",
+  "display": "fullscreen",
+  "background_color": "#12a8f0",
+  "description": "Antares is an open source user management platform developed in cooperation with ModulesGarden.",
+  "icons": [
+    {
+      "src": "img/theme/antares/logo_tear.png",
+      "sizes": "380x380",
+      "type": "image/png"
+    }
+  ]
+}

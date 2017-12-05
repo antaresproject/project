@@ -1,0 +1,31 @@
+<!-- Main Menu -->
+{% set menu=app('antares.platform.menu') %}
+{% set secondaryActive=false %}
+{% for item1 in app('antares.platform.menu') %}            
+    {% if item1.isActive() or item1.active is sameas(true) %}            
+        {% set secondaryActive=item1.attributes['type'] is same as ('secondary') %}
+    {% endif %}
+{% endfor %}
+{% set secondaryElements=[] %}
+{% for item2 in app('antares.platform.menu') if item2.type is same as('secondary') %}
+    {% set secondaryElements=secondaryElements|merge([item2]) %}
+{% endfor %}
+{% if secondaryActive==false %}
+    {% set secondaryActive=has_active_in_childs(secondaryElements) %}
+{% endif %}
+
+
+<aside  data-menu-on-load="{{ (secondaryActive) ? 'secondary' : 'primary' }}" class="main-sidebar main-menu-html {{ brand_composition('short_top_menu') ? 'main-menu-html--ca simple-submenu' : '' }}">
+    <div class="nav-container">
+        <nav>
+            {% block navigation %}
+                {% include 'antares/foundation::layouts.antares.partials.navigation._navigation' %}
+            {% endblock %}                              
+            <div class="mobile-ddowns">
+                {% block navigation_mobile %}
+                    {% include 'antares/foundation::layouts.antares.partials.navigation._navigation_mobile' %}
+                {% endblock %} 
+            </div>                
+        </nav>
+    </div>
+</aside>

@@ -1,43 +1,25 @@
-<!-- Main Menu -->
-{% set menu=app('antares.platform.menu') %}
-{% set secondaryActive=false %}
-{% for item1 in app('antares.platform.menu') %}            
-    {% if item1.isActive() or item1.active is sameas(true) %}            
-        {% set secondaryActive=item1.attributes['type'] is same as ('secondary') %}
-    {% endif %}
-{% endfor %}
-{% set secondaryElements=[] %}
-{% for item2 in app('antares.platform.menu') if item2.type is same as('secondary') %}
-    {% set secondaryElements=secondaryElements|merge([item2]) %}
-{% endfor %}
-{% if secondaryActive==false %}
-    {% set secondaryActive=has_active_in_childs(secondaryElements) %}
-{% endif %}
-
-
-<div class="menu-scroll">
+<div class="menu-scroll">    
     <ul class="main-menu main-menu--brand">
-        {% block navigation_brand_primary %}
-            {% include 'antares/foundation::layouts.antares.partials.navigation._navigation_brand' %}
-        {% endblock %}
+        <li data-name="brand" class="main-menu__brand">
+            <a href="{{ handles('antares::/') }}" title="Dashboard" class="no--menu">
+                <div class="main-sidebar__logo" title="{{ brand_title() }}"></div>
+            </a>
+        </li>
     </ul>
-    <ul class="main-menu main-menu--primary {{ secondaryActive ? 'is-hidden' : '' }}">
+
+    <ul class="main-menu main-menu--{{ (brand_composition('short_top_menu') and secondaryActive) ? 'secondary' : 'primary' }}">
         {% block navigation_primary %}
             {% for item in menu if item.type is not same as ('secondary') %}
                 {% if item.childs|length<1 %}
-                    <li data-name='{{ item.title }}' class="{{ item.isActive()?'is-active':'' }}">
+                    <li data-index={{ loop.index0 }} data-name='{{ item.title }}' class="{{ item.isActive()?'is-active':'' }}">
                         <a href="{{ item.link }}" title="{{ item.title }}">
-                            {% if item.attributes.icon %}
-                                <i class="zmdi {{ item.attributes.icon }}"></i>
-                            {% else %}
-                                <i class="zmdi zmdi-widgets"></i>
-                            {% endif %}
+                            <i class="zmdi {{ item.get('icon','zmdi-widgets') }}"></i>
                             <span class="text">{{ item.title }}</span>
                         </a>
                     </li>
                 {% else %}
-                    <li data-name='{{ item.title }}' class="{{ item.isActive()?'is-active':'' }}">
-                        <a href="{{ item.link }}" title="{{ item.title }}">
+                    <li data-index={{ loop.index0 }} data-name='{{ item.title }}' class="{{ item.childs|length>0 ? 'has-submenu' : '' }} {{ item.isActive() ? 'is-active' : '' }}">
+                        <a title="{{ item.title }}" >
                             <i class="zmdi {{ item.icon }}"></i>
                             <span class="text">{{ item.title }}</span>
                         </a>
@@ -49,82 +31,127 @@
                             <section>
                                 <header><h3>{{ item.title }}</h3></header>
                                 <div class="submenu__content">
-                                    <ul class="data-list">
-                                        {% for child in item.childs %}
-                                            <li class="{{ child.isFirstChildActive()?'is-active':'' }}" >
-                                                <a href="{{ child.link }}">
-                                                    {% if child.attributes.html %}
-                                                        {{ child.html|raw }}
-                                                    {% else %}
-                                                        <span>{{ child.title }}</span>
-                                                    {% endif %}
-                                                </a>
-                                            </li>
-                                        {% endfor %}
-                                    </ul>
+                                    <div class="menu-columns">
+                                        {% if not brand_composition('short_top_menu') %}
+                                            <div class="row">
+                                                <div class="col-6">
+                                                {% endif %}
+                                                <ul class="data-list">                                        
+                                                    {% for child in item.childs %}
+                                                        <li class="{{ child.isFirstChildActive()?'is-active':'' }}" >
+                                                            <a href="{{ child.link }}">
+                                                                {% if child.attributes.html %}
+                                                                    {{ child.html|raw }}
+                                                                {% else %}
+                                                                    <span>{{ child.title }}</span>
+                                                                {% endif %}
+                                                            </a>
+                                                        </li>
+                                                    {% endfor %}
+                                                </ul>
+                                                {% if not brand_composition('short_top_menu') %}
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                    </div>
                                 </div>
                             </section>
                         </div>
                     </li>
                 {% endif %}
-            {% endfor %}
-            {% if menu.items|length>0 and secondaryElements|length>0  %}
-                <li data-name="more" class="more-trigger">
-                    <a href="#" title="more">
-                        <i class="zmdi zmdi-caret-right-circle"></i>
-                        <span class="text">More</span>
-                    </a>
-                </li>
-            {% endif %}
+            {% endfor %}            
         {% endblock %}
-    </ul>
-    <ul class="main-menu main-menu--secondary  {{ secondaryActive ? '' : 'is-hidden' }} ">
+        {%if not brand_composition('short_top_menu') %}
+        </ul>
+        <ul class="main-menu main-menu--secondary">
+        {% endif %}
         {% for item in secondaryElements %}
             {% if item.childs|length<1 %}
-                <li data-name='{{ item.title }}' class="{{ item.isActive() ?'is-active':'' }}">
+                <li data-name='{{ item.title }}' class="{{ item.isActive() ?'is-active':'' }}">                   
                     <a href="{{ item.link }}" title="{{ item.title }}">
                         <i class="zmdi {{ item.icon }}"></i>
                         <span class="text">{{ item.title }}</span>
                     </a>
                 </li>
             {% else %}
-                <li data-name='{{ item.title }}' class="{{ (item.isActive() or item.active is sameas(true)) ?'is-active':'' }}">
-                    <a href="{{ item.childs|first.link }}" title="{{ item.title }}">
+                <li data-name='{{ item.title }}' class="{{ item.childs|length>0 ? 'has-submenu' : '' }} {{ (item.isActive() or item.active is sameas(true)) ?'is-active':'' }}">
+                    <a title="{{ item.title }}">
                         <i class="zmdi {{ item.icon }}"></i>
                         <span class="text">{{ item.title }}</span>
-                    </a>
+                    </a>                    
                     <div class="submenu flex-fs">
-                        <a href="{{ item.link }}" class="submenu__mobile-return">
+                        <a  class="submenu__mobile-return">
                             <i class="zmdi zmdi-arrow-left"></i>
                             <span>{{ item.title }}</span>
                         </a>
                         <section>
                             <header><h3>{{ item.title }}</h3></header>
                             <div class="submenu__content">
-                                <ul class="data-list">
-                                    {% for child in item.childs %}                                        
-                                        <li class="{{ (child.isFirstChildActive() or child.active is sameas(true)) ?'is-active':'' }}">
-                                            <a href="{{ child.link }}">
-                                                {% if child.attributes.html %}
-                                                    {{ child.html|raw }}
-                                                {% else %}
-                                                    <span>{{ child.title }}</span>
-                                                {% endif %}
-                                            </a>
-                                        </li>
-                                    {% endfor %}
-                                </ul>
+                                <div class="menu-columns">
+                                    {% if not brand_composition('short_top_menu') %}
+                                        <div class="row">
+                                            <div class="col-6">
+                                            {% endif %}
+                                            <ul class="data-list">
+                                                {% for child in item.childs %}                                        
+                                                    <li class="{{ (child.isFirstChildActive() or child.active is sameas(true)) ?'is-active':'' }}" data-name='{{ child.title|str_slug|lower }}'>
+                                                        <a href="{{ child.link }}">
+                                                            {% if child.attributes.html %}
+                                                                {{ child.html|raw }}
+                                                            {% else %}
+                                                                <span>{{ child.title }}</span>
+                                                            {% endif %}
+                                                        </a>
+                                                    </li>
+                                                {% endfor %}
+                                            </ul>
+                                            {% if not brand_composition('short_top_menu') %}
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                </div>
+
+                                {% for child in item.childs %}                                    
+                                    {% if is_translated('antares/foundation::menu.hints.'~child.title|str_slug|lower) %}                                        
+                                        <div class="menu-tooltip" data-menu-item="{{ child.title|str_slug|lower }}">
+                                            <div class="menu-tooltip__header">
+                                                <i class="zmdi zmdi-info-outline"></i>
+                                                <span>{{ child.title }}</span>
+                                            </div>                                        
+                                            <div class="menu-tooltip__content">
+                                                {{ trans('antares/foundation::menu.hints.'~child.title|str_slug|lower)|raw }}
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}    
                             </div>
                         </section>
                     </div>
+
                 </li>
             {% endif %}
-        {% endfor %}
-        <li data-name="more-back" class="more-trigger">
-            <a href="#" title="more">
-                <i class="zmdi zmdi-caret-left-circle"></i>
-                <span class="text">More</span>
-            </a>
-        </li>
+        {% endfor %}        
     </ul>
+
+    {% if brand_composition('short_top_menu') %}
+        <div class="client-area">
+            {% include 'antares/foundation::layouts.antares.partials._sidebar_top' %}
+        </div>
+    {% endif %}   
 </div>
+{% if menu.items|length>0 and secondaryElements|length>0 and not brand_composition('short_top_menu')  %}
+    <div class="more-trigger">
+        <div class="more-trigger__inner">
+            <div class="main-close">
+                <i class="zmdi zmdi-more"></i>
+                <span class="text"></span>
+            </div>
+            <div class="alt-close">
+                <div class="close close--one"></div>
+                <div class="close close--two"></div>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+

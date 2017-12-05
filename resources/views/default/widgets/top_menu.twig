@@ -1,27 +1,70 @@
 {% set menu=app(container) %}
 {% if menu.items|length>0 and menu.items.first.childs|length>0 %}
     {% for key in menu.items.keys() %}
-        {{ event('breadcrumb.before.render.'~key,menu.items.get(key)) }}
+        {{ event('breadcrumb.before.render.'~key,menu.items.get(key)) }}        
+        {{ event('Antares\\Events\\Views\\BreadcrumbBeforeRender', key, menu.items.get(key))|raw }}
     {% endfor %} 
-    <li>
-        <div class="ddown">
-            <div class="ddown__init ddown__init--white">
-                <a href="#" title="{{ menu.items.first().title }}">{{ menu.items.first().title }}</a>
+    {% if brand_composition('short_top_menu') %}
+
+        {% for item in menu %}      
+            {% for child in item.childs %}
+                {% if loop.index<=2 %}
+                    <a class="mdl-js-button mdl-js-ripple-effect btn btn--md btn--primary ml16 {{child.get('attributes').class}}" href="{{ child.link }}" {{child.get('attributes')|stringify}}>
+                        <i class="zmdi {{child.icon}} pr16 fs24"></i>
+                        <span>  {{ child.title }}</span>
+                        <span class="mdl-button__ripple-container">
+                            <span class="mdl-ripple"></span>                                            
+                        </span>
+                    </a>
+                {% endif %}
+            {% endfor %}
+            {% if item.childs|length>2 %}
+                <div class="ddown ddown--new-service">         
+                    <a class="mdl-js-button mdl-js-ripple-effect btn btn--md btn--primary ddown__init ddown__init--white ml16">
+                        <i class="zmdi zmdi-more-vert pr16 fs24"></i>
+                        More
+                    </a>
+                    <div class="ddown__content">
+                        <ul class="ddown__menu ddown__menu--innerpadd" >
+                            {% for child in item.childs %}
+                                {% if loop.index>2 %}
+                                    <li>
+                                        <a class="mdl-js-button mdl-js-ripple-effect {{child.get('attributes').class}}" href="{{ child.link }}" {{child.get('attributes')|stringify}}>
+                                            <i class="zmdi {{child.icon}}"></i><span>{{ child.title }}</span>
+                                            <span class="mdl-button__ripple-container">
+                                                <span class="mdl-ripple"></span>                                            
+                                            </span>
+                                        </a>
+                                    </li>            
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+
+    {% else %}     
+        <li>
+            <div class="ddown">
+                <div class="ddown__init ddown__init--white">
+                    <a href="#" title="{{ menu.items.first().title }}">{{ menu.items.first().title }}</a>
+                </div>
+                <div class="ddown__content">
+                    <div class="ddown__arrow"></div>
+                    <ul class="ddown__menu">
+                        {% for item in menu %}      
+                            {% for child in item.childs %}
+                                <li>                                
+                                    <a class="mdl-js-button mdl-js-ripple-effect {{child.get('attributes').class}}" href="{{ child.link }}" {{child.get('attributes')|stringify}}>
+                                        <i class="zmdi {{child.icon}}"></i><span>{{ child.title }}</span>
+                                    </a>
+                                </li>
+                            {% endfor %}   
+                        {% endfor %}                           
+                    </ul>
+                </div>
             </div>
-            <div class="ddown__content">
-                <div class="ddown__arrow"></div>
-                <ul class="ddown__menu">
-                    {% for item in menu %}      
-                        {% for child in item.childs %}
-                            <li>                                
-                                <a class="mdl-js-button mdl-js-ripple-effect {{child.get('attributes').class}}" href="{{ child.link }}" {{child.get('attributes')|stringify}}>
-                                    <i class="zmdi {{child.icon}}"></i><span>{{ child.title }}</span>
-                                </a>
-                            </li>
-                        {% endfor %}   
-                    {% endfor %}                           
-                </ul>
-            </div>
-        </div>
-    </li>
+        </li>
+    {% endif %}
 {% endif %}

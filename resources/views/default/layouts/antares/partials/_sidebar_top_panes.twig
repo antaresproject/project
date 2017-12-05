@@ -3,7 +3,6 @@
     {{ pane.content|raw }}
 {%endfor %}    
 {{ placeholder('sandbox') }}        
-{% if extension_active('search') %}
+{% if extension_active('search') and can('antares/search::search') %}   
     {{ placeholder('global_search') }}    
-{% endif %}
-{{ placeholder('foo') }}    
+{% endif %}  

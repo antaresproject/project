@@ -1,6 +1,6 @@
 {% extends "antares/foundation::layouts.antares.index" %}   
 {% block content %}  
-    <div class="col-16">
+    <div class="col-24">
         <div class="card card--chart-small card--primary-light">
             <div class="card__header">
                 <div class="card__header--top">
@@ -25,10 +25,10 @@
                 {% if can('antares::module-create') %}
                     <div class="card__content"> 
                         <div class="col-group">
-                            <div class="col-16">
+                            <div class="col-24">
                                 If you want to install your own module, please go to:
                             </div>
-                            <div class="col-16">
+                            <div class="col-24">
                                 <a class="btn btn--s-extra-large btn--primary mdl-button mdl-js-button mdl-js-ripple-effect" href="{{ handles('antares::modules/'~category|default('addons')~'/create') }}" data-upgraded=",MaterialButton,MaterialRipple">
                                     Module installer »
                                 </a>  
@@ -39,10 +39,10 @@
             {% endif %}
         </div>
     </div>
-    <div class="col-16">                  
+    <div class="col-24">                  
         <div class="col-group">
             {% for module in modules %}
-                <div class="col-8">
+                <div class="col-12">
                     <div class="card card--chart-small card--primary-light">
                         <div class="card__header">
                             <div class="card__header--top">

@@ -1,3 +1,4 @@
+Header set Access-Control-Allow-Origin "*"
 <IfModule mod_rewrite.c>
 	RewriteEngine on
 	RewriteRule ^$ public/ [L]

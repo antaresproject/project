@@ -1,25 +1,28 @@
 {% extends "antares/foundation::layouts.quest.main" %}
 {% block content %}
-    <div id="app-wrapper">
-        <div class="app-content page-login">
-            <section class="main-content">
-                <div class="login-box">
-                    <div class="login-box__header">
-                        <img src="{{ brand_logo('big','/img/logos/logo_default_full.png') }}" alt="{{ brand_title() }}">
+    <div class="app-content page-login">
+        <div class="img-logo" style="background-image:url({{ brand_logo('big',asset('/img/logos/logo_default_full_mobile.png')) }})"></div>
+        <section class="main-content">
+            <div class="login-box">
+                {{ set_meta('header::class', 'main-header') }}
+                {% set formbuilder=app('form') %}   
+                {% set request=app('request') %}   
+                {{ formbuilder.open({'url':handles('antares::forgot'), 'method':'POST'})|raw }}
+                <fieldset name="MDLForms">
+                    <div class="form-block">
+                        <div class="input-field">
+                            <div class="mdl-textfield mdl-textfield--AR mdl-js-textfield mdl-textfield--floating-label {{ errors.has('email')?'is-invalid':'' }}" >
+                                {{ formbuilder.input('email', 'email', request.old('email'), {'required':true,'class':'mdl-textfield__input','id':'email'})|raw }}
+                                <label class="mdl-textfield__label" for="Email">
+                                    {{ trans('Email address') }}                                                        
+                                </label>
+                                {% if errors.has('email') %}
+                                    {{ errors.first('email', '<span class="mdl-textfield__error">:message</span>')|raw }}                        
+                                {% endif %}
+                            </div>
+                        </div>
                     </div>
-                    {% set formbuilder=app('form') %}   
-                    {% set request=app('request') %}   
-                    {{ formbuilder.open({'url':handles('antares::forgot'), 'method':'POST'})|raw }}
-                    <div class="mdl-textfield mdl-textfield--billevo mdl-js-textfield mdl-textfield--floating-label {{ errors.has('email')?'is-invalid':'' }}" >
-                        {{ formbuilder.input('email', 'email', request.old('email'), {'required':true,'class':'mdl-textfield__input','id':'email'})|raw }}
-                        <label class="mdl-textfield__label" for="Email">
-                            {{ trans('Email address') }}                                                        
-                        </label>
-                        {% if errors.has('email') %}
-                            {{ errors.first('email', '<span class="mdl-textfield__error">:message</span>')|raw }}                        
-                        {% endif %}
-                    </div>
-                    <button class="btn btn--submit btn--s-xxl btn--primary mdl-button mdl-js-button mdl-js-ripple-effect"  type="submit">
+                    <button class="btn btn--submit btn--s-xxl btn--primary mdl-button mdl-js-button mdl-js-ripple-effect mt20"  type="submit">
                         {{ trans('RESET PASSWORD') }}
                     </button>
 
@@ -31,10 +34,9 @@
                             {{ trans('antares/foundation::title.register') }}
                         </a>                            
                     {% endif %}
-
-                    {{ formbuilder.close()|raw }}       
-                </div>
-            </section>
-        </div>
+                </fieldset>
+                {{ formbuilder.close()|raw }}  
+            </div>
+        </section>
     </div>
 {% endblock %}

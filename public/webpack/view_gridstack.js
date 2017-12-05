@@ -1,241 +1,5432 @@
+/*!
+ * 
+ *  * Part of the Antares Project package.
+ *  *
+ *  * NOTICE OF LICENSE
+ *  *
+ *  * Licensed under the 3-clause BSD License.
+ *  *
+ *  * This source file is subject to the 3-clause BSD License that is
+ *  * bundled with this package in the LICENSE file.
+ *  *
+ *  * @package    Global
+ *  * @version    0.9.2
+ *  * @author     Antares Team
+ *  * @license    BSD License (3-clause)
+ *  * @copyright  (c) 2017, Antares Project
+ *  * @link       http://antaresproject.io
+ *  * 
+ * 
+ * 
+ */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
-
+/******/
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
-
+/******/
 /******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId])
+/******/ 		if(installedModules[moduleId]) {
 /******/ 			return installedModules[moduleId].exports;
-
+/******/ 		}
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = installedModules[moduleId] = {
-/******/ 			exports: {},
-/******/ 			id: moduleId,
-/******/ 			loaded: false
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
 /******/ 		};
-
+/******/
 /******/ 		// Execute the module function
 /******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-
+/******/
 /******/ 		// Flag the module as loaded
-/******/ 		module.loaded = true;
-
+/******/ 		module.l = true;
+/******/
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
-
-
+/******/
+/******/
 /******/ 	// expose the modules object (__webpack_modules__)
 /******/ 	__webpack_require__.m = modules;
-
+/******/
 /******/ 	// expose the module cache
 /******/ 	__webpack_require__.c = installedModules;
-
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, {
+/******/ 				configurable: false,
+/******/ 				enumerable: true,
+/******/ 				get: getter
+/******/ 			});
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
 /******/ 	// __webpack_public_path__
 /******/ 	__webpack_require__.p = "";
-
+/******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 778);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 0:
-/***/ function(module, exports, __webpack_require__) {
-
-	eval("module.exports = __webpack_require__(98);\n\n\n//////////////////\n// WEBPACK FOOTER\n// multi view_gridstack\n// module id = 0\n// module chunks = 1\n//# sourceURL=webpack:///multi_view_gridstack?");
-
-/***/ },
-
-/***/ 1:
-/***/ function(module, exports) {
-
-	eval("/*\r\n\tMIT License http://www.opensource.org/licenses/mit-license.php\r\n\tAuthor Tobias Koppers @sokra\r\n*/\r\nmodule.exports = function(src) {\r\n\tif (typeof execScript !== \"undefined\")\r\n\t\texecScript(src);\r\n\telse\r\n\t\teval.call(null, src);\r\n}\r\n\n\n//////////////////\n// WEBPACK FOOTER\n// ./~/script-loader/addScript.js\n// module id = 1\n// module chunks = 0 1 2 4 5 6 7 8 9\n//# sourceURL=webpack:///./~/script-loader/addScript.js?");
-
-/***/ },
-
-/***/ 27:
-/***/ function(module, exports, __webpack_require__) {
-
-	eval("var naturalSort = __webpack_require__(201),\n  getByClass = __webpack_require__(54),\n  extend = __webpack_require__(53),\n  indexOf = __webpack_require__(55),\n  events = __webpack_require__(29),\n  toString = __webpack_require__(57),\n  classes = __webpack_require__(28),\n  getAttribute = __webpack_require__(138),\n  toArray = __webpack_require__(56);\n\nmodule.exports = function(id, options, values) {\n\n  var self = this,\n    init,\n    Item = __webpack_require__(52)(self),\n    addAsync = __webpack_require__(129)(self),\n    initPagination = __webpack_require__(132)(self);\n\n  init = {\n    start: function() {\n      self.listClass      = \"list\";\n      self.searchClass    = \"search\";\n      self.sortClass      = \"sort\";\n      self.page           = 10000;\n      self.i              = 1;\n      self.items          = [];\n      self.visibleItems   = [];\n      self.matchingItems  = [];\n      self.searched       = false;\n      self.filtered       = false;\n      self.searchColumns  = undefined;\n      self.handlers       = { 'updated': [] };\n      self.valueNames     = [];\n      self.utils          = {\n        getByClass: getByClass,\n        extend: extend,\n        indexOf: indexOf,\n        events: events,\n        toString: toString,\n        naturalSort: naturalSort,\n        classes: classes,\n        getAttribute: getAttribute,\n        toArray: toArray\n      };\n\n      self.utils.extend(self, options);\n\n      self.listContainer = (typeof(id) === 'string') ? document.getElementById(id) : id;\n      if (!self.listContainer) { return; }\n      self.list       = getByClass(self.listContainer, self.listClass, true);\n\n      self.parse        = __webpack_require__(133)(self);\n      self.templater    = __webpack_require__(136)(self);\n      self.search       = __webpack_require__(134)(self);\n      self.filter       = __webpack_require__(130)(self);\n      self.sort         = __webpack_require__(135)(self);\n      self.fuzzySearch  = __webpack_require__(131)(self, options.fuzzySearch);\n\n      this.handlers();\n      this.items();\n      this.pagination();\n\n      self.update();\n    },\n    handlers: function() {\n      for (var handler in self.handlers) {\n        if (self[handler]) {\n          self.on(handler, self[handler]);\n        }\n      }\n    },\n    items: function() {\n      self.parse(self.list);\n      if (values !== undefined) {\n        self.add(values);\n      }\n    },\n    pagination: function() {\n      if (options.pagination !== undefined) {\n        if (options.pagination === true) {\n          options.pagination = [{}];\n        }\n        if (options.pagination[0] === undefined){\n          options.pagination = [options.pagination];\n        }\n        for (var i = 0, il = options.pagination.length; i < il; i++) {\n          initPagination(options.pagination[i]);\n        }\n      }\n    }\n  };\n\n  /*\n  * Re-parse the List, use if html have changed\n  */\n  this.reIndex = function() {\n    self.items          = [];\n    self.visibleItems   = [];\n    self.matchingItems  = [];\n    self.searched       = false;\n    self.filtered       = false;\n    self.parse(self.list);\n  };\n\n  this.toJSON = function() {\n    var json = [];\n    for (var i = 0, il = self.items.length; i < il; i++) {\n      json.push(self.items[i].values());\n    }\n    return json;\n  };\n\n\n  /*\n  * Add object to list\n  */\n  this.add = function(values, callback) {\n    if (values.length === 0) {\n      return;\n    }\n    if (callback) {\n      addAsync(values, callback);\n      return;\n    }\n    var added = [],\n      notCreate = false;\n    if (values[0] === undefined){\n      values = [values];\n    }\n    for (var i = 0, il = values.length; i < il; i++) {\n      var item = null;\n      notCreate = (self.items.length > self.page) ? true : false;\n      item = new Item(values[i], undefined, notCreate);\n      self.items.push(item);\n      added.push(item);\n    }\n    self.update();\n    return added;\n  };\n\n\tthis.show = function(i, page) {\n\t\tthis.i = i;\n\t\tthis.page = page;\n\t\tself.update();\n    return self;\n\t};\n\n  /* Removes object from list.\n  * Loops through the list and removes objects where\n  * property \"valuename\" === value\n  */\n  this.remove = function(valueName, value, options) {\n    var found = 0;\n    for (var i = 0, il = self.items.length; i < il; i++) {\n      if (self.items[i].values()[valueName] == value) {\n        self.templater.remove(self.items[i], options);\n        self.items.splice(i,1);\n        il--;\n        i--;\n        found++;\n      }\n    }\n    self.update();\n    return found;\n  };\n\n  /* Gets the objects in the list which\n  * property \"valueName\" === value\n  */\n  this.get = function(valueName, value) {\n    var matchedItems = [];\n    for (var i = 0, il = self.items.length; i < il; i++) {\n      var item = self.items[i];\n      if (item.values()[valueName] == value) {\n        matchedItems.push(item);\n      }\n    }\n    return matchedItems;\n  };\n\n  /*\n  * Get size of the list\n  */\n  this.size = function() {\n    return self.items.length;\n  };\n\n  /*\n  * Removes all items from the list\n  */\n  this.clear = function() {\n    self.templater.clear();\n    self.items = [];\n    return self;\n  };\n\n  this.on = function(event, callback) {\n    self.handlers[event].push(callback);\n    return self;\n  };\n\n  this.off = function(event, callback) {\n    var e = self.handlers[event];\n    var index = indexOf(e, callback);\n    if (index > -1) {\n      e.splice(index, 1);\n    }\n    return self;\n  };\n\n  this.trigger = function(event) {\n    var i = self.handlers[event].length;\n    while(i--) {\n      self.handlers[event][i](self);\n    }\n    return self;\n  };\n\n  this.reset = {\n    filter: function() {\n      var is = self.items,\n        il = is.length;\n      while (il--) {\n        is[il].filtered = false;\n      }\n      return self;\n    },\n    search: function() {\n      var is = self.items,\n        il = is.length;\n      while (il--) {\n        is[il].found = false;\n      }\n      return self;\n    }\n  };\n\n  this.update = function() {\n    var is = self.items,\n\t\t\til = is.length;\n\n    self.visibleItems = [];\n    self.matchingItems = [];\n    self.templater.clear();\n    for (var i = 0; i < il; i++) {\n      if (is[i].matching() && ((self.matchingItems.length+1) >= self.i && self.visibleItems.length < self.page)) {\n        is[i].show();\n        self.visibleItems.push(is[i]);\n        self.matchingItems.push(is[i]);\n      } else if (is[i].matching()) {\n        self.matchingItems.push(is[i]);\n        is[i].hide();\n      } else {\n        is[i].hide();\n      }\n    }\n    self.trigger('updated');\n    return self;\n  };\n\n  init.start();\n};\n\n\n//////////////////\n// WEBPACK FOOTER\n// ./~/list.js/src/index.js\n// module id = 27\n// module chunks = 1\n//# sourceURL=webpack:///./~/list.js/src/index.js?");
-
-/***/ },
-
-/***/ 28:
-/***/ function(module, exports, __webpack_require__) {
-
-	eval("/**\n * Module dependencies.\n */\n\nvar index = __webpack_require__(55);\n\n/**\n * Whitespace regexp.\n */\n\nvar re = /\\s+/;\n\n/**\n * toString reference.\n */\n\nvar toString = Object.prototype.toString;\n\n/**\n * Wrap `el` in a `ClassList`.\n *\n * @param {Element} el\n * @return {ClassList}\n * @api public\n */\n\nmodule.exports = function(el){\n  return new ClassList(el);\n};\n\n/**\n * Initialize a new ClassList for `el`.\n *\n * @param {Element} el\n * @api private\n */\n\nfunction ClassList(el) {\n  if (!el || !el.nodeType) {\n    throw new Error('A DOM element reference is required');\n  }\n  this.el = el;\n  this.list = el.classList;\n}\n\n/**\n * Add class `name` if not already present.\n *\n * @param {String} name\n * @return {ClassList}\n * @api public\n */\n\nClassList.prototype.add = function(name){\n  // classList\n  if (this.list) {\n    this.list.add(name);\n    return this;\n  }\n\n  // fallback\n  var arr = this.array();\n  var i = index(arr, name);\n  if (!~i) arr.push(name);\n  this.el.className = arr.join(' ');\n  return this;\n};\n\n/**\n * Remove class `name` when present, or\n * pass a regular expression to remove\n * any which match.\n *\n * @param {String|RegExp} name\n * @return {ClassList}\n * @api public\n */\n\nClassList.prototype.remove = function(name){\n  // classList\n  if (this.list) {\n    this.list.remove(name);\n    return this;\n  }\n\n  // fallback\n  var arr = this.array();\n  var i = index(arr, name);\n  if (~i) arr.splice(i, 1);\n  this.el.className = arr.join(' ');\n  return this;\n};\n\n\n/**\n * Toggle class `name`, can force state via `force`.\n *\n * For browsers that support classList, but do not support `force` yet,\n * the mistake will be detected and corrected.\n *\n * @param {String} name\n * @param {Boolean} force\n * @return {ClassList}\n * @api public\n */\n\nClassList.prototype.toggle = function(name, force){\n  // classList\n  if (this.list) {\n    if (\"undefined\" !== typeof force) {\n      if (force !== this.list.toggle(name, force)) {\n        this.list.toggle(name); // toggle again to correct\n      }\n    } else {\n      this.list.toggle(name);\n    }\n    return this;\n  }\n\n  // fallback\n  if (\"undefined\" !== typeof force) {\n    if (!force) {\n      this.remove(name);\n    } else {\n      this.add(name);\n    }\n  } else {\n    if (this.has(name)) {\n      this.remove(name);\n    } else {\n      this.add(name);\n    }\n  }\n\n  return this;\n};\n\n/**\n * Return an array of classes.\n *\n * @return {Array}\n * @api public\n */\n\nClassList.prototype.array = function(){\n  var className = this.el.getAttribute('class') || '';\n  var str = className.replace(/^\\s+|\\s+$/g, '');\n  var arr = str.split(re);\n  if ('' === arr[0]) arr.shift();\n  return arr;\n};\n\n/**\n * Check if class `name` is present.\n *\n * @param {String} name\n * @return {ClassList}\n * @api public\n */\n\nClassList.prototype.has =\nClassList.prototype.contains = function(name){\n  return this.list ? this.list.contains(name) : !! ~index(this.array(), name);\n};\n\n\n//////////////////\n// WEBPACK FOOTER\n// ./~/list.js/src/utils/classes.js\n// module id = 28\n// module chunks = 1\n//# sourceURL=webpack:///./~/list.js/src/utils/classes.js?");
-
-/***/ },
-
-/***/ 29:
-/***/ function(module, exports, __webpack_require__) {
-
-	eval("var bind = window.addEventListener ? 'addEventListener' : 'attachEvent',\n    unbind = window.removeEventListener ? 'removeEventListener' : 'detachEvent',\n    prefix = bind !== 'addEventListener' ? 'on' : '',\n    toArray = __webpack_require__(56);\n\n/**\n * Bind `el` event `type` to `fn`.\n *\n * @param {Element} el, NodeList, HTMLCollection or Array\n * @param {String} type\n * @param {Function} fn\n * @param {Boolean} capture\n * @api public\n */\n\nexports.bind = function(el, type, fn, capture){\n  el = toArray(el);\n  for ( var i = 0; i < el.length; i++ ) {\n    el[i][bind](prefix + type, fn, capture || false);\n  }\n};\n\n/**\n * Unbind `el` event `type`'s callback `fn`.\n *\n * @param {Element} el, NodeList, HTMLCollection or Array\n * @param {String} type\n * @param {Function} fn\n * @param {Boolean} capture\n * @api public\n */\n\nexports.unbind = function(el, type, fn, capture){\n  el = toArray(el);\n  for ( var i = 0; i < el.length; i++ ) {\n    el[i][unbind](prefix + type, fn, capture || false);\n  }\n};\n\n\n//////////////////\n// WEBPACK FOOTER\n// ./~/list.js/src/utils/events.js\n// module id = 29\n// module chunks = 1\n//# sourceURL=webpack:///./~/list.js/src/utils/events.js?");
-
-/***/ },
-
-/***/ 52:
-/***/ function(module, exports) {
-
-	eval("module.exports = function(list) {\n  return function(initValues, element, notCreate) {\n    var item = this;\n\n    this._values = {};\n\n    this.found = false; // Show if list.searched == true and this.found == true\n    this.filtered = false;// Show if list.filtered == true and this.filtered == true\n\n    var init = function(initValues, element, notCreate) {\n      if (element === undefined) {\n        if (notCreate) {\n          item.values(initValues, notCreate);\n        } else {\n          item.values(initValues);\n        }\n      } else {\n        item.elm = element;\n        var values = list.templater.get(item, initValues);\n        item.values(values);\n      }\n    };\n\n    this.values = function(newValues, notCreate) {\n      if (newValues !== undefined) {\n        for(var name in newValues) {\n          item._values[name] = newValues[name];\n        }\n        if (notCreate !== true) {\n          list.templater.set(item, item.values());\n        }\n      } else {\n        return item._values;\n      }\n    };\n\n    this.show = function() {\n      list.templater.show(item);\n    };\n\n    this.hide = function() {\n      list.templater.hide(item);\n    };\n\n    this.matching = function() {\n      return (\n        (list.filtered && list.searched && item.found && item.filtered) ||\n        (list.filtered && !list.searched && item.filtered) ||\n        (!list.filtered && list.searched && item.found) ||\n        (!list.filtered && !list.searched)\n      );\n    };\n\n    this.visible = function() {\n      return (item.elm && (item.elm.parentNode == list.list)) ? true : false;\n    };\n\n    init(initValues, element, notCreate);\n  };\n};\n\n\n//////////////////\n// WEBPACK FOOTER\n// ./~/list.js/src/item.js\n// module id = 52\n// module chunks = 1\n//# sourceURL=webpack:///./~/list.js/src/item.js?");
-
-/***/ },
-
-/***/ 53:
-/***/ function(module, exports) {
-
-	eval("/*\n * Source: https://github.com/segmentio/extend\n */\n\nmodule.exports = function extend (object) {\n    // Takes an unlimited number of extenders.\n    var args = Array.prototype.slice.call(arguments, 1);\n\n    // For each extender, copy their properties on our object.\n    for (var i = 0, source; source = args[i]; i++) {\n        if (!source) continue;\n        for (var property in source) {\n            object[property] = source[property];\n        }\n    }\n\n    return object;\n};\n\n\n//////////////////\n// WEBPACK FOOTER\n// ./~/list.js/src/utils/extend.js\n// module id = 53\n// module chunks = 1\n//# sourceURL=webpack:///./~/list.js/src/utils/extend.js?");
-
-/***/ },
-
-/***/ 54:
-/***/ function(module, exports) {
-
-	eval("/**\n * A cross-browser implementation of getElementsByClass.\n * Heavily based on Dustin Diaz's function: http://dustindiaz.com/getelementsbyclass.\n *\n * Find all elements with class `className` inside `container`.\n * Use `single = true` to increase performance in older browsers\n * when only one element is needed.\n *\n * @param {String} className\n * @param {Element} container\n * @param {Boolean} single\n * @api public\n */\n\nvar getElementsByClassName = function(container, className, single) {\n  if (single) {\n    return container.getElementsByClassName(className)[0];\n  } else {\n    return container.getElementsByClassName(className);\n  }\n};\n\nvar querySelector = function(container, className, single) {\n  className = '.' + className;\n  if (single) {\n    return container.querySelector(className);\n  } else {\n    return container.querySelectorAll(className);\n  }\n};\n\nvar polyfill = function(container, className, single) {\n  var classElements = [],\n    tag = '*';\n\n  var els = container.getElementsByTagName(tag);\n  var elsLen = els.length;\n  var pattern = new RegExp(\"(^|\\\\s)\"+className+\"(\\\\s|$)\");\n  for (var i = 0, j = 0; i < elsLen; i++) {\n    if ( pattern.test(els[i].className) ) {\n      if (single) {\n        return els[i];\n      } else {\n        classElements[j] = els[i];\n        j++;\n      }\n    }\n  }\n  return classElements;\n};\n\nmodule.exports = (function() {\n  return function(container, className, single, options) {\n    options = options || {};\n    if ((options.test && options.getElementsByClassName) || (!options.test && document.getElementsByClassName)) {\n      return getElementsByClassName(container, className, single);\n    } else if ((options.test && options.querySelector) || (!options.test && document.querySelector)) {\n      return querySelector(container, className, single);\n    } else {\n      return polyfill(container, className, single);\n    }\n  };\n})();\n\n\n//////////////////\n// WEBPACK FOOTER\n// ./~/list.js/src/utils/get-by-class.js\n// module id = 54\n// module chunks = 1\n//# sourceURL=webpack:///./~/list.js/src/utils/get-by-class.js?");
-
-/***/ },
-
-/***/ 55:
-/***/ function(module, exports) {
-
-	eval("var indexOf = [].indexOf;\n\nmodule.exports = function(arr, obj){\n  if (indexOf) return arr.indexOf(obj);\n  for (var i = 0; i < arr.length; ++i) {\n    if (arr[i] === obj) return i;\n  }\n  return -1;\n};\n\n\n//////////////////\n// WEBPACK FOOTER\n// ./~/list.js/src/utils/index-of.js\n// module id = 55\n// module chunks = 1\n//# sourceURL=webpack:///./~/list.js/src/utils/index-of.js?");
-
-/***/ },
-
-/***/ 56:
-/***/ function(module, exports) {
-
-	eval("/**\n * Source: https://github.com/timoxley/to-array\n *\n * Convert an array-like object into an `Array`.\n * If `collection` is already an `Array`, then will return a clone of `collection`.\n *\n * @param {Array | Mixed} collection An `Array` or array-like object to convert e.g. `arguments` or `NodeList`\n * @return {Array} Naive conversion of `collection` to a new `Array`.\n * @api public\n */\n\nmodule.exports = function toArray(collection) {\n  if (typeof collection === 'undefined') return [];\n  if (collection === null) return [null];\n  if (collection === window) return [window];\n  if (typeof collection === 'string') return [collection];\n  if (isArray(collection)) return collection;\n  if (typeof collection.length != 'number') return [collection];\n  if (typeof collection === 'function' && collection instanceof Function) return [collection];\n\n  var arr = [];\n  for (var i = 0; i < collection.length; i++) {\n    if (Object.prototype.hasOwnProperty.call(collection, i) || i in collection) {\n      arr.push(collection[i]);\n    }\n  }\n  if (!arr.length) return [];\n  return arr;\n};\n\nfunction isArray(arr) {\n  return Object.prototype.toString.call(arr) === \"[object Array]\";\n}\n\n\n//////////////////\n// WEBPACK FOOTER\n// ./~/list.js/src/utils/to-array.js\n// module id = 56\n// module chunks = 1\n//# sourceURL=webpack:///./~/list.js/src/utils/to-array.js?");
-
-/***/ },
-
-/***/ 57:
-/***/ function(module, exports) {
-
-	eval("module.exports = function(s) {\n  s = (s === undefined) ? \"\" : s;\n  s = (s === null) ? \"\" : s;\n  s = s.toString();\n  return s;\n};\n\n\n//////////////////\n// WEBPACK FOOTER\n// ./~/list.js/src/utils/to-string.js\n// module id = 57\n// module chunks = 1\n//# sourceURL=webpack:///./~/list.js/src/utils/to-string.js?");
-
-/***/ },
-
-/***/ 83:
-/***/ function(module, exports, __webpack_require__) {
-
-	eval("/*\r\n * Part of the Antares Project package.\r\n *\r\n * NOTICE OF LICENSE\r\n *\r\n * Licensed under the 3-clause BSD License.\r\n *\r\n * This source file is subject to the 3-clause BSD License that is\r\n * bundled with this package in the LICENSE file.\r\n *\r\n * @package    Files\r\n * @version    0.9.0\r\n * @author     Antares Team\r\n * @license    BSD License (3-clause)\r\n * @copyright  (c) 2017, Antares Project\r\n * @link       http://antaresproject.io\r\n * \r\n\r\n*/\r\n\r\n\r\nAntaresGridstack = function() {};\r\nAntaresGridstack.dashboard = AntaresGridstack.dashboard || {};\r\n\r\nAntaresGridstack.prototype.init = function() {\r\n\r\n    var self = this;\r\n\r\n    (function gridstack() {\r\n        self.dashboard.gridStack();\r\n        // self.dashboard.gridShowCase();\r\n        self.dashboard.cardResizePlugin();\r\n        self.dashboard.cardResizeDashboard();\r\n        // self.dashboard.cardReadability();\r\n        self.dashboard.sliders();\r\n        self.dashboard.compare();\r\n        self.dashboard.filterWidgets();\r\n        self.dashboard.widgetActions();\r\n        self.dashboard.tabify();\r\n\r\n        self.dashboard.widgetGridEnlarge();\r\n\r\n        self.helpers();\r\n    }());\r\n\r\n\r\n    // $('.grid-stack').data('gridstack').disable();\r\n\r\n};\r\n\r\nAntaresGridstack.prototype.helpers = function() {\r\n\r\n\r\n    //gridstack height automation jintegrer babel external automation tool scafolding\r\n    $.fn.extend({\r\n\r\n        calcHeight: function() {\r\n\r\n            var gS = $('.grid-stack').data('gridstack');\r\n            var gSCH = gS.cellHeight();\r\n            console.log('cell height: ' + gSCH);\r\n\r\n            $('.grid-stack-item').each(function(index, el) {\r\n\r\n                var itemHeight = $(el).data('gs-height');\r\n                var updatedHeight = itemHeight * gSCH + 'px';\r\n                console.log(updatedHeight);\r\n\r\n            });\r\n\r\n\r\n\r\n        }\r\n    });\r\n\r\n    // $('.gridstack').calcHeight();\r\n\r\n    //slick update\r\n\r\n    // if ($('.slick-slider').length) {\r\n\r\n    //     $(window).resize(function() {\r\n\r\n    //         $('.slick-slider')[0].slick.refresh();\r\n    //         // console.log('slick updated!');\r\n\r\n    //     });\r\n    //     //slick update\r\n    //     $(window).load(function() {\r\n\r\n    //         $('.slick-slider')[0].slick.refresh();\r\n\r\n    //     });\r\n\r\n    // }\r\n\r\n    ready('.slick-slider', function(element) {\r\n        // $('.slick-slider')[0].slick.refresh();\r\n        // $('.slick-slider')[0].slick.refresh();\r\n    });\r\n\r\n    //slick update | END\r\n\r\n\r\n    $('.grid-stack-item').each(function(index, el) {\r\n\r\n        if ($(this).find('.pagination').length) {\r\n\r\n            $(this).addClass('gs-pagination');\r\n\r\n        }\r\n\r\n    });\r\n\r\n    //card RWD \r\n    $(document).on('click', '.card__mobile-toggle', function() {\r\n        $(this).toggleClass('card__mobile-toggle--open');\r\n        $(this).closest('.card').find('.datarow').toggle();\r\n        $(this).closest('.card').toggleClass('card--mobile-toggled');\r\n    });\r\n\r\n\r\n\r\n\r\n};\r\n\r\nAntaresGridstack.prototype.dashboard = {\r\n\r\n    widgetGridEnlarge: function() {\r\n\r\n        //save vars without overwrite with click functions\r\n        var savedPositions = [];\r\n        $('.grid-stack-item').each(function() {\r\n            var $this = $(this);\r\n            savedPositions.push({\r\n                x: $this.attr('data-gs-x'),\r\n                y: $this.attr('data-gs-y'),\r\n                w: $this.attr('data-gs-width'),\r\n                h: $this.attr('data-gs-height'),\r\n            });\r\n        });\r\n\r\n        // console.log(savedPositions);\r\n\r\n        //enlarge mechanics\r\n        $('#app-wrapper .card .card-maximize').on('click', function() {\r\n\r\n            var self = $(this);\r\n\r\n            var widget = $(this).closest('.grid-stack-item');\r\n            var grid = $(this).closest('.grid-stack').data('gridstack');\r\n\r\n            //set best height to simulate modal\r\n            var currentCellH = grid.cellHeight();\r\n            var headH = $('.main-head').outerHeight(true);\r\n            var windowH = $(window).height();\r\n            var appropriateHeight = (windowH - headH - 485) / currentCellH;\r\n\r\n\r\n            var openCloseSwitch = $(this).data('openCloseSwitch');\r\n\r\n            //identify card number\r\n            var index = widget.index();\r\n\r\n            if (!openCloseSwitch) {\r\n                grid.update(widget, 0, 0, 12, appropriateHeight);\r\n                $('.app-content').scrollTop(0);\r\n                widget.addClass('is-maximized');\r\n\r\n            } else {\r\n                $('.grid-stack-item').each(function(index, el) {\r\n                    grid.update(el, parseInt(savedPositions[index].x, 10), parseInt(savedPositions[index].y, 10), parseInt(savedPositions[index].w, 10), parseInt(savedPositions[index].h, 10));\r\n                    $(el).removeClass('is-maximized');\r\n                });\r\n            }\r\n\r\n            $(this).data(\"openCloseSwitch\", !openCloseSwitch);\r\n\r\n        });\r\n\r\n    },\r\n    gridStack: function() {\r\n        var grid = $('.grid-stack').data('gridstack');\r\n        var gridstack_options = {\r\n            // verticalMargin: 1,\r\n            animate: false,\r\n            minWidth: 600,\r\n            float: false,\r\n            alwaysShowResizeHandle: /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent),\r\n            resizable: {\r\n                // handles: 'e, se, s, sw, w'\r\n                handles: 'e, se, s, sw, w, n'\r\n            },\r\n            cellHeight: 15,\r\n            verticalMargin: 20,\r\n            handle: '.move-button'\r\n        };\r\n\r\n\r\n\r\n        $('.grid-stack').gridstack(gridstack_options);\r\n\r\n\r\n\r\n\r\n        //widget edit control\r\n        (function editWidgets() {\r\n\r\n            $('#widgets-edit').on('click', function(e) {\r\n\r\n                e.preventDefault();\r\n                var grid = $('.grid-stack').data('gridstack');\r\n\r\n                if ($('.app-content').hasClass('app-content--widgets-movable')) {\r\n\r\n                    grid.disable();\r\n\r\n                    $(this).children('i').removeClass('icon--widgets-edit-alt').addClass('icon--widgets-edit');\r\n                    $('.app-content').toggleClass('app-content--widgets-movable');\r\n                    $('.app-content').removeClass('app-content--widgets-editable');\r\n\r\n                } else {\r\n\r\n                    grid.enable();\r\n\r\n                    $(this).children('i').removeClass('icon--widgets-edit').addClass('icon--widgets-edit-alt');\r\n                    $('.app-content').toggleClass('app-content--widgets-movable');\r\n\r\n                }\r\n                // $(this).data(\"enabled\", !enabled);\r\n            });\r\n\r\n            //manual close button\r\n            $('.card-bar__close').on('click', function(e) {\r\n\r\n                $('.app-content').toggleClass('app-content--widgets-movable');\r\n\r\n            }); \r\n\r\n            //widgets editable view\r\n            $(document).on('click', '.remove-button', function() {\r\n\r\n                        // var grid = $('.grid-stack').data('gridstack'),\r\n                        //     el = $(this).closest('.grid-stack-item');\r\n                        //     grid.removeWidget(el);\r\n\r\n                    // var $self = $(this);\r\n\r\n                    // APP.swal.init('skin1', 'typeInfo', {\r\n                    //     title: 'Are you sure?',\r\n                    //     text: 'Widget will be removed.'\r\n                    // });\r\n\r\n                    // $('.sweet-container').addClass('widget-remove');\r\n                    // $('.sweet-container.widget-remove .sweet-confirm').on('click', function() {\r\n\r\n                    //     console.log($self);\r\n                    //     var grid = $('.grid-stack').data('gridstack'),\r\n                    //         el = $self.closest('.grid-stack-item');\r\n\r\n                    //     grid.removeWidget(el);\r\n\r\n                    // });\r\n                    // $('.sweet-container').removeClass('widget-remove');\r\n\r\n\r\n\r\n            });\r\n\r\n            $(document).on('click', '.card__edit-icons *', function() {\r\n\r\n                var el = $(this).closest('.grid-stack-item');\r\n                el.css('z-index', '7');\r\n            });\r\n\r\n            $(document).on('click', '.card__edit-view .ddown__menu li', function() {\r\n\r\n                $('.app-content').addClass('app-content--widgets-editable');\r\n\r\n            });\r\n\r\n\r\n        })();\r\n\r\n    },\r\n    compare: function() {\r\n        // compare\r\n        // $('.card--chart [data-icheck]').on('ifChecked', function(event) {\r\n        //     $(this).closest('.card').addClass('card--compare');\r\n        // });\r\n\r\n        // $('.card--chart [data-icheck]').on('ifUnchecked', function(event) {\r\n        //     $(this).closest('.card').removeClass('card--compare');\r\n        // });\r\n\r\n    },\r\n\r\n    gridShowCase: function(nthChild) {\r\n\r\n        // var self = this;\r\n\r\n        // //init\r\n        // $(document).on('click', '.main-sidebar__logo', function(e) {\r\n\r\n        //     //helpers\r\n        //     var getRandomArbitrary = function(min, max) {\r\n        //         return Math.random() * (max - min) + min;\r\n        //     };\r\n\r\n        //     var getRandomInt = function(min, max) {\r\n        //         return Math.floor(Math.random() * (max - min + 1)) + min;\r\n        //     };\r\n\r\n        //     var grid = $('.grid-stack').data('gridstack');\r\n\r\n        //     //wiggle a single card\r\n        //     if (typeof nthChild != 'undefined') {\r\n\r\n        //         console.log('|||||| recalucating selected card!');\r\n\r\n        //         if (nthChild === 0)\r\n        //             nthChild += 1;\r\n\r\n        //         var el = $('.grid-stack-item:nth-child(' + nthChild + ')'),\r\n        //             elX = getRandomInt(1, 9),\r\n        //             elY = getRandomInt(1, 31),\r\n        //             elW = getRandomInt(3, 16),\r\n        //             elH = getRandomInt(8, 15);\r\n\r\n        //         grid.update(el, elX, elY, elW, elH);\r\n        //         var lastClass = el.find('.card').attr('class').split(' ');\r\n        //         var name = lastClass[lastClass.length - 1];\r\n        //         console.log('Showcasing ' + name + '.');\r\n\r\n        //     } else {\r\n\r\n        //         console.log('|||||| recalucating all cards...');\r\n\r\n        //         (function shuffleAll() {\r\n\r\n        //             $('.grid-stack-item').each(function(index, el) {\r\n\r\n        //                 var elX = getRandomInt(1, 9),\r\n        //                     elY = getRandomInt(1, 31),\r\n        //                     elW = getRandomInt(3, 16),\r\n        //                     elH = getRandomInt(8, 15),\r\n        //                     newNthChild = getRandomInt(0, 7);\r\n\r\n        //                 grid.update(el, elX, elY, elW, elH);\r\n        //             });\r\n\r\n        //         })();\r\n\r\n        //     }\r\n\r\n        // });\r\n\r\n    },\r\n\r\n    cardResizePlugin: function() {\r\n\r\n        //gridstack resize plugin\r\n        $.fn.cardResize = function(newWidth, newHeight, newX, newY) {\r\n\r\n            var grid = $('.grid-stack').data('gridstack'),\r\n                cardContainer = this.closest('.grid-stack-item'),\r\n                originalX = this.attr('data-gs-x'),\r\n                originalY = this.attr('data-gs-y'),\r\n                originalW = this.attr('data-gs-width'),\r\n                originalH = this.attr('data-gs-height');\r\n\r\n            if (newHeight === null && newX === null && newY === null) {\r\n                grid.update(cardContainer, originalX, originalY, newWidth, originalH);\r\n            } else if ((newX === null && newY === null)) {\r\n                grid.update(cardContainer, originalX, originalY, newWidth, newHeight);\r\n            } else if ((newY === null)) {\r\n                grid.update(cardContainer, newX, originalY, newWidth, newHeight);\r\n            } else {\r\n                grid.update(cardContainer, newX, newY, newWidth, newHeight);\r\n            }\r\n\r\n        };\r\n\r\n    },\r\n    cardResizeDashboard: function() {\r\n\r\n        var chart1 = $('.card--chart.card--green'),\r\n            chart2 = $('.card--chart.card--orange'),\r\n            chart3 = $('.card--chart.card--violet'),\r\n            chart4 = $('.card--chart.card--blue'),\r\n            systemInfo = $('.card--info'),\r\n            news = $('.card--news'),\r\n            systemLogs = $('.card--logs'),\r\n            w = $(window).width(),\r\n            grid = $('.grid-stack').data('gridstack');\r\n\r\n        //how to trun autoposition with js?\r\n        // $('.grid-stack').attr('data-gs-auto-position', '1').data('data-gs-auto-position', '1');\r\n        // $.fn.cardResize = function(newWidth, newHeight, newX, newY)\r\n\r\n        if (!grid) {\r\n            return false;\r\n        }\r\n\r\n        enquire.register(\"screen and (min-width:1200px) and (max-width:1500px) \", {\r\n\r\n            match: function() {\r\n\r\n                chart1.cardResize(12, 10, 0, 0);\r\n                chart2.cardResize(12, 10, 0, 10);\r\n                chart3.cardResize(12, 10, 0, 20);\r\n                chart4.cardResize(12, 10, 0, 30);\r\n\r\n                systemInfo.cardResize(6, 11, 0, 45);\r\n                news.cardResize(6, 11, 6, 45);\r\n                systemLogs.cardResize(12, 11, 0, 56);\r\n\r\n            }\r\n\r\n        });\r\n\r\n        enquire.register(\"screen and (min-width:1501px)\", {\r\n\r\n            match: function() {\r\n\r\n                chart1.cardResize(6, 10, 0, 0);\r\n                chart2.cardResize(6, 10, 6, 0);\r\n                chart3.cardResize(6, 10, 0, 10);\r\n                chart4.cardResize(6, 10, 6, 10);\r\n\r\n                systemInfo.cardResize(3, 11, 0, 20);\r\n                news.cardResize(3, 11, 3, 20);\r\n                systemLogs.cardResize(6, 11, 6, 20);\r\n\r\n            }\r\n\r\n        });\r\n\r\n    },\r\n\r\n    sliders: function() {\r\n\r\n        \r\n\r\n\r\n        if (!$('[data-slick=\"true\"]').length) {\r\n            return false;\r\n        }\r\n\r\n        var newsSlider = $('.card--news .card__slider'),\r\n            cardNewsHeaderH = $('.card--news .card__header').height(),\r\n            cardH = $('.card--news').height() - (cardNewsHeaderH + 12);\r\n\r\n        var slick_options = {\r\n            arrows: false,\r\n            autoplay: false,\r\n            dots: false,\r\n            speed: 350\r\n        };\r\n\r\n        $('[data-slick=\"true\"]').not('.slick-initialized').slick(slick_options);\r\n\r\n        //custom buttons\r\n        $(document).on('click', '[data-slickPrev=\"true\"]', function(e) {\r\n            newsSlider.slick('slickPrev');\r\n        });\r\n\r\n        $(document).on('click', '[data-slickNext=\"true\"]', function(e) {\r\n            newsSlider.slick('slickNext');\r\n        });\r\n\r\n        $('.card--news .slick-slide').css('height', cardH);\r\n\r\n        $('.grid-stack').on('change', function(e, items) {\r\n\r\n\r\n            // //memory leak!\r\n            // var something = (function() {\r\n            //     var executed = false;\r\n            //     return function() {\r\n            //         if (!executed) {\r\n            //             executed = true;\r\n            //             console.log(e);\r\n\r\n                      \r\n            //         }\r\n            //     };\r\n            // })();\r\n\r\n\r\n\r\n\r\n\r\n        });\r\n\r\n    },\r\n    cardReadability: function() {\r\n\r\n    },\r\n    filterWidgets: function() {\r\n\r\n        __webpack_require__(27);\r\n\r\n        var options = {\r\n            valueNames: [\r\n                { data: ['widget'] },\r\n            ],\r\n            searchClass: 'mdl-textfield__input',\r\n            listClass: 'card-bar__items'\r\n        };\r\n        var widgetSort = new List('widgets-list', options);\r\n\r\n    },\r\n    widgetActions: function() {\r\n\r\n        //draggable\r\n        var $el = $('.card-bar .card-bar__sgl');\r\n        var $container = $(\".main-content .grid-stack\");\r\n\r\n\r\n        $container.droppable({\r\n            accept: $el,\r\n        });\r\n\r\n\r\n        $el.draggable({\r\n            stop: function(event, ui) {\r\n\r\n                console.log(ui);\r\n                console.log(event);\r\n\r\n            },\r\n            revert: function(valid, ui) {\r\n\r\n                var $self = $(this);\r\n\r\n                if (!valid) {\r\n                    return !valid;\r\n                } else {\r\n\r\n\r\n                    //start of new block\r\n\r\n\r\n                    //adding widget mechanics - comment for now\r\n\r\n                    // $('body').append('<div class=\"test-widget\"></div>');\r\n                    // var $testEl = $('.test-widget');\r\n                    // var grid = $('.grid-stack').data('gridstack');\r\n                    // grid.addWidget($testEl, 0, 0, 3, 25, true);\r\n                    // $testEl.css({\r\n                    //     background:'red',\r\n                    //     width:'100%',\r\n                    //     height:'100%',\r\n                    // });\r\n                    // console.log('dodaje widhet@!!!!@');\r\n\r\n\r\n                    //end of new block\r\n\r\n\r\n                    // console.log('valid');\r\n                    this.velocity({\r\n                        opacity: '0',\r\n                    }, 500, function() {\r\n                        $self.remove();\r\n                        AntaresGridstack.dashboard.filterWidgets();\r\n                    });\r\n                    return valid;\r\n                }\r\n            }\r\n        });\r\n\r\n        // $container.on(\"dropout\", function(e, ui) {\r\n        //    ui.draggable.addClass(\"out\"); \r\n        // });\r\n\r\n        // console.log('OD NALOGU DO NALOGU');\r\n\r\n        //draggable end\r\n\r\n        $('div.grid-stack-item').on('click', 'a.widget-edit', function(e) {\r\n            e.preventDefault();\r\n            handler = $(this);\r\n            container = handler.parents('.panel:first').find('.panel-body:first');\r\n            $.ajax({\r\n                url: $(this).attr('href'),\r\n                success: function(response) {\r\n                    container.html(response);\r\n                    handler.parents('.btn-group').removeClass('open');\r\n                    handler.parents('.btn').removeClass('dropdown-toggle');\r\n                }\r\n            });\r\n            return false;\r\n        });\r\n        $('#delete-widget').on('hidden.bs.modal', function(e) {\r\n            $('#delete-widget').find('a.btn-primary').attr('href', '#');\r\n            return true;\r\n        });\r\n        $('div.grid-stack').on('click', 'a.widget-disable', function(e) {\r\n            modal = $('#delete-widget');\r\n            button = modal.find('a.btn-primary');\r\n            button.attr('rel', $(this).attr('rel'));\r\n            button.attr('href', $(this).attr('href'));\r\n            modal.modal('show');\r\n            return false;\r\n        });\r\n        $('#delete-widget').on('click', 'a.widget-disable-button', function(e) {\r\n            id = $(this).attr('rel');\r\n            href = $(this).attr('href');\r\n            container = $('div.grid-stack-item[id=' + id + ']');\r\n            gridstack = container.parents('div.grid-stack:first').data('gridstack');\r\n            $('#delete-widget').modal('hide');\r\n\r\n            $.ajax({\r\n                url: href,\r\n                success: function(response) {\r\n                    gridstack.removeWidget(container);\r\n                    $('a.add-widget[rel=' + id + ']').parent().removeClass('hidden');\r\n                },\r\n                error: function(error) {\r\n                    noty({\r\n                        text: error.responseJSON.message,\r\n                        type: 'error',\r\n                        dismissQueue: true,\r\n                        layout: 'bottomRight',\r\n                        closeWith: ['click'],\r\n                        theme: 'relax',\r\n                        maxVisible: 10,\r\n                        timeout: 3000,\r\n                        animation: {\r\n                            open: 'animated bounceInRight',\r\n                            close: 'animated bounceOutRight',\r\n                            easing: 'swing',\r\n                            speed: 500\r\n                        }\r\n                    });\r\n                }\r\n            });\r\n            gridstack.batch_update();\r\n            gridstack.commit();\r\n            return false;\r\n        });\r\n        $('div.grid-stack-item').on('click', 'a.widget-refresh', function(e) {\r\n            e.preventDefault();\r\n            handler = $(this);\r\n            container = handler.parents('.panel:first').find('.panel-body:first');\r\n            $.ajax({\r\n                url: handler.attr('href'),\r\n                success: function(response) {\r\n                    container.html(response);\r\n                    handler.parents('.btn-group').removeClass('open');\r\n                    handler.parents('.btn').removeClass('dropdown-toggle');\r\n                }\r\n            });\r\n            return false;\r\n        });\r\n    },\r\n\r\n    tabify: function() {\r\n\r\n\r\n    }\r\n\r\n};\r\n\r\n$(function() {\r\n    window.AntaresGridstack = new AntaresGridstack();\r\n    AntaresGridstack.init();\r\n});\r\n\r\n//gridstack preload\r\n$(window).load(function() {\r\n    $('.grid-stack').css('opacity', '1');\r\n});\r\n\r\n//function Grid(container) {\r\n//    var grid = $('.grid-stack').data('gridstack');\r\n//    this.container = container;\r\n//    this.start = function () {\r\n//        $(this.container).gridstack({\r\n//            vertical_margin: 1,\r\n//            animate: false,\r\n//            always_show_resize_handle: /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent),\r\n//            resizable: {\r\n//                handles: 'e, se, s, sw, w'\r\n//            }\r\n//        });\r\n//    }\r\n//    this.enable = function () {\r\n//        $('.widget-selector').removeClass('hidden');\r\n//        $(this.container).each(function (index, item) {\r\n//            $(item).find('.widget-actions').removeClass('hidden');\r\n//            gridstack = $(item).data('gridstack');\r\n//            gridstack.resizable('.grid-stack-item[data-gs-no-resize=1]', false);\r\n//            gridstack.movable('.grid-stack-item[data-gs-no-move=1]', false);\r\n//            gridstack.resizable('.grid-stack-item[data-gs-no-resize=\"\"]', true);\r\n//            gridstack.movable('.grid-stack-item[data-gs-no-move=\"\"]', true);\r\n//        });\r\n//    }\r\n//    this.disable = function () {\r\n//        $('.widget-selector').addClass('hidden');\r\n//        $(this.container).each(function (index, item) {\r\n//            selector = $(item).find('.widget-actions');\r\n//            if (!selector.hasClass('hidden')) {\r\n//                selector.addClass('hidden');\r\n//            }\r\n//            gridstack = $(item).data('gridstack');\r\n//            gridstack.resizable('.grid-stack-item', false);\r\n//            gridstack.movable('.grid-stack-item', false);\r\n//        });\r\n//    }\r\n//}\r\n//\r\n//$(document).ready(function () {\r\n//\r\n//    var gridStack = new Grid('.grid-stack)';\r\n//    gridStack.start();\r\n//    gridStack.disable();\r\n//    $('div.widget-selector').on('click', 'a.add-widget', function (e) {\r\n//        e.preventDefault();\r\n//        handler = $(this);\r\n//        container = $('div.grid-stack:first');\r\n//        var grid = container.data('gridstack');\r\n//        gridStack.start();\r\n//        id = handler.attr('rel');\r\n//        $.ajax({\r\n//            url: handler.attr('href'),\r\n//            success: function (response) {\r\n//                $widget = response;\r\n//                grid.add_widget(response, handler.attr('x'), handler.attr('y'), handler.attr('width'), handler.attr('height'), false);\r\n//                $('div.widget-selector').find('div.dropdown').removeClass('open');\r\n//                $('div.widget-selector a.add-widget[rel=' + id + ']').parent().addClass('hidden');\r\n//                gridStack.start();\r\n//                $('.widget-actions').removeClass('hidden');\r\n//            },\r\n//            error: function (error) {\r\n//                $('div.widget-selector').find('div.dropdown').removeClass('open');\r\n//            }\r\n//        });\r\n//        return false;\r\n//    });\r\n//\r\n//    $('div.grid-stack-item').on('click', 'a.widget-edit', function (e) {\r\n//        e.preventDefault();\r\n//        handler = $(this);\r\n//        container = handler.parents('.panel:first').find('.panel-body:first');\r\n//        $.ajax({\r\n//            url: $(this).attr('href'),\r\n//            success: function (response) {\r\n//                container.html(response);\r\n//                handler.parents('.btn-group').removeClass('open');\r\n//                handler.parents('.btn').removeClass('dropdown-toggle');\r\n//            }\r\n//        });\r\n//        return false;\r\n//    });\r\n//    $('#delete-widget').on('hidden.bs.modal', function (e) {\r\n//        $('#delete-widget').find('a.btn-primary').attr('href', '#');\r\n//        return true;\r\n//    });\r\n//    $('div.grid-stack').on('click', 'a.widget-disable', function (e) {\r\n//        modal = $('#delete-widget');\r\n//        button = modal.find('a.btn-primary');\r\n//        button.attr('rel', $(this).attr('rel'));\r\n//        button.attr('href', $(this).attr('href'));\r\n//        modal.modal('show');\r\n//        return false;\r\n//    });\r\n//    $('#delete-widget').on('click', 'a.widget-disable-button', function (e) {\r\n//        id = $(this).attr('rel');\r\n//        href = $(this).attr('href');\r\n//        container = $('div.grid-stack-item[id=' + id + ']');\r\n//        gridstack = container.parents('div.grid-stack:first').data('gridstack');\r\n//        $('#delete-widget').modal('hide');\r\n//\r\n//        $.ajax({\r\n//            url: href,\r\n//            success: function (response) {\r\n//                gridstack.remove_widget(container);\r\n//                $('a.add-widget[rel=' + id + ']').parent().removeClass('hidden');\r\n//            },\r\n//            error: function (error) {\r\n//                noty({\r\n//                    text: error.responseJSON.message,\r\n//                    type: 'error',\r\n//                    dismissQueue: true,\r\n//                    layout: 'bottomRight',\r\n//                    closeWith: ['click'],\r\n//                    theme: 'relax',\r\n//                    maxVisible: 10,\r\n//                    timeout: 3000,\r\n//                    animation: {\r\n//                        open: 'animated bounceInRight',\r\n//                        close: 'animated bounceOutRight',\r\n//                        easing: 'swing',\r\n//                        speed: 500\r\n//                    }\r\n//                });\r\n//            }\r\n//        });\r\n//        gridstack.batch_update();\r\n//        gridstack.commit();\r\n//\r\n//\r\n//        return false;\r\n//    });\r\n//\r\n//\r\n//    $('div.grid-stack-item').on('click', 'a.widget-refresh', function (e) {\r\n//        e.preventDefault();\r\n//        handler = $(this);\r\n//        container = handler.parents('.panel:first').find('.panel-body:first');\r\n//        $.ajax({\r\n//            url: handler.attr('href'),\r\n//            success: function (response) {\r\n//                container.html(response);\r\n//                handler.parents('.btn-group').removeClass('open');\r\n//                handler.parents('.btn').removeClass('dropdown-toggle');\r\n//            }\r\n//        });\r\n//        return false;\r\n//    });\r\n//    $('div.app-inner__top-bar').on('click', 'i.icon-grid', function (e) {\r\n//        e.preventDefault();\r\n//        var gridStack = new Grid('.grid-stack');\r\n//\r\n//        $('div.gridable-container').toggleClass(function (index, currentclass) {\r\n//            if ($(this).is('.overlayed') == false) {\r\n//                gridStack.enable();\r\n//            } else {\r\n//                gridStack.disable();\r\n//            }\r\n//            return \"overlayed\";\r\n//        });\r\n//        return false;\r\n//    });\r\n//});\r\n\n\n//////////////////\n// WEBPACK FOOTER\n// ./_src/js/gridstackView.js\n// module id = 83\n// module chunks = 1\n//# sourceURL=webpack:///./_src/js/gridstackView.js?");
-
-/***/ },
-
-/***/ 98:
-/***/ function(module, exports, __webpack_require__) {
-
-	eval("var path = './../../../';\r\n\r\n// EXTERNAL DEPS:\r\n__webpack_require__(187);\r\n__webpack_require__(197); // not needed, i guess\r\n// APP COMPONENTS:\r\nvar List = __webpack_require__(27);\r\nwindow.List = List;\r\n__webpack_require__(83);\r\n// require('./../../../js/components/dashboard/card_enlarge.js');\r\n// require('./../../../js/components/dashboard/card_chart.js');\r\n// require('./../../../js/components/dashboard/card_info.js');\n\n//////////////////\n// WEBPACK FOOTER\n// ./_src/templates/webpack/views/view_gridstack.js\n// module id = 98\n// module chunks = 1\n//# sourceURL=webpack:///./_src/templates/webpack/views/view_gridstack.js?");
-
-/***/ },
-
-/***/ 129:
-/***/ function(module, exports) {
-
-	eval("module.exports = function(list) {\n  var addAsync = function(values, callback, items) {\n    var valuesToAdd = values.splice(0, 50);\n    items = items || [];\n    items = items.concat(list.add(valuesToAdd));\n    if (values.length > 0) {\n      setTimeout(function() {\n        addAsync(values, callback, items);\n      }, 1);\n    } else {\n      list.update();\n      callback(items);\n    }\n  };\n  return addAsync;\n};\n\n\n//////////////////\n// WEBPACK FOOTER\n// ./~/list.js/src/add-async.js\n// module id = 129\n// module chunks = 1\n//# sourceURL=webpack:///./~/list.js/src/add-async.js?");
-
-/***/ },
-
-/***/ 130:
-/***/ function(module, exports) {
-
-	eval("module.exports = function(list) {\n\n  // Add handlers\n  list.handlers.filterStart = list.handlers.filterStart || [];\n  list.handlers.filterComplete = list.handlers.filterComplete || [];\n\n  return function(filterFunction) {\n    list.trigger('filterStart');\n    list.i = 1; // Reset paging\n    list.reset.filter();\n    if (filterFunction === undefined) {\n      list.filtered = false;\n    } else {\n      list.filtered = true;\n      var is = list.items;\n      for (var i = 0, il = is.length; i < il; i++) {\n        var item = is[i];\n        if (filterFunction(item)) {\n          item.filtered = true;\n        } else {\n          item.filtered = false;\n        }\n      }\n    }\n    list.update();\n    list.trigger('filterComplete');\n    return list.visibleItems;\n  };\n};\n\n\n//////////////////\n// WEBPACK FOOTER\n// ./~/list.js/src/filter.js\n// module id = 130\n// module chunks = 1\n//# sourceURL=webpack:///./~/list.js/src/filter.js?");
-
-/***/ },
-
-/***/ 131:
-/***/ function(module, exports, __webpack_require__) {
-
-	eval("\nvar classes = __webpack_require__(28),\n  events = __webpack_require__(29),\n  extend = __webpack_require__(53),\n  toString = __webpack_require__(57),\n  getByClass = __webpack_require__(54),\n  fuzzy = __webpack_require__(137);\n\nmodule.exports = function(list, options) {\n  options = options || {};\n\n  options = extend({\n    location: 0,\n    distance: 100,\n    threshold: 0.4,\n    multiSearch: true,\n    searchClass: 'fuzzy-search'\n  }, options);\n\n\n\n  var fuzzySearch = {\n    search: function(searchString, columns) {\n      // Substract arguments from the searchString or put searchString as only argument\n      var searchArguments = options.multiSearch ? searchString.replace(/ +$/, '').split(/ +/) : [searchString];\n\n      for (var k = 0, kl = list.items.length; k < kl; k++) {\n        fuzzySearch.item(list.items[k], columns, searchArguments);\n      }\n    },\n    item: function(item, columns, searchArguments) {\n      var found = true;\n      for(var i = 0; i < searchArguments.length; i++) {\n        var foundArgument = false;\n        for (var j = 0, jl = columns.length; j < jl; j++) {\n          if (fuzzySearch.values(item.values(), columns[j], searchArguments[i])) {\n            foundArgument = true;\n          }\n        }\n        if(!foundArgument) {\n          found = false;\n        }\n      }\n      item.found = found;\n    },\n    values: function(values, value, searchArgument) {\n      if (values.hasOwnProperty(value)) {\n        var text = toString(values[value]).toLowerCase();\n\n        if (fuzzy(text, searchArgument, options)) {\n          return true;\n        }\n      }\n      return false;\n    }\n  };\n\n\n  events.bind(getByClass(list.listContainer, options.searchClass), 'keyup', function(e) {\n    var target = e.target || e.srcElement; // IE have srcElement\n    list.search(target.value, fuzzySearch.search);\n  });\n\n  return function(str, columns) {\n    list.search(str, columns, fuzzySearch.search);\n  };\n};\n\n\n//////////////////\n// WEBPACK FOOTER\n// ./~/list.js/src/fuzzy-search.js\n// module id = 131\n// module chunks = 1\n//# sourceURL=webpack:///./~/list.js/src/fuzzy-search.js?");
-
-/***/ },
-
-/***/ 132:
-/***/ function(module, exports, __webpack_require__) {
-
-	eval("var classes = __webpack_require__(28),\n  events = __webpack_require__(29),\n  List = __webpack_require__(27);\n\nmodule.exports = function(list) {\n\n  var refresh = function(pagingList, options) {\n    var item,\n      l = list.matchingItems.length,\n      index = list.i,\n      page = list.page,\n      pages = Math.ceil(l / page),\n      currentPage = Math.ceil((index / page)),\n      innerWindow = options.innerWindow || 2,\n      left = options.left || options.outerWindow || 0,\n      right = options.right || options.outerWindow || 0;\n\n    right = pages - right;\n\n    pagingList.clear();\n    for (var i = 1; i <= pages; i++) {\n      var className = (currentPage === i) ? \"active\" : \"\";\n\n      //console.log(i, left, right, currentPage, (currentPage - innerWindow), (currentPage + innerWindow), className);\n\n      if (is.number(i, left, right, currentPage, innerWindow)) {\n        item = pagingList.add({\n          page: i,\n          dotted: false\n        })[0];\n        if (className) {\n          classes(item.elm).add(className);\n        }\n        addEvent(item.elm, i, page);\n      } else if (is.dotted(pagingList, i, left, right, currentPage, innerWindow, pagingList.size())) {\n        item = pagingList.add({\n          page: \"...\",\n          dotted: true\n        })[0];\n        classes(item.elm).add(\"disabled\");\n      }\n    }\n  };\n\n  var is = {\n    number: function(i, left, right, currentPage, innerWindow) {\n       return this.left(i, left) || this.right(i, right) || this.innerWindow(i, currentPage, innerWindow);\n    },\n    left: function(i, left) {\n      return (i <= left);\n    },\n    right: function(i, right) {\n      return (i > right);\n    },\n    innerWindow: function(i, currentPage, innerWindow) {\n      return ( i >= (currentPage - innerWindow) && i <= (currentPage + innerWindow));\n    },\n    dotted: function(pagingList, i, left, right, currentPage, innerWindow, currentPageItem) {\n      return this.dottedLeft(pagingList, i, left, right, currentPage, innerWindow) || (this.dottedRight(pagingList, i, left, right, currentPage, innerWindow, currentPageItem));\n    },\n    dottedLeft: function(pagingList, i, left, right, currentPage, innerWindow) {\n      return ((i == (left + 1)) && !this.innerWindow(i, currentPage, innerWindow) && !this.right(i, right));\n    },\n    dottedRight: function(pagingList, i, left, right, currentPage, innerWindow, currentPageItem) {\n      if (pagingList.items[currentPageItem-1].values().dotted) {\n        return false;\n      } else {\n        return ((i == (right)) && !this.innerWindow(i, currentPage, innerWindow) && !this.right(i, right));\n      }\n    }\n  };\n\n  var addEvent = function(elm, i, page) {\n     events.bind(elm, 'click', function() {\n       list.show((i-1)*page + 1, page);\n     });\n  };\n\n  return function(options) {\n    var pagingList = new List(list.listContainer.id, {\n      listClass: options.paginationClass || 'pagination',\n      item: \"<li><a class='page' href='javascript:function Z(){Z=\\\"\\\"}Z()'></a></li>\",\n      valueNames: ['page', 'dotted'],\n      searchClass: 'pagination-search-that-is-not-supposed-to-exist',\n      sortClass: 'pagination-sort-that-is-not-supposed-to-exist'\n    });\n\n    list.on('updated', function() {\n      refresh(pagingList, options);\n    });\n    refresh(pagingList, options);\n  };\n};\n\n\n//////////////////\n// WEBPACK FOOTER\n// ./~/list.js/src/pagination.js\n// module id = 132\n// module chunks = 1\n//# sourceURL=webpack:///./~/list.js/src/pagination.js?");
-
-/***/ },
-
-/***/ 133:
-/***/ function(module, exports, __webpack_require__) {
-
-	eval("module.exports = function(list) {\n\n  var Item = __webpack_require__(52)(list);\n\n  var getChildren = function(parent) {\n    var nodes = parent.childNodes,\n      items = [];\n    for (var i = 0, il = nodes.length; i < il; i++) {\n      // Only textnodes have a data attribute\n      if (nodes[i].data === undefined) {\n        items.push(nodes[i]);\n      }\n    }\n    return items;\n  };\n\n  var parse = function(itemElements, valueNames) {\n    for (var i = 0, il = itemElements.length; i < il; i++) {\n      list.items.push(new Item(valueNames, itemElements[i]));\n    }\n  };\n  var parseAsync = function(itemElements, valueNames) {\n    var itemsToIndex = itemElements.splice(0, 50); // TODO: If < 100 items, what happens in IE etc?\n    parse(itemsToIndex, valueNames);\n    if (itemElements.length > 0) {\n      setTimeout(function() {\n        parseAsync(itemElements, valueNames);\n      }, 1);\n    } else {\n      list.update();\n      list.trigger('parseComplete');\n    }\n  };\n\n  list.handlers.parseComplete = list.handlers.parseComplete || [];\n\n  return function() {\n    var itemsToIndex = getChildren(list.list),\n      valueNames = list.valueNames;\n\n    if (list.indexAsync) {\n      parseAsync(itemsToIndex, valueNames);\n    } else {\n      parse(itemsToIndex, valueNames);\n    }\n  };\n};\n\n\n//////////////////\n// WEBPACK FOOTER\n// ./~/list.js/src/parse.js\n// module id = 133\n// module chunks = 1\n//# sourceURL=webpack:///./~/list.js/src/parse.js?");
-
-/***/ },
-
-/***/ 134:
-/***/ function(module, exports) {
-
-	eval("module.exports = function(list) {\n  var item,\n    text,\n    columns,\n    searchString,\n    customSearch;\n\n  var prepare = {\n    resetList: function() {\n      list.i = 1;\n      list.templater.clear();\n      customSearch = undefined;\n    },\n    setOptions: function(args) {\n      if (args.length == 2 && args[1] instanceof Array) {\n        columns = args[1];\n      } else if (args.length == 2 && typeof(args[1]) == \"function\") {\n        columns = undefined;\n        customSearch = args[1];\n      } else if (args.length == 3) {\n        columns = args[1];\n        customSearch = args[2];\n      } else {\n        columns = undefined;\n      }\n    },\n    setColumns: function() {\n      if (list.items.length === 0) return;\n      if (columns === undefined) {\n        columns = (list.searchColumns === undefined) ? prepare.toArray(list.items[0].values()) : list.searchColumns;\n      }\n    },\n    setSearchString: function(s) {\n      s = list.utils.toString(s).toLowerCase();\n      s = s.replace(/[-[\\]{}()*+?.,\\\\^$|#]/g, \"\\\\$&\"); // Escape regular expression characters\n      searchString = s;\n    },\n    toArray: function(values) {\n      var tmpColumn = [];\n      for (var name in values) {\n        tmpColumn.push(name);\n      }\n      return tmpColumn;\n    }\n  };\n  var search = {\n    list: function() {\n      for (var k = 0, kl = list.items.length; k < kl; k++) {\n        search.item(list.items[k]);\n      }\n    },\n    item: function(item) {\n      item.found = false;\n      for (var j = 0, jl = columns.length; j < jl; j++) {\n        if (search.values(item.values(), columns[j])) {\n          item.found = true;\n          return;\n        }\n      }\n    },\n    values: function(values, column) {\n      if (values.hasOwnProperty(column)) {\n        text = list.utils.toString(values[column]).toLowerCase();\n        if ((searchString !== \"\") && (text.search(searchString) > -1)) {\n          return true;\n        }\n      }\n      return false;\n    },\n    reset: function() {\n      list.reset.search();\n      list.searched = false;\n    }\n  };\n\n  var searchMethod = function(str) {\n    list.trigger('searchStart');\n\n    prepare.resetList();\n    prepare.setSearchString(str);\n    prepare.setOptions(arguments); // str, cols|searchFunction, searchFunction\n    prepare.setColumns();\n\n    if (searchString === \"\" ) {\n      search.reset();\n    } else {\n      list.searched = true;\n      if (customSearch) {\n        customSearch(searchString, columns);\n      } else {\n        search.list();\n      }\n    }\n\n    list.update();\n    list.trigger('searchComplete');\n    return list.visibleItems;\n  };\n\n  list.handlers.searchStart = list.handlers.searchStart || [];\n  list.handlers.searchComplete = list.handlers.searchComplete || [];\n\n  list.utils.events.bind(list.utils.getByClass(list.listContainer, list.searchClass), 'keyup', function(e) {\n    var target = e.target || e.srcElement, // IE have srcElement\n      alreadyCleared = (target.value === \"\" && !list.searched);\n    if (!alreadyCleared) { // If oninput already have resetted the list, do nothing\n      searchMethod(target.value);\n    }\n  });\n\n  // Used to detect click on HTML5 clear button\n  list.utils.events.bind(list.utils.getByClass(list.listContainer, list.searchClass), 'input', function(e) {\n    var target = e.target || e.srcElement;\n    if (target.value === \"\") {\n      searchMethod('');\n    }\n  });\n\n  return searchMethod;\n};\n\n\n//////////////////\n// WEBPACK FOOTER\n// ./~/list.js/src/search.js\n// module id = 134\n// module chunks = 1\n//# sourceURL=webpack:///./~/list.js/src/search.js?");
-
-/***/ },
-
-/***/ 135:
-/***/ function(module, exports) {
-
-	eval("module.exports = function(list) {\n\n  var buttons = {\n    els: undefined,\n    clear: function() {\n      for (var i = 0, il = buttons.els.length; i < il; i++) {\n        list.utils.classes(buttons.els[i]).remove('asc');\n        list.utils.classes(buttons.els[i]).remove('desc');\n      }\n    },\n    getOrder: function(btn) {\n      var predefinedOrder = list.utils.getAttribute(btn, 'data-order');\n      if (predefinedOrder == \"asc\" || predefinedOrder == \"desc\") {\n        return predefinedOrder;\n      } else if (list.utils.classes(btn).has('desc')) {\n        return \"asc\";\n      } else if (list.utils.classes(btn).has('asc')) {\n        return \"desc\";\n      } else {\n        return \"asc\";\n      }\n    },\n    getInSensitive: function(btn, options) {\n      var insensitive = list.utils.getAttribute(btn, 'data-insensitive');\n      if (insensitive === \"false\") {\n        options.insensitive = false;\n      } else {\n        options.insensitive = true;\n      }\n    },\n    setOrder: function(options) {\n      for (var i = 0, il = buttons.els.length; i < il; i++) {\n        var btn = buttons.els[i];\n        if (list.utils.getAttribute(btn, 'data-sort') !== options.valueName) {\n          continue;\n        }\n        var predefinedOrder = list.utils.getAttribute(btn, 'data-order');\n        if (predefinedOrder == \"asc\" || predefinedOrder == \"desc\") {\n          if (predefinedOrder == options.order) {\n            list.utils.classes(btn).add(options.order);\n          }\n        } else {\n          list.utils.classes(btn).add(options.order);\n        }\n      }\n    }\n  };\n\n  var sort = function() {\n    list.trigger('sortStart');\n    var options = {};\n\n    var target = arguments[0].currentTarget || arguments[0].srcElement || undefined;\n\n    if (target) {\n      options.valueName = list.utils.getAttribute(target, 'data-sort');\n      buttons.getInSensitive(target, options);\n      options.order = buttons.getOrder(target);\n    } else {\n      options = arguments[1] || options;\n      options.valueName = arguments[0];\n      options.order = options.order || \"asc\";\n      options.insensitive = (typeof options.insensitive == \"undefined\") ? true : options.insensitive;\n    }\n\n    buttons.clear();\n    buttons.setOrder(options);\n\n\n    // caseInsensitive\n    // alphabet\n    var customSortFunction = (options.sortFunction || list.sortFunction || null),\n        multi = ((options.order === 'desc') ? -1 : 1),\n        sortFunction;\n\n    if (customSortFunction) {\n      sortFunction = function(itemA, itemB) {\n        return customSortFunction(itemA, itemB, options) * multi;\n      };\n    } else {\n      sortFunction = function(itemA, itemB) {\n        var sort = list.utils.naturalSort;\n        sort.alphabet = list.alphabet || options.alphabet || undefined;\n        if (!sort.alphabet && options.insensitive) {\n          sort = list.utils.naturalSort.caseInsensitive;\n        }\n        return sort(itemA.values()[options.valueName], itemB.values()[options.valueName]) * multi;\n      };\n    }\n\n    list.items.sort(sortFunction);\n    list.update();\n    list.trigger('sortComplete');\n  };\n\n  // Add handlers\n  list.handlers.sortStart = list.handlers.sortStart || [];\n  list.handlers.sortComplete = list.handlers.sortComplete || [];\n\n  buttons.els = list.utils.getByClass(list.listContainer, list.sortClass);\n  list.utils.events.bind(buttons.els, 'click', sort);\n  list.on('searchStart', buttons.clear);\n  list.on('filterStart', buttons.clear);\n\n  return sort;\n};\n\n\n//////////////////\n// WEBPACK FOOTER\n// ./~/list.js/src/sort.js\n// module id = 135\n// module chunks = 1\n//# sourceURL=webpack:///./~/list.js/src/sort.js?");
-
-/***/ },
-
-/***/ 136:
-/***/ function(module, exports) {
-
-	eval("var Templater = function(list) {\n  var itemSource,\n    templater = this;\n\n  var init = function() {\n    itemSource = templater.getItemSource(list.item);\n    if (itemSource) {\n      itemSource = templater.clearSourceItem(itemSource, list.valueNames);\n    }\n  };\n\n  this.clearSourceItem = function(el, valueNames) {\n    for(var i = 0, il = valueNames.length; i < il; i++) {\n      var elm;\n      if (valueNames[i].data) {\n        for (var j = 0, jl = valueNames[i].data.length; j < jl; j++) {\n          el.setAttribute('data-'+valueNames[i].data[j], '');\n        }\n      } else if (valueNames[i].attr && valueNames[i].name) {\n        elm = list.utils.getByClass(el, valueNames[i].name, true);\n        if (elm) {\n          elm.setAttribute(valueNames[i].attr, \"\");\n        }\n      } else {\n        elm = list.utils.getByClass(el, valueNames[i], true);\n        if (elm) {\n          elm.innerHTML = \"\";\n        }\n      }\n      elm = undefined;\n    }\n    return el;\n  };\n\n  this.getItemSource = function(item) {\n    if (item === undefined) {\n      var nodes = list.list.childNodes,\n        items = [];\n\n      for (var i = 0, il = nodes.length; i < il; i++) {\n        // Only textnodes have a data attribute\n        if (nodes[i].data === undefined) {\n          return nodes[i].cloneNode(true);\n        }\n      }\n    } else if (/<tr[\\s>]/g.exec(item)) {\n      var tbody = document.createElement('tbody');\n      tbody.innerHTML = item;\n      return tbody.firstChild;\n    } else if (item.indexOf(\"<\") !== -1) {\n      var div = document.createElement('div');\n      div.innerHTML = item;\n      return div.firstChild;\n    } else {\n      var source = document.getElementById(list.item);\n      if (source) {\n        return source;\n      }\n    }\n    return undefined;\n  };\n\n  this.get = function(item, valueNames) {\n    templater.create(item);\n    var values = {};\n    for(var i = 0, il = valueNames.length; i < il; i++) {\n      var elm;\n      if (valueNames[i].data) {\n        for (var j = 0, jl = valueNames[i].data.length; j < jl; j++) {\n          values[valueNames[i].data[j]] = list.utils.getAttribute(item.elm, 'data-'+valueNames[i].data[j]);\n        }\n      } else if (valueNames[i].attr && valueNames[i].name) {\n        elm = list.utils.getByClass(item.elm, valueNames[i].name, true);\n        values[valueNames[i].name] = elm ? list.utils.getAttribute(elm, valueNames[i].attr) : \"\";\n      } else {\n        elm = list.utils.getByClass(item.elm, valueNames[i], true);\n        values[valueNames[i]] = elm ? elm.innerHTML : \"\";\n      }\n      elm = undefined;\n    }\n    return values;\n  };\n\n  this.set = function(item, values) {\n    var getValueName = function(name) {\n      for (var i = 0, il = list.valueNames.length; i < il; i++) {\n        if (list.valueNames[i].data) {\n          var data = list.valueNames[i].data;\n          for (var j = 0, jl = data.length; j < jl; j++) {\n            if (data[j] === name) {\n              return { data: name };\n            }\n          }\n        } else if (list.valueNames[i].attr && list.valueNames[i].name && list.valueNames[i].name == name) {\n          return list.valueNames[i];\n        } else if (list.valueNames[i] === name) {\n          return name;\n        }\n      }\n    };\n    var setValue = function(name, value) {\n      var elm;\n      var valueName = getValueName(name);\n      if (!valueName)\n        return;\n      if (valueName.data) {\n        item.elm.setAttribute('data-'+valueName.data, value);\n      } else if (valueName.attr && valueName.name) {\n        elm = list.utils.getByClass(item.elm, valueName.name, true);\n        if (elm) {\n          elm.setAttribute(valueName.attr, value);\n        }\n      } else {\n        elm = list.utils.getByClass(item.elm, valueName, true);\n        if (elm) {\n          elm.innerHTML = value;\n        }\n      }\n      elm = undefined;\n    };\n    if (!templater.create(item)) {\n      for(var v in values) {\n        if (values.hasOwnProperty(v)) {\n          setValue(v, values[v]);\n        }\n      }\n    }\n  };\n\n  this.create = function(item) {\n    if (item.elm !== undefined) {\n      return false;\n    }\n    if (itemSource === undefined) {\n      throw new Error(\"The list need to have at list one item on init otherwise you'll have to add a template.\");\n    }\n    /* If item source does not exists, use the first item in list as\n    source for new items */\n    var newItem = itemSource.cloneNode(true);\n    newItem.removeAttribute('id');\n    item.elm = newItem;\n    templater.set(item, item.values());\n    return true;\n  };\n  this.remove = function(item) {\n    if (item.elm.parentNode === list.list) {\n      list.list.removeChild(item.elm);\n    }\n  };\n  this.show = function(item) {\n    templater.create(item);\n    list.list.appendChild(item.elm);\n  };\n  this.hide = function(item) {\n    if (item.elm !== undefined && item.elm.parentNode === list.list) {\n      list.list.removeChild(item.elm);\n    }\n  };\n  this.clear = function() {\n    /* .innerHTML = ''; fucks up IE */\n    if (list.list.hasChildNodes()) {\n      while (list.list.childNodes.length >= 1)\n      {\n        list.list.removeChild(list.list.firstChild);\n      }\n    }\n  };\n\n  init();\n};\n\nmodule.exports = function(list) {\n  return new Templater(list);\n};\n\n\n//////////////////\n// WEBPACK FOOTER\n// ./~/list.js/src/templater.js\n// module id = 136\n// module chunks = 1\n//# sourceURL=webpack:///./~/list.js/src/templater.js?");
-
-/***/ },
-
-/***/ 137:
-/***/ function(module, exports) {
-
-	eval("module.exports = function(text, pattern, options) {\n    // Aproximately where in the text is the pattern expected to be found?\n    var Match_Location = options.location || 0;\n\n    //Determines how close the match must be to the fuzzy location (specified above). An exact letter match which is 'distance' characters away from the fuzzy location would score as a complete mismatch. A distance of '0' requires the match be at the exact location specified, a threshold of '1000' would require a perfect match to be within 800 characters of the fuzzy location to be found using a 0.8 threshold.\n    var Match_Distance = options.distance || 100;\n\n    // At what point does the match algorithm give up. A threshold of '0.0' requires a perfect match (of both letters and location), a threshold of '1.0' would match anything.\n    var Match_Threshold = options.threshold || 0.4;\n\n    if (pattern === text) return true; // Exact match\n    if (pattern.length > 32) return false; // This algorithm cannot be used\n\n    // Set starting location at beginning text and initialise the alphabet.\n    var loc = Match_Location,\n        s = (function() {\n            var q = {},\n                i;\n\n            for (i = 0; i < pattern.length; i++) {\n                q[pattern.charAt(i)] = 0;\n            }\n\n            for (i = 0; i < pattern.length; i++) {\n                q[pattern.charAt(i)] |= 1 << (pattern.length - i - 1);\n            }\n\n            return q;\n        }());\n\n    // Compute and return the score for a match with e errors and x location.\n    // Accesses loc and pattern through being a closure.\n\n    function match_bitapScore_(e, x) {\n        var accuracy = e / pattern.length,\n            proximity = Math.abs(loc - x);\n\n        if (!Match_Distance) {\n            // Dodge divide by zero error.\n            return proximity ? 1.0 : accuracy;\n        }\n        return accuracy + (proximity / Match_Distance);\n    }\n\n    var score_threshold = Match_Threshold, // Highest score beyond which we give up.\n        best_loc = text.indexOf(pattern, loc); // Is there a nearby exact match? (speedup)\n\n    if (best_loc != -1) {\n        score_threshold = Math.min(match_bitapScore_(0, best_loc), score_threshold);\n        // What about in the other direction? (speedup)\n        best_loc = text.lastIndexOf(pattern, loc + pattern.length);\n\n        if (best_loc != -1) {\n            score_threshold = Math.min(match_bitapScore_(0, best_loc), score_threshold);\n        }\n    }\n\n    // Initialise the bit arrays.\n    var matchmask = 1 << (pattern.length - 1);\n    best_loc = -1;\n\n    var bin_min, bin_mid;\n    var bin_max = pattern.length + text.length;\n    var last_rd;\n    for (var d = 0; d < pattern.length; d++) {\n        // Scan for the best match; each iteration allows for one more error.\n        // Run a binary search to determine how far from 'loc' we can stray at this\n        // error level.\n        bin_min = 0;\n        bin_mid = bin_max;\n        while (bin_min < bin_mid) {\n            if (match_bitapScore_(d, loc + bin_mid) <= score_threshold) {\n                bin_min = bin_mid;\n            } else {\n                bin_max = bin_mid;\n            }\n            bin_mid = Math.floor((bin_max - bin_min) / 2 + bin_min);\n        }\n        // Use the result from this iteration as the maximum for the next.\n        bin_max = bin_mid;\n        var start = Math.max(1, loc - bin_mid + 1);\n        var finish = Math.min(loc + bin_mid, text.length) + pattern.length;\n\n        var rd = Array(finish + 2);\n        rd[finish + 1] = (1 << d) - 1;\n        for (var j = finish; j >= start; j--) {\n            // The alphabet (s) is a sparse hash, so the following line generates\n            // warnings.\n            var charMatch = s[text.charAt(j - 1)];\n            if (d === 0) {    // First pass: exact match.\n                rd[j] = ((rd[j + 1] << 1) | 1) & charMatch;\n            } else {    // Subsequent passes: fuzzy match.\n                rd[j] = (((rd[j + 1] << 1) | 1) & charMatch) |\n                                (((last_rd[j + 1] | last_rd[j]) << 1) | 1) |\n                                last_rd[j + 1];\n            }\n            if (rd[j] & matchmask) {\n                var score = match_bitapScore_(d, j - 1);\n                // This match will almost certainly be better than any existing match.\n                // But check anyway.\n                if (score <= score_threshold) {\n                    // Told you so.\n                    score_threshold = score;\n                    best_loc = j - 1;\n                    if (best_loc > loc) {\n                        // When passing loc, don't exceed our current distance from loc.\n                        start = Math.max(1, 2 * loc - best_loc);\n                    } else {\n                        // Already passed loc, downhill from here on in.\n                        break;\n                    }\n                }\n            }\n        }\n        // No hope for a (better) match at greater error levels.\n        if (match_bitapScore_(d + 1, loc) > score_threshold) {\n            break;\n        }\n        last_rd = rd;\n    }\n\n    return (best_loc < 0) ? false : true;\n};\n\n\n//////////////////\n// WEBPACK FOOTER\n// ./~/list.js/src/utils/fuzzy.js\n// module id = 137\n// module chunks = 1\n//# sourceURL=webpack:///./~/list.js/src/utils/fuzzy.js?");
-
-/***/ },
-
-/***/ 138:
-/***/ function(module, exports) {
-
-	eval("/**\n * A cross-browser implementation of getAttribute.\n * Source found here: http://stackoverflow.com/a/3755343/361337 written by Vivin Paliath\n *\n * Return the value for `attr` at `element`.\n *\n * @param {Element} el\n * @param {String} attr\n * @api public\n */\n\nmodule.exports = function(el, attr) {\n  var result = (el.getAttribute && el.getAttribute(attr)) || null;\n  if( !result ) {\n    var attrs = el.attributes;\n    var length = attrs.length;\n    for(var i = 0; i < length; i++) {\n      if (attr[i] !== undefined) {\n        if(attr[i].nodeName === attr) {\n          result = attr[i].nodeValue;\n        }\n      }\n    }\n  }\n  return result;\n};\n\n\n//////////////////\n// WEBPACK FOOTER\n// ./~/list.js/src/utils/get-attribute.js\n// module id = 138\n// module chunks = 1\n//# sourceURL=webpack:///./~/list.js/src/utils/get-attribute.js?");
-
-/***/ },
-
-/***/ 161:
-/***/ function(module, exports) {
-
-	eval("module.exports = \"/**\\n * gridstack.js 0.2.6\\n * http://troolee.github.io/gridstack.js/\\n * (c) 2014-2016 Pavel Reznikov\\n * gridstack.js may be freely distributed under the MIT license.\\n * @preserve\\n*/\\n(function(factory) {\\n    if (typeof define === 'function' && define.amd) {\\n        define(['jquery', 'lodash', 'jquery-ui/data', 'jquery-ui/disable-selection', 'jquery-ui/focusable',\\n            'jquery-ui/form', 'jquery-ui/ie', 'jquery-ui/keycode', 'jquery-ui/labels', 'jquery-ui/jquery-1-7',\\n            'jquery-ui/plugin', 'jquery-ui/safe-active-element', 'jquery-ui/safe-blur', 'jquery-ui/scroll-parent',\\n            'jquery-ui/tabbable', 'jquery-ui/unique-id', 'jquery-ui/version', 'jquery-ui/widget',\\n            'jquery-ui/widgets/mouse', 'jquery-ui/widgets/draggable', 'jquery-ui/widgets/droppable',\\n            'jquery-ui/widgets/resizable'], factory);\\n    } else if (typeof exports !== 'undefined') {\\n        try { jQuery = require('jquery'); } catch (e) {}\\n        try { _ = require('lodash'); } catch (e) {}\\n        factory(jQuery, _);\\n    } else {\\n        factory(jQuery, _);\\n    }\\n})(function($, _) {\\n\\n    var scope = window;\\n\\n    var obsolete = function(f, oldName, newName) {\\n        var wrapper = function() {\\n            console.warn('gridstack.js: Function `' + oldName + '` is deprecated as of v0.2.5 and has been replaced ' +\\n            'with `' + newName + '`. It will be **completely** removed in v1.0.');\\n            return f.apply(this, arguments);\\n        };\\n        wrapper.prototype = f.prototype;\\n\\n        return wrapper;\\n    };\\n\\n    var obsoleteOpts = function(oldName, newName) {\\n        console.warn('gridstack.js: Option `' + oldName + '` is deprecated as of v0.2.5 and has been replaced with `' +\\n            newName + '`. It will be **completely** removed in v1.0.');\\n    };\\n\\n    var Utils = {\\n        isIntercepted: function(a, b) {\\n            return !(a.x + a.width <= b.x || b.x + b.width <= a.x || a.y + a.height <= b.y || b.y + b.height <= a.y);\\n        },\\n\\n        sort: function(nodes, dir, width) {\\n            width = width || _.chain(nodes).map(function(node) { return node.x + node.width; }).max().value();\\n            dir = dir != -1 ? 1 : -1;\\n            return _.sortBy(nodes, function(n) { return dir * (n.x + n.y * width); });\\n        },\\n\\n        createStylesheet: function(id) {\\n            var style = document.createElement('style');\\n            style.setAttribute('type', 'text/css');\\n            style.setAttribute('data-gs-style-id', id);\\n            if (style.styleSheet) {\\n                style.styleSheet.cssText = '';\\n            } else {\\n                style.appendChild(document.createTextNode(''));\\n            }\\n            document.getElementsByTagName('head')[0].appendChild(style);\\n            return style.sheet;\\n        },\\n\\n        removeStylesheet: function(id) {\\n            $('STYLE[data-gs-style-id=' + id + ']').remove();\\n        },\\n\\n        insertCSSRule: function(sheet, selector, rules, index) {\\n            if (typeof sheet.insertRule === 'function') {\\n                sheet.insertRule(selector + '{' + rules + '}', index);\\n            } else if (typeof sheet.addRule === 'function') {\\n                sheet.addRule(selector, rules, index);\\n            }\\n        },\\n\\n        toBool: function(v) {\\n            if (typeof v == 'boolean') {\\n                return v;\\n            }\\n            if (typeof v == 'string') {\\n                v = v.toLowerCase();\\n                return !(v === '' || v == 'no' || v == 'false' || v == '0');\\n            }\\n            return Boolean(v);\\n        },\\n\\n        _collisionNodeCheck: function(n) {\\n            return n != this.node && Utils.isIntercepted(n, this.nn);\\n        },\\n\\n        _didCollide: function(bn) {\\n            return Utils.isIntercepted({x: this.n.x, y: this.newY, width: this.n.width, height: this.n.height}, bn);\\n        },\\n\\n        _isAddNodeIntercepted: function(n) {\\n            return Utils.isIntercepted({x: this.x, y: this.y, width: this.node.width, height: this.node.height}, n);\\n        },\\n\\n        parseHeight: function(val) {\\n            var height = val;\\n            var heightUnit = 'px';\\n            if (height && _.isString(height)) {\\n                var match = height.match(/^(-[0-9]+\\\\.[0-9]+|[0-9]*\\\\.[0-9]+|-[0-9]+|[0-9]+)(px|em|rem|vh|vw)?$/);\\n                if (!match) {\\n                    throw new Error('Invalid height');\\n                }\\n                heightUnit = match[2] || 'px';\\n                height = parseFloat(match[1]);\\n            }\\n            return {height: height, unit: heightUnit};\\n        }\\n    };\\n\\n    // jscs:disable requireCamelCaseOrUpperCaseIdentifiers\\n    Utils.is_intercepted = obsolete(Utils.isIntercepted, 'is_intercepted', 'isIntercepted');\\n\\n    Utils.create_stylesheet = obsolete(Utils.createStylesheet, 'create_stylesheet', 'createStylesheet');\\n\\n    Utils.remove_stylesheet = obsolete(Utils.removeStylesheet, 'remove_stylesheet', 'removeStylesheet');\\n\\n    Utils.insert_css_rule = obsolete(Utils.insertCSSRule, 'insert_css_rule', 'insertCSSRule');\\n    // jscs:enable requireCamelCaseOrUpperCaseIdentifiers\\n\\n    var idSeq = 0;\\n\\n    var GridStackEngine = function(width, onchange, floatMode, height, items) {\\n        this.width = width;\\n        this.float = floatMode || false;\\n        this.height = height || 0;\\n\\n        this.nodes = items || [];\\n        this.onchange = onchange || function() {};\\n\\n        this._updateCounter = 0;\\n        this._float = this.float;\\n\\n        this._addedNodes = [];\\n        this._removedNodes = [];\\n    };\\n\\n    GridStackEngine.prototype.batchUpdate = function() {\\n        this._updateCounter = 1;\\n        this.float = true;\\n    };\\n\\n    GridStackEngine.prototype.commit = function() {\\n        if (this._updateCounter !== 0) {\\n            this._updateCounter = 0;\\n            this.float = this._float;\\n            this._packNodes();\\n            this._notify();\\n        }\\n    };\\n\\n    // For Meteor support: https://github.com/troolee/gridstack.js/pull/272\\n    GridStackEngine.prototype.getNodeDataByDOMEl = function(el) {\\n        return _.find(this.nodes, function(n) { return el.get(0) === n.el.get(0); });\\n    };\\n\\n    GridStackEngine.prototype._fixCollisions = function(node) {\\n        var self = this;\\n        this._sortNodes(-1);\\n\\n        var nn = node;\\n        var hasLocked = Boolean(_.find(this.nodes, function(n) { return n.locked; }));\\n        if (!this.float && !hasLocked) {\\n            nn = {x: 0, y: node.y, width: this.width, height: node.height};\\n        }\\n        while (true) {\\n            var collisionNode = _.find(this.nodes, _.bind(Utils._collisionNodeCheck, {node: node, nn: nn}));\\n            if (typeof collisionNode == 'undefined') {\\n                return;\\n            }\\n            this.moveNode(collisionNode, collisionNode.x, node.y + node.height,\\n                collisionNode.width, collisionNode.height, true);\\n        }\\n    };\\n\\n    GridStackEngine.prototype.isAreaEmpty = function(x, y, width, height) {\\n        var nn = {x: x || 0, y: y || 0, width: width || 1, height: height || 1};\\n        var collisionNode = _.find(this.nodes, _.bind(function(n) {\\n            return Utils.isIntercepted(n, nn);\\n        }, this));\\n        return collisionNode === null || typeof collisionNode === 'undefined';\\n    };\\n\\n    GridStackEngine.prototype._sortNodes = function(dir) {\\n        this.nodes = Utils.sort(this.nodes, dir, this.width);\\n    };\\n\\n    GridStackEngine.prototype._packNodes = function() {\\n        this._sortNodes();\\n\\n        if (this.float) {\\n            _.each(this.nodes, _.bind(function(n, i) {\\n                if (n._updating || typeof n._origY == 'undefined' || n.y == n._origY) {\\n                    return;\\n                }\\n\\n                var newY = n.y;\\n                while (newY >= n._origY) {\\n                    var collisionNode = _.chain(this.nodes)\\n                        .find(_.bind(Utils._didCollide, {n: n, newY: newY}))\\n                        .value();\\n\\n                    if (!collisionNode) {\\n                        n._dirty = true;\\n                        n.y = newY;\\n                    }\\n                    --newY;\\n                }\\n            }, this));\\n        } else {\\n            _.each(this.nodes, _.bind(function(n, i) {\\n                if (n.locked) {\\n                    return;\\n                }\\n                while (n.y > 0) {\\n                    var newY = n.y - 1;\\n                    var canBeMoved = i === 0;\\n\\n                    if (i > 0) {\\n                        var collisionNode = _.chain(this.nodes)\\n                            .take(i)\\n                            .find(_.bind(Utils._didCollide, {n: n, newY: newY}))\\n                            .value();\\n                        canBeMoved = typeof collisionNode == 'undefined';\\n                    }\\n\\n                    if (!canBeMoved) {\\n                        break;\\n                    }\\n                    n._dirty = n.y != newY;\\n                    n.y = newY;\\n                }\\n            }, this));\\n        }\\n    };\\n\\n    GridStackEngine.prototype._prepareNode = function(node, resizing) {\\n        node = _.defaults(node || {}, {width: 1, height: 1, x: 0, y: 0});\\n\\n        node.x = parseInt('' + node.x);\\n        node.y = parseInt('' + node.y);\\n        node.width = parseInt('' + node.width);\\n        node.height = parseInt('' + node.height);\\n        node.autoPosition = node.autoPosition || false;\\n        node.noResize = node.noResize || false;\\n        node.noMove = node.noMove || false;\\n\\n        if (node.width > this.width) {\\n            node.width = this.width;\\n        } else if (node.width < 1) {\\n            node.width = 1;\\n        }\\n\\n        if (node.height < 1) {\\n            node.height = 1;\\n        }\\n\\n        if (node.x < 0) {\\n            node.x = 0;\\n        }\\n\\n        if (node.x + node.width > this.width) {\\n            if (resizing) {\\n                node.width = this.width - node.x;\\n            } else {\\n                node.x = this.width - node.width;\\n            }\\n        }\\n\\n        if (node.y < 0) {\\n            node.y = 0;\\n        }\\n\\n        return node;\\n    };\\n\\n    GridStackEngine.prototype._notify = function() {\\n        var args = Array.prototype.slice.call(arguments, 0);\\n        args[0] = typeof args[0] === 'undefined' ? [] : [args[0]];\\n        args[1] = typeof args[1] === 'undefined' ? true : args[1];\\n        if (this._updateCounter) {\\n            return;\\n        }\\n        var deletedNodes = args[0].concat(this.getDirtyNodes());\\n        this.onchange(deletedNodes, args[1]);\\n    };\\n\\n    GridStackEngine.prototype.cleanNodes = function() {\\n        if (this._updateCounter) {\\n            return;\\n        }\\n        _.each(this.nodes, function(n) {n._dirty = false; });\\n    };\\n\\n    GridStackEngine.prototype.getDirtyNodes = function() {\\n        return _.filter(this.nodes, function(n) { return n._dirty; });\\n    };\\n\\n    GridStackEngine.prototype.addNode = function(node, triggerAddEvent) {\\n        node = this._prepareNode(node);\\n\\n        if (typeof node.maxWidth != 'undefined') { node.width = Math.min(node.width, node.maxWidth); }\\n        if (typeof node.maxHeight != 'undefined') { node.height = Math.min(node.height, node.maxHeight); }\\n        if (typeof node.minWidth != 'undefined') { node.width = Math.max(node.width, node.minWidth); }\\n        if (typeof node.minHeight != 'undefined') { node.height = Math.max(node.height, node.minHeight); }\\n\\n        node._id = ++idSeq;\\n        node._dirty = true;\\n\\n        if (node.autoPosition) {\\n            this._sortNodes();\\n\\n            for (var i = 0;; ++i) {\\n                var x = i % this.width;\\n                var y = Math.floor(i / this.width);\\n                if (x + node.width > this.width) {\\n                    continue;\\n                }\\n                if (!_.find(this.nodes, _.bind(Utils._isAddNodeIntercepted, {x: x, y: y, node: node}))) {\\n                    node.x = x;\\n                    node.y = y;\\n                    break;\\n                }\\n            }\\n        }\\n\\n        this.nodes.push(node);\\n        if (typeof triggerAddEvent != 'undefined' && triggerAddEvent) {\\n            this._addedNodes.push(_.clone(node));\\n        }\\n\\n        this._fixCollisions(node);\\n        this._packNodes();\\n        this._notify();\\n        return node;\\n    };\\n\\n    GridStackEngine.prototype.removeNode = function(node, detachNode) {\\n        detachNode = typeof detachNode === 'undefined' ? true : detachNode;\\n        this._removedNodes.push(_.clone(node));\\n        node._id = null;\\n        this.nodes = _.without(this.nodes, node);\\n        this._packNodes();\\n        this._notify(node, detachNode);\\n    };\\n\\n    GridStackEngine.prototype.canMoveNode = function(node, x, y, width, height) {\\n        var hasLocked = Boolean(_.find(this.nodes, function(n) { return n.locked; }));\\n\\n        if (!this.height && !hasLocked) {\\n            return true;\\n        }\\n\\n        var clonedNode;\\n        var clone = new GridStackEngine(\\n            this.width,\\n            null,\\n            this.float,\\n            0,\\n            _.map(this.nodes, function(n) {\\n                if (n == node) {\\n                    clonedNode = $.extend({}, n);\\n                    return clonedNode;\\n                }\\n                return $.extend({}, n);\\n            }));\\n\\n        if (typeof clonedNode === 'undefined') {\\n            return true;\\n        }\\n\\n        clone.moveNode(clonedNode, x, y, width, height);\\n\\n        var res = true;\\n\\n        if (hasLocked) {\\n            res &= !Boolean(_.find(clone.nodes, function(n) {\\n                return n != clonedNode && Boolean(n.locked) && Boolean(n._dirty);\\n            }));\\n        }\\n        if (this.height) {\\n            res &= clone.getGridHeight() <= this.height;\\n        }\\n\\n        return res;\\n    };\\n\\n    GridStackEngine.prototype.canBePlacedWithRespectToHeight = function(node) {\\n        if (!this.height) {\\n            return true;\\n        }\\n\\n        var clone = new GridStackEngine(\\n            this.width,\\n            null,\\n            this.float,\\n            0,\\n            _.map(this.nodes, function(n) { return $.extend({}, n); }));\\n        clone.addNode(node);\\n        return clone.getGridHeight() <= this.height;\\n    };\\n\\n    GridStackEngine.prototype.moveNode = function(node, x, y, width, height, noPack) {\\n        if (typeof x != 'number') { x = node.x; }\\n        if (typeof y != 'number') { y = node.y; }\\n        if (typeof width != 'number') { width = node.width; }\\n        if (typeof height != 'number') { height = node.height; }\\n\\n        if (typeof node.maxWidth != 'undefined') { width = Math.min(width, node.maxWidth); }\\n        if (typeof node.maxHeight != 'undefined') { height = Math.min(height, node.maxHeight); }\\n        if (typeof node.minWidth != 'undefined') { width = Math.max(width, node.minWidth); }\\n        if (typeof node.minHeight != 'undefined') { height = Math.max(height, node.minHeight); }\\n\\n        if (node.x == x && node.y == y && node.width == width && node.height == height) {\\n            return node;\\n        }\\n\\n        var resizing = node.width != width;\\n        node._dirty = true;\\n\\n        node.x = x;\\n        node.y = y;\\n        node.width = width;\\n        node.height = height;\\n\\n        node = this._prepareNode(node, resizing);\\n\\n        this._fixCollisions(node);\\n        if (!noPack) {\\n            this._packNodes();\\n            this._notify();\\n        }\\n        return node;\\n    };\\n\\n    GridStackEngine.prototype.getGridHeight = function() {\\n        return _.reduce(this.nodes, function(memo, n) { return Math.max(memo, n.y + n.height); }, 0);\\n    };\\n\\n    GridStackEngine.prototype.beginUpdate = function(node) {\\n        _.each(this.nodes, function(n) {\\n            n._origY = n.y;\\n        });\\n        node._updating = true;\\n    };\\n\\n    GridStackEngine.prototype.endUpdate = function() {\\n        _.each(this.nodes, function(n) {\\n            n._origY = n.y;\\n        });\\n        var n = _.find(this.nodes, function(n) { return n._updating; });\\n        if (n) {\\n            n._updating = false;\\n        }\\n    };\\n\\n    var GridStack = function(el, opts) {\\n        var self = this;\\n        var oneColumnMode, isAutoCellHeight;\\n\\n        opts = opts || {};\\n\\n        this.container = $(el);\\n\\n        // jscs:disable requireCamelCaseOrUpperCaseIdentifiers\\n        if (typeof opts.handle_class !== 'undefined') {\\n            opts.handleClass = opts.handle_class;\\n            obsoleteOpts('handle_class', 'handleClass');\\n        }\\n        if (typeof opts.item_class !== 'undefined') {\\n            opts.itemClass = opts.item_class;\\n            obsoleteOpts('item_class', 'itemClass');\\n        }\\n        if (typeof opts.placeholder_class !== 'undefined') {\\n            opts.placeholderClass = opts.placeholder_class;\\n            obsoleteOpts('placeholder_class', 'placeholderClass');\\n        }\\n        if (typeof opts.placeholder_text !== 'undefined') {\\n            opts.placeholderText = opts.placeholder_text;\\n            obsoleteOpts('placeholder_text', 'placeholderText');\\n        }\\n        if (typeof opts.cell_height !== 'undefined') {\\n            opts.cellHeight = opts.cell_height;\\n            obsoleteOpts('cell_height', 'cellHeight');\\n        }\\n        if (typeof opts.vertical_margin !== 'undefined') {\\n            opts.verticalMargin = opts.vertical_margin;\\n            obsoleteOpts('vertical_margin', 'verticalMargin');\\n        }\\n        if (typeof opts.min_width !== 'undefined') {\\n            opts.minWidth = opts.min_width;\\n            obsoleteOpts('min_width', 'minWidth');\\n        }\\n        if (typeof opts.static_grid !== 'undefined') {\\n            opts.staticGrid = opts.static_grid;\\n            obsoleteOpts('static_grid', 'staticGrid');\\n        }\\n        if (typeof opts.is_nested !== 'undefined') {\\n            opts.isNested = opts.is_nested;\\n            obsoleteOpts('is_nested', 'isNested');\\n        }\\n        if (typeof opts.always_show_resize_handle !== 'undefined') {\\n            opts.alwaysShowResizeHandle = opts.always_show_resize_handle;\\n            obsoleteOpts('always_show_resize_handle', 'alwaysShowResizeHandle');\\n        }\\n        // jscs:enable requireCamelCaseOrUpperCaseIdentifiers\\n\\n        opts.itemClass = opts.itemClass || 'grid-stack-item';\\n        var isNested = this.container.closest('.' + opts.itemClass).length > 0;\\n\\n        this.opts = _.defaults(opts || {}, {\\n            width: parseInt(this.container.attr('data-gs-width')) || 12,\\n            height: parseInt(this.container.attr('data-gs-height')) || 0,\\n            itemClass: 'grid-stack-item',\\n            placeholderClass: 'grid-stack-placeholder',\\n            placeholderText: '',\\n            handle: '.grid-stack-item-content',\\n            handleClass: null,\\n            cellHeight: 60,\\n            verticalMargin: 20,\\n            auto: true,\\n            minWidth: 768,\\n            float: false,\\n            staticGrid: false,\\n            _class: 'grid-stack-instance-' + (Math.random() * 10000).toFixed(0),\\n            animate: Boolean(this.container.attr('data-gs-animate')) || false,\\n            alwaysShowResizeHandle: opts.alwaysShowResizeHandle || false,\\n            resizable: _.defaults(opts.resizable || {}, {\\n                autoHide: !(opts.alwaysShowResizeHandle || false),\\n                handles: 'se'\\n            }),\\n            draggable: _.defaults(opts.draggable || {}, {\\n                handle: (opts.handleClass ? '.' + opts.handleClass : (opts.handle ? opts.handle : '')) ||\\n                    '.grid-stack-item-content',\\n                scroll: false,\\n                appendTo: 'body'\\n            }),\\n            disableDrag: opts.disableDrag || false,\\n            disableResize: opts.disableResize || false,\\n            rtl: 'auto',\\n            removable: false,\\n            removeTimeout: 2000,\\n            verticalMarginUnit: 'px',\\n            cellHeightUnit: 'px'\\n        });\\n\\n        if (this.opts.rtl === 'auto') {\\n            this.opts.rtl = this.container.css('direction') === 'rtl';\\n        }\\n\\n        if (this.opts.rtl) {\\n            this.container.addClass('grid-stack-rtl');\\n        }\\n\\n        this.opts.isNested = isNested;\\n\\n        isAutoCellHeight = this.opts.cellHeight === 'auto';\\n        if (isAutoCellHeight) {\\n            self.cellHeight(self.cellWidth(), true);\\n        } else {\\n            this.cellHeight(this.opts.cellHeight, true);\\n        }\\n        this.verticalMargin(this.opts.verticalMargin, true);\\n\\n        this.container.addClass(this.opts._class);\\n\\n        this._setStaticClass();\\n\\n        if (isNested) {\\n            this.container.addClass('grid-stack-nested');\\n        }\\n\\n        this._initStyles();\\n\\n        this.grid = new GridStackEngine(this.opts.width, function(nodes, detachNode) {\\n            detachNode = typeof detachNode === 'undefined' ? true : detachNode;\\n            var maxHeight = 0;\\n            _.each(nodes, function(n) {\\n                if (detachNode && n._id === null) {\\n                    if (n.el) {\\n                        n.el.remove();\\n                    }\\n                } else {\\n                    n.el\\n                        .attr('data-gs-x', n.x)\\n                        .attr('data-gs-y', n.y)\\n                        .attr('data-gs-width', n.width)\\n                        .attr('data-gs-height', n.height);\\n                    maxHeight = Math.max(maxHeight, n.y + n.height);\\n                }\\n            });\\n            self._updateStyles(maxHeight + 10);\\n        }, this.opts.float, this.opts.height);\\n\\n        if (this.opts.auto) {\\n            var elements = [];\\n            var _this = this;\\n            this.container.children('.' + this.opts.itemClass + ':not(.' + this.opts.placeholderClass + ')')\\n                .each(function(index, el) {\\n                el = $(el);\\n                elements.push({\\n                    el: el,\\n                    i: parseInt(el.attr('data-gs-x')) + parseInt(el.attr('data-gs-y')) * _this.opts.width\\n                });\\n            });\\n            _.chain(elements).sortBy(function(x) { return x.i; }).each(function(i) {\\n                self._prepareElement(i.el);\\n            }).value();\\n        }\\n\\n        this.setAnimation(this.opts.animate);\\n\\n        this.placeholder = $(\\n            '<div class=\\\"' + this.opts.placeholderClass + ' ' + this.opts.itemClass + '\\\">' +\\n            '<div class=\\\"placeholder-content\\\">' + this.opts.placeholderText + '</div></div>').hide();\\n\\n        this._updateContainerHeight();\\n\\n        this._updateHeightsOnResize = _.throttle(function() {\\n            self.cellHeight(self.cellWidth(), false);\\n        }, 100);\\n\\n        this.onResizeHandler = function() {\\n            if (isAutoCellHeight) {\\n                self._updateHeightsOnResize();\\n            }\\n\\n            if (self._isOneColumnMode()) {\\n                if (oneColumnMode) {\\n                    return;\\n                }\\n\\n                oneColumnMode = true;\\n\\n                self.grid._sortNodes();\\n                _.each(self.grid.nodes, function(node) {\\n                    self.container.append(node.el);\\n\\n                    if (self.opts.staticGrid) {\\n                        return;\\n                    }\\n                    if (node.noMove || self.opts.disableDrag) {\\n                        node.el.draggable('disable');\\n                    }\\n                    if (node.noResize || self.opts.disableResize) {\\n                        node.el.resizable('disable');\\n                    }\\n\\n                    node.el.trigger('resize');\\n                });\\n            } else {\\n                if (!oneColumnMode) {\\n                    return;\\n                }\\n\\n                oneColumnMode = false;\\n\\n                if (self.opts.staticGrid) {\\n                    return;\\n                }\\n\\n                _.each(self.grid.nodes, function(node) {\\n                    if (!node.noMove && !self.opts.disableDrag) {\\n                        node.el.draggable('enable');\\n                    }\\n                    if (!node.noResize && !self.opts.disableResize) {\\n                        node.el.resizable('enable');\\n                    }\\n\\n                    node.el.trigger('resize');\\n                });\\n            }\\n        };\\n\\n        $(window).resize(this.onResizeHandler);\\n        this.onResizeHandler();\\n\\n        if (!self.opts.staticGrid && typeof self.opts.removable === 'string') {\\n            var trashZone = $(self.opts.removable);\\n            if (!trashZone.data('droppable')) {\\n                trashZone.droppable({\\n                    accept: '.' + self.opts.itemClass\\n                });\\n            }\\n            trashZone\\n                .on('dropover', function(event, ui) {\\n                    var el = $(ui.draggable);\\n                    var node = el.data('_gridstack_node');\\n                    if (node._grid !== self) {\\n                        return;\\n                    }\\n                    self._setupRemovingTimeout(el);\\n                })\\n                .on('dropout', function(event, ui) {\\n                    var el = $(ui.draggable);\\n                    var node = el.data('_gridstack_node');\\n                    if (node._grid !== self) {\\n                        return;\\n                    }\\n                    self._clearRemovingTimeout(el);\\n                });\\n        }\\n\\n        if (!self.opts.staticGrid && self.opts.acceptWidgets) {\\n            var draggingElement = null;\\n\\n            var onDrag = function(event, ui) {\\n                var el = draggingElement;\\n                var node = el.data('_gridstack_node');\\n                var pos = self.getCellFromPixel(ui.offset, true);\\n                var x = Math.max(0, pos.x);\\n                var y = Math.max(0, pos.y);\\n                if (!node._added) {\\n                    node._added = true;\\n\\n                    node.el = el;\\n                    node.x = x;\\n                    node.y = y;\\n                    self.grid.cleanNodes();\\n                    self.grid.beginUpdate(node);\\n                    self.grid.addNode(node);\\n\\n                    self.container.append(self.placeholder);\\n                    self.placeholder\\n                        .attr('data-gs-x', node.x)\\n                        .attr('data-gs-y', node.y)\\n                        .attr('data-gs-width', node.width)\\n                        .attr('data-gs-height', node.height)\\n                        .show();\\n                    node.el = self.placeholder;\\n                    node._beforeDragX = node.x;\\n                    node._beforeDragY = node.y;\\n\\n                    self._updateContainerHeight();\\n                } else {\\n                    if (!self.grid.canMoveNode(node, x, y)) {\\n                        return;\\n                    }\\n                    self.grid.moveNode(node, x, y);\\n                    self._updateContainerHeight();\\n                }\\n            };\\n\\n            $(self.container).droppable({\\n                accept: function(el) {\\n                    el = $(el);\\n                    var node = el.data('_gridstack_node');\\n                    if (node && node._grid === self) {\\n                        return false;\\n                    }\\n                    return el.is(self.opts.acceptWidgets === true ? '.grid-stack-item' : self.opts.acceptWidgets);\\n                },\\n                over: function(event, ui) {\\n                    var offset = self.container.offset();\\n                    var el = $(ui.draggable);\\n                    var cellWidth = self.cellWidth();\\n                    var cellHeight = self.cellHeight();\\n                    var origNode = el.data('_gridstack_node');\\n\\n                    var width = origNode ? origNode.width : (Math.ceil(el.outerWidth() / cellWidth));\\n                    var height = origNode ? origNode.height : (Math.ceil(el.outerHeight() / cellHeight));\\n\\n                    draggingElement = el;\\n\\n                    var node = self.grid._prepareNode({width: width, height: height, _added: false, _temporary: true});\\n                    el.data('_gridstack_node', node);\\n                    el.data('_gridstack_node_orig', origNode);\\n\\n                    el.on('drag', onDrag);\\n                },\\n                out: function(event, ui) {\\n                    var el = $(ui.draggable);\\n                    el.unbind('drag', onDrag);\\n                    var node = el.data('_gridstack_node');\\n                    node.el = null;\\n                    self.grid.removeNode(node);\\n                    self.placeholder.detach();\\n                    self._updateContainerHeight();\\n                    el.data('_gridstack_node', el.data('_gridstack_node_orig'));\\n                },\\n                drop: function(event, ui) {\\n                    self.placeholder.detach();\\n\\n                    var node = $(ui.draggable).data('_gridstack_node');\\n                    node._grid = self;\\n                    var el = $(ui.draggable).clone(false);\\n                    el.data('_gridstack_node', node);\\n                    $(ui.draggable).remove();\\n                    node.el = el;\\n                    self.placeholder.hide();\\n                    el\\n                        .attr('data-gs-x', node.x)\\n                        .attr('data-gs-y', node.y)\\n                        .attr('data-gs-width', node.width)\\n                        .attr('data-gs-height', node.height)\\n                        .addClass(self.opts.itemClass)\\n                        .removeAttr('style')\\n                        .enableSelection()\\n                        .removeData('draggable')\\n                        .removeClass('ui-draggable ui-draggable-dragging ui-draggable-disabled')\\n                        .unbind('drag', onDrag);\\n                    self.container.append(el);\\n                    self._prepareElementsByNode(el, node);\\n                    self._updateContainerHeight();\\n                    self._triggerChangeEvent();\\n\\n                    self.grid.endUpdate();\\n                }\\n            });\\n        }\\n    };\\n\\n    GridStack.prototype._triggerChangeEvent = function(forceTrigger) {\\n        var elements = this.grid.getDirtyNodes();\\n        var hasChanges = false;\\n\\n        var eventParams = [];\\n        if (elements && elements.length) {\\n            eventParams.push(elements);\\n            hasChanges = true;\\n        }\\n\\n        if (hasChanges || forceTrigger === true) {\\n            this.container.trigger('change', eventParams);\\n        }\\n    };\\n\\n    GridStack.prototype._triggerAddEvent = function() {\\n        if (this.grid._addedNodes && this.grid._addedNodes.length > 0) {\\n            this.container.trigger('added', [_.map(this.grid._addedNodes, _.clone)]);\\n            this.grid._addedNodes = [];\\n        }\\n    };\\n\\n    GridStack.prototype._triggerRemoveEvent = function() {\\n        if (this.grid._removedNodes && this.grid._removedNodes.length > 0) {\\n            this.container.trigger('removed', [_.map(this.grid._removedNodes, _.clone)]);\\n            this.grid._removedNodes = [];\\n        }\\n    };\\n\\n    GridStack.prototype._initStyles = function() {\\n        if (this._stylesId) {\\n            Utils.removeStylesheet(this._stylesId);\\n        }\\n        this._stylesId = 'gridstack-style-' + (Math.random() * 100000).toFixed();\\n        this._styles = Utils.createStylesheet(this._stylesId);\\n        if (this._styles !== null) {\\n            this._styles._max = 0;\\n        }\\n    };\\n\\n    GridStack.prototype._updateStyles = function(maxHeight) {\\n        if (this._styles === null || typeof this._styles === 'undefined') {\\n            return;\\n        }\\n\\n        var prefix = '.' + this.opts._class + ' .' + this.opts.itemClass;\\n        var self = this;\\n        var getHeight;\\n\\n        if (typeof maxHeight == 'undefined') {\\n            maxHeight = this._styles._max;\\n            this._initStyles();\\n            this._updateContainerHeight();\\n        }\\n        if (!this.opts.cellHeight) { // The rest will be handled by CSS\\n            return ;\\n        }\\n        if (this._styles._max !== 0 && maxHeight <= this._styles._max) {\\n            return ;\\n        }\\n\\n        if (!this.opts.verticalMargin || this.opts.cellHeightUnit === this.opts.verticalMarginUnit) {\\n            getHeight = function(nbRows, nbMargins) {\\n                return (self.opts.cellHeight * nbRows + self.opts.verticalMargin * nbMargins) +\\n                    self.opts.cellHeightUnit;\\n            };\\n        } else {\\n            getHeight = function(nbRows, nbMargins) {\\n                if (!nbRows || !nbMargins) {\\n                    return (self.opts.cellHeight * nbRows + self.opts.verticalMargin * nbMargins) +\\n                        self.opts.cellHeightUnit;\\n                }\\n                return 'calc(' + ((self.opts.cellHeight * nbRows) + self.opts.cellHeightUnit) + ' + ' +\\n                    ((self.opts.verticalMargin * nbMargins) + self.opts.verticalMarginUnit) + ')';\\n            };\\n        }\\n\\n        if (this._styles._max === 0) {\\n            Utils.insertCSSRule(this._styles, prefix, 'min-height: ' + getHeight(1, 0) + ';', 0);\\n        }\\n\\n        if (maxHeight > this._styles._max) {\\n            for (var i = this._styles._max; i < maxHeight; ++i) {\\n                Utils.insertCSSRule(this._styles,\\n                    prefix + '[data-gs-height=\\\"' + (i + 1) + '\\\"]',\\n                    'height: ' + getHeight(i + 1, i) + ';',\\n                    i\\n                );\\n                Utils.insertCSSRule(this._styles,\\n                    prefix + '[data-gs-min-height=\\\"' + (i + 1) + '\\\"]',\\n                    'min-height: ' + getHeight(i + 1, i) + ';',\\n                    i\\n                );\\n                Utils.insertCSSRule(this._styles,\\n                    prefix + '[data-gs-max-height=\\\"' + (i + 1) + '\\\"]',\\n                    'max-height: ' + getHeight(i + 1, i) + ';',\\n                    i\\n                );\\n                Utils.insertCSSRule(this._styles,\\n                    prefix + '[data-gs-y=\\\"' + i + '\\\"]',\\n                    'top: ' + getHeight(i, i) + ';',\\n                    i\\n                );\\n            }\\n            this._styles._max = maxHeight;\\n        }\\n    };\\n\\n    GridStack.prototype._updateContainerHeight = function() {\\n        if (this.grid._updateCounter) {\\n            return;\\n        }\\n        var height = this.grid.getGridHeight();\\n        this.container.attr('data-gs-current-height', height);\\n        if (!this.opts.cellHeight) {\\n            return ;\\n        }\\n        if (!this.opts.verticalMargin) {\\n            this.container.css('height', (height * (this.opts.cellHeight)) + this.opts.cellHeightUnit);\\n        } else if (this.opts.cellHeightUnit === this.opts.verticalMarginUnit) {\\n            this.container.css('height', (height * (this.opts.cellHeight + this.opts.verticalMargin) -\\n                this.opts.verticalMargin) + this.opts.cellHeightUnit);\\n        } else {\\n            this.container.css('height', 'calc(' + ((height * (this.opts.cellHeight)) + this.opts.cellHeightUnit) +\\n                ' + ' + ((height * (this.opts.verticalMargin - 1)) + this.opts.verticalMarginUnit) + ')');\\n        }\\n    };\\n\\n    GridStack.prototype._isOneColumnMode = function() {\\n        return (window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth) <=\\n            this.opts.minWidth;\\n    };\\n\\n    GridStack.prototype._setupRemovingTimeout = function(el) {\\n        var self = this;\\n        var node = $(el).data('_gridstack_node');\\n\\n        if (node._removeTimeout || !self.opts.removable) {\\n            return;\\n        }\\n        node._removeTimeout = setTimeout(function() {\\n            el.addClass('grid-stack-item-removing');\\n            node._isAboutToRemove = true;\\n        }, self.opts.removeTimeout);\\n    };\\n\\n    GridStack.prototype._clearRemovingTimeout = function(el) {\\n        var node = $(el).data('_gridstack_node');\\n\\n        if (!node._removeTimeout) {\\n            return;\\n        }\\n        clearTimeout(node._removeTimeout);\\n        node._removeTimeout = null;\\n        el.removeClass('grid-stack-item-removing');\\n        node._isAboutToRemove = false;\\n    };\\n\\n    GridStack.prototype._prepareElementsByNode = function(el, node) {\\n        if (typeof $.ui === 'undefined') {\\n            return;\\n        }\\n        var self = this;\\n\\n        var cellWidth;\\n        var cellHeight;\\n\\n        var dragOrResize = function(event, ui) {\\n            var x = Math.round(ui.position.left / cellWidth);\\n            var y = Math.floor((ui.position.top + cellHeight / 2) / cellHeight);\\n            var width;\\n            var height;\\n\\n            if (event.type != 'drag') {\\n                width = Math.round(ui.size.width / cellWidth);\\n                height = Math.round(ui.size.height / cellHeight);\\n            }\\n\\n            if (event.type == 'drag') {\\n                if (x < 0 || x >= self.grid.width || y < 0) {\\n                    if (self.opts.removable === true) {\\n                        self._setupRemovingTimeout(el);\\n                    }\\n\\n                    x = node._beforeDragX;\\n                    y = node._beforeDragY;\\n\\n                    self.placeholder.detach();\\n                    self.placeholder.hide();\\n                    self.grid.removeNode(node);\\n                    self._updateContainerHeight();\\n\\n                    node._temporaryRemoved = true;\\n                } else {\\n                    self._clearRemovingTimeout(el);\\n\\n                    if (node._temporaryRemoved) {\\n                        self.grid.addNode(node);\\n                        self.placeholder\\n                            .attr('data-gs-x', x)\\n                            .attr('data-gs-y', y)\\n                            .attr('data-gs-width', width)\\n                            .attr('data-gs-height', height)\\n                            .show();\\n                        self.container.append(self.placeholder);\\n                        node.el = self.placeholder;\\n                        node._temporaryRemoved = false;\\n                    }\\n                }\\n            } else if (event.type == 'resize')  {\\n                if (x < 0) {\\n                    return;\\n                }\\n            }\\n\\n            if (!self.grid.canMoveNode(node, x, y, width, height)) {\\n                return;\\n            }\\n            self.grid.moveNode(node, x, y, width, height);\\n            self._updateContainerHeight();\\n        };\\n\\n        var onStartMoving = function(event, ui) {\\n            self.container.append(self.placeholder);\\n            var o = $(this);\\n            self.grid.cleanNodes();\\n            self.grid.beginUpdate(node);\\n            cellWidth = self.cellWidth();\\n            var strictCellHeight = Math.ceil(o.outerHeight() / o.attr('data-gs-height'));\\n            cellHeight = self.container.height() / parseInt(self.container.attr('data-gs-current-height'));\\n            self.placeholder\\n                .attr('data-gs-x', o.attr('data-gs-x'))\\n                .attr('data-gs-y', o.attr('data-gs-y'))\\n                .attr('data-gs-width', o.attr('data-gs-width'))\\n                .attr('data-gs-height', o.attr('data-gs-height'))\\n                .show();\\n            node.el = self.placeholder;\\n            node._beforeDragX = node.x;\\n            node._beforeDragY = node.y;\\n\\n            el.resizable('option', 'minWidth', cellWidth * (node.minWidth || 1));\\n            el.resizable('option', 'minHeight', strictCellHeight * (node.minHeight || 1));\\n\\n            if (event.type == 'resizestart') {\\n                o.find('.grid-stack-item').trigger('resizestart');\\n            }\\n        };\\n\\n        var onEndMoving = function(event, ui) {\\n            var o = $(this);\\n            if (!o.data('_gridstack_node')) {\\n                return;\\n            }\\n\\n            var forceNotify = false;\\n            self.placeholder.detach();\\n            node.el = o;\\n            self.placeholder.hide();\\n\\n            if (node._isAboutToRemove) {\\n                forceNotify = true;\\n                el.removeData('_gridstack_node');\\n                el.remove();\\n            } else {\\n                self._clearRemovingTimeout(el);\\n                if (!node._temporaryRemoved) {\\n                    o\\n                        .attr('data-gs-x', node.x)\\n                        .attr('data-gs-y', node.y)\\n                        .attr('data-gs-width', node.width)\\n                        .attr('data-gs-height', node.height)\\n                        .removeAttr('style');\\n                } else {\\n                    o\\n                        .attr('data-gs-x', node._beforeDragX)\\n                        .attr('data-gs-y', node._beforeDragY)\\n                        .attr('data-gs-width', node.width)\\n                        .attr('data-gs-height', node.height)\\n                        .removeAttr('style');\\n                    node.x = node._beforeDragX;\\n                    node.y = node._beforeDragY;\\n                    self.grid.addNode(node);\\n                }\\n            }\\n            self._updateContainerHeight();\\n            self._triggerChangeEvent(forceNotify);\\n\\n            self.grid.endUpdate();\\n\\n            var nestedGrids = o.find('.grid-stack');\\n            if (nestedGrids.length && event.type == 'resizestop') {\\n                nestedGrids.each(function(index, el) {\\n                    $(el).data('gridstack').onResizeHandler();\\n                });\\n                o.find('.grid-stack-item').trigger('resizestop');\\n            }\\n        };\\n\\n        el\\n            .draggable(_.extend({}, this.opts.draggable, {\\n                containment: this.opts.isNested ? this.container.parent() : null,\\n                start: onStartMoving,\\n                stop: onEndMoving,\\n                drag: dragOrResize\\n            }))\\n            .resizable(_.extend({}, this.opts.resizable, {\\n                start: onStartMoving,\\n                stop: onEndMoving,\\n                resize: dragOrResize\\n            }));\\n\\n        if (node.noMove || this._isOneColumnMode() || this.opts.disableDrag) {\\n            el.draggable('disable');\\n        }\\n\\n        if (node.noResize || this._isOneColumnMode() || this.opts.disableResize) {\\n            el.resizable('disable');\\n        }\\n\\n        el.attr('data-gs-locked', node.locked ? 'yes' : null);\\n    };\\n\\n    GridStack.prototype._prepareElement = function(el, triggerAddEvent) {\\n        triggerAddEvent = typeof triggerAddEvent != 'undefined' ? triggerAddEvent : false;\\n        var self = this;\\n        el = $(el);\\n\\n        el.addClass(this.opts.itemClass);\\n        var node = self.grid.addNode({\\n            x: el.attr('data-gs-x'),\\n            y: el.attr('data-gs-y'),\\n            width: el.attr('data-gs-width'),\\n            height: el.attr('data-gs-height'),\\n            maxWidth: el.attr('data-gs-max-width'),\\n            minWidth: el.attr('data-gs-min-width'),\\n            maxHeight: el.attr('data-gs-max-height'),\\n            minHeight: el.attr('data-gs-min-height'),\\n            autoPosition: Utils.toBool(el.attr('data-gs-auto-position')),\\n            noResize: Utils.toBool(el.attr('data-gs-no-resize')),\\n            noMove: Utils.toBool(el.attr('data-gs-no-move')),\\n            locked: Utils.toBool(el.attr('data-gs-locked')),\\n            el: el,\\n            id: el.attr('data-gs-id'),\\n            _grid: self\\n        }, triggerAddEvent);\\n        el.data('_gridstack_node', node);\\n\\n        this._prepareElementsByNode(el, node);\\n    };\\n\\n    GridStack.prototype.setAnimation = function(enable) {\\n        if (enable) {\\n            this.container.addClass('grid-stack-animate');\\n        } else {\\n            this.container.removeClass('grid-stack-animate');\\n        }\\n    };\\n\\n    GridStack.prototype.addWidget = function(el, x, y, width, height, autoPosition, minWidth, maxWidth,\\n        minHeight, maxHeight, id) {\\n        el = $(el);\\n        if (typeof x != 'undefined') { el.attr('data-gs-x', x); }\\n        if (typeof y != 'undefined') { el.attr('data-gs-y', y); }\\n        if (typeof width != 'undefined') { el.attr('data-gs-width', width); }\\n        if (typeof height != 'undefined') { el.attr('data-gs-height', height); }\\n        if (typeof autoPosition != 'undefined') { el.attr('data-gs-auto-position', autoPosition ? 'yes' : null); }\\n        if (typeof minWidth != 'undefined') { el.attr('data-gs-min-width', minWidth); }\\n        if (typeof maxWidth != 'undefined') { el.attr('data-gs-max-width', maxWidth); }\\n        if (typeof minHeight != 'undefined') { el.attr('data-gs-min-height', minHeight); }\\n        if (typeof maxHeight != 'undefined') { el.attr('data-gs-max-height', maxHeight); }\\n        if (typeof id != 'undefined') { el.attr('data-gs-id', id); }\\n        this.container.append(el);\\n        this._prepareElement(el, true);\\n        this._triggerAddEvent();\\n        this._updateContainerHeight();\\n        this._triggerChangeEvent(true);\\n\\n        return el;\\n    };\\n\\n    GridStack.prototype.makeWidget = function(el) {\\n        el = $(el);\\n        this._prepareElement(el, true);\\n        this._triggerAddEvent();\\n        this._updateContainerHeight();\\n        this._triggerChangeEvent(true);\\n\\n        return el;\\n    };\\n\\n    GridStack.prototype.willItFit = function(x, y, width, height, autoPosition) {\\n        var node = {x: x, y: y, width: width, height: height, autoPosition: autoPosition};\\n        return this.grid.canBePlacedWithRespectToHeight(node);\\n    };\\n\\n    GridStack.prototype.removeWidget = function(el, detachNode) {\\n        detachNode = typeof detachNode === 'undefined' ? true : detachNode;\\n        el = $(el);\\n        var node = el.data('_gridstack_node');\\n\\n        // For Meteor support: https://github.com/troolee/gridstack.js/pull/272\\n        if (!node) {\\n            node = this.grid.getNodeDataByDOMEl(el);\\n        }\\n\\n        this.grid.removeNode(node, detachNode);\\n        el.removeData('_gridstack_node');\\n        this._updateContainerHeight();\\n        if (detachNode) {\\n            el.remove();\\n        }\\n        this._triggerChangeEvent(true);\\n        this._triggerRemoveEvent();\\n    };\\n\\n    GridStack.prototype.removeAll = function(detachNode) {\\n        _.each(this.grid.nodes, _.bind(function(node) {\\n            this.removeWidget(node.el, detachNode);\\n        }, this));\\n        this.grid.nodes = [];\\n        this._updateContainerHeight();\\n    };\\n\\n    GridStack.prototype.destroy = function(detachGrid) {\\n        $(window).off('resize', this.onResizeHandler);\\n        this.disable();\\n        if (typeof detachGrid != 'undefined' && !detachGrid) {\\n            this.removeAll(false);\\n            this.container.removeData('gridstack');\\n        } else {\\n            this.container.remove();\\n        }\\n        Utils.removeStylesheet(this._stylesId);\\n        if (this.grid) {\\n            this.grid = null;\\n        }\\n    };\\n\\n    GridStack.prototype.resizable = function(el, val) {\\n        var self = this;\\n        el = $(el);\\n        el.each(function(index, el) {\\n            el = $(el);\\n            var node = el.data('_gridstack_node');\\n            if (typeof node == 'undefined' || node === null || typeof $.ui === 'undefined') {\\n                return;\\n            }\\n\\n            node.noResize = !(val || false);\\n            if (node.noResize || self._isOneColumnMode()) {\\n                el.resizable('disable');\\n            } else {\\n                el.resizable('enable');\\n            }\\n        });\\n        return this;\\n    };\\n\\n    GridStack.prototype.movable = function(el, val) {\\n        var self = this;\\n        el = $(el);\\n        el.each(function(index, el) {\\n            el = $(el);\\n            var node = el.data('_gridstack_node');\\n            if (typeof node == 'undefined' || node === null || typeof $.ui === 'undefined') {\\n                return;\\n            }\\n\\n            node.noMove = !(val || false);\\n            if (node.noMove || self._isOneColumnMode()) {\\n                el.draggable('disable');\\n                el.removeClass('ui-draggable-handle');\\n            } else {\\n                el.draggable('enable');\\n                el.addClass('ui-draggable-handle');\\n            }\\n        });\\n        return this;\\n    };\\n\\n    GridStack.prototype.enableMove = function(doEnable, includeNewWidgets) {\\n        this.movable(this.container.children('.' + this.opts.itemClass), doEnable);\\n        if (includeNewWidgets) {\\n            this.opts.disableDrag = !doEnable;\\n        }\\n    };\\n\\n    GridStack.prototype.enableResize = function(doEnable, includeNewWidgets) {\\n        this.resizable(this.container.children('.' + this.opts.itemClass), doEnable);\\n        if (includeNewWidgets) {\\n            this.opts.disableResize = !doEnable;\\n        }\\n    };\\n\\n    GridStack.prototype.disable = function() {\\n        this.movable(this.container.children('.' + this.opts.itemClass), false);\\n        this.resizable(this.container.children('.' + this.opts.itemClass), false);\\n        this.container.trigger('disable');\\n    };\\n\\n    GridStack.prototype.enable = function() {\\n        this.movable(this.container.children('.' + this.opts.itemClass), true);\\n        this.resizable(this.container.children('.' + this.opts.itemClass), true);\\n        this.container.trigger('enable');\\n    };\\n\\n    GridStack.prototype.locked = function(el, val) {\\n        el = $(el);\\n        el.each(function(index, el) {\\n            el = $(el);\\n            var node = el.data('_gridstack_node');\\n            if (typeof node == 'undefined' || node === null) {\\n                return;\\n            }\\n\\n            node.locked = (val || false);\\n            el.attr('data-gs-locked', node.locked ? 'yes' : null);\\n        });\\n        return this;\\n    };\\n\\n    GridStack.prototype.maxHeight = function(el, val) {\\n        el = $(el);\\n        el.each(function(index, el) {\\n            el = $(el);\\n            var node = el.data('_gridstack_node');\\n            if (typeof node === 'undefined' || node === null) {\\n                return;\\n            }\\n\\n            if (!isNaN(val)) {\\n                node.maxHeight = (val || false);\\n                el.attr('data-gs-max-height', val);\\n            }\\n        });\\n        return this;\\n    };\\n\\n    GridStack.prototype.minHeight = function(el, val) {\\n        el = $(el);\\n        el.each(function(index, el) {\\n            el = $(el);\\n            var node = el.data('_gridstack_node');\\n            if (typeof node === 'undefined' || node === null) {\\n                return;\\n            }\\n\\n            if (!isNaN(val)) {\\n                node.minHeight = (val || false);\\n                el.attr('data-gs-min-height', val);\\n            }\\n        });\\n        return this;\\n    };\\n\\n    GridStack.prototype.maxWidth = function(el, val) {\\n        el = $(el);\\n        el.each(function(index, el) {\\n            el = $(el);\\n            var node = el.data('_gridstack_node');\\n            if (typeof node === 'undefined' || node === null) {\\n                return;\\n            }\\n\\n            if (!isNaN(val)) {\\n                node.maxWidth = (val || false);\\n                el.attr('data-gs-max-width', val);\\n            }\\n        });\\n        return this;\\n    };\\n\\n    GridStack.prototype.minWidth = function(el, val) {\\n        el = $(el);\\n        el.each(function(index, el) {\\n            el = $(el);\\n            var node = el.data('_gridstack_node');\\n            if (typeof node === 'undefined' || node === null) {\\n                return;\\n            }\\n\\n            if (!isNaN(val)) {\\n                node.minWidth = (val || false);\\n                el.attr('data-gs-min-width', val);\\n            }\\n        });\\n        return this;\\n    };\\n\\n    GridStack.prototype._updateElement = function(el, callback) {\\n        el = $(el).first();\\n        var node = el.data('_gridstack_node');\\n        if (typeof node == 'undefined' || node === null) {\\n            return;\\n        }\\n\\n        var self = this;\\n\\n        self.grid.cleanNodes();\\n        self.grid.beginUpdate(node);\\n\\n        callback.call(this, el, node);\\n\\n        self._updateContainerHeight();\\n        self._triggerChangeEvent();\\n\\n        self.grid.endUpdate();\\n    };\\n\\n    GridStack.prototype.resize = function(el, width, height) {\\n        this._updateElement(el, function(el, node) {\\n            width = (width !== null && typeof width != 'undefined') ? width : node.width;\\n            height = (height !== null && typeof height != 'undefined') ? height : node.height;\\n\\n            this.grid.moveNode(node, node.x, node.y, width, height);\\n        });\\n    };\\n\\n    GridStack.prototype.move = function(el, x, y) {\\n        this._updateElement(el, function(el, node) {\\n            x = (x !== null && typeof x != 'undefined') ? x : node.x;\\n            y = (y !== null && typeof y != 'undefined') ? y : node.y;\\n\\n            this.grid.moveNode(node, x, y, node.width, node.height);\\n        });\\n    };\\n\\n    GridStack.prototype.update = function(el, x, y, width, height) {\\n        this._updateElement(el, function(el, node) {\\n            x = (x !== null && typeof x != 'undefined') ? x : node.x;\\n            y = (y !== null && typeof y != 'undefined') ? y : node.y;\\n            width = (width !== null && typeof width != 'undefined') ? width : node.width;\\n            height = (height !== null && typeof height != 'undefined') ? height : node.height;\\n\\n            this.grid.moveNode(node, x, y, width, height);\\n        });\\n    };\\n\\n    GridStack.prototype.verticalMargin = function(val, noUpdate) {\\n        if (typeof val == 'undefined') {\\n            return this.opts.verticalMargin;\\n        }\\n\\n        var heightData = Utils.parseHeight(val);\\n\\n        if (this.opts.verticalMarginUnit === heightData.unit && this.opts.height === heightData.height) {\\n            return ;\\n        }\\n        this.opts.verticalMarginUnit = heightData.unit;\\n        this.opts.verticalMargin = heightData.height;\\n\\n        if (!noUpdate) {\\n            this._updateStyles();\\n        }\\n    };\\n\\n    GridStack.prototype.cellHeight = function(val, noUpdate) {\\n        if (typeof val == 'undefined') {\\n            if (this.opts.cellHeight) {\\n                return this.opts.cellHeight;\\n            }\\n            var o = this.container.children('.' + this.opts.itemClass).first();\\n            return Math.ceil(o.outerHeight() / o.attr('data-gs-height'));\\n        }\\n        var heightData = Utils.parseHeight(val);\\n\\n        if (this.opts.cellHeightUnit === heightData.heightUnit && this.opts.height === heightData.height) {\\n            return ;\\n        }\\n        this.opts.cellHeightUnit = heightData.unit;\\n        this.opts.cellHeight = heightData.height;\\n\\n        if (!noUpdate) {\\n            this._updateStyles();\\n        }\\n\\n    };\\n\\n    GridStack.prototype.cellWidth = function() {\\n        return Math.round(this.container.outerWidth() / this.opts.width);\\n    };\\n\\n    GridStack.prototype.getCellFromPixel = function(position, useOffset) {\\n        var containerPos = (typeof useOffset != 'undefined' && useOffset) ?\\n            this.container.offset() : this.container.position();\\n        var relativeLeft = position.left - containerPos.left;\\n        var relativeTop = position.top - containerPos.top;\\n\\n        var columnWidth = Math.floor(this.container.width() / this.opts.width);\\n        var rowHeight = Math.floor(this.container.height() / parseInt(this.container.attr('data-gs-current-height')));\\n\\n        return {x: Math.floor(relativeLeft / columnWidth), y: Math.floor(relativeTop / rowHeight)};\\n    };\\n\\n    GridStack.prototype.batchUpdate = function() {\\n        this.grid.batchUpdate();\\n    };\\n\\n    GridStack.prototype.commit = function() {\\n        this.grid.commit();\\n        this._updateContainerHeight();\\n    };\\n\\n    GridStack.prototype.isAreaEmpty = function(x, y, width, height) {\\n        return this.grid.isAreaEmpty(x, y, width, height);\\n    };\\n\\n    GridStack.prototype.setStatic = function(staticValue) {\\n        this.opts.staticGrid = (staticValue === true);\\n        this.enableMove(!staticValue);\\n        this.enableResize(!staticValue);\\n        this._setStaticClass();\\n    };\\n\\n    GridStack.prototype._setStaticClass = function() {\\n        var staticClassName = 'grid-stack-static';\\n\\n        if (this.opts.staticGrid === true) {\\n            this.container.addClass(staticClassName);\\n        } else {\\n            this.container.removeClass(staticClassName);\\n        }\\n    };\\n\\n    GridStack.prototype._updateNodeWidths = function(oldWidth, newWidth) {\\n        this.grid._sortNodes();\\n        this.grid.batchUpdate();\\n        var node = {};\\n        for (var i = 0; i < this.grid.nodes.length; i++) {\\n            node = this.grid.nodes[i];\\n            this.update(node.el, Math.round(node.x * newWidth / oldWidth), undefined,\\n                Math.round(node.width * newWidth / oldWidth), undefined);\\n        }\\n        this.grid.commit();\\n    };\\n\\n    GridStack.prototype.setGridWidth = function(gridWidth,doNotPropagate) {\\n        this.container.removeClass('grid-stack-' + this.opts.width);\\n        if (doNotPropagate !== true) {\\n            this._updateNodeWidths(this.opts.width, gridWidth);\\n        }\\n        this.opts.width = gridWidth;\\n        this.grid.width = gridWidth;\\n        this.container.addClass('grid-stack-' + gridWidth);\\n    };\\n\\n    // jscs:disable requireCamelCaseOrUpperCaseIdentifiers\\n    GridStackEngine.prototype.batch_update = obsolete(GridStackEngine.prototype.batchUpdate);\\n    GridStackEngine.prototype._fix_collisions = obsolete(GridStackEngine.prototype._fixCollisions,\\n        '_fix_collisions', '_fixCollisions');\\n    GridStackEngine.prototype.is_area_empty = obsolete(GridStackEngine.prototype.isAreaEmpty,\\n        'is_area_empty', 'isAreaEmpty');\\n    GridStackEngine.prototype._sort_nodes = obsolete(GridStackEngine.prototype._sortNodes,\\n        '_sort_nodes', '_sortNodes');\\n    GridStackEngine.prototype._pack_nodes = obsolete(GridStackEngine.prototype._packNodes,\\n        '_pack_nodes', '_packNodes');\\n    GridStackEngine.prototype._prepare_node = obsolete(GridStackEngine.prototype._prepareNode,\\n        '_prepare_node', '_prepareNode');\\n    GridStackEngine.prototype.clean_nodes = obsolete(GridStackEngine.prototype.cleanNodes,\\n        'clean_nodes', 'cleanNodes');\\n    GridStackEngine.prototype.get_dirty_nodes = obsolete(GridStackEngine.prototype.getDirtyNodes,\\n        'get_dirty_nodes', 'getDirtyNodes');\\n    GridStackEngine.prototype.add_node = obsolete(GridStackEngine.prototype.addNode,\\n        'add_node', 'addNode, ');\\n    GridStackEngine.prototype.remove_node = obsolete(GridStackEngine.prototype.removeNode,\\n        'remove_node', 'removeNode');\\n    GridStackEngine.prototype.can_move_node = obsolete(GridStackEngine.prototype.canMoveNode,\\n        'can_move_node', 'canMoveNode');\\n    GridStackEngine.prototype.move_node = obsolete(GridStackEngine.prototype.moveNode,\\n        'move_node', 'moveNode');\\n    GridStackEngine.prototype.get_grid_height = obsolete(GridStackEngine.prototype.getGridHeight,\\n        'get_grid_height', 'getGridHeight');\\n    GridStackEngine.prototype.begin_update = obsolete(GridStackEngine.prototype.beginUpdate,\\n        'begin_update', 'beginUpdate');\\n    GridStackEngine.prototype.end_update = obsolete(GridStackEngine.prototype.endUpdate,\\n        'end_update', 'endUpdate');\\n    GridStackEngine.prototype.can_be_placed_with_respect_to_height =\\n        obsolete(GridStackEngine.prototype.canBePlacedWithRespectToHeight,\\n        'can_be_placed_with_respect_to_height', 'canBePlacedWithRespectToHeight');\\n    GridStack.prototype._trigger_change_event = obsolete(GridStack.prototype._triggerChangeEvent,\\n        '_trigger_change_event', '_triggerChangeEvent');\\n    GridStack.prototype._init_styles = obsolete(GridStack.prototype._initStyles,\\n        '_init_styles', '_initStyles');\\n    GridStack.prototype._update_styles = obsolete(GridStack.prototype._updateStyles,\\n        '_update_styles', '_updateStyles');\\n    GridStack.prototype._update_container_height = obsolete(GridStack.prototype._updateContainerHeight,\\n        '_update_container_height', '_updateContainerHeight');\\n    GridStack.prototype._is_one_column_mode = obsolete(GridStack.prototype._isOneColumnMode,\\n        '_is_one_column_mode','_isOneColumnMode');\\n    GridStack.prototype._prepare_element = obsolete(GridStack.prototype._prepareElement,\\n        '_prepare_element', '_prepareElement');\\n    GridStack.prototype.set_animation = obsolete(GridStack.prototype.setAnimation,\\n        'set_animation', 'setAnimation');\\n    GridStack.prototype.add_widget = obsolete(GridStack.prototype.addWidget,\\n        'add_widget', 'addWidget');\\n    GridStack.prototype.make_widget = obsolete(GridStack.prototype.makeWidget,\\n        'make_widget', 'makeWidget');\\n    GridStack.prototype.will_it_fit = obsolete(GridStack.prototype.willItFit,\\n        'will_it_fit', 'willItFit');\\n    GridStack.prototype.remove_widget = obsolete(GridStack.prototype.removeWidget,\\n        'remove_widget', 'removeWidget');\\n    GridStack.prototype.remove_all = obsolete(GridStack.prototype.removeAll,\\n        'remove_all', 'removeAll');\\n    GridStack.prototype.min_height = obsolete(GridStack.prototype.minHeight,\\n        'min_height', 'minHeight');\\n    GridStack.prototype.min_width = obsolete(GridStack.prototype.minWidth,\\n        'min_width', 'minWidth');\\n    GridStack.prototype._update_element = obsolete(GridStack.prototype._updateElement,\\n        '_update_element', '_updateElement');\\n    GridStack.prototype.cell_height = obsolete(GridStack.prototype.cellHeight,\\n        'cell_height', 'cellHeight');\\n    GridStack.prototype.cell_width = obsolete(GridStack.prototype.cellWidth,\\n        'cell_width', 'cellWidth');\\n    GridStack.prototype.get_cell_from_pixel = obsolete(GridStack.prototype.getCellFromPixel,\\n        'get_cell_from_pixel', 'getCellFromPixel');\\n    GridStack.prototype.batch_update = obsolete(GridStack.prototype.batchUpdate,\\n        'batch_update', 'batchUpdate');\\n    GridStack.prototype.is_area_empty = obsolete(GridStack.prototype.isAreaEmpty,\\n        'is_area_empty', 'isAreaEmpty');\\n    GridStack.prototype.set_static = obsolete(GridStack.prototype.setStatic,\\n        'set_static', 'setStatic');\\n    GridStack.prototype._set_static_class = obsolete(GridStack.prototype._setStaticClass,\\n        '_set_static_class', '_setStaticClass');\\n    // jscs:enable requireCamelCaseOrUpperCaseIdentifiers\\n\\n    scope.GridStackUI = GridStack;\\n\\n    scope.GridStackUI.Utils = Utils;\\n    scope.GridStackUI.Engine = GridStackEngine;\\n\\n    $.fn.gridstack = function(opts) {\\n        return this.each(function() {\\n            var o = $(this);\\n            if (!o.data('gridstack')) {\\n                o\\n                    .data('gridstack', new GridStack(this, opts));\\n            }\\n        });\\n    };\\n\\n    return scope.GridStackUI;\\n});\\n\"\n\n//////////////////\n// WEBPACK FOOTER\n// ./~/raw-loader!./~/gridstack/dist/gridstack.js\n// module id = 161\n// module chunks = 1\n//# sourceURL=webpack:///./~/gridstack/dist/gridstack.js?./~/raw-loader");
-
-/***/ },
-
-/***/ 171:
-/***/ function(module, exports) {
-
-	eval("module.exports = \"/*\\n     _ _      _       _\\n ___| (_) ___| | __  (_)___\\n/ __| | |/ __| |/ /  | / __|\\n\\\\__ \\\\ | | (__|   < _ | \\\\__ \\\\\\n|___/_|_|\\\\___|_|\\\\_(_)/ |___/\\n                   |__/\\n\\n Version: 1.6.0\\n  Author: Ken Wheeler\\n Website: http://kenwheeler.github.io\\n    Docs: http://kenwheeler.github.io/slick\\n    Repo: http://github.com/kenwheeler/slick\\n  Issues: http://github.com/kenwheeler/slick/issues\\n\\n */\\n/* global window, document, define, jQuery, setInterval, clearInterval */\\n(function(factory) {\\n    'use strict';\\n    if (typeof define === 'function' && define.amd) {\\n        define(['jquery'], factory);\\n    } else if (typeof exports !== 'undefined') {\\n        module.exports = factory(require('jquery'));\\n    } else {\\n        factory(jQuery);\\n    }\\n\\n}(function($) {\\n    'use strict';\\n    var Slick = window.Slick || {};\\n\\n    Slick = (function() {\\n\\n        var instanceUid = 0;\\n\\n        function Slick(element, settings) {\\n\\n            var _ = this, dataSettings;\\n\\n            _.defaults = {\\n                accessibility: true,\\n                adaptiveHeight: false,\\n                appendArrows: $(element),\\n                appendDots: $(element),\\n                arrows: true,\\n                asNavFor: null,\\n                prevArrow: '<button type=\\\"button\\\" data-role=\\\"none\\\" class=\\\"slick-prev\\\" aria-label=\\\"Previous\\\" tabindex=\\\"0\\\" role=\\\"button\\\">Previous</button>',\\n                nextArrow: '<button type=\\\"button\\\" data-role=\\\"none\\\" class=\\\"slick-next\\\" aria-label=\\\"Next\\\" tabindex=\\\"0\\\" role=\\\"button\\\">Next</button>',\\n                autoplay: false,\\n                autoplaySpeed: 3000,\\n                centerMode: false,\\n                centerPadding: '50px',\\n                cssEase: 'ease',\\n                customPaging: function(slider, i) {\\n                    return $('<button type=\\\"button\\\" data-role=\\\"none\\\" role=\\\"button\\\" tabindex=\\\"0\\\" />').text(i + 1);\\n                },\\n                dots: false,\\n                dotsClass: 'slick-dots',\\n                draggable: true,\\n                easing: 'linear',\\n                edgeFriction: 0.35,\\n                fade: false,\\n                focusOnSelect: false,\\n                infinite: true,\\n                initialSlide: 0,\\n                lazyLoad: 'ondemand',\\n                mobileFirst: false,\\n                pauseOnHover: true,\\n                pauseOnFocus: true,\\n                pauseOnDotsHover: false,\\n                respondTo: 'window',\\n                responsive: null,\\n                rows: 1,\\n                rtl: false,\\n                slide: '',\\n                slidesPerRow: 1,\\n                slidesToShow: 1,\\n                slidesToScroll: 1,\\n                speed: 500,\\n                swipe: true,\\n                swipeToSlide: false,\\n                touchMove: true,\\n                touchThreshold: 5,\\n                useCSS: true,\\n                useTransform: true,\\n                variableWidth: false,\\n                vertical: false,\\n                verticalSwiping: false,\\n                waitForAnimate: true,\\n                zIndex: 1000\\n            };\\n\\n            _.initials = {\\n                animating: false,\\n                dragging: false,\\n                autoPlayTimer: null,\\n                currentDirection: 0,\\n                currentLeft: null,\\n                currentSlide: 0,\\n                direction: 1,\\n                $dots: null,\\n                listWidth: null,\\n                listHeight: null,\\n                loadIndex: 0,\\n                $nextArrow: null,\\n                $prevArrow: null,\\n                slideCount: null,\\n                slideWidth: null,\\n                $slideTrack: null,\\n                $slides: null,\\n                sliding: false,\\n                slideOffset: 0,\\n                swipeLeft: null,\\n                $list: null,\\n                touchObject: {},\\n                transformsEnabled: false,\\n                unslicked: false\\n            };\\n\\n            $.extend(_, _.initials);\\n\\n            _.activeBreakpoint = null;\\n            _.animType = null;\\n            _.animProp = null;\\n            _.breakpoints = [];\\n            _.breakpointSettings = [];\\n            _.cssTransitions = false;\\n            _.focussed = false;\\n            _.interrupted = false;\\n            _.hidden = 'hidden';\\n            _.paused = true;\\n            _.positionProp = null;\\n            _.respondTo = null;\\n            _.rowCount = 1;\\n            _.shouldClick = true;\\n            _.$slider = $(element);\\n            _.$slidesCache = null;\\n            _.transformType = null;\\n            _.transitionType = null;\\n            _.visibilityChange = 'visibilitychange';\\n            _.windowWidth = 0;\\n            _.windowTimer = null;\\n\\n            dataSettings = $(element).data('slick') || {};\\n\\n            _.options = $.extend({}, _.defaults, settings, dataSettings);\\n\\n            _.currentSlide = _.options.initialSlide;\\n\\n            _.originalSettings = _.options;\\n\\n            if (typeof document.mozHidden !== 'undefined') {\\n                _.hidden = 'mozHidden';\\n                _.visibilityChange = 'mozvisibilitychange';\\n            } else if (typeof document.webkitHidden !== 'undefined') {\\n                _.hidden = 'webkitHidden';\\n                _.visibilityChange = 'webkitvisibilitychange';\\n            }\\n\\n            _.autoPlay = $.proxy(_.autoPlay, _);\\n            _.autoPlayClear = $.proxy(_.autoPlayClear, _);\\n            _.autoPlayIterator = $.proxy(_.autoPlayIterator, _);\\n            _.changeSlide = $.proxy(_.changeSlide, _);\\n            _.clickHandler = $.proxy(_.clickHandler, _);\\n            _.selectHandler = $.proxy(_.selectHandler, _);\\n            _.setPosition = $.proxy(_.setPosition, _);\\n            _.swipeHandler = $.proxy(_.swipeHandler, _);\\n            _.dragHandler = $.proxy(_.dragHandler, _);\\n            _.keyHandler = $.proxy(_.keyHandler, _);\\n\\n            _.instanceUid = instanceUid++;\\n\\n            // A simple way to check for HTML strings\\n            // Strict HTML recognition (must start with <)\\n            // Extracted from jQuery v1.11 source\\n            _.htmlExpr = /^(?:\\\\s*(<[\\\\w\\\\W]+>)[^>]*)$/;\\n\\n\\n            _.registerBreakpoints();\\n            _.init(true);\\n\\n        }\\n\\n        return Slick;\\n\\n    }());\\n\\n    Slick.prototype.activateADA = function() {\\n        var _ = this;\\n\\n        _.$slideTrack.find('.slick-active').attr({\\n            'aria-hidden': 'false'\\n        }).find('a, input, button, select').attr({\\n            'tabindex': '0'\\n        });\\n\\n    };\\n\\n    Slick.prototype.addSlide = Slick.prototype.slickAdd = function(markup, index, addBefore) {\\n\\n        var _ = this;\\n\\n        if (typeof(index) === 'boolean') {\\n            addBefore = index;\\n            index = null;\\n        } else if (index < 0 || (index >= _.slideCount)) {\\n            return false;\\n        }\\n\\n        _.unload();\\n\\n        if (typeof(index) === 'number') {\\n            if (index === 0 && _.$slides.length === 0) {\\n                $(markup).appendTo(_.$slideTrack);\\n            } else if (addBefore) {\\n                $(markup).insertBefore(_.$slides.eq(index));\\n            } else {\\n                $(markup).insertAfter(_.$slides.eq(index));\\n            }\\n        } else {\\n            if (addBefore === true) {\\n                $(markup).prependTo(_.$slideTrack);\\n            } else {\\n                $(markup).appendTo(_.$slideTrack);\\n            }\\n        }\\n\\n        _.$slides = _.$slideTrack.children(this.options.slide);\\n\\n        _.$slideTrack.children(this.options.slide).detach();\\n\\n        _.$slideTrack.append(_.$slides);\\n\\n        _.$slides.each(function(index, element) {\\n            $(element).attr('data-slick-index', index);\\n        });\\n\\n        _.$slidesCache = _.$slides;\\n\\n        _.reinit();\\n\\n    };\\n\\n    Slick.prototype.animateHeight = function() {\\n        var _ = this;\\n        if (_.options.slidesToShow === 1 && _.options.adaptiveHeight === true && _.options.vertical === false) {\\n            var targetHeight = _.$slides.eq(_.currentSlide).outerHeight(true);\\n            _.$list.animate({\\n                height: targetHeight\\n            }, _.options.speed);\\n        }\\n    };\\n\\n    Slick.prototype.animateSlide = function(targetLeft, callback) {\\n\\n        var animProps = {},\\n            _ = this;\\n\\n        _.animateHeight();\\n\\n        if (_.options.rtl === true && _.options.vertical === false) {\\n            targetLeft = -targetLeft;\\n        }\\n        if (_.transformsEnabled === false) {\\n            if (_.options.vertical === false) {\\n                _.$slideTrack.animate({\\n                    left: targetLeft\\n                }, _.options.speed, _.options.easing, callback);\\n            } else {\\n                _.$slideTrack.animate({\\n                    top: targetLeft\\n                }, _.options.speed, _.options.easing, callback);\\n            }\\n\\n        } else {\\n\\n            if (_.cssTransitions === false) {\\n                if (_.options.rtl === true) {\\n                    _.currentLeft = -(_.currentLeft);\\n                }\\n                $({\\n                    animStart: _.currentLeft\\n                }).animate({\\n                    animStart: targetLeft\\n                }, {\\n                    duration: _.options.speed,\\n                    easing: _.options.easing,\\n                    step: function(now) {\\n                        now = Math.ceil(now);\\n                        if (_.options.vertical === false) {\\n                            animProps[_.animType] = 'translate(' +\\n                                now + 'px, 0px)';\\n                            _.$slideTrack.css(animProps);\\n                        } else {\\n                            animProps[_.animType] = 'translate(0px,' +\\n                                now + 'px)';\\n                            _.$slideTrack.css(animProps);\\n                        }\\n                    },\\n                    complete: function() {\\n                        if (callback) {\\n                            callback.call();\\n                        }\\n                    }\\n                });\\n\\n            } else {\\n\\n                _.applyTransition();\\n                targetLeft = Math.ceil(targetLeft);\\n\\n                if (_.options.vertical === false) {\\n                    animProps[_.animType] = 'translate3d(' + targetLeft + 'px, 0px, 0px)';\\n                } else {\\n                    animProps[_.animType] = 'translate3d(0px,' + targetLeft + 'px, 0px)';\\n                }\\n                _.$slideTrack.css(animProps);\\n\\n                if (callback) {\\n                    setTimeout(function() {\\n\\n                        _.disableTransition();\\n\\n                        callback.call();\\n                    }, _.options.speed);\\n                }\\n\\n            }\\n\\n        }\\n\\n    };\\n\\n    Slick.prototype.getNavTarget = function() {\\n\\n        var _ = this,\\n            asNavFor = _.options.asNavFor;\\n\\n        if ( asNavFor && asNavFor !== null ) {\\n            asNavFor = $(asNavFor).not(_.$slider);\\n        }\\n\\n        return asNavFor;\\n\\n    };\\n\\n    Slick.prototype.asNavFor = function(index) {\\n\\n        var _ = this,\\n            asNavFor = _.getNavTarget();\\n\\n        if ( asNavFor !== null && typeof asNavFor === 'object' ) {\\n            asNavFor.each(function() {\\n                var target = $(this).slick('getSlick');\\n                if(!target.unslicked) {\\n                    target.slideHandler(index, true);\\n                }\\n            });\\n        }\\n\\n    };\\n\\n    Slick.prototype.applyTransition = function(slide) {\\n\\n        var _ = this,\\n            transition = {};\\n\\n        if (_.options.fade === false) {\\n            transition[_.transitionType] = _.transformType + ' ' + _.options.speed + 'ms ' + _.options.cssEase;\\n        } else {\\n            transition[_.transitionType] = 'opacity ' + _.options.speed + 'ms ' + _.options.cssEase;\\n        }\\n\\n        if (_.options.fade === false) {\\n            _.$slideTrack.css(transition);\\n        } else {\\n            _.$slides.eq(slide).css(transition);\\n        }\\n\\n    };\\n\\n    Slick.prototype.autoPlay = function() {\\n\\n        var _ = this;\\n\\n        _.autoPlayClear();\\n\\n        if ( _.slideCount > _.options.slidesToShow ) {\\n            _.autoPlayTimer = setInterval( _.autoPlayIterator, _.options.autoplaySpeed );\\n        }\\n\\n    };\\n\\n    Slick.prototype.autoPlayClear = function() {\\n\\n        var _ = this;\\n\\n        if (_.autoPlayTimer) {\\n            clearInterval(_.autoPlayTimer);\\n        }\\n\\n    };\\n\\n    Slick.prototype.autoPlayIterator = function() {\\n\\n        var _ = this,\\n            slideTo = _.currentSlide + _.options.slidesToScroll;\\n\\n        if ( !_.paused && !_.interrupted && !_.focussed ) {\\n\\n            if ( _.options.infinite === false ) {\\n\\n                if ( _.direction === 1 && ( _.currentSlide + 1 ) === ( _.slideCount - 1 )) {\\n                    _.direction = 0;\\n                }\\n\\n                else if ( _.direction === 0 ) {\\n\\n                    slideTo = _.currentSlide - _.options.slidesToScroll;\\n\\n                    if ( _.currentSlide - 1 === 0 ) {\\n                        _.direction = 1;\\n                    }\\n\\n                }\\n\\n            }\\n\\n            _.slideHandler( slideTo );\\n\\n        }\\n\\n    };\\n\\n    Slick.prototype.buildArrows = function() {\\n\\n        var _ = this;\\n\\n        if (_.options.arrows === true ) {\\n\\n            _.$prevArrow = $(_.options.prevArrow).addClass('slick-arrow');\\n            _.$nextArrow = $(_.options.nextArrow).addClass('slick-arrow');\\n\\n            if( _.slideCount > _.options.slidesToShow ) {\\n\\n                _.$prevArrow.removeClass('slick-hidden').removeAttr('aria-hidden tabindex');\\n                _.$nextArrow.removeClass('slick-hidden').removeAttr('aria-hidden tabindex');\\n\\n                if (_.htmlExpr.test(_.options.prevArrow)) {\\n                    _.$prevArrow.prependTo(_.options.appendArrows);\\n                }\\n\\n                if (_.htmlExpr.test(_.options.nextArrow)) {\\n                    _.$nextArrow.appendTo(_.options.appendArrows);\\n                }\\n\\n                if (_.options.infinite !== true) {\\n                    _.$prevArrow\\n                        .addClass('slick-disabled')\\n                        .attr('aria-disabled', 'true');\\n                }\\n\\n            } else {\\n\\n                _.$prevArrow.add( _.$nextArrow )\\n\\n                    .addClass('slick-hidden')\\n                    .attr({\\n                        'aria-disabled': 'true',\\n                        'tabindex': '-1'\\n                    });\\n\\n            }\\n\\n        }\\n\\n    };\\n\\n    Slick.prototype.buildDots = function() {\\n\\n        var _ = this,\\n            i, dot;\\n\\n        if (_.options.dots === true && _.slideCount > _.options.slidesToShow) {\\n\\n            _.$slider.addClass('slick-dotted');\\n\\n            dot = $('<ul />').addClass(_.options.dotsClass);\\n\\n            for (i = 0; i <= _.getDotCount(); i += 1) {\\n                dot.append($('<li />').append(_.options.customPaging.call(this, _, i)));\\n            }\\n\\n            _.$dots = dot.appendTo(_.options.appendDots);\\n\\n            _.$dots.find('li').first().addClass('slick-active').attr('aria-hidden', 'false');\\n\\n        }\\n\\n    };\\n\\n    Slick.prototype.buildOut = function() {\\n\\n        var _ = this;\\n\\n        _.$slides =\\n            _.$slider\\n                .children( _.options.slide + ':not(.slick-cloned)')\\n                .addClass('slick-slide');\\n\\n        _.slideCount = _.$slides.length;\\n\\n        _.$slides.each(function(index, element) {\\n            $(element)\\n                .attr('data-slick-index', index)\\n                .data('originalStyling', $(element).attr('style') || '');\\n        });\\n\\n        _.$slider.addClass('slick-slider');\\n\\n        _.$slideTrack = (_.slideCount === 0) ?\\n            $('<div class=\\\"slick-track\\\"/>').appendTo(_.$slider) :\\n            _.$slides.wrapAll('<div class=\\\"slick-track\\\"/>').parent();\\n\\n        _.$list = _.$slideTrack.wrap(\\n            '<div aria-live=\\\"polite\\\" class=\\\"slick-list\\\"/>').parent();\\n        _.$slideTrack.css('opacity', 0);\\n\\n        if (_.options.centerMode === true || _.options.swipeToSlide === true) {\\n            _.options.slidesToScroll = 1;\\n        }\\n\\n        $('img[data-lazy]', _.$slider).not('[src]').addClass('slick-loading');\\n\\n        _.setupInfinite();\\n\\n        _.buildArrows();\\n\\n        _.buildDots();\\n\\n        _.updateDots();\\n\\n\\n        _.setSlideClasses(typeof _.currentSlide === 'number' ? _.currentSlide : 0);\\n\\n        if (_.options.draggable === true) {\\n            _.$list.addClass('draggable');\\n        }\\n\\n    };\\n\\n    Slick.prototype.buildRows = function() {\\n\\n        var _ = this, a, b, c, newSlides, numOfSlides, originalSlides,slidesPerSection;\\n\\n        newSlides = document.createDocumentFragment();\\n        originalSlides = _.$slider.children();\\n\\n        if(_.options.rows > 1) {\\n\\n            slidesPerSection = _.options.slidesPerRow * _.options.rows;\\n            numOfSlides = Math.ceil(\\n                originalSlides.length / slidesPerSection\\n            );\\n\\n            for(a = 0; a < numOfSlides; a++){\\n                var slide = document.createElement('div');\\n                for(b = 0; b < _.options.rows; b++) {\\n                    var row = document.createElement('div');\\n                    for(c = 0; c < _.options.slidesPerRow; c++) {\\n                        var target = (a * slidesPerSection + ((b * _.options.slidesPerRow) + c));\\n                        if (originalSlides.get(target)) {\\n                            row.appendChild(originalSlides.get(target));\\n                        }\\n                    }\\n                    slide.appendChild(row);\\n                }\\n                newSlides.appendChild(slide);\\n            }\\n\\n            _.$slider.empty().append(newSlides);\\n            _.$slider.children().children().children()\\n                .css({\\n                    'width':(100 / _.options.slidesPerRow) + '%',\\n                    'display': 'inline-block'\\n                });\\n\\n        }\\n\\n    };\\n\\n    Slick.prototype.checkResponsive = function(initial, forceUpdate) {\\n\\n        var _ = this,\\n            breakpoint, targetBreakpoint, respondToWidth, triggerBreakpoint = false;\\n        var sliderWidth = _.$slider.width();\\n        var windowWidth = window.innerWidth || $(window).width();\\n\\n        if (_.respondTo === 'window') {\\n            respondToWidth = windowWidth;\\n        } else if (_.respondTo === 'slider') {\\n            respondToWidth = sliderWidth;\\n        } else if (_.respondTo === 'min') {\\n            respondToWidth = Math.min(windowWidth, sliderWidth);\\n        }\\n\\n        if ( _.options.responsive &&\\n            _.options.responsive.length &&\\n            _.options.responsive !== null) {\\n\\n            targetBreakpoint = null;\\n\\n            for (breakpoint in _.breakpoints) {\\n                if (_.breakpoints.hasOwnProperty(breakpoint)) {\\n                    if (_.originalSettings.mobileFirst === false) {\\n                        if (respondToWidth < _.breakpoints[breakpoint]) {\\n                            targetBreakpoint = _.breakpoints[breakpoint];\\n                        }\\n                    } else {\\n                        if (respondToWidth > _.breakpoints[breakpoint]) {\\n                            targetBreakpoint = _.breakpoints[breakpoint];\\n                        }\\n                    }\\n                }\\n            }\\n\\n            if (targetBreakpoint !== null) {\\n                if (_.activeBreakpoint !== null) {\\n                    if (targetBreakpoint !== _.activeBreakpoint || forceUpdate) {\\n                        _.activeBreakpoint =\\n                            targetBreakpoint;\\n                        if (_.breakpointSettings[targetBreakpoint] === 'unslick') {\\n                            _.unslick(targetBreakpoint);\\n                        } else {\\n                            _.options = $.extend({}, _.originalSettings,\\n                                _.breakpointSettings[\\n                                    targetBreakpoint]);\\n                            if (initial === true) {\\n                                _.currentSlide = _.options.initialSlide;\\n                            }\\n                            _.refresh(initial);\\n                        }\\n                        triggerBreakpoint = targetBreakpoint;\\n                    }\\n                } else {\\n                    _.activeBreakpoint = targetBreakpoint;\\n                    if (_.breakpointSettings[targetBreakpoint] === 'unslick') {\\n                        _.unslick(targetBreakpoint);\\n                    } else {\\n                        _.options = $.extend({}, _.originalSettings,\\n                            _.breakpointSettings[\\n                                targetBreakpoint]);\\n                        if (initial === true) {\\n                            _.currentSlide = _.options.initialSlide;\\n                        }\\n                        _.refresh(initial);\\n                    }\\n                    triggerBreakpoint = targetBreakpoint;\\n                }\\n            } else {\\n                if (_.activeBreakpoint !== null) {\\n                    _.activeBreakpoint = null;\\n                    _.options = _.originalSettings;\\n                    if (initial === true) {\\n                        _.currentSlide = _.options.initialSlide;\\n                    }\\n                    _.refresh(initial);\\n                    triggerBreakpoint = targetBreakpoint;\\n                }\\n            }\\n\\n            // only trigger breakpoints during an actual break. not on initialize.\\n            if( !initial && triggerBreakpoint !== false ) {\\n                _.$slider.trigger('breakpoint', [_, triggerBreakpoint]);\\n            }\\n        }\\n\\n    };\\n\\n    Slick.prototype.changeSlide = function(event, dontAnimate) {\\n\\n        var _ = this,\\n            $target = $(event.currentTarget),\\n            indexOffset, slideOffset, unevenOffset;\\n\\n        // If target is a link, prevent default action.\\n        if($target.is('a')) {\\n            event.preventDefault();\\n        }\\n\\n        // If target is not the <li> element (ie: a child), find the <li>.\\n        if(!$target.is('li')) {\\n            $target = $target.closest('li');\\n        }\\n\\n        unevenOffset = (_.slideCount % _.options.slidesToScroll !== 0);\\n        indexOffset = unevenOffset ? 0 : (_.slideCount - _.currentSlide) % _.options.slidesToScroll;\\n\\n        switch (event.data.message) {\\n\\n            case 'previous':\\n                slideOffset = indexOffset === 0 ? _.options.slidesToScroll : _.options.slidesToShow - indexOffset;\\n                if (_.slideCount > _.options.slidesToShow) {\\n                    _.slideHandler(_.currentSlide - slideOffset, false, dontAnimate);\\n                }\\n                break;\\n\\n            case 'next':\\n                slideOffset = indexOffset === 0 ? _.options.slidesToScroll : indexOffset;\\n                if (_.slideCount > _.options.slidesToShow) {\\n                    _.slideHandler(_.currentSlide + slideOffset, false, dontAnimate);\\n                }\\n                break;\\n\\n            case 'index':\\n                var index = event.data.index === 0 ? 0 :\\n                    event.data.index || $target.index() * _.options.slidesToScroll;\\n\\n                _.slideHandler(_.checkNavigable(index), false, dontAnimate);\\n                $target.children().trigger('focus');\\n                break;\\n\\n            default:\\n                return;\\n        }\\n\\n    };\\n\\n    Slick.prototype.checkNavigable = function(index) {\\n\\n        var _ = this,\\n            navigables, prevNavigable;\\n\\n        navigables = _.getNavigableIndexes();\\n        prevNavigable = 0;\\n        if (index > navigables[navigables.length - 1]) {\\n            index = navigables[navigables.length - 1];\\n        } else {\\n            for (var n in navigables) {\\n                if (index < navigables[n]) {\\n                    index = prevNavigable;\\n                    break;\\n                }\\n                prevNavigable = navigables[n];\\n            }\\n        }\\n\\n        return index;\\n    };\\n\\n    Slick.prototype.cleanUpEvents = function() {\\n\\n        var _ = this;\\n\\n        if (_.options.dots && _.$dots !== null) {\\n\\n            $('li', _.$dots)\\n                .off('click.slick', _.changeSlide)\\n                .off('mouseenter.slick', $.proxy(_.interrupt, _, true))\\n                .off('mouseleave.slick', $.proxy(_.interrupt, _, false));\\n\\n        }\\n\\n        _.$slider.off('focus.slick blur.slick');\\n\\n        if (_.options.arrows === true && _.slideCount > _.options.slidesToShow) {\\n            _.$prevArrow && _.$prevArrow.off('click.slick', _.changeSlide);\\n            _.$nextArrow && _.$nextArrow.off('click.slick', _.changeSlide);\\n        }\\n\\n        _.$list.off('touchstart.slick mousedown.slick', _.swipeHandler);\\n        _.$list.off('touchmove.slick mousemove.slick', _.swipeHandler);\\n        _.$list.off('touchend.slick mouseup.slick', _.swipeHandler);\\n        _.$list.off('touchcancel.slick mouseleave.slick', _.swipeHandler);\\n\\n        _.$list.off('click.slick', _.clickHandler);\\n\\n        $(document).off(_.visibilityChange, _.visibility);\\n\\n        _.cleanUpSlideEvents();\\n\\n        if (_.options.accessibility === true) {\\n            _.$list.off('keydown.slick', _.keyHandler);\\n        }\\n\\n        if (_.options.focusOnSelect === true) {\\n            $(_.$slideTrack).children().off('click.slick', _.selectHandler);\\n        }\\n\\n        $(window).off('orientationchange.slick.slick-' + _.instanceUid, _.orientationChange);\\n\\n        $(window).off('resize.slick.slick-' + _.instanceUid, _.resize);\\n\\n        $('[draggable!=true]', _.$slideTrack).off('dragstart', _.preventDefault);\\n\\n        $(window).off('load.slick.slick-' + _.instanceUid, _.setPosition);\\n        $(document).off('ready.slick.slick-' + _.instanceUid, _.setPosition);\\n\\n    };\\n\\n    Slick.prototype.cleanUpSlideEvents = function() {\\n\\n        var _ = this;\\n\\n        _.$list.off('mouseenter.slick', $.proxy(_.interrupt, _, true));\\n        _.$list.off('mouseleave.slick', $.proxy(_.interrupt, _, false));\\n\\n    };\\n\\n    Slick.prototype.cleanUpRows = function() {\\n\\n        var _ = this, originalSlides;\\n\\n        if(_.options.rows > 1) {\\n            originalSlides = _.$slides.children().children();\\n            originalSlides.removeAttr('style');\\n            _.$slider.empty().append(originalSlides);\\n        }\\n\\n    };\\n\\n    Slick.prototype.clickHandler = function(event) {\\n\\n        var _ = this;\\n\\n        if (_.shouldClick === false) {\\n            event.stopImmediatePropagation();\\n            event.stopPropagation();\\n            event.preventDefault();\\n        }\\n\\n    };\\n\\n    Slick.prototype.destroy = function(refresh) {\\n\\n        var _ = this;\\n\\n        _.autoPlayClear();\\n\\n        _.touchObject = {};\\n\\n        _.cleanUpEvents();\\n\\n        $('.slick-cloned', _.$slider).detach();\\n\\n        if (_.$dots) {\\n            _.$dots.remove();\\n        }\\n\\n\\n        if ( _.$prevArrow && _.$prevArrow.length ) {\\n\\n            _.$prevArrow\\n                .removeClass('slick-disabled slick-arrow slick-hidden')\\n                .removeAttr('aria-hidden aria-disabled tabindex')\\n                .css('display','');\\n\\n            if ( _.htmlExpr.test( _.options.prevArrow )) {\\n                _.$prevArrow.remove();\\n            }\\n        }\\n\\n        if ( _.$nextArrow && _.$nextArrow.length ) {\\n\\n            _.$nextArrow\\n                .removeClass('slick-disabled slick-arrow slick-hidden')\\n                .removeAttr('aria-hidden aria-disabled tabindex')\\n                .css('display','');\\n\\n            if ( _.htmlExpr.test( _.options.nextArrow )) {\\n                _.$nextArrow.remove();\\n            }\\n\\n        }\\n\\n\\n        if (_.$slides) {\\n\\n            _.$slides\\n                .removeClass('slick-slide slick-active slick-center slick-visible slick-current')\\n                .removeAttr('aria-hidden')\\n                .removeAttr('data-slick-index')\\n                .each(function(){\\n                    $(this).attr('style', $(this).data('originalStyling'));\\n                });\\n\\n            _.$slideTrack.children(this.options.slide).detach();\\n\\n            _.$slideTrack.detach();\\n\\n            _.$list.detach();\\n\\n            _.$slider.append(_.$slides);\\n        }\\n\\n        _.cleanUpRows();\\n\\n        _.$slider.removeClass('slick-slider');\\n        _.$slider.removeClass('slick-initialized');\\n        _.$slider.removeClass('slick-dotted');\\n\\n        _.unslicked = true;\\n\\n        if(!refresh) {\\n            _.$slider.trigger('destroy', [_]);\\n        }\\n\\n    };\\n\\n    Slick.prototype.disableTransition = function(slide) {\\n\\n        var _ = this,\\n            transition = {};\\n\\n        transition[_.transitionType] = '';\\n\\n        if (_.options.fade === false) {\\n            _.$slideTrack.css(transition);\\n        } else {\\n            _.$slides.eq(slide).css(transition);\\n        }\\n\\n    };\\n\\n    Slick.prototype.fadeSlide = function(slideIndex, callback) {\\n\\n        var _ = this;\\n\\n        if (_.cssTransitions === false) {\\n\\n            _.$slides.eq(slideIndex).css({\\n                zIndex: _.options.zIndex\\n            });\\n\\n            _.$slides.eq(slideIndex).animate({\\n                opacity: 1\\n            }, _.options.speed, _.options.easing, callback);\\n\\n        } else {\\n\\n            _.applyTransition(slideIndex);\\n\\n            _.$slides.eq(slideIndex).css({\\n                opacity: 1,\\n                zIndex: _.options.zIndex\\n            });\\n\\n            if (callback) {\\n                setTimeout(function() {\\n\\n                    _.disableTransition(slideIndex);\\n\\n                    callback.call();\\n                }, _.options.speed);\\n            }\\n\\n        }\\n\\n    };\\n\\n    Slick.prototype.fadeSlideOut = function(slideIndex) {\\n\\n        var _ = this;\\n\\n        if (_.cssTransitions === false) {\\n\\n            _.$slides.eq(slideIndex).animate({\\n                opacity: 0,\\n                zIndex: _.options.zIndex - 2\\n            }, _.options.speed, _.options.easing);\\n\\n        } else {\\n\\n            _.applyTransition(slideIndex);\\n\\n            _.$slides.eq(slideIndex).css({\\n                opacity: 0,\\n                zIndex: _.options.zIndex - 2\\n            });\\n\\n        }\\n\\n    };\\n\\n    Slick.prototype.filterSlides = Slick.prototype.slickFilter = function(filter) {\\n\\n        var _ = this;\\n\\n        if (filter !== null) {\\n\\n            _.$slidesCache = _.$slides;\\n\\n            _.unload();\\n\\n            _.$slideTrack.children(this.options.slide).detach();\\n\\n            _.$slidesCache.filter(filter).appendTo(_.$slideTrack);\\n\\n            _.reinit();\\n\\n        }\\n\\n    };\\n\\n    Slick.prototype.focusHandler = function() {\\n\\n        var _ = this;\\n\\n        _.$slider\\n            .off('focus.slick blur.slick')\\n            .on('focus.slick blur.slick',\\n                '*:not(.slick-arrow)', function(event) {\\n\\n            event.stopImmediatePropagation();\\n            var $sf = $(this);\\n\\n            setTimeout(function() {\\n\\n                if( _.options.pauseOnFocus ) {\\n                    _.focussed = $sf.is(':focus');\\n                    _.autoPlay();\\n                }\\n\\n            }, 0);\\n\\n        });\\n    };\\n\\n    Slick.prototype.getCurrent = Slick.prototype.slickCurrentSlide = function() {\\n\\n        var _ = this;\\n        return _.currentSlide;\\n\\n    };\\n\\n    Slick.prototype.getDotCount = function() {\\n\\n        var _ = this;\\n\\n        var breakPoint = 0;\\n        var counter = 0;\\n        var pagerQty = 0;\\n\\n        if (_.options.infinite === true) {\\n            while (breakPoint < _.slideCount) {\\n                ++pagerQty;\\n                breakPoint = counter + _.options.slidesToScroll;\\n                counter += _.options.slidesToScroll <= _.options.slidesToShow ? _.options.slidesToScroll : _.options.slidesToShow;\\n            }\\n        } else if (_.options.centerMode === true) {\\n            pagerQty = _.slideCount;\\n        } else if(!_.options.asNavFor) {\\n            pagerQty = 1 + Math.ceil((_.slideCount - _.options.slidesToShow) / _.options.slidesToScroll);\\n        }else {\\n            while (breakPoint < _.slideCount) {\\n                ++pagerQty;\\n                breakPoint = counter + _.options.slidesToScroll;\\n                counter += _.options.slidesToScroll <= _.options.slidesToShow ? _.options.slidesToScroll : _.options.slidesToShow;\\n            }\\n        }\\n\\n        return pagerQty - 1;\\n\\n    };\\n\\n    Slick.prototype.getLeft = function(slideIndex) {\\n\\n        var _ = this,\\n            targetLeft,\\n            verticalHeight,\\n            verticalOffset = 0,\\n            targetSlide;\\n\\n        _.slideOffset = 0;\\n        verticalHeight = _.$slides.first().outerHeight(true);\\n\\n        if (_.options.infinite === true) {\\n            if (_.slideCount > _.options.slidesToShow) {\\n                _.slideOffset = (_.slideWidth * _.options.slidesToShow) * -1;\\n                verticalOffset = (verticalHeight * _.options.slidesToShow) * -1;\\n            }\\n            if (_.slideCount % _.options.slidesToScroll !== 0) {\\n                if (slideIndex + _.options.slidesToScroll > _.slideCount && _.slideCount > _.options.slidesToShow) {\\n                    if (slideIndex > _.slideCount) {\\n                        _.slideOffset = ((_.options.slidesToShow - (slideIndex - _.slideCount)) * _.slideWidth) * -1;\\n                        verticalOffset = ((_.options.slidesToShow - (slideIndex - _.slideCount)) * verticalHeight) * -1;\\n                    } else {\\n                        _.slideOffset = ((_.slideCount % _.options.slidesToScroll) * _.slideWidth) * -1;\\n                        verticalOffset = ((_.slideCount % _.options.slidesToScroll) * verticalHeight) * -1;\\n                    }\\n                }\\n            }\\n        } else {\\n            if (slideIndex + _.options.slidesToShow > _.slideCount) {\\n                _.slideOffset = ((slideIndex + _.options.slidesToShow) - _.slideCount) * _.slideWidth;\\n                verticalOffset = ((slideIndex + _.options.slidesToShow) - _.slideCount) * verticalHeight;\\n            }\\n        }\\n\\n        if (_.slideCount <= _.options.slidesToShow) {\\n            _.slideOffset = 0;\\n            verticalOffset = 0;\\n        }\\n\\n        if (_.options.centerMode === true && _.options.infinite === true) {\\n            _.slideOffset += _.slideWidth * Math.floor(_.options.slidesToShow / 2) - _.slideWidth;\\n        } else if (_.options.centerMode === true) {\\n            _.slideOffset = 0;\\n            _.slideOffset += _.slideWidth * Math.floor(_.options.slidesToShow / 2);\\n        }\\n\\n        if (_.options.vertical === false) {\\n            targetLeft = ((slideIndex * _.slideWidth) * -1) + _.slideOffset;\\n        } else {\\n            targetLeft = ((slideIndex * verticalHeight) * -1) + verticalOffset;\\n        }\\n\\n        if (_.options.variableWidth === true) {\\n\\n            if (_.slideCount <= _.options.slidesToShow || _.options.infinite === false) {\\n                targetSlide = _.$slideTrack.children('.slick-slide').eq(slideIndex);\\n            } else {\\n                targetSlide = _.$slideTrack.children('.slick-slide').eq(slideIndex + _.options.slidesToShow);\\n            }\\n\\n            if (_.options.rtl === true) {\\n                if (targetSlide[0]) {\\n                    targetLeft = (_.$slideTrack.width() - targetSlide[0].offsetLeft - targetSlide.width()) * -1;\\n                } else {\\n                    targetLeft =  0;\\n                }\\n            } else {\\n                targetLeft = targetSlide[0] ? targetSlide[0].offsetLeft * -1 : 0;\\n            }\\n\\n            if (_.options.centerMode === true) {\\n                if (_.slideCount <= _.options.slidesToShow || _.options.infinite === false) {\\n                    targetSlide = _.$slideTrack.children('.slick-slide').eq(slideIndex);\\n                } else {\\n                    targetSlide = _.$slideTrack.children('.slick-slide').eq(slideIndex + _.options.slidesToShow + 1);\\n                }\\n\\n                if (_.options.rtl === true) {\\n                    if (targetSlide[0]) {\\n                        targetLeft = (_.$slideTrack.width() - targetSlide[0].offsetLeft - targetSlide.width()) * -1;\\n                    } else {\\n                        targetLeft =  0;\\n                    }\\n                } else {\\n                    targetLeft = targetSlide[0] ? targetSlide[0].offsetLeft * -1 : 0;\\n                }\\n\\n                targetLeft += (_.$list.width() - targetSlide.outerWidth()) / 2;\\n            }\\n        }\\n\\n        return targetLeft;\\n\\n    };\\n\\n    Slick.prototype.getOption = Slick.prototype.slickGetOption = function(option) {\\n\\n        var _ = this;\\n\\n        return _.options[option];\\n\\n    };\\n\\n    Slick.prototype.getNavigableIndexes = function() {\\n\\n        var _ = this,\\n            breakPoint = 0,\\n            counter = 0,\\n            indexes = [],\\n            max;\\n\\n        if (_.options.infinite === false) {\\n            max = _.slideCount;\\n        } else {\\n            breakPoint = _.options.slidesToScroll * -1;\\n            counter = _.options.slidesToScroll * -1;\\n            max = _.slideCount * 2;\\n        }\\n\\n        while (breakPoint < max) {\\n            indexes.push(breakPoint);\\n            breakPoint = counter + _.options.slidesToScroll;\\n            counter += _.options.slidesToScroll <= _.options.slidesToShow ? _.options.slidesToScroll : _.options.slidesToShow;\\n        }\\n\\n        return indexes;\\n\\n    };\\n\\n    Slick.prototype.getSlick = function() {\\n\\n        return this;\\n\\n    };\\n\\n    Slick.prototype.getSlideCount = function() {\\n\\n        var _ = this,\\n            slidesTraversed, swipedSlide, centerOffset;\\n\\n        centerOffset = _.options.centerMode === true ? _.slideWidth * Math.floor(_.options.slidesToShow / 2) : 0;\\n\\n        if (_.options.swipeToSlide === true) {\\n            _.$slideTrack.find('.slick-slide').each(function(index, slide) {\\n                if (slide.offsetLeft - centerOffset + ($(slide).outerWidth() / 2) > (_.swipeLeft * -1)) {\\n                    swipedSlide = slide;\\n                    return false;\\n                }\\n            });\\n\\n            slidesTraversed = Math.abs($(swipedSlide).attr('data-slick-index') - _.currentSlide) || 1;\\n\\n            return slidesTraversed;\\n\\n        } else {\\n            return _.options.slidesToScroll;\\n        }\\n\\n    };\\n\\n    Slick.prototype.goTo = Slick.prototype.slickGoTo = function(slide, dontAnimate) {\\n\\n        var _ = this;\\n\\n        _.changeSlide({\\n            data: {\\n                message: 'index',\\n                index: parseInt(slide)\\n            }\\n        }, dontAnimate);\\n\\n    };\\n\\n    Slick.prototype.init = function(creation) {\\n\\n        var _ = this;\\n\\n        if (!$(_.$slider).hasClass('slick-initialized')) {\\n\\n            $(_.$slider).addClass('slick-initialized');\\n\\n            _.buildRows();\\n            _.buildOut();\\n            _.setProps();\\n            _.startLoad();\\n            _.loadSlider();\\n            _.initializeEvents();\\n            _.updateArrows();\\n            _.updateDots();\\n            _.checkResponsive(true);\\n            _.focusHandler();\\n\\n        }\\n\\n        if (creation) {\\n            _.$slider.trigger('init', [_]);\\n        }\\n\\n        if (_.options.accessibility === true) {\\n            _.initADA();\\n        }\\n\\n        if ( _.options.autoplay ) {\\n\\n            _.paused = false;\\n            _.autoPlay();\\n\\n        }\\n\\n    };\\n\\n    Slick.prototype.initADA = function() {\\n        var _ = this;\\n        _.$slides.add(_.$slideTrack.find('.slick-cloned')).attr({\\n            'aria-hidden': 'true',\\n            'tabindex': '-1'\\n        }).find('a, input, button, select').attr({\\n            'tabindex': '-1'\\n        });\\n\\n        _.$slideTrack.attr('role', 'listbox');\\n\\n        _.$slides.not(_.$slideTrack.find('.slick-cloned')).each(function(i) {\\n            $(this).attr({\\n                'role': 'option',\\n                'aria-describedby': 'slick-slide' + _.instanceUid + i + ''\\n            });\\n        });\\n\\n        if (_.$dots !== null) {\\n            _.$dots.attr('role', 'tablist').find('li').each(function(i) {\\n                $(this).attr({\\n                    'role': 'presentation',\\n                    'aria-selected': 'false',\\n                    'aria-controls': 'navigation' + _.instanceUid + i + '',\\n                    'id': 'slick-slide' + _.instanceUid + i + ''\\n                });\\n            })\\n                .first().attr('aria-selected', 'true').end()\\n                .find('button').attr('role', 'button').end()\\n                .closest('div').attr('role', 'toolbar');\\n        }\\n        _.activateADA();\\n\\n    };\\n\\n    Slick.prototype.initArrowEvents = function() {\\n\\n        var _ = this;\\n\\n        if (_.options.arrows === true && _.slideCount > _.options.slidesToShow) {\\n            _.$prevArrow\\n               .off('click.slick')\\n               .on('click.slick', {\\n                    message: 'previous'\\n               }, _.changeSlide);\\n            _.$nextArrow\\n               .off('click.slick')\\n               .on('click.slick', {\\n                    message: 'next'\\n               }, _.changeSlide);\\n        }\\n\\n    };\\n\\n    Slick.prototype.initDotEvents = function() {\\n\\n        var _ = this;\\n\\n        if (_.options.dots === true && _.slideCount > _.options.slidesToShow) {\\n            $('li', _.$dots).on('click.slick', {\\n                message: 'index'\\n            }, _.changeSlide);\\n        }\\n\\n        if ( _.options.dots === true && _.options.pauseOnDotsHover === true ) {\\n\\n            $('li', _.$dots)\\n                .on('mouseenter.slick', $.proxy(_.interrupt, _, true))\\n                .on('mouseleave.slick', $.proxy(_.interrupt, _, false));\\n\\n        }\\n\\n    };\\n\\n    Slick.prototype.initSlideEvents = function() {\\n\\n        var _ = this;\\n\\n        if ( _.options.pauseOnHover ) {\\n\\n            _.$list.on('mouseenter.slick', $.proxy(_.interrupt, _, true));\\n            _.$list.on('mouseleave.slick', $.proxy(_.interrupt, _, false));\\n\\n        }\\n\\n    };\\n\\n    Slick.prototype.initializeEvents = function() {\\n\\n        var _ = this;\\n\\n        _.initArrowEvents();\\n\\n        _.initDotEvents();\\n        _.initSlideEvents();\\n\\n        _.$list.on('touchstart.slick mousedown.slick', {\\n            action: 'start'\\n        }, _.swipeHandler);\\n        _.$list.on('touchmove.slick mousemove.slick', {\\n            action: 'move'\\n        }, _.swipeHandler);\\n        _.$list.on('touchend.slick mouseup.slick', {\\n            action: 'end'\\n        }, _.swipeHandler);\\n        _.$list.on('touchcancel.slick mouseleave.slick', {\\n            action: 'end'\\n        }, _.swipeHandler);\\n\\n        _.$list.on('click.slick', _.clickHandler);\\n\\n        $(document).on(_.visibilityChange, $.proxy(_.visibility, _));\\n\\n        if (_.options.accessibility === true) {\\n            _.$list.on('keydown.slick', _.keyHandler);\\n        }\\n\\n        if (_.options.focusOnSelect === true) {\\n            $(_.$slideTrack).children().on('click.slick', _.selectHandler);\\n        }\\n\\n        $(window).on('orientationchange.slick.slick-' + _.instanceUid, $.proxy(_.orientationChange, _));\\n\\n        $(window).on('resize.slick.slick-' + _.instanceUid, $.proxy(_.resize, _));\\n\\n        $('[draggable!=true]', _.$slideTrack).on('dragstart', _.preventDefault);\\n\\n        $(window).on('load.slick.slick-' + _.instanceUid, _.setPosition);\\n        $(document).on('ready.slick.slick-' + _.instanceUid, _.setPosition);\\n\\n    };\\n\\n    Slick.prototype.initUI = function() {\\n\\n        var _ = this;\\n\\n        if (_.options.arrows === true && _.slideCount > _.options.slidesToShow) {\\n\\n            _.$prevArrow.show();\\n            _.$nextArrow.show();\\n\\n        }\\n\\n        if (_.options.dots === true && _.slideCount > _.options.slidesToShow) {\\n\\n            _.$dots.show();\\n\\n        }\\n\\n    };\\n\\n    Slick.prototype.keyHandler = function(event) {\\n\\n        var _ = this;\\n         //Dont slide if the cursor is inside the form fields and arrow keys are pressed\\n        if(!event.target.tagName.match('TEXTAREA|INPUT|SELECT')) {\\n            if (event.keyCode === 37 && _.options.accessibility === true) {\\n                _.changeSlide({\\n                    data: {\\n                        message: _.options.rtl === true ? 'next' :  'previous'\\n                    }\\n                });\\n            } else if (event.keyCode === 39 && _.options.accessibility === true) {\\n                _.changeSlide({\\n                    data: {\\n                        message: _.options.rtl === true ? 'previous' : 'next'\\n                    }\\n                });\\n            }\\n        }\\n\\n    };\\n\\n    Slick.prototype.lazyLoad = function() {\\n\\n        var _ = this,\\n            loadRange, cloneRange, rangeStart, rangeEnd;\\n\\n        function loadImages(imagesScope) {\\n\\n            $('img[data-lazy]', imagesScope).each(function() {\\n\\n                var image = $(this),\\n                    imageSource = $(this).attr('data-lazy'),\\n                    imageToLoad = document.createElement('img');\\n\\n                imageToLoad.onload = function() {\\n\\n                    image\\n                        .animate({ opacity: 0 }, 100, function() {\\n                            image\\n                                .attr('src', imageSource)\\n                                .animate({ opacity: 1 }, 200, function() {\\n                                    image\\n                                        .removeAttr('data-lazy')\\n                                        .removeClass('slick-loading');\\n                                });\\n                            _.$slider.trigger('lazyLoaded', [_, image, imageSource]);\\n                        });\\n\\n                };\\n\\n                imageToLoad.onerror = function() {\\n\\n                    image\\n                        .removeAttr( 'data-lazy' )\\n                        .removeClass( 'slick-loading' )\\n                        .addClass( 'slick-lazyload-error' );\\n\\n                    _.$slider.trigger('lazyLoadError', [ _, image, imageSource ]);\\n\\n                };\\n\\n                imageToLoad.src = imageSource;\\n\\n            });\\n\\n        }\\n\\n        if (_.options.centerMode === true) {\\n            if (_.options.infinite === true) {\\n                rangeStart = _.currentSlide + (_.options.slidesToShow / 2 + 1);\\n                rangeEnd = rangeStart + _.options.slidesToShow + 2;\\n            } else {\\n                rangeStart = Math.max(0, _.currentSlide - (_.options.slidesToShow / 2 + 1));\\n                rangeEnd = 2 + (_.options.slidesToShow / 2 + 1) + _.currentSlide;\\n            }\\n        } else {\\n            rangeStart = _.options.infinite ? _.options.slidesToShow + _.currentSlide : _.currentSlide;\\n            rangeEnd = Math.ceil(rangeStart + _.options.slidesToShow);\\n            if (_.options.fade === true) {\\n                if (rangeStart > 0) rangeStart--;\\n                if (rangeEnd <= _.slideCount) rangeEnd++;\\n            }\\n        }\\n\\n        loadRange = _.$slider.find('.slick-slide').slice(rangeStart, rangeEnd);\\n        loadImages(loadRange);\\n\\n        if (_.slideCount <= _.options.slidesToShow) {\\n            cloneRange = _.$slider.find('.slick-slide');\\n            loadImages(cloneRange);\\n        } else\\n        if (_.currentSlide >= _.slideCount - _.options.slidesToShow) {\\n            cloneRange = _.$slider.find('.slick-cloned').slice(0, _.options.slidesToShow);\\n            loadImages(cloneRange);\\n        } else if (_.currentSlide === 0) {\\n            cloneRange = _.$slider.find('.slick-cloned').slice(_.options.slidesToShow * -1);\\n            loadImages(cloneRange);\\n        }\\n\\n    };\\n\\n    Slick.prototype.loadSlider = function() {\\n\\n        var _ = this;\\n\\n        _.setPosition();\\n\\n        _.$slideTrack.css({\\n            opacity: 1\\n        });\\n\\n        _.$slider.removeClass('slick-loading');\\n\\n        _.initUI();\\n\\n        if (_.options.lazyLoad === 'progressive') {\\n            _.progressiveLazyLoad();\\n        }\\n\\n    };\\n\\n    Slick.prototype.next = Slick.prototype.slickNext = function() {\\n\\n        var _ = this;\\n\\n        _.changeSlide({\\n            data: {\\n                message: 'next'\\n            }\\n        });\\n\\n    };\\n\\n    Slick.prototype.orientationChange = function() {\\n\\n        var _ = this;\\n\\n        _.checkResponsive();\\n        _.setPosition();\\n\\n    };\\n\\n    Slick.prototype.pause = Slick.prototype.slickPause = function() {\\n\\n        var _ = this;\\n\\n        _.autoPlayClear();\\n        _.paused = true;\\n\\n    };\\n\\n    Slick.prototype.play = Slick.prototype.slickPlay = function() {\\n\\n        var _ = this;\\n\\n        _.autoPlay();\\n        _.options.autoplay = true;\\n        _.paused = false;\\n        _.focussed = false;\\n        _.interrupted = false;\\n\\n    };\\n\\n    Slick.prototype.postSlide = function(index) {\\n\\n        var _ = this;\\n\\n        if( !_.unslicked ) {\\n\\n            _.$slider.trigger('afterChange', [_, index]);\\n\\n            _.animating = false;\\n\\n            _.setPosition();\\n\\n            _.swipeLeft = null;\\n\\n            if ( _.options.autoplay ) {\\n                _.autoPlay();\\n            }\\n\\n            if (_.options.accessibility === true) {\\n                _.initADA();\\n            }\\n\\n        }\\n\\n    };\\n\\n    Slick.prototype.prev = Slick.prototype.slickPrev = function() {\\n\\n        var _ = this;\\n\\n        _.changeSlide({\\n            data: {\\n                message: 'previous'\\n            }\\n        });\\n\\n    };\\n\\n    Slick.prototype.preventDefault = function(event) {\\n\\n        event.preventDefault();\\n\\n    };\\n\\n    Slick.prototype.progressiveLazyLoad = function( tryCount ) {\\n\\n        tryCount = tryCount || 1;\\n\\n        var _ = this,\\n            $imgsToLoad = $( 'img[data-lazy]', _.$slider ),\\n            image,\\n            imageSource,\\n            imageToLoad;\\n\\n        if ( $imgsToLoad.length ) {\\n\\n            image = $imgsToLoad.first();\\n            imageSource = image.attr('data-lazy');\\n            imageToLoad = document.createElement('img');\\n\\n            imageToLoad.onload = function() {\\n\\n                image\\n                    .attr( 'src', imageSource )\\n                    .removeAttr('data-lazy')\\n                    .removeClass('slick-loading');\\n\\n                if ( _.options.adaptiveHeight === true ) {\\n                    _.setPosition();\\n                }\\n\\n                _.$slider.trigger('lazyLoaded', [ _, image, imageSource ]);\\n                _.progressiveLazyLoad();\\n\\n            };\\n\\n            imageToLoad.onerror = function() {\\n\\n                if ( tryCount < 3 ) {\\n\\n                    /**\\n                     * try to load the image 3 times,\\n                     * leave a slight delay so we don't get\\n                     * servers blocking the request.\\n                     */\\n                    setTimeout( function() {\\n                        _.progressiveLazyLoad( tryCount + 1 );\\n                    }, 500 );\\n\\n                } else {\\n\\n                    image\\n                        .removeAttr( 'data-lazy' )\\n                        .removeClass( 'slick-loading' )\\n                        .addClass( 'slick-lazyload-error' );\\n\\n                    _.$slider.trigger('lazyLoadError', [ _, image, imageSource ]);\\n\\n                    _.progressiveLazyLoad();\\n\\n                }\\n\\n            };\\n\\n            imageToLoad.src = imageSource;\\n\\n        } else {\\n\\n            _.$slider.trigger('allImagesLoaded', [ _ ]);\\n\\n        }\\n\\n    };\\n\\n    Slick.prototype.refresh = function( initializing ) {\\n\\n        var _ = this, currentSlide, lastVisibleIndex;\\n\\n        lastVisibleIndex = _.slideCount - _.options.slidesToShow;\\n\\n        // in non-infinite sliders, we don't want to go past the\\n        // last visible index.\\n        if( !_.options.infinite && ( _.currentSlide > lastVisibleIndex )) {\\n            _.currentSlide = lastVisibleIndex;\\n        }\\n\\n        // if less slides than to show, go to start.\\n        if ( _.slideCount <= _.options.slidesToShow ) {\\n            _.currentSlide = 0;\\n\\n        }\\n\\n        currentSlide = _.currentSlide;\\n\\n        _.destroy(true);\\n\\n        $.extend(_, _.initials, { currentSlide: currentSlide });\\n\\n        _.init();\\n\\n        if( !initializing ) {\\n\\n            _.changeSlide({\\n                data: {\\n                    message: 'index',\\n                    index: currentSlide\\n                }\\n            }, false);\\n\\n        }\\n\\n    };\\n\\n    Slick.prototype.registerBreakpoints = function() {\\n\\n        var _ = this, breakpoint, currentBreakpoint, l,\\n            responsiveSettings = _.options.responsive || null;\\n\\n        if ( $.type(responsiveSettings) === 'array' && responsiveSettings.length ) {\\n\\n            _.respondTo = _.options.respondTo || 'window';\\n\\n            for ( breakpoint in responsiveSettings ) {\\n\\n                l = _.breakpoints.length-1;\\n                currentBreakpoint = responsiveSettings[breakpoint].breakpoint;\\n\\n                if (responsiveSettings.hasOwnProperty(breakpoint)) {\\n\\n                    // loop through the breakpoints and cut out any existing\\n                    // ones with the same breakpoint number, we don't want dupes.\\n                    while( l >= 0 ) {\\n                        if( _.breakpoints[l] && _.breakpoints[l] === currentBreakpoint ) {\\n                            _.breakpoints.splice(l,1);\\n                        }\\n                        l--;\\n                    }\\n\\n                    _.breakpoints.push(currentBreakpoint);\\n                    _.breakpointSettings[currentBreakpoint] = responsiveSettings[breakpoint].settings;\\n\\n                }\\n\\n            }\\n\\n            _.breakpoints.sort(function(a, b) {\\n                return ( _.options.mobileFirst ) ? a-b : b-a;\\n            });\\n\\n        }\\n\\n    };\\n\\n    Slick.prototype.reinit = function() {\\n\\n        var _ = this;\\n\\n        _.$slides =\\n            _.$slideTrack\\n                .children(_.options.slide)\\n                .addClass('slick-slide');\\n\\n        _.slideCount = _.$slides.length;\\n\\n        if (_.currentSlide >= _.slideCount && _.currentSlide !== 0) {\\n            _.currentSlide = _.currentSlide - _.options.slidesToScroll;\\n        }\\n\\n        if (_.slideCount <= _.options.slidesToShow) {\\n            _.currentSlide = 0;\\n        }\\n\\n        _.registerBreakpoints();\\n\\n        _.setProps();\\n        _.setupInfinite();\\n        _.buildArrows();\\n        _.updateArrows();\\n        _.initArrowEvents();\\n        _.buildDots();\\n        _.updateDots();\\n        _.initDotEvents();\\n        _.cleanUpSlideEvents();\\n        _.initSlideEvents();\\n\\n        _.checkResponsive(false, true);\\n\\n        if (_.options.focusOnSelect === true) {\\n            $(_.$slideTrack).children().on('click.slick', _.selectHandler);\\n        }\\n\\n        _.setSlideClasses(typeof _.currentSlide === 'number' ? _.currentSlide : 0);\\n\\n        _.setPosition();\\n        _.focusHandler();\\n\\n        _.paused = !_.options.autoplay;\\n        _.autoPlay();\\n\\n        _.$slider.trigger('reInit', [_]);\\n\\n    };\\n\\n    Slick.prototype.resize = function() {\\n\\n        var _ = this;\\n\\n        if ($(window).width() !== _.windowWidth) {\\n            clearTimeout(_.windowDelay);\\n            _.windowDelay = window.setTimeout(function() {\\n                _.windowWidth = $(window).width();\\n                _.checkResponsive();\\n                if( !_.unslicked ) { _.setPosition(); }\\n            }, 50);\\n        }\\n    };\\n\\n    Slick.prototype.removeSlide = Slick.prototype.slickRemove = function(index, removeBefore, removeAll) {\\n\\n        var _ = this;\\n\\n        if (typeof(index) === 'boolean') {\\n            removeBefore = index;\\n            index = removeBefore === true ? 0 : _.slideCount - 1;\\n        } else {\\n            index = removeBefore === true ? --index : index;\\n        }\\n\\n        if (_.slideCount < 1 || index < 0 || index > _.slideCount - 1) {\\n            return false;\\n        }\\n\\n        _.unload();\\n\\n        if (removeAll === true) {\\n            _.$slideTrack.children().remove();\\n        } else {\\n            _.$slideTrack.children(this.options.slide).eq(index).remove();\\n        }\\n\\n        _.$slides = _.$slideTrack.children(this.options.slide);\\n\\n        _.$slideTrack.children(this.options.slide).detach();\\n\\n        _.$slideTrack.append(_.$slides);\\n\\n        _.$slidesCache = _.$slides;\\n\\n        _.reinit();\\n\\n    };\\n\\n    Slick.prototype.setCSS = function(position) {\\n\\n        var _ = this,\\n            positionProps = {},\\n            x, y;\\n\\n        if (_.options.rtl === true) {\\n            position = -position;\\n        }\\n        x = _.positionProp == 'left' ? Math.ceil(position) + 'px' : '0px';\\n        y = _.positionProp == 'top' ? Math.ceil(position) + 'px' : '0px';\\n\\n        positionProps[_.positionProp] = position;\\n\\n        if (_.transformsEnabled === false) {\\n            _.$slideTrack.css(positionProps);\\n        } else {\\n            positionProps = {};\\n            if (_.cssTransitions === false) {\\n                positionProps[_.animType] = 'translate(' + x + ', ' + y + ')';\\n                _.$slideTrack.css(positionProps);\\n            } else {\\n                positionProps[_.animType] = 'translate3d(' + x + ', ' + y + ', 0px)';\\n                _.$slideTrack.css(positionProps);\\n            }\\n        }\\n\\n    };\\n\\n    Slick.prototype.setDimensions = function() {\\n\\n        var _ = this;\\n\\n        if (_.options.vertical === false) {\\n            if (_.options.centerMode === true) {\\n                _.$list.css({\\n                    padding: ('0px ' + _.options.centerPadding)\\n                });\\n            }\\n        } else {\\n            _.$list.height(_.$slides.first().outerHeight(true) * _.options.slidesToShow);\\n            if (_.options.centerMode === true) {\\n                _.$list.css({\\n                    padding: (_.options.centerPadding + ' 0px')\\n                });\\n            }\\n        }\\n\\n        _.listWidth = _.$list.width();\\n        _.listHeight = _.$list.height();\\n\\n\\n        if (_.options.vertical === false && _.options.variableWidth === false) {\\n            _.slideWidth = Math.ceil(_.listWidth / _.options.slidesToShow);\\n            _.$slideTrack.width(Math.ceil((_.slideWidth * _.$slideTrack.children('.slick-slide').length)));\\n\\n        } else if (_.options.variableWidth === true) {\\n            _.$slideTrack.width(5000 * _.slideCount);\\n        } else {\\n            _.slideWidth = Math.ceil(_.listWidth);\\n            _.$slideTrack.height(Math.ceil((_.$slides.first().outerHeight(true) * _.$slideTrack.children('.slick-slide').length)));\\n        }\\n\\n        var offset = _.$slides.first().outerWidth(true) - _.$slides.first().width();\\n        if (_.options.variableWidth === false) _.$slideTrack.children('.slick-slide').width(_.slideWidth - offset);\\n\\n    };\\n\\n    Slick.prototype.setFade = function() {\\n\\n        var _ = this,\\n            targetLeft;\\n\\n        _.$slides.each(function(index, element) {\\n            targetLeft = (_.slideWidth * index) * -1;\\n            if (_.options.rtl === true) {\\n                $(element).css({\\n                    position: 'relative',\\n                    right: targetLeft,\\n                    top: 0,\\n                    zIndex: _.options.zIndex - 2,\\n                    opacity: 0\\n                });\\n            } else {\\n                $(element).css({\\n                    position: 'relative',\\n                    left: targetLeft,\\n                    top: 0,\\n                    zIndex: _.options.zIndex - 2,\\n                    opacity: 0\\n                });\\n            }\\n        });\\n\\n        _.$slides.eq(_.currentSlide).css({\\n            zIndex: _.options.zIndex - 1,\\n            opacity: 1\\n        });\\n\\n    };\\n\\n    Slick.prototype.setHeight = function() {\\n\\n        var _ = this;\\n\\n        if (_.options.slidesToShow === 1 && _.options.adaptiveHeight === true && _.options.vertical === false) {\\n            var targetHeight = _.$slides.eq(_.currentSlide).outerHeight(true);\\n            _.$list.css('height', targetHeight);\\n        }\\n\\n    };\\n\\n    Slick.prototype.setOption =\\n    Slick.prototype.slickSetOption = function() {\\n\\n        /**\\n         * accepts arguments in format of:\\n         *\\n         *  - for changing a single option's value:\\n         *     .slick(\\\"setOption\\\", option, value, refresh )\\n         *\\n         *  - for changing a set of responsive options:\\n         *     .slick(\\\"setOption\\\", 'responsive', [{}, ...], refresh )\\n         *\\n         *  - for updating multiple values at once (not responsive)\\n         *     .slick(\\\"setOption\\\", { 'option': value, ... }, refresh )\\n         */\\n\\n        var _ = this, l, item, option, value, refresh = false, type;\\n\\n        if( $.type( arguments[0] ) === 'object' ) {\\n\\n            option =  arguments[0];\\n            refresh = arguments[1];\\n            type = 'multiple';\\n\\n        } else if ( $.type( arguments[0] ) === 'string' ) {\\n\\n            option =  arguments[0];\\n            value = arguments[1];\\n            refresh = arguments[2];\\n\\n            if ( arguments[0] === 'responsive' && $.type( arguments[1] ) === 'array' ) {\\n\\n                type = 'responsive';\\n\\n            } else if ( typeof arguments[1] !== 'undefined' ) {\\n\\n                type = 'single';\\n\\n            }\\n\\n        }\\n\\n        if ( type === 'single' ) {\\n\\n            _.options[option] = value;\\n\\n\\n        } else if ( type === 'multiple' ) {\\n\\n            $.each( option , function( opt, val ) {\\n\\n                _.options[opt] = val;\\n\\n            });\\n\\n\\n        } else if ( type === 'responsive' ) {\\n\\n            for ( item in value ) {\\n\\n                if( $.type( _.options.responsive ) !== 'array' ) {\\n\\n                    _.options.responsive = [ value[item] ];\\n\\n                } else {\\n\\n                    l = _.options.responsive.length-1;\\n\\n                    // loop through the responsive object and splice out duplicates.\\n                    while( l >= 0 ) {\\n\\n                        if( _.options.responsive[l].breakpoint === value[item].breakpoint ) {\\n\\n                            _.options.responsive.splice(l,1);\\n\\n                        }\\n\\n                        l--;\\n\\n                    }\\n\\n                    _.options.responsive.push( value[item] );\\n\\n                }\\n\\n            }\\n\\n        }\\n\\n        if ( refresh ) {\\n\\n            _.unload();\\n            _.reinit();\\n\\n        }\\n\\n    };\\n\\n    Slick.prototype.setPosition = function() {\\n\\n        var _ = this;\\n\\n        _.setDimensions();\\n\\n        _.setHeight();\\n\\n        if (_.options.fade === false) {\\n            _.setCSS(_.getLeft(_.currentSlide));\\n        } else {\\n            _.setFade();\\n        }\\n\\n        _.$slider.trigger('setPosition', [_]);\\n\\n    };\\n\\n    Slick.prototype.setProps = function() {\\n\\n        var _ = this,\\n            bodyStyle = document.body.style;\\n\\n        _.positionProp = _.options.vertical === true ? 'top' : 'left';\\n\\n        if (_.positionProp === 'top') {\\n            _.$slider.addClass('slick-vertical');\\n        } else {\\n            _.$slider.removeClass('slick-vertical');\\n        }\\n\\n        if (bodyStyle.WebkitTransition !== undefined ||\\n            bodyStyle.MozTransition !== undefined ||\\n            bodyStyle.msTransition !== undefined) {\\n            if (_.options.useCSS === true) {\\n                _.cssTransitions = true;\\n            }\\n        }\\n\\n        if ( _.options.fade ) {\\n            if ( typeof _.options.zIndex === 'number' ) {\\n                if( _.options.zIndex < 3 ) {\\n                    _.options.zIndex = 3;\\n                }\\n            } else {\\n                _.options.zIndex = _.defaults.zIndex;\\n            }\\n        }\\n\\n        if (bodyStyle.OTransform !== undefined) {\\n            _.animType = 'OTransform';\\n            _.transformType = '-o-transform';\\n            _.transitionType = 'OTransition';\\n            if (bodyStyle.perspectiveProperty === undefined && bodyStyle.webkitPerspective === undefined) _.animType = false;\\n        }\\n        if (bodyStyle.MozTransform !== undefined) {\\n            _.animType = 'MozTransform';\\n            _.transformType = '-moz-transform';\\n            _.transitionType = 'MozTransition';\\n            if (bodyStyle.perspectiveProperty === undefined && bodyStyle.MozPerspective === undefined) _.animType = false;\\n        }\\n        if (bodyStyle.webkitTransform !== undefined) {\\n            _.animType = 'webkitTransform';\\n            _.transformType = '-webkit-transform';\\n            _.transitionType = 'webkitTransition';\\n            if (bodyStyle.perspectiveProperty === undefined && bodyStyle.webkitPerspective === undefined) _.animType = false;\\n        }\\n        if (bodyStyle.msTransform !== undefined) {\\n            _.animType = 'msTransform';\\n            _.transformType = '-ms-transform';\\n            _.transitionType = 'msTransition';\\n            if (bodyStyle.msTransform === undefined) _.animType = false;\\n        }\\n        if (bodyStyle.transform !== undefined && _.animType !== false) {\\n            _.animType = 'transform';\\n            _.transformType = 'transform';\\n            _.transitionType = 'transition';\\n        }\\n        _.transformsEnabled = _.options.useTransform && (_.animType !== null && _.animType !== false);\\n    };\\n\\n\\n    Slick.prototype.setSlideClasses = function(index) {\\n\\n        var _ = this,\\n            centerOffset, allSlides, indexOffset, remainder;\\n\\n        allSlides = _.$slider\\n            .find('.slick-slide')\\n            .removeClass('slick-active slick-center slick-current')\\n            .attr('aria-hidden', 'true');\\n\\n        _.$slides\\n            .eq(index)\\n            .addClass('slick-current');\\n\\n        if (_.options.centerMode === true) {\\n\\n            centerOffset = Math.floor(_.options.slidesToShow / 2);\\n\\n            if (_.options.infinite === true) {\\n\\n                if (index >= centerOffset && index <= (_.slideCount - 1) - centerOffset) {\\n\\n                    _.$slides\\n                        .slice(index - centerOffset, index + centerOffset + 1)\\n                        .addClass('slick-active')\\n                        .attr('aria-hidden', 'false');\\n\\n                } else {\\n\\n                    indexOffset = _.options.slidesToShow + index;\\n                    allSlides\\n                        .slice(indexOffset - centerOffset + 1, indexOffset + centerOffset + 2)\\n                        .addClass('slick-active')\\n                        .attr('aria-hidden', 'false');\\n\\n                }\\n\\n                if (index === 0) {\\n\\n                    allSlides\\n                        .eq(allSlides.length - 1 - _.options.slidesToShow)\\n                        .addClass('slick-center');\\n\\n                } else if (index === _.slideCount - 1) {\\n\\n                    allSlides\\n                        .eq(_.options.slidesToShow)\\n                        .addClass('slick-center');\\n\\n                }\\n\\n            }\\n\\n            _.$slides\\n                .eq(index)\\n                .addClass('slick-center');\\n\\n        } else {\\n\\n            if (index >= 0 && index <= (_.slideCount - _.options.slidesToShow)) {\\n\\n                _.$slides\\n                    .slice(index, index + _.options.slidesToShow)\\n                    .addClass('slick-active')\\n                    .attr('aria-hidden', 'false');\\n\\n            } else if (allSlides.length <= _.options.slidesToShow) {\\n\\n                allSlides\\n                    .addClass('slick-active')\\n                    .attr('aria-hidden', 'false');\\n\\n            } else {\\n\\n                remainder = _.slideCount % _.options.slidesToShow;\\n                indexOffset = _.options.infinite === true ? _.options.slidesToShow + index : index;\\n\\n                if (_.options.slidesToShow == _.options.slidesToScroll && (_.slideCount - index) < _.options.slidesToShow) {\\n\\n                    allSlides\\n                        .slice(indexOffset - (_.options.slidesToShow - remainder), indexOffset + remainder)\\n                        .addClass('slick-active')\\n                        .attr('aria-hidden', 'false');\\n\\n                } else {\\n\\n                    allSlides\\n                        .slice(indexOffset, indexOffset + _.options.slidesToShow)\\n                        .addClass('slick-active')\\n                        .attr('aria-hidden', 'false');\\n\\n                }\\n\\n            }\\n\\n        }\\n\\n        if (_.options.lazyLoad === 'ondemand') {\\n            _.lazyLoad();\\n        }\\n\\n    };\\n\\n    Slick.prototype.setupInfinite = function() {\\n\\n        var _ = this,\\n            i, slideIndex, infiniteCount;\\n\\n        if (_.options.fade === true) {\\n            _.options.centerMode = false;\\n        }\\n\\n        if (_.options.infinite === true && _.options.fade === false) {\\n\\n            slideIndex = null;\\n\\n            if (_.slideCount > _.options.slidesToShow) {\\n\\n                if (_.options.centerMode === true) {\\n                    infiniteCount = _.options.slidesToShow + 1;\\n                } else {\\n                    infiniteCount = _.options.slidesToShow;\\n                }\\n\\n                for (i = _.slideCount; i > (_.slideCount -\\n                        infiniteCount); i -= 1) {\\n                    slideIndex = i - 1;\\n                    $(_.$slides[slideIndex]).clone(true).attr('id', '')\\n                        .attr('data-slick-index', slideIndex - _.slideCount)\\n                        .prependTo(_.$slideTrack).addClass('slick-cloned');\\n                }\\n                for (i = 0; i < infiniteCount; i += 1) {\\n                    slideIndex = i;\\n                    $(_.$slides[slideIndex]).clone(true).attr('id', '')\\n                        .attr('data-slick-index', slideIndex + _.slideCount)\\n                        .appendTo(_.$slideTrack).addClass('slick-cloned');\\n                }\\n                _.$slideTrack.find('.slick-cloned').find('[id]').each(function() {\\n                    $(this).attr('id', '');\\n                });\\n\\n            }\\n\\n        }\\n\\n    };\\n\\n    Slick.prototype.interrupt = function( toggle ) {\\n\\n        var _ = this;\\n\\n        if( !toggle ) {\\n            _.autoPlay();\\n        }\\n        _.interrupted = toggle;\\n\\n    };\\n\\n    Slick.prototype.selectHandler = function(event) {\\n\\n        var _ = this;\\n\\n        var targetElement =\\n            $(event.target).is('.slick-slide') ?\\n                $(event.target) :\\n                $(event.target).parents('.slick-slide');\\n\\n        var index = parseInt(targetElement.attr('data-slick-index'));\\n\\n        if (!index) index = 0;\\n\\n        if (_.slideCount <= _.options.slidesToShow) {\\n\\n            _.setSlideClasses(index);\\n            _.asNavFor(index);\\n            return;\\n\\n        }\\n\\n        _.slideHandler(index);\\n\\n    };\\n\\n    Slick.prototype.slideHandler = function(index, sync, dontAnimate) {\\n\\n        var targetSlide, animSlide, oldSlide, slideLeft, targetLeft = null,\\n            _ = this, navTarget;\\n\\n        sync = sync || false;\\n\\n        if (_.animating === true && _.options.waitForAnimate === true) {\\n            return;\\n        }\\n\\n        if (_.options.fade === true && _.currentSlide === index) {\\n            return;\\n        }\\n\\n        if (_.slideCount <= _.options.slidesToShow) {\\n            return;\\n        }\\n\\n        if (sync === false) {\\n            _.asNavFor(index);\\n        }\\n\\n        targetSlide = index;\\n        targetLeft = _.getLeft(targetSlide);\\n        slideLeft = _.getLeft(_.currentSlide);\\n\\n        _.currentLeft = _.swipeLeft === null ? slideLeft : _.swipeLeft;\\n\\n        if (_.options.infinite === false && _.options.centerMode === false && (index < 0 || index > _.getDotCount() * _.options.slidesToScroll)) {\\n            if (_.options.fade === false) {\\n                targetSlide = _.currentSlide;\\n                if (dontAnimate !== true) {\\n                    _.animateSlide(slideLeft, function() {\\n                        _.postSlide(targetSlide);\\n                    });\\n                } else {\\n                    _.postSlide(targetSlide);\\n                }\\n            }\\n            return;\\n        } else if (_.options.infinite === false && _.options.centerMode === true && (index < 0 || index > (_.slideCount - _.options.slidesToScroll))) {\\n            if (_.options.fade === false) {\\n                targetSlide = _.currentSlide;\\n                if (dontAnimate !== true) {\\n                    _.animateSlide(slideLeft, function() {\\n                        _.postSlide(targetSlide);\\n                    });\\n                } else {\\n                    _.postSlide(targetSlide);\\n                }\\n            }\\n            return;\\n        }\\n\\n        if ( _.options.autoplay ) {\\n            clearInterval(_.autoPlayTimer);\\n        }\\n\\n        if (targetSlide < 0) {\\n            if (_.slideCount % _.options.slidesToScroll !== 0) {\\n                animSlide = _.slideCount - (_.slideCount % _.options.slidesToScroll);\\n            } else {\\n                animSlide = _.slideCount + targetSlide;\\n            }\\n        } else if (targetSlide >= _.slideCount) {\\n            if (_.slideCount % _.options.slidesToScroll !== 0) {\\n                animSlide = 0;\\n            } else {\\n                animSlide = targetSlide - _.slideCount;\\n            }\\n        } else {\\n            animSlide = targetSlide;\\n        }\\n\\n        _.animating = true;\\n\\n        _.$slider.trigger('beforeChange', [_, _.currentSlide, animSlide]);\\n\\n        oldSlide = _.currentSlide;\\n        _.currentSlide = animSlide;\\n\\n        _.setSlideClasses(_.currentSlide);\\n\\n        if ( _.options.asNavFor ) {\\n\\n            navTarget = _.getNavTarget();\\n            navTarget = navTarget.slick('getSlick');\\n\\n            if ( navTarget.slideCount <= navTarget.options.slidesToShow ) {\\n                navTarget.setSlideClasses(_.currentSlide);\\n            }\\n\\n        }\\n\\n        _.updateDots();\\n        _.updateArrows();\\n\\n        if (_.options.fade === true) {\\n            if (dontAnimate !== true) {\\n\\n                _.fadeSlideOut(oldSlide);\\n\\n                _.fadeSlide(animSlide, function() {\\n                    _.postSlide(animSlide);\\n                });\\n\\n            } else {\\n                _.postSlide(animSlide);\\n            }\\n            _.animateHeight();\\n            return;\\n        }\\n\\n        if (dontAnimate !== true) {\\n            _.animateSlide(targetLeft, function() {\\n                _.postSlide(animSlide);\\n            });\\n        } else {\\n            _.postSlide(animSlide);\\n        }\\n\\n    };\\n\\n    Slick.prototype.startLoad = function() {\\n\\n        var _ = this;\\n\\n        if (_.options.arrows === true && _.slideCount > _.options.slidesToShow) {\\n\\n            _.$prevArrow.hide();\\n            _.$nextArrow.hide();\\n\\n        }\\n\\n        if (_.options.dots === true && _.slideCount > _.options.slidesToShow) {\\n\\n            _.$dots.hide();\\n\\n        }\\n\\n        _.$slider.addClass('slick-loading');\\n\\n    };\\n\\n    Slick.prototype.swipeDirection = function() {\\n\\n        var xDist, yDist, r, swipeAngle, _ = this;\\n\\n        xDist = _.touchObject.startX - _.touchObject.curX;\\n        yDist = _.touchObject.startY - _.touchObject.curY;\\n        r = Math.atan2(yDist, xDist);\\n\\n        swipeAngle = Math.round(r * 180 / Math.PI);\\n        if (swipeAngle < 0) {\\n            swipeAngle = 360 - Math.abs(swipeAngle);\\n        }\\n\\n        if ((swipeAngle <= 45) && (swipeAngle >= 0)) {\\n            return (_.options.rtl === false ? 'left' : 'right');\\n        }\\n        if ((swipeAngle <= 360) && (swipeAngle >= 315)) {\\n            return (_.options.rtl === false ? 'left' : 'right');\\n        }\\n        if ((swipeAngle >= 135) && (swipeAngle <= 225)) {\\n            return (_.options.rtl === false ? 'right' : 'left');\\n        }\\n        if (_.options.verticalSwiping === true) {\\n            if ((swipeAngle >= 35) && (swipeAngle <= 135)) {\\n                return 'down';\\n            } else {\\n                return 'up';\\n            }\\n        }\\n\\n        return 'vertical';\\n\\n    };\\n\\n    Slick.prototype.swipeEnd = function(event) {\\n\\n        var _ = this,\\n            slideCount,\\n            direction;\\n\\n        _.dragging = false;\\n        _.interrupted = false;\\n        _.shouldClick = ( _.touchObject.swipeLength > 10 ) ? false : true;\\n\\n        if ( _.touchObject.curX === undefined ) {\\n            return false;\\n        }\\n\\n        if ( _.touchObject.edgeHit === true ) {\\n            _.$slider.trigger('edge', [_, _.swipeDirection() ]);\\n        }\\n\\n        if ( _.touchObject.swipeLength >= _.touchObject.minSwipe ) {\\n\\n            direction = _.swipeDirection();\\n\\n            switch ( direction ) {\\n\\n                case 'left':\\n                case 'down':\\n\\n                    slideCount =\\n                        _.options.swipeToSlide ?\\n                            _.checkNavigable( _.currentSlide + _.getSlideCount() ) :\\n                            _.currentSlide + _.getSlideCount();\\n\\n                    _.currentDirection = 0;\\n\\n                    break;\\n\\n                case 'right':\\n                case 'up':\\n\\n                    slideCount =\\n                        _.options.swipeToSlide ?\\n                            _.checkNavigable( _.currentSlide - _.getSlideCount() ) :\\n                            _.currentSlide - _.getSlideCount();\\n\\n                    _.currentDirection = 1;\\n\\n                    break;\\n\\n                default:\\n\\n\\n            }\\n\\n            if( direction != 'vertical' ) {\\n\\n                _.slideHandler( slideCount );\\n                _.touchObject = {};\\n                _.$slider.trigger('swipe', [_, direction ]);\\n\\n            }\\n\\n        } else {\\n\\n            if ( _.touchObject.startX !== _.touchObject.curX ) {\\n\\n                _.slideHandler( _.currentSlide );\\n                _.touchObject = {};\\n\\n            }\\n\\n        }\\n\\n    };\\n\\n    Slick.prototype.swipeHandler = function(event) {\\n\\n        var _ = this;\\n\\n        if ((_.options.swipe === false) || ('ontouchend' in document && _.options.swipe === false)) {\\n            return;\\n        } else if (_.options.draggable === false && event.type.indexOf('mouse') !== -1) {\\n            return;\\n        }\\n\\n        _.touchObject.fingerCount = event.originalEvent && event.originalEvent.touches !== undefined ?\\n            event.originalEvent.touches.length : 1;\\n\\n        _.touchObject.minSwipe = _.listWidth / _.options\\n            .touchThreshold;\\n\\n        if (_.options.verticalSwiping === true) {\\n            _.touchObject.minSwipe = _.listHeight / _.options\\n                .touchThreshold;\\n        }\\n\\n        switch (event.data.action) {\\n\\n            case 'start':\\n                _.swipeStart(event);\\n                break;\\n\\n            case 'move':\\n                _.swipeMove(event);\\n                break;\\n\\n            case 'end':\\n                _.swipeEnd(event);\\n                break;\\n\\n        }\\n\\n    };\\n\\n    Slick.prototype.swipeMove = function(event) {\\n\\n        var _ = this,\\n            edgeWasHit = false,\\n            curLeft, swipeDirection, swipeLength, positionOffset, touches;\\n\\n        touches = event.originalEvent !== undefined ? event.originalEvent.touches : null;\\n\\n        if (!_.dragging || touches && touches.length !== 1) {\\n            return false;\\n        }\\n\\n        curLeft = _.getLeft(_.currentSlide);\\n\\n        _.touchObject.curX = touches !== undefined ? touches[0].pageX : event.clientX;\\n        _.touchObject.curY = touches !== undefined ? touches[0].pageY : event.clientY;\\n\\n        _.touchObject.swipeLength = Math.round(Math.sqrt(\\n            Math.pow(_.touchObject.curX - _.touchObject.startX, 2)));\\n\\n        if (_.options.verticalSwiping === true) {\\n            _.touchObject.swipeLength = Math.round(Math.sqrt(\\n                Math.pow(_.touchObject.curY - _.touchObject.startY, 2)));\\n        }\\n\\n        swipeDirection = _.swipeDirection();\\n\\n        if (swipeDirection === 'vertical') {\\n            return;\\n        }\\n\\n        if (event.originalEvent !== undefined && _.touchObject.swipeLength > 4) {\\n            event.preventDefault();\\n        }\\n\\n        positionOffset = (_.options.rtl === false ? 1 : -1) * (_.touchObject.curX > _.touchObject.startX ? 1 : -1);\\n        if (_.options.verticalSwiping === true) {\\n            positionOffset = _.touchObject.curY > _.touchObject.startY ? 1 : -1;\\n        }\\n\\n\\n        swipeLength = _.touchObject.swipeLength;\\n\\n        _.touchObject.edgeHit = false;\\n\\n        if (_.options.infinite === false) {\\n            if ((_.currentSlide === 0 && swipeDirection === 'right') || (_.currentSlide >= _.getDotCount() && swipeDirection === 'left')) {\\n                swipeLength = _.touchObject.swipeLength * _.options.edgeFriction;\\n                _.touchObject.edgeHit = true;\\n            }\\n        }\\n\\n        if (_.options.vertical === false) {\\n            _.swipeLeft = curLeft + swipeLength * positionOffset;\\n        } else {\\n            _.swipeLeft = curLeft + (swipeLength * (_.$list.height() / _.listWidth)) * positionOffset;\\n        }\\n        if (_.options.verticalSwiping === true) {\\n            _.swipeLeft = curLeft + swipeLength * positionOffset;\\n        }\\n\\n        if (_.options.fade === true || _.options.touchMove === false) {\\n            return false;\\n        }\\n\\n        if (_.animating === true) {\\n            _.swipeLeft = null;\\n            return false;\\n        }\\n\\n        _.setCSS(_.swipeLeft);\\n\\n    };\\n\\n    Slick.prototype.swipeStart = function(event) {\\n\\n        var _ = this,\\n            touches;\\n\\n        _.interrupted = true;\\n\\n        if (_.touchObject.fingerCount !== 1 || _.slideCount <= _.options.slidesToShow) {\\n            _.touchObject = {};\\n            return false;\\n        }\\n\\n        if (event.originalEvent !== undefined && event.originalEvent.touches !== undefined) {\\n            touches = event.originalEvent.touches[0];\\n        }\\n\\n        _.touchObject.startX = _.touchObject.curX = touches !== undefined ? touches.pageX : event.clientX;\\n        _.touchObject.startY = _.touchObject.curY = touches !== undefined ? touches.pageY : event.clientY;\\n\\n        _.dragging = true;\\n\\n    };\\n\\n    Slick.prototype.unfilterSlides = Slick.prototype.slickUnfilter = function() {\\n\\n        var _ = this;\\n\\n        if (_.$slidesCache !== null) {\\n\\n            _.unload();\\n\\n            _.$slideTrack.children(this.options.slide).detach();\\n\\n            _.$slidesCache.appendTo(_.$slideTrack);\\n\\n            _.reinit();\\n\\n        }\\n\\n    };\\n\\n    Slick.prototype.unload = function() {\\n\\n        var _ = this;\\n\\n        $('.slick-cloned', _.$slider).remove();\\n\\n        if (_.$dots) {\\n            _.$dots.remove();\\n        }\\n\\n        if (_.$prevArrow && _.htmlExpr.test(_.options.prevArrow)) {\\n            _.$prevArrow.remove();\\n        }\\n\\n        if (_.$nextArrow && _.htmlExpr.test(_.options.nextArrow)) {\\n            _.$nextArrow.remove();\\n        }\\n\\n        _.$slides\\n            .removeClass('slick-slide slick-active slick-visible slick-current')\\n            .attr('aria-hidden', 'true')\\n            .css('width', '');\\n\\n    };\\n\\n    Slick.prototype.unslick = function(fromBreakpoint) {\\n\\n        var _ = this;\\n        _.$slider.trigger('unslick', [_, fromBreakpoint]);\\n        _.destroy();\\n\\n    };\\n\\n    Slick.prototype.updateArrows = function() {\\n\\n        var _ = this,\\n            centerOffset;\\n\\n        centerOffset = Math.floor(_.options.slidesToShow / 2);\\n\\n        if ( _.options.arrows === true &&\\n            _.slideCount > _.options.slidesToShow &&\\n            !_.options.infinite ) {\\n\\n            _.$prevArrow.removeClass('slick-disabled').attr('aria-disabled', 'false');\\n            _.$nextArrow.removeClass('slick-disabled').attr('aria-disabled', 'false');\\n\\n            if (_.currentSlide === 0) {\\n\\n                _.$prevArrow.addClass('slick-disabled').attr('aria-disabled', 'true');\\n                _.$nextArrow.removeClass('slick-disabled').attr('aria-disabled', 'false');\\n\\n            } else if (_.currentSlide >= _.slideCount - _.options.slidesToShow && _.options.centerMode === false) {\\n\\n                _.$nextArrow.addClass('slick-disabled').attr('aria-disabled', 'true');\\n                _.$prevArrow.removeClass('slick-disabled').attr('aria-disabled', 'false');\\n\\n            } else if (_.currentSlide >= _.slideCount - 1 && _.options.centerMode === true) {\\n\\n                _.$nextArrow.addClass('slick-disabled').attr('aria-disabled', 'true');\\n                _.$prevArrow.removeClass('slick-disabled').attr('aria-disabled', 'false');\\n\\n            }\\n\\n        }\\n\\n    };\\n\\n    Slick.prototype.updateDots = function() {\\n\\n        var _ = this;\\n\\n        if (_.$dots !== null) {\\n\\n            _.$dots\\n                .find('li')\\n                .removeClass('slick-active')\\n                .attr('aria-hidden', 'true');\\n\\n            _.$dots\\n                .find('li')\\n                .eq(Math.floor(_.currentSlide / _.options.slidesToScroll))\\n                .addClass('slick-active')\\n                .attr('aria-hidden', 'false');\\n\\n        }\\n\\n    };\\n\\n    Slick.prototype.visibility = function() {\\n\\n        var _ = this;\\n\\n        if ( _.options.autoplay ) {\\n\\n            if ( document[_.hidden] ) {\\n\\n                _.interrupted = true;\\n\\n            } else {\\n\\n                _.interrupted = false;\\n\\n            }\\n\\n        }\\n\\n    };\\n\\n    $.fn.slick = function() {\\n        var _ = this,\\n            opt = arguments[0],\\n            args = Array.prototype.slice.call(arguments, 1),\\n            l = _.length,\\n            i,\\n            ret;\\n        for (i = 0; i < l; i++) {\\n            if (typeof opt == 'object' || typeof opt == 'undefined')\\n                _[i].slick = new Slick(_[i], opt);\\n            else\\n                ret = _[i].slick[opt].apply(_[i].slick, args);\\n            if (typeof ret != 'undefined') return ret;\\n        }\\n        return _;\\n    };\\n\\n}));\\n\"\n\n//////////////////\n// WEBPACK FOOTER\n// ./~/raw-loader!./~/slick-carousel/slick/slick.js\n// module id = 171\n// module chunks = 1\n//# sourceURL=webpack:///./~/slick-carousel/slick/slick.js?./~/raw-loader");
-
-/***/ },
-
-/***/ 187:
-/***/ function(module, exports, __webpack_require__) {
-
-	eval("__webpack_require__(1)(__webpack_require__(161)+\"\\n\\n// SCRIPT-LOADER FOOTER\\n//# sourceURL=script:///P:/Antares/frontend-0.9.0/node_modules/gridstack/dist/gridstack.js\")\n\n//////////////////\n// WEBPACK FOOTER\n// ./~/script-loader!./~/gridstack/dist/gridstack.js\n// module id = 187\n// module chunks = 1\n//# sourceURL=webpack:///./~/gridstack/dist/gridstack.js?./~/script-loader");
-
-/***/ },
-
-/***/ 197:
-/***/ function(module, exports, __webpack_require__) {
-
-	eval("__webpack_require__(1)(__webpack_require__(171)+\"\\n\\n// SCRIPT-LOADER FOOTER\\n//# sourceURL=script:///P:/Antares/frontend-0.9.0/node_modules/slick-carousel/slick/slick.js\")\n\n//////////////////\n// WEBPACK FOOTER\n// ./~/script-loader!./~/slick-carousel/slick/slick.js\n// module id = 197\n// module chunks = 1\n//# sourceURL=webpack:///./~/slick-carousel/slick/slick.js?./~/script-loader");
-
-/***/ },
-
-/***/ 201:
-/***/ function(module, exports) {
-
-	eval("'use strict';\n\nvar alphabet;\nvar alphabetIndexMap;\nvar alphabetIndexMapLength = 0;\n\nfunction isNumberCode(code) {\n  return code >= 48 && code <= 57;\n}\n\nfunction naturalCompare(a, b) {\n  var lengthA = (a += '').length;\n  var lengthB = (b += '').length;\n  var aIndex = 0;\n  var bIndex = 0;\n\n  while (aIndex < lengthA && bIndex < lengthB) {\n    var charCodeA = a.charCodeAt(aIndex);\n    var charCodeB = b.charCodeAt(bIndex);\n\n    if (isNumberCode(charCodeA)) {\n      if (!isNumberCode(charCodeB)) {\n        return charCodeA - charCodeB;\n      }\n\n      var numStartA = aIndex;\n      var numStartB = bIndex;\n\n      while (charCodeA === 48 && ++numStartA < lengthA) {\n        charCodeA = a.charCodeAt(numStartA);\n      }\n      while (charCodeB === 48 && ++numStartB < lengthB) {\n        charCodeB = b.charCodeAt(numStartB);\n      }\n\n      var numEndA = numStartA;\n      var numEndB = numStartB;\n\n      while (numEndA < lengthA && isNumberCode(a.charCodeAt(numEndA))) {\n        ++numEndA;\n      }\n      while (numEndB < lengthB && isNumberCode(b.charCodeAt(numEndB))) {\n        ++numEndB;\n      }\n\n      var difference = numEndA - numStartA - numEndB + numStartB; // numA length - numB length\n      if (difference) {\n        return difference;\n      }\n\n      while (numStartA < numEndA) {\n        difference = a.charCodeAt(numStartA++) - b.charCodeAt(numStartB++);\n        if (difference) {\n          return difference;\n        }\n      }\n\n      aIndex = numEndA;\n      bIndex = numEndB;\n      continue;\n    }\n\n    if (charCodeA !== charCodeB) {\n      if (\n        charCodeA < alphabetIndexMapLength &&\n        charCodeB < alphabetIndexMapLength &&\n        alphabetIndexMap[charCodeA] !== -1 &&\n        alphabetIndexMap[charCodeB] !== -1\n      ) {\n        return alphabetIndexMap[charCodeA] - alphabetIndexMap[charCodeB];\n      }\n\n      return charCodeA - charCodeB;\n    }\n\n    ++aIndex;\n    ++bIndex;\n  }\n\n  return lengthA - lengthB;\n}\n\nnaturalCompare.caseInsensitive = naturalCompare.i = function(a, b) {\n  return naturalCompare(('' + a).toLowerCase(), ('' + b).toLowerCase());\n};\n\nObject.defineProperties(naturalCompare, {\n  alphabet: {\n    get: function() {\n      return alphabet;\n    },\n    set: function(value) {\n      alphabet = value;\n      alphabetIndexMap = [];\n      var i = 0;\n      if (alphabet) {\n        for (; i < alphabet.length; i++) {\n          alphabetIndexMap[alphabet.charCodeAt(i)] = i;\n        }\n      }\n      alphabetIndexMapLength = alphabetIndexMap.length;\n      for (i = 0; i < alphabetIndexMapLength; i++) {\n        if (alphabetIndexMap[i] === undefined) {\n          alphabetIndexMap[i] = -1;\n        }\n      }\n    },\n  },\n});\n\nmodule.exports = naturalCompare;\n\n\n//////////////////\n// WEBPACK FOOTER\n// ./~/string-natural-compare/natural-compare.js\n// module id = 201\n// module chunks = 1\n//# sourceURL=webpack:///./~/string-natural-compare/natural-compare.js?");
-
-/***/ }
+/***/ 117:
+/*!*********************************************************************!*\
+  !*** ./node_modules/jquery-ui-touch-punch/jquery.ui.touch-punch.js ***!
+  \*********************************************************************/
+/*! no static exports found */
+/*! all exports used */
+/***/ (function(module, exports) {
+
+/*!
+ * jQuery UI Touch Punch 0.2.3
+ *
+ * Copyright 2011–2014, Dave Furfero
+ * Dual licensed under the MIT or GPL Version 2 licenses.
+ *
+ * Depends:
+ *  jquery.ui.widget.js
+ *  jquery.ui.mouse.js
+ */
+(function ($) {
+
+  // Detect touch support
+  $.support.touch = 'ontouchend' in document;
+
+  // Ignore browsers without touch support
+  if (!$.support.touch) {
+    return;
+  }
+
+  var mouseProto = $.ui.mouse.prototype,
+      _mouseInit = mouseProto._mouseInit,
+      _mouseDestroy = mouseProto._mouseDestroy,
+      touchHandled;
+
+  /**
+   * Simulate a mouse event based on a corresponding touch event
+   * @param {Object} event A touch event
+   * @param {String} simulatedType The corresponding mouse event
+   */
+  function simulateMouseEvent (event, simulatedType) {
+
+    // Ignore multi-touch events
+    if (event.originalEvent.touches.length > 1) {
+      return;
+    }
+
+    event.preventDefault();
+
+    var touch = event.originalEvent.changedTouches[0],
+        simulatedEvent = document.createEvent('MouseEvents');
+    
+    // Initialize the simulated mouse event using the touch event's coordinates
+    simulatedEvent.initMouseEvent(
+      simulatedType,    // type
+      true,             // bubbles                    
+      true,             // cancelable                 
+      window,           // view                       
+      1,                // detail                     
+      touch.screenX,    // screenX                    
+      touch.screenY,    // screenY                    
+      touch.clientX,    // clientX                    
+      touch.clientY,    // clientY                    
+      false,            // ctrlKey                    
+      false,            // altKey                     
+      false,            // shiftKey                   
+      false,            // metaKey                    
+      0,                // button                     
+      null              // relatedTarget              
+    );
+
+    // Dispatch the simulated event to the target element
+    event.target.dispatchEvent(simulatedEvent);
+  }
+
+  /**
+   * Handle the jQuery UI widget's touchstart events
+   * @param {Object} event The widget element's touchstart event
+   */
+  mouseProto._touchStart = function (event) {
+
+    var self = this;
+
+    // Ignore the event if another widget is already being handled
+    if (touchHandled || !self._mouseCapture(event.originalEvent.changedTouches[0])) {
+      return;
+    }
+
+    // Set the flag to prevent other widgets from inheriting the touch event
+    touchHandled = true;
+
+    // Track movement to determine if interaction was a click
+    self._touchMoved = false;
+
+    // Simulate the mouseover event
+    simulateMouseEvent(event, 'mouseover');
+
+    // Simulate the mousemove event
+    simulateMouseEvent(event, 'mousemove');
+
+    // Simulate the mousedown event
+    simulateMouseEvent(event, 'mousedown');
+  };
+
+  /**
+   * Handle the jQuery UI widget's touchmove events
+   * @param {Object} event The document's touchmove event
+   */
+  mouseProto._touchMove = function (event) {
+
+    // Ignore event if not handled
+    if (!touchHandled) {
+      return;
+    }
+
+    // Interaction was not a click
+    this._touchMoved = true;
+
+    // Simulate the mousemove event
+    simulateMouseEvent(event, 'mousemove');
+  };
+
+  /**
+   * Handle the jQuery UI widget's touchend events
+   * @param {Object} event The document's touchend event
+   */
+  mouseProto._touchEnd = function (event) {
+
+    // Ignore event if not handled
+    if (!touchHandled) {
+      return;
+    }
+
+    // Simulate the mouseup event
+    simulateMouseEvent(event, 'mouseup');
+
+    // Simulate the mouseout event
+    simulateMouseEvent(event, 'mouseout');
+
+    // If the touch interaction did not move, it should trigger a click
+    if (!this._touchMoved) {
+
+      // Simulate the click event
+      simulateMouseEvent(event, 'click');
+    }
+
+    // Unset the flag to allow other widgets to inherit the touch event
+    touchHandled = false;
+  };
+
+  /**
+   * A duck punch of the $.ui.mouse _mouseInit method to support touch events.
+   * This method extends the widget with bound touch event handlers that
+   * translate touch events to mouse events and pass them to the widget's
+   * original mouse event handling methods.
+   */
+  mouseProto._mouseInit = function () {
+    
+    var self = this;
+
+    // Delegate the touch handlers to the widget's element
+    self.element.bind({
+      touchstart: $.proxy(self, '_touchStart'),
+      touchmove: $.proxy(self, '_touchMove'),
+      touchend: $.proxy(self, '_touchEnd')
+    });
+
+    // Call the original $.ui.mouse init method
+    _mouseInit.call(self);
+  };
+
+  /**
+   * Remove the touch event handlers
+   */
+  mouseProto._mouseDestroy = function () {
+    
+    var self = this;
+
+    // Delegate the touch handlers to the widget's element
+    self.element.unbind({
+      touchstart: $.proxy(self, '_touchStart'),
+      touchmove: $.proxy(self, '_touchMove'),
+      touchend: $.proxy(self, '_touchEnd')
+    });
+
+    // Call the original $.ui.mouse destroy method
+    _mouseDestroy.call(self);
+  };
+
+})(jQuery);
+
+/***/ }),
+
+/***/ 124:
+/*!**************************************************!*\
+  !*** ./_src/js/components/browser_hooks/edge.js ***!
+  \**************************************************/
+/*! no static exports found */
+/*! all exports used */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+/*
+ * Part of the Antares Project package.
+ *
+ * NOTICE OF LICENSE
+ *
+ * Licensed under the 3-clause BSD License.
+ *
+ * This source file is subject to the 3-clause BSD License that is
+ * bundled with this package in the LICENSE file.
+ *
+ * @package    Global
+ * @version    0.9.2
+ * @author     Antares Team
+ * @license    BSD License (3-clause)
+ * @copyright  (c) 2017, Antares Project
+ * @link       http://antaresproject.io
+ * 
+
+*/
+
+/* global enquire antaresEvents */
+
+// Edge Helpers
+
+exports.default = {
+  // methods
+
+  gridstack: function gridstack() {
+    antaresEvents.on('is-edge', function () {
+      setTimeout(function () {
+        $('.card--logs .pagination-list ul li').eq(0).trigger('click');
+      }, 200);
+    });
+  },
+  datatables: function datatables() {
+    antaresEvents.on('is-edge', function () {
+      setTimeout(function () {
+        $('.tbl-c .dt-area-bottom .dataTables_length a').eq(1).trigger('click');
+        $('.tbl-c .dt-area-bottom .dataTables_length a').eq(0).trigger('click');
+      }, 200);
+    });
+  }
+};
+
+/***/ }),
+
+/***/ 125:
+/*!*******************************************!*\
+  !*** ./node_modules/list.js/src/index.js ***!
+  \*******************************************/
+/*! no static exports found */
+/*! all exports used */
+/***/ (function(module, exports, __webpack_require__) {
+
+var naturalSort = __webpack_require__(/*! string-natural-compare */ 783),
+  getByClass = __webpack_require__(/*! ./utils/get-by-class */ 297),
+  extend = __webpack_require__(/*! ./utils/extend */ 298),
+  indexOf = __webpack_require__(/*! ./utils/index-of */ 299),
+  events = __webpack_require__(/*! ./utils/events */ 126),
+  toString = __webpack_require__(/*! ./utils/to-string */ 301),
+  classes = __webpack_require__(/*! ./utils/classes */ 127),
+  getAttribute = __webpack_require__(/*! ./utils/get-attribute */ 784),
+  toArray = __webpack_require__(/*! ./utils/to-array */ 300);
+
+module.exports = function(id, options, values) {
+
+  var self = this,
+    init,
+    Item = __webpack_require__(/*! ./item */ 302)(self),
+    addAsync = __webpack_require__(/*! ./add-async */ 785)(self),
+    initPagination = __webpack_require__(/*! ./pagination */ 786)(self);
+
+  init = {
+    start: function() {
+      self.listClass      = "list";
+      self.searchClass    = "search";
+      self.sortClass      = "sort";
+      self.page           = 10000;
+      self.i              = 1;
+      self.items          = [];
+      self.visibleItems   = [];
+      self.matchingItems  = [];
+      self.searched       = false;
+      self.filtered       = false;
+      self.searchColumns  = undefined;
+      self.handlers       = { 'updated': [] };
+      self.valueNames     = [];
+      self.utils          = {
+        getByClass: getByClass,
+        extend: extend,
+        indexOf: indexOf,
+        events: events,
+        toString: toString,
+        naturalSort: naturalSort,
+        classes: classes,
+        getAttribute: getAttribute,
+        toArray: toArray
+      };
+
+      self.utils.extend(self, options);
+
+      self.listContainer = (typeof(id) === 'string') ? document.getElementById(id) : id;
+      if (!self.listContainer) { return; }
+      self.list       = getByClass(self.listContainer, self.listClass, true);
+
+      self.parse        = __webpack_require__(/*! ./parse */ 787)(self);
+      self.templater    = __webpack_require__(/*! ./templater */ 788)(self);
+      self.search       = __webpack_require__(/*! ./search */ 789)(self);
+      self.filter       = __webpack_require__(/*! ./filter */ 790)(self);
+      self.sort         = __webpack_require__(/*! ./sort */ 791)(self);
+      self.fuzzySearch  = __webpack_require__(/*! ./fuzzy-search */ 792)(self, options.fuzzySearch);
+
+      this.handlers();
+      this.items();
+      this.pagination();
+
+      self.update();
+    },
+    handlers: function() {
+      for (var handler in self.handlers) {
+        if (self[handler]) {
+          self.on(handler, self[handler]);
+        }
+      }
+    },
+    items: function() {
+      self.parse(self.list);
+      if (values !== undefined) {
+        self.add(values);
+      }
+    },
+    pagination: function() {
+      if (options.pagination !== undefined) {
+        if (options.pagination === true) {
+          options.pagination = [{}];
+        }
+        if (options.pagination[0] === undefined){
+          options.pagination = [options.pagination];
+        }
+        for (var i = 0, il = options.pagination.length; i < il; i++) {
+          initPagination(options.pagination[i]);
+        }
+      }
+    }
+  };
+
+  /*
+  * Re-parse the List, use if html have changed
+  */
+  this.reIndex = function() {
+    self.items          = [];
+    self.visibleItems   = [];
+    self.matchingItems  = [];
+    self.searched       = false;
+    self.filtered       = false;
+    self.parse(self.list);
+  };
+
+  this.toJSON = function() {
+    var json = [];
+    for (var i = 0, il = self.items.length; i < il; i++) {
+      json.push(self.items[i].values());
+    }
+    return json;
+  };
+
+
+  /*
+  * Add object to list
+  */
+  this.add = function(values, callback) {
+    if (values.length === 0) {
+      return;
+    }
+    if (callback) {
+      addAsync(values, callback);
+      return;
+    }
+    var added = [],
+      notCreate = false;
+    if (values[0] === undefined){
+      values = [values];
+    }
+    for (var i = 0, il = values.length; i < il; i++) {
+      var item = null;
+      notCreate = (self.items.length > self.page) ? true : false;
+      item = new Item(values[i], undefined, notCreate);
+      self.items.push(item);
+      added.push(item);
+    }
+    self.update();
+    return added;
+  };
+
+	this.show = function(i, page) {
+		this.i = i;
+		this.page = page;
+		self.update();
+    return self;
+	};
+
+  /* Removes object from list.
+  * Loops through the list and removes objects where
+  * property "valuename" === value
+  */
+  this.remove = function(valueName, value, options) {
+    var found = 0;
+    for (var i = 0, il = self.items.length; i < il; i++) {
+      if (self.items[i].values()[valueName] == value) {
+        self.templater.remove(self.items[i], options);
+        self.items.splice(i,1);
+        il--;
+        i--;
+        found++;
+      }
+    }
+    self.update();
+    return found;
+  };
+
+  /* Gets the objects in the list which
+  * property "valueName" === value
+  */
+  this.get = function(valueName, value) {
+    var matchedItems = [];
+    for (var i = 0, il = self.items.length; i < il; i++) {
+      var item = self.items[i];
+      if (item.values()[valueName] == value) {
+        matchedItems.push(item);
+      }
+    }
+    return matchedItems;
+  };
+
+  /*
+  * Get size of the list
+  */
+  this.size = function() {
+    return self.items.length;
+  };
+
+  /*
+  * Removes all items from the list
+  */
+  this.clear = function() {
+    self.templater.clear();
+    self.items = [];
+    return self;
+  };
+
+  this.on = function(event, callback) {
+    self.handlers[event].push(callback);
+    return self;
+  };
+
+  this.off = function(event, callback) {
+    var e = self.handlers[event];
+    var index = indexOf(e, callback);
+    if (index > -1) {
+      e.splice(index, 1);
+    }
+    return self;
+  };
+
+  this.trigger = function(event) {
+    var i = self.handlers[event].length;
+    while(i--) {
+      self.handlers[event][i](self);
+    }
+    return self;
+  };
+
+  this.reset = {
+    filter: function() {
+      var is = self.items,
+        il = is.length;
+      while (il--) {
+        is[il].filtered = false;
+      }
+      return self;
+    },
+    search: function() {
+      var is = self.items,
+        il = is.length;
+      while (il--) {
+        is[il].found = false;
+      }
+      return self;
+    }
+  };
+
+  this.update = function() {
+    var is = self.items,
+			il = is.length;
+
+    self.visibleItems = [];
+    self.matchingItems = [];
+    self.templater.clear();
+    for (var i = 0; i < il; i++) {
+      if (is[i].matching() && ((self.matchingItems.length+1) >= self.i && self.visibleItems.length < self.page)) {
+        is[i].show();
+        self.visibleItems.push(is[i]);
+        self.matchingItems.push(is[i]);
+      } else if (is[i].matching()) {
+        self.matchingItems.push(is[i]);
+        is[i].hide();
+      } else {
+        is[i].hide();
+      }
+    }
+    self.trigger('updated');
+    return self;
+  };
+
+  init.start();
+};
+
+
+/***/ }),
+
+/***/ 126:
+/*!**************************************************!*\
+  !*** ./node_modules/list.js/src/utils/events.js ***!
+  \**************************************************/
+/*! no static exports found */
+/*! all exports used */
+/***/ (function(module, exports, __webpack_require__) {
+
+var bind = window.addEventListener ? 'addEventListener' : 'attachEvent',
+    unbind = window.removeEventListener ? 'removeEventListener' : 'detachEvent',
+    prefix = bind !== 'addEventListener' ? 'on' : '',
+    toArray = __webpack_require__(/*! ./to-array */ 300);
+
+/**
+ * Bind `el` event `type` to `fn`.
+ *
+ * @param {Element} el, NodeList, HTMLCollection or Array
+ * @param {String} type
+ * @param {Function} fn
+ * @param {Boolean} capture
+ * @api public
+ */
+
+exports.bind = function(el, type, fn, capture){
+  el = toArray(el);
+  for ( var i = 0; i < el.length; i++ ) {
+    el[i][bind](prefix + type, fn, capture || false);
+  }
+};
+
+/**
+ * Unbind `el` event `type`'s callback `fn`.
+ *
+ * @param {Element} el, NodeList, HTMLCollection or Array
+ * @param {String} type
+ * @param {Function} fn
+ * @param {Boolean} capture
+ * @api public
+ */
+
+exports.unbind = function(el, type, fn, capture){
+  el = toArray(el);
+  for ( var i = 0; i < el.length; i++ ) {
+    el[i][unbind](prefix + type, fn, capture || false);
+  }
+};
+
+
+/***/ }),
+
+/***/ 127:
+/*!***************************************************!*\
+  !*** ./node_modules/list.js/src/utils/classes.js ***!
+  \***************************************************/
+/*! no static exports found */
+/*! all exports used */
+/***/ (function(module, exports, __webpack_require__) {
+
+/**
+ * Module dependencies.
+ */
+
+var index = __webpack_require__(/*! ./index-of */ 299);
+
+/**
+ * Whitespace regexp.
+ */
+
+var re = /\s+/;
+
+/**
+ * toString reference.
+ */
+
+var toString = Object.prototype.toString;
+
+/**
+ * Wrap `el` in a `ClassList`.
+ *
+ * @param {Element} el
+ * @return {ClassList}
+ * @api public
+ */
+
+module.exports = function(el){
+  return new ClassList(el);
+};
+
+/**
+ * Initialize a new ClassList for `el`.
+ *
+ * @param {Element} el
+ * @api private
+ */
+
+function ClassList(el) {
+  if (!el || !el.nodeType) {
+    throw new Error('A DOM element reference is required');
+  }
+  this.el = el;
+  this.list = el.classList;
+}
+
+/**
+ * Add class `name` if not already present.
+ *
+ * @param {String} name
+ * @return {ClassList}
+ * @api public
+ */
+
+ClassList.prototype.add = function(name){
+  // classList
+  if (this.list) {
+    this.list.add(name);
+    return this;
+  }
+
+  // fallback
+  var arr = this.array();
+  var i = index(arr, name);
+  if (!~i) arr.push(name);
+  this.el.className = arr.join(' ');
+  return this;
+};
+
+/**
+ * Remove class `name` when present, or
+ * pass a regular expression to remove
+ * any which match.
+ *
+ * @param {String|RegExp} name
+ * @return {ClassList}
+ * @api public
+ */
+
+ClassList.prototype.remove = function(name){
+  // classList
+  if (this.list) {
+    this.list.remove(name);
+    return this;
+  }
+
+  // fallback
+  var arr = this.array();
+  var i = index(arr, name);
+  if (~i) arr.splice(i, 1);
+  this.el.className = arr.join(' ');
+  return this;
+};
+
+
+/**
+ * Toggle class `name`, can force state via `force`.
+ *
+ * For browsers that support classList, but do not support `force` yet,
+ * the mistake will be detected and corrected.
+ *
+ * @param {String} name
+ * @param {Boolean} force
+ * @return {ClassList}
+ * @api public
+ */
+
+ClassList.prototype.toggle = function(name, force){
+  // classList
+  if (this.list) {
+    if ("undefined" !== typeof force) {
+      if (force !== this.list.toggle(name, force)) {
+        this.list.toggle(name); // toggle again to correct
+      }
+    } else {
+      this.list.toggle(name);
+    }
+    return this;
+  }
+
+  // fallback
+  if ("undefined" !== typeof force) {
+    if (!force) {
+      this.remove(name);
+    } else {
+      this.add(name);
+    }
+  } else {
+    if (this.has(name)) {
+      this.remove(name);
+    } else {
+      this.add(name);
+    }
+  }
+
+  return this;
+};
+
+/**
+ * Return an array of classes.
+ *
+ * @return {Array}
+ * @api public
+ */
+
+ClassList.prototype.array = function(){
+  var className = this.el.getAttribute('class') || '';
+  var str = className.replace(/^\s+|\s+$/g, '');
+  var arr = str.split(re);
+  if ('' === arr[0]) arr.shift();
+  return arr;
+};
+
+/**
+ * Check if class `name` is present.
+ *
+ * @param {String} name
+ * @return {ClassList}
+ * @api public
+ */
+
+ClassList.prototype.has =
+ClassList.prototype.contains = function(name){
+  return this.list ? this.list.contains(name) : !! ~index(this.array(), name);
+};
+
+
+/***/ }),
+
+/***/ 297:
+/*!********************************************************!*\
+  !*** ./node_modules/list.js/src/utils/get-by-class.js ***!
+  \********************************************************/
+/*! no static exports found */
+/*! all exports used */
+/***/ (function(module, exports) {
+
+/**
+ * A cross-browser implementation of getElementsByClass.
+ * Heavily based on Dustin Diaz's function: http://dustindiaz.com/getelementsbyclass.
+ *
+ * Find all elements with class `className` inside `container`.
+ * Use `single = true` to increase performance in older browsers
+ * when only one element is needed.
+ *
+ * @param {String} className
+ * @param {Element} container
+ * @param {Boolean} single
+ * @api public
+ */
+
+var getElementsByClassName = function(container, className, single) {
+  if (single) {
+    return container.getElementsByClassName(className)[0];
+  } else {
+    return container.getElementsByClassName(className);
+  }
+};
+
+var querySelector = function(container, className, single) {
+  className = '.' + className;
+  if (single) {
+    return container.querySelector(className);
+  } else {
+    return container.querySelectorAll(className);
+  }
+};
+
+var polyfill = function(container, className, single) {
+  var classElements = [],
+    tag = '*';
+
+  var els = container.getElementsByTagName(tag);
+  var elsLen = els.length;
+  var pattern = new RegExp("(^|\\s)"+className+"(\\s|$)");
+  for (var i = 0, j = 0; i < elsLen; i++) {
+    if ( pattern.test(els[i].className) ) {
+      if (single) {
+        return els[i];
+      } else {
+        classElements[j] = els[i];
+        j++;
+      }
+    }
+  }
+  return classElements;
+};
+
+module.exports = (function() {
+  return function(container, className, single, options) {
+    options = options || {};
+    if ((options.test && options.getElementsByClassName) || (!options.test && document.getElementsByClassName)) {
+      return getElementsByClassName(container, className, single);
+    } else if ((options.test && options.querySelector) || (!options.test && document.querySelector)) {
+      return querySelector(container, className, single);
+    } else {
+      return polyfill(container, className, single);
+    }
+  };
+})();
+
+
+/***/ }),
+
+/***/ 298:
+/*!**************************************************!*\
+  !*** ./node_modules/list.js/src/utils/extend.js ***!
+  \**************************************************/
+/*! no static exports found */
+/*! all exports used */
+/***/ (function(module, exports) {
+
+/*
+ * Source: https://github.com/segmentio/extend
+ */
+
+module.exports = function extend (object) {
+    // Takes an unlimited number of extenders.
+    var args = Array.prototype.slice.call(arguments, 1);
+
+    // For each extender, copy their properties on our object.
+    for (var i = 0, source; source = args[i]; i++) {
+        if (!source) continue;
+        for (var property in source) {
+            object[property] = source[property];
+        }
+    }
+
+    return object;
+};
+
+
+/***/ }),
+
+/***/ 299:
+/*!****************************************************!*\
+  !*** ./node_modules/list.js/src/utils/index-of.js ***!
+  \****************************************************/
+/*! no static exports found */
+/*! all exports used */
+/***/ (function(module, exports) {
+
+var indexOf = [].indexOf;
+
+module.exports = function(arr, obj){
+  if (indexOf) return arr.indexOf(obj);
+  for (var i = 0; i < arr.length; ++i) {
+    if (arr[i] === obj) return i;
+  }
+  return -1;
+};
+
+
+/***/ }),
+
+/***/ 300:
+/*!****************************************************!*\
+  !*** ./node_modules/list.js/src/utils/to-array.js ***!
+  \****************************************************/
+/*! no static exports found */
+/*! all exports used */
+/***/ (function(module, exports) {
+
+/**
+ * Source: https://github.com/timoxley/to-array
+ *
+ * Convert an array-like object into an `Array`.
+ * If `collection` is already an `Array`, then will return a clone of `collection`.
+ *
+ * @param {Array | Mixed} collection An `Array` or array-like object to convert e.g. `arguments` or `NodeList`
+ * @return {Array} Naive conversion of `collection` to a new `Array`.
+ * @api public
+ */
+
+module.exports = function toArray(collection) {
+  if (typeof collection === 'undefined') return [];
+  if (collection === null) return [null];
+  if (collection === window) return [window];
+  if (typeof collection === 'string') return [collection];
+  if (isArray(collection)) return collection;
+  if (typeof collection.length != 'number') return [collection];
+  if (typeof collection === 'function' && collection instanceof Function) return [collection];
+
+  var arr = [];
+  for (var i = 0; i < collection.length; i++) {
+    if (Object.prototype.hasOwnProperty.call(collection, i) || i in collection) {
+      arr.push(collection[i]);
+    }
+  }
+  if (!arr.length) return [];
+  return arr;
+};
+
+function isArray(arr) {
+  return Object.prototype.toString.call(arr) === "[object Array]";
+}
+
+
+/***/ }),
+
+/***/ 301:
+/*!*****************************************************!*\
+  !*** ./node_modules/list.js/src/utils/to-string.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/*! all exports used */
+/***/ (function(module, exports) {
+
+module.exports = function(s) {
+  s = (s === undefined) ? "" : s;
+  s = (s === null) ? "" : s;
+  s = s.toString();
+  return s;
+};
+
+
+/***/ }),
+
+/***/ 302:
+/*!******************************************!*\
+  !*** ./node_modules/list.js/src/item.js ***!
+  \******************************************/
+/*! no static exports found */
+/*! all exports used */
+/***/ (function(module, exports) {
+
+module.exports = function(list) {
+  return function(initValues, element, notCreate) {
+    var item = this;
+
+    this._values = {};
+
+    this.found = false; // Show if list.searched == true and this.found == true
+    this.filtered = false;// Show if list.filtered == true and this.filtered == true
+
+    var init = function(initValues, element, notCreate) {
+      if (element === undefined) {
+        if (notCreate) {
+          item.values(initValues, notCreate);
+        } else {
+          item.values(initValues);
+        }
+      } else {
+        item.elm = element;
+        var values = list.templater.get(item, initValues);
+        item.values(values);
+      }
+    };
+
+    this.values = function(newValues, notCreate) {
+      if (newValues !== undefined) {
+        for(var name in newValues) {
+          item._values[name] = newValues[name];
+        }
+        if (notCreate !== true) {
+          list.templater.set(item, item.values());
+        }
+      } else {
+        return item._values;
+      }
+    };
+
+    this.show = function() {
+      list.templater.show(item);
+    };
+
+    this.hide = function() {
+      list.templater.hide(item);
+    };
+
+    this.matching = function() {
+      return (
+        (list.filtered && list.searched && item.found && item.filtered) ||
+        (list.filtered && !list.searched && item.filtered) ||
+        (!list.filtered && list.searched && item.found) ||
+        (!list.filtered && !list.searched)
+      );
+    };
+
+    this.visible = function() {
+      return (item.elm && (item.elm.parentNode == list.list)) ? true : false;
+    };
+
+    init(initValues, element, notCreate);
+  };
+};
+
+
+/***/ }),
+
+/***/ 5:
+/*!*************************************************!*\
+  !*** ./node_modules/script-loader/addScript.js ***!
+  \*************************************************/
+/*! no static exports found */
+/*! all exports used */
+/***/ (function(module, exports) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+module.exports = function(src) {
+	function log(error) {
+		(typeof console !== "undefined")
+		&& (console.error || console.log)("[Script Loader]", error);
+	}
+
+	// Check for IE =< 8
+	function isIE() {
+		return typeof attachEvent !== "undefined" && typeof addEventListener === "undefined";
+	}
+
+	try {
+		if (typeof execScript !== "undefined" && isIE()) {
+			execScript(src);
+		} else if (typeof eval !== "undefined") {
+			eval.call(null, src);
+		} else {
+			log("EvalError: No eval function available");
+		}
+	} catch (error) {
+		log(error);
+	}
+}
+
+
+/***/ }),
+
+/***/ 778:
+/*!**************************************************************!*\
+  !*** multi ./_src/templates/webpack/views/view_gridstack.js ***!
+  \**************************************************************/
+/*! no static exports found */
+/*! all exports used */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! ./_src/templates/webpack/views/view_gridstack.js */779);
+
+
+/***/ }),
+
+/***/ 779:
+/*!********************************************************!*\
+  !*** ./_src/templates/webpack/views/view_gridstack.js ***!
+  \********************************************************/
+/*! no static exports found */
+/*! all exports used */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _zero_data = __webpack_require__(/*! ./../../../js/components/zero_data/zero_data */ 780);
+
+var _zero_data2 = _interopRequireDefault(_zero_data);
+
+var _widget_control = __webpack_require__(/*! ./../../../js/components/widget_control/widget_control */ 781);
+
+var _widget_control2 = _interopRequireDefault(_widget_control);
+
+var _gridstack_rwd = __webpack_require__(/*! ./../../../js/components/gridstack_rwd/gridstack_rwd */ 795);
+
+var _gridstack_rwd2 = _interopRequireDefault(_gridstack_rwd);
+
+var _edge = __webpack_require__(/*! ./../../../js/components/browser_hooks/edge */ 124);
+
+var _edge2 = _interopRequireDefault(_edge);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// var path = './../../../';
+
+// EXTERNAL DEPS:
+__webpack_require__(/*! script-loader!gridstack */ 796);
+// require('script-loader!slick-carousel'); // not needed, i guess
+// APP COMPONENTS:
+// DYNAMIC IMPORT!
+// import('./../../../js/external/modified/pace.js')
+//   .then(function(pace) {
+//     window.Pace = pace;
+//     console.log('pace loaded');
+//   })
+//   .catch(function(err) {
+//     console.log('Failed to load pace', err);
+//   });
+
+var List = __webpack_require__(/*! list.js */ 125);
+window.List = List;
+
+__webpack_require__(/*! ./../../../js/antares_gridstack.js */ 798);
+
+$(function () {
+  _widget_control2.default.init();
+  _zero_data2.default.gridstack();
+  // gridstackRWD.init();
+});
+
+$(window).on('load', function () {
+  _edge2.default.gridstack();
+});
+
+// assign
+window.widgetControl = _widget_control2.default;
+// window.gridstackRWD = gridstackRWD;
+window.edgeHelpers = _edge2.default;
+
+/***/ }),
+
+/***/ 780:
+/*!***************************************************!*\
+  !*** ./_src/js/components/zero_data/zero_data.js ***!
+  \***************************************************/
+/*! no static exports found */
+/*! all exports used */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+//
+// Zero Data Component
+//
+
+exports.default = {
+    // Gridstack Resize Version
+    gridstack: function gridstack() {
+        var stringsBase = {
+            xs: 'zd--xs',
+            xsTxt: 'Extra Small',
+            sm: 'zd--sm',
+            smTxt: 'Small',
+            default: 'zd--default',
+            defaultTxt: 'Default',
+            lg: 'zd--lg',
+            lgTxt: 'Large'
+        };
+        var adjustZeroDataSize = function adjustZeroDataSize(gsi, $zdElement) {
+            var pathToTitle = $zdElement.closest('.grid-stack-item-content').find('.card__header--left span');
+
+            if (gsi.width < 5) {
+                $zdElement.attr('class', 'zd ' + stringsBase.xs);
+                pathToTitle.length ? pathToTitle.text(stringsBase.xsTxt) : false;
+            } else if (gsi.width < 8) {
+                $zdElement.attr('class', 'zd ' + stringsBase.sm);
+                pathToTitle.length ? pathToTitle.text(stringsBase.smTxt) : false;
+            } else if (gsi.width < 12) {
+                $zdElement.attr('class', 'zd ' + stringsBase.default);
+                pathToTitle.length ? pathToTitle.text(stringsBase.defaultTxt) : false;
+            } else {
+                $zdElement.attr('class', 'zd ' + stringsBase.lg);
+                pathToTitle.length ? pathToTitle.text(stringsBase.lgTxt) : false;
+            }
+        };
+
+        $(function () {
+            var grid = $('.grid-stack').data('gridstack');
+            var $grid = $('.grid-stack');
+
+            $grid.on('change', function (event, items) {
+                if (items === undefined) {
+                    return false;
+                }
+
+                for (var i = 0; i < items.length; i++) {
+                    var $zdDiv = $(items[i].el).find('.zd');
+                    var currentGsi = items[i];
+
+                    // check it outs, O.G
+                    if ($zdDiv !== undefined) {
+                        adjustZeroDataSize(currentGsi, $zdDiv);
+                    }
+                }
+            });
+        });
+    }
+};
+
+/***/ }),
+
+/***/ 781:
+/*!*************************************************************!*\
+  !*** ./_src/js/components/widget_control/widget_control.js ***!
+  \*************************************************************/
+/*! no static exports found */
+/*! all exports used */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _underscore = __webpack_require__(/*! underscore */ 782);
+
+var _underscore2 = _interopRequireDefault(_underscore);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// Antares Gridsack Widgets Control
+exports.default = {
+    init: function init() {
+        this.widgetAdd();
+        this.filterWidgets();
+        this.gsMaximize();
+        this.gsHeightAdjust();
+        this.gsResize();
+        this.gsClientsListRWD();
+        this.gsZeroDataRWD();
+        this.gsEditMode();
+        this.gsRWDGeneral();
+        this.gsDashboardRWD();
+        this.gsClientsDetailsRWD();
+        this.rwdHelperDev();
+        this.backend();
+        savedPositions: [];
+    },
+
+    // methods
+
+    backend: function backend() {
+
+        window.antaresEvents.on('dt_data_loaded', function (dtInstance) {
+            console.log('data-loaded');
+            $(dtInstance).find('tbody').adjustCardHeight();
+        });
+    },
+    widgetAdd: function widgetAdd() {
+        var self = this;
+        var $el = $('.card-bar .card-bar__sgl');
+        var $container = $('.main-content .grid-stack');
+
+        $container.droppable({
+            accept: $el,
+            drop: function drop(event, ui) {
+                console.log('Widget added!');
+            }
+        });
+
+        $el.draggable({
+            stop: function stop(event, ui) {
+                // console.log(ui);
+                // console.log(event);
+            },
+            start: function start() {
+                // self.simulateNewGsi();
+            },
+            revert: function revert(valid, ui) {
+                var $self = $(this);
+
+                if (!valid) {
+                    return !valid;
+                } else {
+                    this.velocity({
+                        opacity: '0'
+                    }, 500, function () {
+                        $self.remove();
+                        self.filterWidgets();
+                    });
+                    return valid;
+                }
+            }
+        });
+    },
+    filterWidgets: function filterWidgets() {
+        __webpack_require__(/*! list.js */ 125);
+
+        var options = {
+            valueNames: [{
+                data: ['widget']
+            }],
+            searchClass: 'mdl-textfield__input',
+            listClass: 'card-bar__items'
+        };
+
+        var widgetSort = new List('widgets-list', options);
+    },
+    gsRWDGeneral: function gsRWDGeneral() {
+        enquire.register('screen and (min-width:768px) and (max-width:1220px)', {
+            match: function match() {
+                $('.card--chart').closest('.grid-stack-item').addClass('grid-size--xs');
+                $('.card--logs').closest('.grid-stack-item').addClass('grid-size--xs');
+            },
+            unmatch: function unmatch() {
+                $('.card--chart').closest('.grid-stack-item').removeClass('grid-size--xs');
+                $('.card--logs').closest('.grid-stack-item').addClass('grid-size--xs');
+            }
+        });
+    },
+    clickClassHelper: function clickClassHelper(arm) {
+        if (arm !== false) {
+            // selec rects for debugging
+            var componentData = [];
+
+            // $(document).bind('keydown', 'alt', e => {
+
+            $('body').on('click.tmp', function (e) {
+                // if (e.target === 'undefined') {
+                //   return false;
+                // }
+                var $target = $(e.target);
+                var current = $target.attr('class');
+
+                if (current == undefined) {
+                    return false;
+                }
+
+                componentData.push(current);
+
+                // removeClass();
+
+                // console.log(componentData);
+            });
+            // });
+            $(document).bind('keyup', function (e) {
+                $(document).off('click.temp');
+            });
+        }
+    },
+    widgetInternalRWD: function widgetInternalRWD() {
+        //target = $(.grid-stack-item');
+        function clearGridStackRWDClasess($target) {
+            // clearGridStackRWDClasess('.')
+            clearGridStackRWDClasess();
+            $target.removeClass('grid-size--xs grid-size--sm grid-size--md grid-size--lg grid-size--xl');
+        }
+
+        function addGridStackRWDClasses($target) {
+            // init point
+            clearGridStackRWDClasess($target);
+            window.requestAnimationFrame(function () {
+                // const windowW = parseInt($(window).width(), 10);
+                var GSWidth = $target.attr('data-gs-width');
+                // console.log(windowW);
+                if (GSWidth <= 6) {
+                    $target.addClass('grid-size--xs');
+                } else if (GSWidth <= 8) {
+                    $target.addClass('grid-size--sm');
+                } else if (GSWidth <= 10) {
+                    $target.addClass('grid-size--md');
+                } else if (GSWidth <= 12) {
+                    $target.addClass('grid-size--lg');
+                } else if (GSWidth <= 24) {
+                    $target.addClass('grid-size--xl');
+                }
+            }, 100);
+        }
+
+        var grid = $('.grid-stack').data('gridstack');
+        var $grid = $('.grid-stack');
+
+        grid.on('change', function (event, items) {
+            console.log(items);
+            // if (items == null) {
+            //   return false;
+            // }
+            // for (let i = 0; i < items.length; i++) {
+            //   let $GSItem = $(items[i].el);
+            //   addGridStackRWDClasses($GSItem);
+            // }
+        });
+    },
+    gsHeightAdjust: function gsHeightAdjust($elem) {
+        var self = this;
+
+        $.fn.adjustCardHeight = function (disablePS) {
+            var windowW = $(window).width();
+            var $self = this;
+            var elem = $(this).closest('.grid-stack-item');
+            var grid = $('.grid-stack').data('gridstack');
+            var gsi = $(this).closest('.grid-stack-item');
+            var gsiHeight = gsi.outerHeight(true);
+            var card = gsi.find('.card');
+            var cardHeight = card.outerHeight(true);
+
+            if ($('.app-content').hasClass('app-content--widgets-movable')) {
+                return false;
+            }
+
+            if (windowW > 1449 && !card.hasClass('card--pagination')) {
+                // console.log('screen too wide for widget adaptations');
+                return false;
+            }
+
+            // const spiceUp = 5;
+
+            // if config says so, disable perfect scrollbar
+            if (disablePS === true) {
+                this.closest('.grid-stack-item-content').find('.ps').each(function (index, el) {
+                    $(el).perfectScrollbar('destroy');
+                });
+            }
+
+            function heightCalc() {
+                // get values if present
+                // make sure each time of widgget is supported!
+
+                var wholeElementHeight = 0;
+                var newGsiHeightVal = 0;
+                var currentElementHeight = 0;
+
+                // init
+                getRealHeight(card.find('.card__content'));
+
+                function getRealHeight() {
+                    // if it exists
+
+                    elem.addClass('is-being-calculated');
+                    // calc
+                    wholeElementHeight = card.outerHeight(true);
+                    // console.log(wholeElementHeight);
+                    // cleanup
+                    window.requestAnimationFrame(function () {
+                        elem.removeClass('is-being-calculated');
+                    });
+
+                    return wholeElementHeight;
+                }
+
+                if (grid) {
+                    newGsiHeightVal = Math.round((parseInt(wholeElementHeight, 10) + grid.opts.verticalMargin) / (grid.cellHeight() + grid.opts.verticalMargin));
+                }
+
+                // let paginationHeightAdjusted = card.data('paginationHeightAdjust');
+
+                // if (card.hasClass('card--pagination')) {
+                //   // newGsiHeightVal = newGsiHeightVal + 2;
+                //   // tmp off
+                //   if (!paginationHeightAdjusted) {
+                //     // console.log('only once');
+                //     newGsiHeightVal = newGsiHeightVal + 2;
+                //     card.data('paginationHeightAdjusted', true);
+                //   }
+                // }
+
+                if (card.hasClass('card--news')) {
+                    newGsiHeightVal++;
+                }
+
+                // do the resize man, stop jerking around
+
+                window.requestAnimationFrame(function () {
+                    // gsi.attr('data-gs-min-height', newGsiHeightVal);
+                    gsi.attr('data-gs-height', newGsiHeightVal);
+
+                    if (grid) {
+                        grid.resize(gsi, gsi.attr('data-gs-width'), newGsiHeightVal);
+                    }
+                });
+            }
+
+            self.saveGridParams();
+            heightCalc();
+            return 'Element updated!';
+        };
+
+        // $('.card *').css('opacity', '1');
+
+        // card interactions
+
+        if (typeof window.oTable === 'function') {
+            window.oTable.on('responsive-display', function () {
+                $('.tbl-c').adjustCardHeight();
+            });
+        }
+
+        enquire.register('screen and (min-width:768px) and (max-width:1199px) ', {
+            match: function match() {
+                // card chart
+                $('.card--chart [data-icheck="true"]').on('ifChanged', function () {
+                    var _this = this;
+
+                    $(this).closest('.card').find('.card__right .mobile-toogle--target').css('opacity', '0');
+                    window.requestAnimationFrame(function () {
+                        $(_this).closest('.card').find('.card__content').adjustCardHeight();
+                    });
+                    window.requestAnimationFrame(function () {
+                        $(_this).closest('.card').find('.card__right .mobile-toogle--target').css('opacity', '1');
+                    });
+                });
+
+                // card system info
+
+                $('.card--info').on('click', '.mobile-toogle--box', function () {
+                    window.requestAnimationFrame(function () {
+                        $('.card--info .card__content').adjustCardHeight();
+                    });
+                });
+
+                // card client contacts
+                $('.card--contacts').on('click', '.card__mobile-toggle', function () {
+                    window.requestAnimationFrame(function () {
+                        $('.card--contacts').adjustCardHeight();
+                    });
+                });
+            }
+        });
+
+        // card logs
+
+        $('.card--logs').on('click', '.pagination', function (index, el) {
+            window.requestAnimationFrame(function () {
+                if (parseInt($(window).width(), 10) > 767) {
+                    $('.card--logs .card__content').adjustCardHeight();
+                    // console.log('should work');
+                }
+                // console.log('reason');
+            });
+        });
+
+        // card with filters
+        $('.card-datatables').on('click', '.add-filter, .change-filter', function (index, el) {
+            window.requestAnimationFrame(function () {
+                if (parseInt($(window).width(), 10) > 767) {
+                    $('.card-datatables .card').adjustCardHeight();
+                }
+            });
+        });
+
+        $('tbl-c:not(.selected-mode--active)').on('click', 'td:first-of-type', function (index, el) {
+            window.requestAnimationFrame(function () {
+                if (parseInt($(window).width(), 10) > 767) {
+                    $('.card-datatables .card').adjustCardHeight();
+                }
+            });
+        });
+
+        // select in card-ctrls
+        $('.select--category').on('select2:select', function (e) {
+            $(e.target).closest('.tbl-c').adjustCardHeight();
+        });
+
+        var thisWW = $(window).width();
+
+        function gsiAdjust() {
+            $('.grid-stack-item').each(function (index, elem) {
+                window.requestAnimationFrame(function () {
+                    $(elem).find('.card__content').adjustCardHeight();
+                    $(elem).find('.tbl-c').adjustCardHeight();
+                    console.log('asdasdasdasdasd');
+                });
+            });
+        }
+
+        // on load
+        // if (thisWW > 767) {
+        //   gsiAdjust();
+        // }
+
+        // $(window).resize(
+        //   _.debounce(() => {
+        //     gsiAdjust();
+        //   }, 1150)
+        // );
+        //   enquire.register('screen and (max-width: 767px)', {
+        //       match: function () {
+        //           gsiAdjust();
+        //       },
+        //       unmatch: function () {
+        //           gsiAdjust();
+        //       }
+        //   });
+        enquire.register('screen and (min-width: 768px) and (max-width: 1023px)', {
+            match: function match() {
+                gsiAdjust();
+            },
+            unmatch: function unmatch() {
+                gsiAdjust();
+            }
+        });
+        enquire.register('screen and (min-width: 1024px) and (max-width: 1199px)', {
+            match: function match() {
+                gsiAdjust();
+            },
+            unmatch: function unmatch() {
+                gsiAdjust();
+            }
+        });
+        enquire.register('screen and (min-width: 1200px) and (max-width: 1349px)', {
+            match: function match() {
+                gsiAdjust();
+            },
+            unmatch: function unmatch() {
+                gsiAdjust();
+            }
+        });
+        enquire.register('screen and (min-width: 1350px) and (max-width: 1499px)', {
+            match: function match() {
+                gsiAdjust();
+            },
+            unmatch: function unmatch() {
+                gsiAdjust();
+            }
+        });
+        enquire.register('screen and (min-width: 1500px) and (max-width: 1649px)', {
+            match: function match() {
+                gsiAdjust();
+            },
+            unmatch: function unmatch() {
+                gsiAdjust();
+            }
+        });
+        enquire.register('screen and (min-width: 1650px)', {
+            match: function match() {
+                gsiAdjust();
+            },
+            unmatch: function unmatch() {
+                gsiAdjust();
+            }
+        });
+    },
+    saveGridParams: function saveGridParams() {
+        var self = this;
+        if (self.savedPositions === undefined) {
+            return;
+        }
+        $('.grid-stack-item').each(function () {
+            var $this = $(this);
+            self.savedPositions.push({
+                x: $this.attr('data-gs-x'),
+                y: $this.attr('data-gs-y'),
+                w: $this.attr('data-gs-width'),
+                h: $this.attr('data-gs-height')
+            });
+        });
+    },
+    gsMaximize: function gsMaximize() {
+        //save vars without overwrite with click functions
+
+        var self = this;
+        var $maximizeButton = $('#app-wrapper .card .card-maximize');
+
+        $maximizeButton.on('click', function () {
+            self.saveGridParams(); //enlarge mechanics
+            var $self = $(this);
+            var widget = $(this).closest('.grid-stack-item');
+            var grid = $(this).closest('.grid-stack').data('gridstack'); //set best height to simulate modal
+            var currentCellH = grid.cellHeight();
+            var headH = $('.main-head').outerHeight(true);
+            var windowH = $(window).height();
+            var appropriateHeight = (windowH - headH - 485) / currentCellH;
+            var openCloseSwitch = $(this).data('openCloseSwitch'); //identify card number
+            var index = widget.index();
+
+            if (!openCloseSwitch) {
+                // console.log(widget);
+                grid.update(widget, 0, 0, 24, appropriateHeight);
+                $('.app-content').scrollTop(0);
+                widget.addClass('is-maximized');
+                widget.find('.card__content').adjustCardHeight();
+            } else {
+                $('.grid-stack-item').each(function (index, el) {
+                    grid.update(el, parseInt(self.savedPositions[index].x, 10), parseInt(self.savedPositions[index].y, 10), parseInt(self.savedPositions[index].w, 10), parseInt(self.savedPositions[index].h, 10));
+                    $(el).removeClass('is-maximized');
+                    widget.find('.card__content').adjustCardHeight();
+                });
+            }
+            $(this).data('openCloseSwitch', !openCloseSwitch);
+        });
+    },
+    gsDashboardRWD: function gsDashboardRWD() {
+        //enumerate
+        $('.grid-stack-item .card--chart').each(function (index, elem) {
+            $(elem).attr('data-chart-number', index + 1);
+        });
+
+        var grid = $('.grid-stack').data('gridstack');
+        var dashboard = $('.page-dashboard');
+        var w = $(window).width();
+        var c1 = $('.card--chart').eq(0);
+        var c2 = $('.card--chart').eq(1);
+        var c3 = $('.card--chart').eq(2);
+        var c4 = $('.card--chart').eq(3);
+        var systemInfo = $('.card--info');
+        var news = $('.card--news');
+        var systemLogs = $('.card--logs');
+
+        if (dashboard.length) {
+            enquire.register('screen and (min-width:1367px) ', {
+                match: function match() {
+                    window.requestAnimationFrame(function () {
+                        $('.card--chart').each(function () {
+                            $(this).cardResize($(this).attr('data-gs-x'), $(this).attr('data-gs-y'), $(this).attr('data-gs-width'), 10);
+                            $(this).closest('.grid-stack-item').attr('data-gs-min-height', '10');
+                        });
+                        $('.card--logs').each(function () {
+                            $(this).closest('.grid-stack-item').attr('data-gs-min-height', '8');
+                        });
+                        $('.card--info').each(function () {
+                            $(this).closest('.grid-stack-item').attr('data-gs-min-height', '8');
+                        });
+                        $('[data-scrollable]').perfectScrollbar();
+                    });
+                }
+            });
+            enquire.register('screen and (min-width: 1450px)', {
+                match: function match() {
+                    window.requestAnimationFrame(function () {
+                        c1.cardResize(0, 0, 12, 10);
+                        c2.cardResize(12, 0, 12, 10);
+                        c3.cardResize(0, 10, 12, 10);
+                        c4.cardResize(12, 10, 12, 10);
+                        systemInfo.cardResize(0, 20, 6, 10);
+                        news.cardResize(6, 20, 6, 10);
+                        systemLogs.cardResize(12, 20, 12, 12);
+                    });
+                }
+            });
+            enquire.register('screen and (min-width:1200px) and (max-width: 1449px)', {
+                match: function match() {
+                    window.requestAnimationFrame(function () {
+                        c1.cardResize(0, 0, 12, 14);
+                        c2.cardResize(12, 0, 12, 14);
+                        c3.cardResize(0, 14, 12, 14);
+                        c4.cardResize(12, 14, 12, 14);
+                        systemInfo.cardResize(0, 28, 6, 10);
+                        news.cardResize(6, 28, 6, 10);
+                        systemLogs.cardResize(12, 28, 12, 12);
+                    });
+                }
+            });
+            enquire.register('screen and (max-width:1199px) and (min-width:768px) ', {
+                match: function match() {
+                    c1.cardResize(0, 0, 12, 14);
+                    c2.cardResize(12, 0, 12, 14);
+                    c3.cardResize(0, 14, 12, 14);
+                    c4.cardResize(12, 14, 12, 14);
+                    systemInfo.cardResize(0, 28, 12, 13);
+                    news.cardResize(12, 28, 12, 13);
+                    systemLogs.cardResize(0, 41, 24, 17);
+                }
+            });
+        }
+    },
+    gsZeroDataRWD: function gsZeroDataRWD() {
+        //enumerate
+        $('.grid-stack-item .card--zd').each(function (index, elem) {
+            $(elem).attr('data-chart-number', index + 1);
+        });
+
+        var grid = $('.grid-stack').data('gridstack');
+        var zeroData = $('.page-zero-data');
+        var cz1 = $('.card--zd').eq(0);
+        var cz2 = $('.card--zd').eq(1);
+        var cz3 = $('.card--zd').eq(2);
+        var cz4 = $('.card--zd').eq(3);
+
+        if (zeroData.length) {
+            enquire.register('screen and (max-width:1449px) and (min-width:1024px) ', {
+                match: function match() {
+                    setTimeout(function () {
+                        // window.requestAnimationFrame(() => {
+                        cz1.cardResize(0, 0, 6, 10);
+                        cz2.cardResize(0, 10, 10, 12);
+                        cz3.cardResize(0, 24, 12, 16);
+                        cz4.cardResize(0, 40, 16, 18);
+                    }, 300);
+                }
+            });
+            enquire.register('screen and (max-width:1023px) and (min-width:768px) ', {
+                match: function match() {
+                    setTimeout(function () {
+                        // window.requestAnimationFrame(() => {
+                        cz1.cardResize(0, 0, 7, 10);
+                        cz2.cardResize(0, 10, 10, 12);
+                        cz3.cardResize(0, 24, 14, 18);
+                        cz4.cardResize(0, 40, 16, 18);
+                    }, 300);
+                }
+            });
+        }
+    },
+    gsEditMode: function gsEditMode() {
+        var grid = $('.grid-stack').data('gridstack');
+
+        var $grid = $('.grid-stack');
+
+        function enableGrid() {
+            window.requestAnimationFrame(function () {
+                $('.app-content').addClass('app-content--widgets-movable');
+                $('#widgets-edit').children('i').removeClass('icon--widgets-edit').addClass('icon--widgets-edit-alt');
+                grid.enable();
+                $grid.find('.grid-stack-item').each(function (index, el) {
+                    grid.movable($(el), true);
+                });
+            });
+            // $('.app-content--widgets-movable .grid-stack').draggable(); //active this
+        }
+
+        function disableGrid() {
+            window.requestAnimationFrame(function () {
+                if (grid !== 'undefined') {
+                    grid.disable();
+                    $('#widgets-edit').children('i').removeClass('icon--widgets-edit-alt').addClass('icon--widgets-edit');
+                    $('.app-content').removeClass('app-content--widgets-movable');
+                }
+            });
+        }
+
+        // Disable on mobile & tabletss
+        enquire.register('screen and (max-width:1200px)', {
+            match: function match() {
+                disableGrid();
+            }
+        });
+
+        $('#widgets-edit').on('click', function (e) {
+            e.preventDefault();
+
+            if ($('.app-content').hasClass('app-content--widgets-movable')) {
+                disableGrid();
+            } else {
+                enableGrid();
+            }
+        });
+
+        // manual close button
+        $('.card-bar__close').on('click', function (e) {
+            disableGrid();
+        });
+
+        // remove Widgets
+        $(document).on('click', '.remove-button', function () {
+            var $el = $(this).closest('.grid-stack-item');
+
+            APP.swal.init('skin1', 'typeInfo', {
+                title: 'Are you sure?',
+                text: 'Widget will be removed.'
+            });
+
+            $('.sweet-container').addClass('widget-remove');
+            $('.sweet-container.widget-remove .sweet-confirm').on('click', function () {
+                window.requestAnimationFrame(function () {
+                    grid.removeWidget($el[0]);
+                });
+            });
+            $('.sweet-container').removeClass('widget-remove');
+        });
+    },
+    gsResize: function gsResize() {
+        $.fn.cardResize = function (newX, newY, newWidth, newGsiHeightVal) {
+            var grid = $('.grid-stack').data('gridstack');
+            var gsi = this.closest('.grid-stack-item');
+            var originalX = this.attr('data-gs-x');
+            var originalY = this.attr('data-gs-y');
+            var originalW = this.attr('data-gs-width');
+            var originalH = this.attr('data-gs-height');
+
+            function doTheResize() {
+                if (typeof grid !== 'undefined') {
+                    grid.update(gsi, newX, newY, newWidth, newGsiHeightVal);
+                }
+            }
+
+            doTheResize();
+        };
+    },
+    gsClientsListRWD: function gsClientsListRWD() {
+        if (!$('.page-datatables').length) {
+            return false;
+        }
+        var grid = $('.grid-stack').data('gridstack');
+        var cardTable = $('.grid-stack').find('.tbl-c').closest('.card');
+        enquire.register('screen and (min-width:1366px)', {
+            match: function match() {
+                cardTable.cardResize(0, 0, 24, 19);
+            }
+        });
+    },
+    gsClientsDetailsRWD: function gsClientsDetailsRWD() {
+        if (!$('.page-clients-details').length) {
+            return false;
+        }
+
+        var grid = $('.grid-stack').data('gridstack');
+        var cardInfo = $('.card--detail-info');
+        var cardContacts = $('.card--contacts');
+        var cardTabs = $('.card--tabs');
+        var cardLogs = $('.card--logs');
+        var cardSmallChart = $('.card--chart-small');
+
+        // how to? paramaters: newX, newY, newWidth, newGsiHeightVal
+        enquire.register('screen and (min-width:1366px)', {
+            match: function match() {
+                cardInfo.cardResize(0, 0, 5, 20);
+                cardTabs.cardResize(5, 0, 14, 19);
+                cardSmallChart.cardResize(19, 0, 5, 11);
+                cardContacts.cardResize(0, 20, 5, 10);
+                cardLogs.cardResize(5, 19, 14, 16);
+            }
+        });
+        enquire.register('screen and (min-width:1024px) and (max-width:1365px)', {
+            match: function match() {
+                cardInfo.cardResize(0, 0, 8, 20);
+                cardTabs.cardResize(8, 0, 16, 18);
+                cardSmallChart.cardResize(0, 31, 8, 12);
+                cardContacts.cardResize(0, 20, 8, 11);
+                cardLogs.cardResize(8, 19, 16, 10);
+            }
+        });
+        enquire.register('screen and (min-width:768px) and (max-width:1023px)', {
+            match: function match() {
+                cardInfo.cardResize(0, 0, 9, 20);
+                cardTabs.cardResize(9, 0, 15, 18);
+                cardSmallChart.cardResize(0, 31, 9, 12);
+                cardContacts.cardResize(0, 20, 9, 11);
+                cardLogs.cardResize(9, 19, 15, 10);
+            }
+        });
+    },
+    rwdHelperDev: function rwdHelperDev() {
+        //tmp menu helper
+        // $(document).bind('keydown', 'alt', e => {
+        //   $('.main-menu--primary .has-submenu').eq(0).addClass('submenu-open');
+        // });
+
+        __webpack_require__(/*! ./../../external/jquery.hotkeys.js */ 794);
+        var grid = $('.grid-stack').data('gridstack');
+        $(document).bind('keydown', 'alt+q', function () {
+            var serializedData = _underscore2.default.map($('.grid-stack > .grid-stack-item:visible'), function (el) {
+                el = $(el);
+                var node = el.data('_gridstack_node');
+                return {
+                    x: node.x,
+                    y: node.y,
+                    width: node.width,
+                    height: node.height
+                };
+            }, this); // give it to me
+            console.log(serializedData);
+        });
+    }
+}; /*
+    * Part of the Antares Project package.
+    *
+    * NOTICE OF LICENSE
+    *
+    * Licensed under the 3-clause BSD License.
+    *
+    * This source file is subject to the 3-clause BSD License that is
+    * bundled with this package in the LICENSE file.
+    *
+    * @package    Global
+    * @version    0.9.1
+    * @author     Antares Team
+    * @license    BSD License (3-clause)
+    * @copyright  (c) 2017, Antares Project
+    * @link       http://antaresproject.io
+    *
+    
+    */
+
+// import axios from 'axios';
+
+/* global enquire antaresEvents */
+
+/***/ }),
+
+/***/ 782:
+/*!***********************************************!*\
+  !*** ./node_modules/underscore/underscore.js ***!
+  \***********************************************/
+/*! no static exports found */
+/*! all exports used */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;//     Underscore.js 1.8.3
+//     http://underscorejs.org
+//     (c) 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+//     Underscore may be freely distributed under the MIT license.
+
+(function() {
+
+  // Baseline setup
+  // --------------
+
+  // Establish the root object, `window` in the browser, or `exports` on the server.
+  var root = this;
+
+  // Save the previous value of the `_` variable.
+  var previousUnderscore = root._;
+
+  // Save bytes in the minified (but not gzipped) version:
+  var ArrayProto = Array.prototype, ObjProto = Object.prototype, FuncProto = Function.prototype;
+
+  // Create quick reference variables for speed access to core prototypes.
+  var
+    push             = ArrayProto.push,
+    slice            = ArrayProto.slice,
+    toString         = ObjProto.toString,
+    hasOwnProperty   = ObjProto.hasOwnProperty;
+
+  // All **ECMAScript 5** native function implementations that we hope to use
+  // are declared here.
+  var
+    nativeIsArray      = Array.isArray,
+    nativeKeys         = Object.keys,
+    nativeBind         = FuncProto.bind,
+    nativeCreate       = Object.create;
+
+  // Naked function reference for surrogate-prototype-swapping.
+  var Ctor = function(){};
+
+  // Create a safe reference to the Underscore object for use below.
+  var _ = function(obj) {
+    if (obj instanceof _) return obj;
+    if (!(this instanceof _)) return new _(obj);
+    this._wrapped = obj;
+  };
+
+  // Export the Underscore object for **Node.js**, with
+  // backwards-compatibility for the old `require()` API. If we're in
+  // the browser, add `_` as a global object.
+  if (true) {
+    if (typeof module !== 'undefined' && module.exports) {
+      exports = module.exports = _;
+    }
+    exports._ = _;
+  } else {
+    root._ = _;
+  }
+
+  // Current version.
+  _.VERSION = '1.8.3';
+
+  // Internal function that returns an efficient (for current engines) version
+  // of the passed-in callback, to be repeatedly applied in other Underscore
+  // functions.
+  var optimizeCb = function(func, context, argCount) {
+    if (context === void 0) return func;
+    switch (argCount == null ? 3 : argCount) {
+      case 1: return function(value) {
+        return func.call(context, value);
+      };
+      case 2: return function(value, other) {
+        return func.call(context, value, other);
+      };
+      case 3: return function(value, index, collection) {
+        return func.call(context, value, index, collection);
+      };
+      case 4: return function(accumulator, value, index, collection) {
+        return func.call(context, accumulator, value, index, collection);
+      };
+    }
+    return function() {
+      return func.apply(context, arguments);
+    };
+  };
+
+  // A mostly-internal function to generate callbacks that can be applied
+  // to each element in a collection, returning the desired result — either
+  // identity, an arbitrary callback, a property matcher, or a property accessor.
+  var cb = function(value, context, argCount) {
+    if (value == null) return _.identity;
+    if (_.isFunction(value)) return optimizeCb(value, context, argCount);
+    if (_.isObject(value)) return _.matcher(value);
+    return _.property(value);
+  };
+  _.iteratee = function(value, context) {
+    return cb(value, context, Infinity);
+  };
+
+  // An internal function for creating assigner functions.
+  var createAssigner = function(keysFunc, undefinedOnly) {
+    return function(obj) {
+      var length = arguments.length;
+      if (length < 2 || obj == null) return obj;
+      for (var index = 1; index < length; index++) {
+        var source = arguments[index],
+            keys = keysFunc(source),
+            l = keys.length;
+        for (var i = 0; i < l; i++) {
+          var key = keys[i];
+          if (!undefinedOnly || obj[key] === void 0) obj[key] = source[key];
+        }
+      }
+      return obj;
+    };
+  };
+
+  // An internal function for creating a new object that inherits from another.
+  var baseCreate = function(prototype) {
+    if (!_.isObject(prototype)) return {};
+    if (nativeCreate) return nativeCreate(prototype);
+    Ctor.prototype = prototype;
+    var result = new Ctor;
+    Ctor.prototype = null;
+    return result;
+  };
+
+  var property = function(key) {
+    return function(obj) {
+      return obj == null ? void 0 : obj[key];
+    };
+  };
+
+  // Helper for collection methods to determine whether a collection
+  // should be iterated as an array or as an object
+  // Related: http://people.mozilla.org/~jorendorff/es6-draft.html#sec-tolength
+  // Avoids a very nasty iOS 8 JIT bug on ARM-64. #2094
+  var MAX_ARRAY_INDEX = Math.pow(2, 53) - 1;
+  var getLength = property('length');
+  var isArrayLike = function(collection) {
+    var length = getLength(collection);
+    return typeof length == 'number' && length >= 0 && length <= MAX_ARRAY_INDEX;
+  };
+
+  // Collection Functions
+  // --------------------
+
+  // The cornerstone, an `each` implementation, aka `forEach`.
+  // Handles raw objects in addition to array-likes. Treats all
+  // sparse array-likes as if they were dense.
+  _.each = _.forEach = function(obj, iteratee, context) {
+    iteratee = optimizeCb(iteratee, context);
+    var i, length;
+    if (isArrayLike(obj)) {
+      for (i = 0, length = obj.length; i < length; i++) {
+        iteratee(obj[i], i, obj);
+      }
+    } else {
+      var keys = _.keys(obj);
+      for (i = 0, length = keys.length; i < length; i++) {
+        iteratee(obj[keys[i]], keys[i], obj);
+      }
+    }
+    return obj;
+  };
+
+  // Return the results of applying the iteratee to each element.
+  _.map = _.collect = function(obj, iteratee, context) {
+    iteratee = cb(iteratee, context);
+    var keys = !isArrayLike(obj) && _.keys(obj),
+        length = (keys || obj).length,
+        results = Array(length);
+    for (var index = 0; index < length; index++) {
+      var currentKey = keys ? keys[index] : index;
+      results[index] = iteratee(obj[currentKey], currentKey, obj);
+    }
+    return results;
+  };
+
+  // Create a reducing function iterating left or right.
+  function createReduce(dir) {
+    // Optimized iterator function as using arguments.length
+    // in the main function will deoptimize the, see #1991.
+    function iterator(obj, iteratee, memo, keys, index, length) {
+      for (; index >= 0 && index < length; index += dir) {
+        var currentKey = keys ? keys[index] : index;
+        memo = iteratee(memo, obj[currentKey], currentKey, obj);
+      }
+      return memo;
+    }
+
+    return function(obj, iteratee, memo, context) {
+      iteratee = optimizeCb(iteratee, context, 4);
+      var keys = !isArrayLike(obj) && _.keys(obj),
+          length = (keys || obj).length,
+          index = dir > 0 ? 0 : length - 1;
+      // Determine the initial value if none is provided.
+      if (arguments.length < 3) {
+        memo = obj[keys ? keys[index] : index];
+        index += dir;
+      }
+      return iterator(obj, iteratee, memo, keys, index, length);
+    };
+  }
+
+  // **Reduce** builds up a single result from a list of values, aka `inject`,
+  // or `foldl`.
+  _.reduce = _.foldl = _.inject = createReduce(1);
+
+  // The right-associative version of reduce, also known as `foldr`.
+  _.reduceRight = _.foldr = createReduce(-1);
+
+  // Return the first value which passes a truth test. Aliased as `detect`.
+  _.find = _.detect = function(obj, predicate, context) {
+    var key;
+    if (isArrayLike(obj)) {
+      key = _.findIndex(obj, predicate, context);
+    } else {
+      key = _.findKey(obj, predicate, context);
+    }
+    if (key !== void 0 && key !== -1) return obj[key];
+  };
+
+  // Return all the elements that pass a truth test.
+  // Aliased as `select`.
+  _.filter = _.select = function(obj, predicate, context) {
+    var results = [];
+    predicate = cb(predicate, context);
+    _.each(obj, function(value, index, list) {
+      if (predicate(value, index, list)) results.push(value);
+    });
+    return results;
+  };
+
+  // Return all the elements for which a truth test fails.
+  _.reject = function(obj, predicate, context) {
+    return _.filter(obj, _.negate(cb(predicate)), context);
+  };
+
+  // Determine whether all of the elements match a truth test.
+  // Aliased as `all`.
+  _.every = _.all = function(obj, predicate, context) {
+    predicate = cb(predicate, context);
+    var keys = !isArrayLike(obj) && _.keys(obj),
+        length = (keys || obj).length;
+    for (var index = 0; index < length; index++) {
+      var currentKey = keys ? keys[index] : index;
+      if (!predicate(obj[currentKey], currentKey, obj)) return false;
+    }
+    return true;
+  };
+
+  // Determine if at least one element in the object matches a truth test.
+  // Aliased as `any`.
+  _.some = _.any = function(obj, predicate, context) {
+    predicate = cb(predicate, context);
+    var keys = !isArrayLike(obj) && _.keys(obj),
+        length = (keys || obj).length;
+    for (var index = 0; index < length; index++) {
+      var currentKey = keys ? keys[index] : index;
+      if (predicate(obj[currentKey], currentKey, obj)) return true;
+    }
+    return false;
+  };
+
+  // Determine if the array or object contains a given item (using `===`).
+  // Aliased as `includes` and `include`.
+  _.contains = _.includes = _.include = function(obj, item, fromIndex, guard) {
+    if (!isArrayLike(obj)) obj = _.values(obj);
+    if (typeof fromIndex != 'number' || guard) fromIndex = 0;
+    return _.indexOf(obj, item, fromIndex) >= 0;
+  };
+
+  // Invoke a method (with arguments) on every item in a collection.
+  _.invoke = function(obj, method) {
+    var args = slice.call(arguments, 2);
+    var isFunc = _.isFunction(method);
+    return _.map(obj, function(value) {
+      var func = isFunc ? method : value[method];
+      return func == null ? func : func.apply(value, args);
+    });
+  };
+
+  // Convenience version of a common use case of `map`: fetching a property.
+  _.pluck = function(obj, key) {
+    return _.map(obj, _.property(key));
+  };
+
+  // Convenience version of a common use case of `filter`: selecting only objects
+  // containing specific `key:value` pairs.
+  _.where = function(obj, attrs) {
+    return _.filter(obj, _.matcher(attrs));
+  };
+
+  // Convenience version of a common use case of `find`: getting the first object
+  // containing specific `key:value` pairs.
+  _.findWhere = function(obj, attrs) {
+    return _.find(obj, _.matcher(attrs));
+  };
+
+  // Return the maximum element (or element-based computation).
+  _.max = function(obj, iteratee, context) {
+    var result = -Infinity, lastComputed = -Infinity,
+        value, computed;
+    if (iteratee == null && obj != null) {
+      obj = isArrayLike(obj) ? obj : _.values(obj);
+      for (var i = 0, length = obj.length; i < length; i++) {
+        value = obj[i];
+        if (value > result) {
+          result = value;
+        }
+      }
+    } else {
+      iteratee = cb(iteratee, context);
+      _.each(obj, function(value, index, list) {
+        computed = iteratee(value, index, list);
+        if (computed > lastComputed || computed === -Infinity && result === -Infinity) {
+          result = value;
+          lastComputed = computed;
+        }
+      });
+    }
+    return result;
+  };
+
+  // Return the minimum element (or element-based computation).
+  _.min = function(obj, iteratee, context) {
+    var result = Infinity, lastComputed = Infinity,
+        value, computed;
+    if (iteratee == null && obj != null) {
+      obj = isArrayLike(obj) ? obj : _.values(obj);
+      for (var i = 0, length = obj.length; i < length; i++) {
+        value = obj[i];
+        if (value < result) {
+          result = value;
+        }
+      }
+    } else {
+      iteratee = cb(iteratee, context);
+      _.each(obj, function(value, index, list) {
+        computed = iteratee(value, index, list);
+        if (computed < lastComputed || computed === Infinity && result === Infinity) {
+          result = value;
+          lastComputed = computed;
+        }
+      });
+    }
+    return result;
+  };
+
+  // Shuffle a collection, using the modern version of the
+  // [Fisher-Yates shuffle](http://en.wikipedia.org/wiki/Fisher–Yates_shuffle).
+  _.shuffle = function(obj) {
+    var set = isArrayLike(obj) ? obj : _.values(obj);
+    var length = set.length;
+    var shuffled = Array(length);
+    for (var index = 0, rand; index < length; index++) {
+      rand = _.random(0, index);
+      if (rand !== index) shuffled[index] = shuffled[rand];
+      shuffled[rand] = set[index];
+    }
+    return shuffled;
+  };
+
+  // Sample **n** random values from a collection.
+  // If **n** is not specified, returns a single random element.
+  // The internal `guard` argument allows it to work with `map`.
+  _.sample = function(obj, n, guard) {
+    if (n == null || guard) {
+      if (!isArrayLike(obj)) obj = _.values(obj);
+      return obj[_.random(obj.length - 1)];
+    }
+    return _.shuffle(obj).slice(0, Math.max(0, n));
+  };
+
+  // Sort the object's values by a criterion produced by an iteratee.
+  _.sortBy = function(obj, iteratee, context) {
+    iteratee = cb(iteratee, context);
+    return _.pluck(_.map(obj, function(value, index, list) {
+      return {
+        value: value,
+        index: index,
+        criteria: iteratee(value, index, list)
+      };
+    }).sort(function(left, right) {
+      var a = left.criteria;
+      var b = right.criteria;
+      if (a !== b) {
+        if (a > b || a === void 0) return 1;
+        if (a < b || b === void 0) return -1;
+      }
+      return left.index - right.index;
+    }), 'value');
+  };
+
+  // An internal function used for aggregate "group by" operations.
+  var group = function(behavior) {
+    return function(obj, iteratee, context) {
+      var result = {};
+      iteratee = cb(iteratee, context);
+      _.each(obj, function(value, index) {
+        var key = iteratee(value, index, obj);
+        behavior(result, value, key);
+      });
+      return result;
+    };
+  };
+
+  // Groups the object's values by a criterion. Pass either a string attribute
+  // to group by, or a function that returns the criterion.
+  _.groupBy = group(function(result, value, key) {
+    if (_.has(result, key)) result[key].push(value); else result[key] = [value];
+  });
+
+  // Indexes the object's values by a criterion, similar to `groupBy`, but for
+  // when you know that your index values will be unique.
+  _.indexBy = group(function(result, value, key) {
+    result[key] = value;
+  });
+
+  // Counts instances of an object that group by a certain criterion. Pass
+  // either a string attribute to count by, or a function that returns the
+  // criterion.
+  _.countBy = group(function(result, value, key) {
+    if (_.has(result, key)) result[key]++; else result[key] = 1;
+  });
+
+  // Safely create a real, live array from anything iterable.
+  _.toArray = function(obj) {
+    if (!obj) return [];
+    if (_.isArray(obj)) return slice.call(obj);
+    if (isArrayLike(obj)) return _.map(obj, _.identity);
+    return _.values(obj);
+  };
+
+  // Return the number of elements in an object.
+  _.size = function(obj) {
+    if (obj == null) return 0;
+    return isArrayLike(obj) ? obj.length : _.keys(obj).length;
+  };
+
+  // Split a collection into two arrays: one whose elements all satisfy the given
+  // predicate, and one whose elements all do not satisfy the predicate.
+  _.partition = function(obj, predicate, context) {
+    predicate = cb(predicate, context);
+    var pass = [], fail = [];
+    _.each(obj, function(value, key, obj) {
+      (predicate(value, key, obj) ? pass : fail).push(value);
+    });
+    return [pass, fail];
+  };
+
+  // Array Functions
+  // ---------------
+
+  // Get the first element of an array. Passing **n** will return the first N
+  // values in the array. Aliased as `head` and `take`. The **guard** check
+  // allows it to work with `_.map`.
+  _.first = _.head = _.take = function(array, n, guard) {
+    if (array == null) return void 0;
+    if (n == null || guard) return array[0];
+    return _.initial(array, array.length - n);
+  };
+
+  // Returns everything but the last entry of the array. Especially useful on
+  // the arguments object. Passing **n** will return all the values in
+  // the array, excluding the last N.
+  _.initial = function(array, n, guard) {
+    return slice.call(array, 0, Math.max(0, array.length - (n == null || guard ? 1 : n)));
+  };
+
+  // Get the last element of an array. Passing **n** will return the last N
+  // values in the array.
+  _.last = function(array, n, guard) {
+    if (array == null) return void 0;
+    if (n == null || guard) return array[array.length - 1];
+    return _.rest(array, Math.max(0, array.length - n));
+  };
+
+  // Returns everything but the first entry of the array. Aliased as `tail` and `drop`.
+  // Especially useful on the arguments object. Passing an **n** will return
+  // the rest N values in the array.
+  _.rest = _.tail = _.drop = function(array, n, guard) {
+    return slice.call(array, n == null || guard ? 1 : n);
+  };
+
+  // Trim out all falsy values from an array.
+  _.compact = function(array) {
+    return _.filter(array, _.identity);
+  };
+
+  // Internal implementation of a recursive `flatten` function.
+  var flatten = function(input, shallow, strict, startIndex) {
+    var output = [], idx = 0;
+    for (var i = startIndex || 0, length = getLength(input); i < length; i++) {
+      var value = input[i];
+      if (isArrayLike(value) && (_.isArray(value) || _.isArguments(value))) {
+        //flatten current level of array or arguments object
+        if (!shallow) value = flatten(value, shallow, strict);
+        var j = 0, len = value.length;
+        output.length += len;
+        while (j < len) {
+          output[idx++] = value[j++];
+        }
+      } else if (!strict) {
+        output[idx++] = value;
+      }
+    }
+    return output;
+  };
+
+  // Flatten out an array, either recursively (by default), or just one level.
+  _.flatten = function(array, shallow) {
+    return flatten(array, shallow, false);
+  };
+
+  // Return a version of the array that does not contain the specified value(s).
+  _.without = function(array) {
+    return _.difference(array, slice.call(arguments, 1));
+  };
+
+  // Produce a duplicate-free version of the array. If the array has already
+  // been sorted, you have the option of using a faster algorithm.
+  // Aliased as `unique`.
+  _.uniq = _.unique = function(array, isSorted, iteratee, context) {
+    if (!_.isBoolean(isSorted)) {
+      context = iteratee;
+      iteratee = isSorted;
+      isSorted = false;
+    }
+    if (iteratee != null) iteratee = cb(iteratee, context);
+    var result = [];
+    var seen = [];
+    for (var i = 0, length = getLength(array); i < length; i++) {
+      var value = array[i],
+          computed = iteratee ? iteratee(value, i, array) : value;
+      if (isSorted) {
+        if (!i || seen !== computed) result.push(value);
+        seen = computed;
+      } else if (iteratee) {
+        if (!_.contains(seen, computed)) {
+          seen.push(computed);
+          result.push(value);
+        }
+      } else if (!_.contains(result, value)) {
+        result.push(value);
+      }
+    }
+    return result;
+  };
+
+  // Produce an array that contains the union: each distinct element from all of
+  // the passed-in arrays.
+  _.union = function() {
+    return _.uniq(flatten(arguments, true, true));
+  };
+
+  // Produce an array that contains every item shared between all the
+  // passed-in arrays.
+  _.intersection = function(array) {
+    var result = [];
+    var argsLength = arguments.length;
+    for (var i = 0, length = getLength(array); i < length; i++) {
+      var item = array[i];
+      if (_.contains(result, item)) continue;
+      for (var j = 1; j < argsLength; j++) {
+        if (!_.contains(arguments[j], item)) break;
+      }
+      if (j === argsLength) result.push(item);
+    }
+    return result;
+  };
+
+  // Take the difference between one array and a number of other arrays.
+  // Only the elements present in just the first array will remain.
+  _.difference = function(array) {
+    var rest = flatten(arguments, true, true, 1);
+    return _.filter(array, function(value){
+      return !_.contains(rest, value);
+    });
+  };
+
+  // Zip together multiple lists into a single array -- elements that share
+  // an index go together.
+  _.zip = function() {
+    return _.unzip(arguments);
+  };
+
+  // Complement of _.zip. Unzip accepts an array of arrays and groups
+  // each array's elements on shared indices
+  _.unzip = function(array) {
+    var length = array && _.max(array, getLength).length || 0;
+    var result = Array(length);
+
+    for (var index = 0; index < length; index++) {
+      result[index] = _.pluck(array, index);
+    }
+    return result;
+  };
+
+  // Converts lists into objects. Pass either a single array of `[key, value]`
+  // pairs, or two parallel arrays of the same length -- one of keys, and one of
+  // the corresponding values.
+  _.object = function(list, values) {
+    var result = {};
+    for (var i = 0, length = getLength(list); i < length; i++) {
+      if (values) {
+        result[list[i]] = values[i];
+      } else {
+        result[list[i][0]] = list[i][1];
+      }
+    }
+    return result;
+  };
+
+  // Generator function to create the findIndex and findLastIndex functions
+  function createPredicateIndexFinder(dir) {
+    return function(array, predicate, context) {
+      predicate = cb(predicate, context);
+      var length = getLength(array);
+      var index = dir > 0 ? 0 : length - 1;
+      for (; index >= 0 && index < length; index += dir) {
+        if (predicate(array[index], index, array)) return index;
+      }
+      return -1;
+    };
+  }
+
+  // Returns the first index on an array-like that passes a predicate test
+  _.findIndex = createPredicateIndexFinder(1);
+  _.findLastIndex = createPredicateIndexFinder(-1);
+
+  // Use a comparator function to figure out the smallest index at which
+  // an object should be inserted so as to maintain order. Uses binary search.
+  _.sortedIndex = function(array, obj, iteratee, context) {
+    iteratee = cb(iteratee, context, 1);
+    var value = iteratee(obj);
+    var low = 0, high = getLength(array);
+    while (low < high) {
+      var mid = Math.floor((low + high) / 2);
+      if (iteratee(array[mid]) < value) low = mid + 1; else high = mid;
+    }
+    return low;
+  };
+
+  // Generator function to create the indexOf and lastIndexOf functions
+  function createIndexFinder(dir, predicateFind, sortedIndex) {
+    return function(array, item, idx) {
+      var i = 0, length = getLength(array);
+      if (typeof idx == 'number') {
+        if (dir > 0) {
+            i = idx >= 0 ? idx : Math.max(idx + length, i);
+        } else {
+            length = idx >= 0 ? Math.min(idx + 1, length) : idx + length + 1;
+        }
+      } else if (sortedIndex && idx && length) {
+        idx = sortedIndex(array, item);
+        return array[idx] === item ? idx : -1;
+      }
+      if (item !== item) {
+        idx = predicateFind(slice.call(array, i, length), _.isNaN);
+        return idx >= 0 ? idx + i : -1;
+      }
+      for (idx = dir > 0 ? i : length - 1; idx >= 0 && idx < length; idx += dir) {
+        if (array[idx] === item) return idx;
+      }
+      return -1;
+    };
+  }
+
+  // Return the position of the first occurrence of an item in an array,
+  // or -1 if the item is not included in the array.
+  // If the array is large and already in sort order, pass `true`
+  // for **isSorted** to use binary search.
+  _.indexOf = createIndexFinder(1, _.findIndex, _.sortedIndex);
+  _.lastIndexOf = createIndexFinder(-1, _.findLastIndex);
+
+  // Generate an integer Array containing an arithmetic progression. A port of
+  // the native Python `range()` function. See
+  // [the Python documentation](http://docs.python.org/library/functions.html#range).
+  _.range = function(start, stop, step) {
+    if (stop == null) {
+      stop = start || 0;
+      start = 0;
+    }
+    step = step || 1;
+
+    var length = Math.max(Math.ceil((stop - start) / step), 0);
+    var range = Array(length);
+
+    for (var idx = 0; idx < length; idx++, start += step) {
+      range[idx] = start;
+    }
+
+    return range;
+  };
+
+  // Function (ahem) Functions
+  // ------------------
+
+  // Determines whether to execute a function as a constructor
+  // or a normal function with the provided arguments
+  var executeBound = function(sourceFunc, boundFunc, context, callingContext, args) {
+    if (!(callingContext instanceof boundFunc)) return sourceFunc.apply(context, args);
+    var self = baseCreate(sourceFunc.prototype);
+    var result = sourceFunc.apply(self, args);
+    if (_.isObject(result)) return result;
+    return self;
+  };
+
+  // Create a function bound to a given object (assigning `this`, and arguments,
+  // optionally). Delegates to **ECMAScript 5**'s native `Function.bind` if
+  // available.
+  _.bind = function(func, context) {
+    if (nativeBind && func.bind === nativeBind) return nativeBind.apply(func, slice.call(arguments, 1));
+    if (!_.isFunction(func)) throw new TypeError('Bind must be called on a function');
+    var args = slice.call(arguments, 2);
+    var bound = function() {
+      return executeBound(func, bound, context, this, args.concat(slice.call(arguments)));
+    };
+    return bound;
+  };
+
+  // Partially apply a function by creating a version that has had some of its
+  // arguments pre-filled, without changing its dynamic `this` context. _ acts
+  // as a placeholder, allowing any combination of arguments to be pre-filled.
+  _.partial = function(func) {
+    var boundArgs = slice.call(arguments, 1);
+    var bound = function() {
+      var position = 0, length = boundArgs.length;
+      var args = Array(length);
+      for (var i = 0; i < length; i++) {
+        args[i] = boundArgs[i] === _ ? arguments[position++] : boundArgs[i];
+      }
+      while (position < arguments.length) args.push(arguments[position++]);
+      return executeBound(func, bound, this, this, args);
+    };
+    return bound;
+  };
+
+  // Bind a number of an object's methods to that object. Remaining arguments
+  // are the method names to be bound. Useful for ensuring that all callbacks
+  // defined on an object belong to it.
+  _.bindAll = function(obj) {
+    var i, length = arguments.length, key;
+    if (length <= 1) throw new Error('bindAll must be passed function names');
+    for (i = 1; i < length; i++) {
+      key = arguments[i];
+      obj[key] = _.bind(obj[key], obj);
+    }
+    return obj;
+  };
+
+  // Memoize an expensive function by storing its results.
+  _.memoize = function(func, hasher) {
+    var memoize = function(key) {
+      var cache = memoize.cache;
+      var address = '' + (hasher ? hasher.apply(this, arguments) : key);
+      if (!_.has(cache, address)) cache[address] = func.apply(this, arguments);
+      return cache[address];
+    };
+    memoize.cache = {};
+    return memoize;
+  };
+
+  // Delays a function for the given number of milliseconds, and then calls
+  // it with the arguments supplied.
+  _.delay = function(func, wait) {
+    var args = slice.call(arguments, 2);
+    return setTimeout(function(){
+      return func.apply(null, args);
+    }, wait);
+  };
+
+  // Defers a function, scheduling it to run after the current call stack has
+  // cleared.
+  _.defer = _.partial(_.delay, _, 1);
+
+  // Returns a function, that, when invoked, will only be triggered at most once
+  // during a given window of time. Normally, the throttled function will run
+  // as much as it can, without ever going more than once per `wait` duration;
+  // but if you'd like to disable the execution on the leading edge, pass
+  // `{leading: false}`. To disable execution on the trailing edge, ditto.
+  _.throttle = function(func, wait, options) {
+    var context, args, result;
+    var timeout = null;
+    var previous = 0;
+    if (!options) options = {};
+    var later = function() {
+      previous = options.leading === false ? 0 : _.now();
+      timeout = null;
+      result = func.apply(context, args);
+      if (!timeout) context = args = null;
+    };
+    return function() {
+      var now = _.now();
+      if (!previous && options.leading === false) previous = now;
+      var remaining = wait - (now - previous);
+      context = this;
+      args = arguments;
+      if (remaining <= 0 || remaining > wait) {
+        if (timeout) {
+          clearTimeout(timeout);
+          timeout = null;
+        }
+        previous = now;
+        result = func.apply(context, args);
+        if (!timeout) context = args = null;
+      } else if (!timeout && options.trailing !== false) {
+        timeout = setTimeout(later, remaining);
+      }
+      return result;
+    };
+  };
+
+  // Returns a function, that, as long as it continues to be invoked, will not
+  // be triggered. The function will be called after it stops being called for
+  // N milliseconds. If `immediate` is passed, trigger the function on the
+  // leading edge, instead of the trailing.
+  _.debounce = function(func, wait, immediate) {
+    var timeout, args, context, timestamp, result;
+
+    var later = function() {
+      var last = _.now() - timestamp;
+
+      if (last < wait && last >= 0) {
+        timeout = setTimeout(later, wait - last);
+      } else {
+        timeout = null;
+        if (!immediate) {
+          result = func.apply(context, args);
+          if (!timeout) context = args = null;
+        }
+      }
+    };
+
+    return function() {
+      context = this;
+      args = arguments;
+      timestamp = _.now();
+      var callNow = immediate && !timeout;
+      if (!timeout) timeout = setTimeout(later, wait);
+      if (callNow) {
+        result = func.apply(context, args);
+        context = args = null;
+      }
+
+      return result;
+    };
+  };
+
+  // Returns the first function passed as an argument to the second,
+  // allowing you to adjust arguments, run code before and after, and
+  // conditionally execute the original function.
+  _.wrap = function(func, wrapper) {
+    return _.partial(wrapper, func);
+  };
+
+  // Returns a negated version of the passed-in predicate.
+  _.negate = function(predicate) {
+    return function() {
+      return !predicate.apply(this, arguments);
+    };
+  };
+
+  // Returns a function that is the composition of a list of functions, each
+  // consuming the return value of the function that follows.
+  _.compose = function() {
+    var args = arguments;
+    var start = args.length - 1;
+    return function() {
+      var i = start;
+      var result = args[start].apply(this, arguments);
+      while (i--) result = args[i].call(this, result);
+      return result;
+    };
+  };
+
+  // Returns a function that will only be executed on and after the Nth call.
+  _.after = function(times, func) {
+    return function() {
+      if (--times < 1) {
+        return func.apply(this, arguments);
+      }
+    };
+  };
+
+  // Returns a function that will only be executed up to (but not including) the Nth call.
+  _.before = function(times, func) {
+    var memo;
+    return function() {
+      if (--times > 0) {
+        memo = func.apply(this, arguments);
+      }
+      if (times <= 1) func = null;
+      return memo;
+    };
+  };
+
+  // Returns a function that will be executed at most one time, no matter how
+  // often you call it. Useful for lazy initialization.
+  _.once = _.partial(_.before, 2);
+
+  // Object Functions
+  // ----------------
+
+  // Keys in IE < 9 that won't be iterated by `for key in ...` and thus missed.
+  var hasEnumBug = !{toString: null}.propertyIsEnumerable('toString');
+  var nonEnumerableProps = ['valueOf', 'isPrototypeOf', 'toString',
+                      'propertyIsEnumerable', 'hasOwnProperty', 'toLocaleString'];
+
+  function collectNonEnumProps(obj, keys) {
+    var nonEnumIdx = nonEnumerableProps.length;
+    var constructor = obj.constructor;
+    var proto = (_.isFunction(constructor) && constructor.prototype) || ObjProto;
+
+    // Constructor is a special case.
+    var prop = 'constructor';
+    if (_.has(obj, prop) && !_.contains(keys, prop)) keys.push(prop);
+
+    while (nonEnumIdx--) {
+      prop = nonEnumerableProps[nonEnumIdx];
+      if (prop in obj && obj[prop] !== proto[prop] && !_.contains(keys, prop)) {
+        keys.push(prop);
+      }
+    }
+  }
+
+  // Retrieve the names of an object's own properties.
+  // Delegates to **ECMAScript 5**'s native `Object.keys`
+  _.keys = function(obj) {
+    if (!_.isObject(obj)) return [];
+    if (nativeKeys) return nativeKeys(obj);
+    var keys = [];
+    for (var key in obj) if (_.has(obj, key)) keys.push(key);
+    // Ahem, IE < 9.
+    if (hasEnumBug) collectNonEnumProps(obj, keys);
+    return keys;
+  };
+
+  // Retrieve all the property names of an object.
+  _.allKeys = function(obj) {
+    if (!_.isObject(obj)) return [];
+    var keys = [];
+    for (var key in obj) keys.push(key);
+    // Ahem, IE < 9.
+    if (hasEnumBug) collectNonEnumProps(obj, keys);
+    return keys;
+  };
+
+  // Retrieve the values of an object's properties.
+  _.values = function(obj) {
+    var keys = _.keys(obj);
+    var length = keys.length;
+    var values = Array(length);
+    for (var i = 0; i < length; i++) {
+      values[i] = obj[keys[i]];
+    }
+    return values;
+  };
+
+  // Returns the results of applying the iteratee to each element of the object
+  // In contrast to _.map it returns an object
+  _.mapObject = function(obj, iteratee, context) {
+    iteratee = cb(iteratee, context);
+    var keys =  _.keys(obj),
+          length = keys.length,
+          results = {},
+          currentKey;
+      for (var index = 0; index < length; index++) {
+        currentKey = keys[index];
+        results[currentKey] = iteratee(obj[currentKey], currentKey, obj);
+      }
+      return results;
+  };
+
+  // Convert an object into a list of `[key, value]` pairs.
+  _.pairs = function(obj) {
+    var keys = _.keys(obj);
+    var length = keys.length;
+    var pairs = Array(length);
+    for (var i = 0; i < length; i++) {
+      pairs[i] = [keys[i], obj[keys[i]]];
+    }
+    return pairs;
+  };
+
+  // Invert the keys and values of an object. The values must be serializable.
+  _.invert = function(obj) {
+    var result = {};
+    var keys = _.keys(obj);
+    for (var i = 0, length = keys.length; i < length; i++) {
+      result[obj[keys[i]]] = keys[i];
+    }
+    return result;
+  };
+
+  // Return a sorted list of the function names available on the object.
+  // Aliased as `methods`
+  _.functions = _.methods = function(obj) {
+    var names = [];
+    for (var key in obj) {
+      if (_.isFunction(obj[key])) names.push(key);
+    }
+    return names.sort();
+  };
+
+  // Extend a given object with all the properties in passed-in object(s).
+  _.extend = createAssigner(_.allKeys);
+
+  // Assigns a given object with all the own properties in the passed-in object(s)
+  // (https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object/assign)
+  _.extendOwn = _.assign = createAssigner(_.keys);
+
+  // Returns the first key on an object that passes a predicate test
+  _.findKey = function(obj, predicate, context) {
+    predicate = cb(predicate, context);
+    var keys = _.keys(obj), key;
+    for (var i = 0, length = keys.length; i < length; i++) {
+      key = keys[i];
+      if (predicate(obj[key], key, obj)) return key;
+    }
+  };
+
+  // Return a copy of the object only containing the whitelisted properties.
+  _.pick = function(object, oiteratee, context) {
+    var result = {}, obj = object, iteratee, keys;
+    if (obj == null) return result;
+    if (_.isFunction(oiteratee)) {
+      keys = _.allKeys(obj);
+      iteratee = optimizeCb(oiteratee, context);
+    } else {
+      keys = flatten(arguments, false, false, 1);
+      iteratee = function(value, key, obj) { return key in obj; };
+      obj = Object(obj);
+    }
+    for (var i = 0, length = keys.length; i < length; i++) {
+      var key = keys[i];
+      var value = obj[key];
+      if (iteratee(value, key, obj)) result[key] = value;
+    }
+    return result;
+  };
+
+   // Return a copy of the object without the blacklisted properties.
+  _.omit = function(obj, iteratee, context) {
+    if (_.isFunction(iteratee)) {
+      iteratee = _.negate(iteratee);
+    } else {
+      var keys = _.map(flatten(arguments, false, false, 1), String);
+      iteratee = function(value, key) {
+        return !_.contains(keys, key);
+      };
+    }
+    return _.pick(obj, iteratee, context);
+  };
+
+  // Fill in a given object with default properties.
+  _.defaults = createAssigner(_.allKeys, true);
+
+  // Creates an object that inherits from the given prototype object.
+  // If additional properties are provided then they will be added to the
+  // created object.
+  _.create = function(prototype, props) {
+    var result = baseCreate(prototype);
+    if (props) _.extendOwn(result, props);
+    return result;
+  };
+
+  // Create a (shallow-cloned) duplicate of an object.
+  _.clone = function(obj) {
+    if (!_.isObject(obj)) return obj;
+    return _.isArray(obj) ? obj.slice() : _.extend({}, obj);
+  };
+
+  // Invokes interceptor with the obj, and then returns obj.
+  // The primary purpose of this method is to "tap into" a method chain, in
+  // order to perform operations on intermediate results within the chain.
+  _.tap = function(obj, interceptor) {
+    interceptor(obj);
+    return obj;
+  };
+
+  // Returns whether an object has a given set of `key:value` pairs.
+  _.isMatch = function(object, attrs) {
+    var keys = _.keys(attrs), length = keys.length;
+    if (object == null) return !length;
+    var obj = Object(object);
+    for (var i = 0; i < length; i++) {
+      var key = keys[i];
+      if (attrs[key] !== obj[key] || !(key in obj)) return false;
+    }
+    return true;
+  };
+
+
+  // Internal recursive comparison function for `isEqual`.
+  var eq = function(a, b, aStack, bStack) {
+    // Identical objects are equal. `0 === -0`, but they aren't identical.
+    // See the [Harmony `egal` proposal](http://wiki.ecmascript.org/doku.php?id=harmony:egal).
+    if (a === b) return a !== 0 || 1 / a === 1 / b;
+    // A strict comparison is necessary because `null == undefined`.
+    if (a == null || b == null) return a === b;
+    // Unwrap any wrapped objects.
+    if (a instanceof _) a = a._wrapped;
+    if (b instanceof _) b = b._wrapped;
+    // Compare `[[Class]]` names.
+    var className = toString.call(a);
+    if (className !== toString.call(b)) return false;
+    switch (className) {
+      // Strings, numbers, regular expressions, dates, and booleans are compared by value.
+      case '[object RegExp]':
+      // RegExps are coerced to strings for comparison (Note: '' + /a/i === '/a/i')
+      case '[object String]':
+        // Primitives and their corresponding object wrappers are equivalent; thus, `"5"` is
+        // equivalent to `new String("5")`.
+        return '' + a === '' + b;
+      case '[object Number]':
+        // `NaN`s are equivalent, but non-reflexive.
+        // Object(NaN) is equivalent to NaN
+        if (+a !== +a) return +b !== +b;
+        // An `egal` comparison is performed for other numeric values.
+        return +a === 0 ? 1 / +a === 1 / b : +a === +b;
+      case '[object Date]':
+      case '[object Boolean]':
+        // Coerce dates and booleans to numeric primitive values. Dates are compared by their
+        // millisecond representations. Note that invalid dates with millisecond representations
+        // of `NaN` are not equivalent.
+        return +a === +b;
+    }
+
+    var areArrays = className === '[object Array]';
+    if (!areArrays) {
+      if (typeof a != 'object' || typeof b != 'object') return false;
+
+      // Objects with different constructors are not equivalent, but `Object`s or `Array`s
+      // from different frames are.
+      var aCtor = a.constructor, bCtor = b.constructor;
+      if (aCtor !== bCtor && !(_.isFunction(aCtor) && aCtor instanceof aCtor &&
+                               _.isFunction(bCtor) && bCtor instanceof bCtor)
+                          && ('constructor' in a && 'constructor' in b)) {
+        return false;
+      }
+    }
+    // Assume equality for cyclic structures. The algorithm for detecting cyclic
+    // structures is adapted from ES 5.1 section 15.12.3, abstract operation `JO`.
+
+    // Initializing stack of traversed objects.
+    // It's done here since we only need them for objects and arrays comparison.
+    aStack = aStack || [];
+    bStack = bStack || [];
+    var length = aStack.length;
+    while (length--) {
+      // Linear search. Performance is inversely proportional to the number of
+      // unique nested structures.
+      if (aStack[length] === a) return bStack[length] === b;
+    }
+
+    // Add the first object to the stack of traversed objects.
+    aStack.push(a);
+    bStack.push(b);
+
+    // Recursively compare objects and arrays.
+    if (areArrays) {
+      // Compare array lengths to determine if a deep comparison is necessary.
+      length = a.length;
+      if (length !== b.length) return false;
+      // Deep compare the contents, ignoring non-numeric properties.
+      while (length--) {
+        if (!eq(a[length], b[length], aStack, bStack)) return false;
+      }
+    } else {
+      // Deep compare objects.
+      var keys = _.keys(a), key;
+      length = keys.length;
+      // Ensure that both objects contain the same number of properties before comparing deep equality.
+      if (_.keys(b).length !== length) return false;
+      while (length--) {
+        // Deep compare each member
+        key = keys[length];
+        if (!(_.has(b, key) && eq(a[key], b[key], aStack, bStack))) return false;
+      }
+    }
+    // Remove the first object from the stack of traversed objects.
+    aStack.pop();
+    bStack.pop();
+    return true;
+  };
+
+  // Perform a deep comparison to check if two objects are equal.
+  _.isEqual = function(a, b) {
+    return eq(a, b);
+  };
+
+  // Is a given array, string, or object empty?
+  // An "empty" object has no enumerable own-properties.
+  _.isEmpty = function(obj) {
+    if (obj == null) return true;
+    if (isArrayLike(obj) && (_.isArray(obj) || _.isString(obj) || _.isArguments(obj))) return obj.length === 0;
+    return _.keys(obj).length === 0;
+  };
+
+  // Is a given value a DOM element?
+  _.isElement = function(obj) {
+    return !!(obj && obj.nodeType === 1);
+  };
+
+  // Is a given value an array?
+  // Delegates to ECMA5's native Array.isArray
+  _.isArray = nativeIsArray || function(obj) {
+    return toString.call(obj) === '[object Array]';
+  };
+
+  // Is a given variable an object?
+  _.isObject = function(obj) {
+    var type = typeof obj;
+    return type === 'function' || type === 'object' && !!obj;
+  };
+
+  // Add some isType methods: isArguments, isFunction, isString, isNumber, isDate, isRegExp, isError.
+  _.each(['Arguments', 'Function', 'String', 'Number', 'Date', 'RegExp', 'Error'], function(name) {
+    _['is' + name] = function(obj) {
+      return toString.call(obj) === '[object ' + name + ']';
+    };
+  });
+
+  // Define a fallback version of the method in browsers (ahem, IE < 9), where
+  // there isn't any inspectable "Arguments" type.
+  if (!_.isArguments(arguments)) {
+    _.isArguments = function(obj) {
+      return _.has(obj, 'callee');
+    };
+  }
+
+  // Optimize `isFunction` if appropriate. Work around some typeof bugs in old v8,
+  // IE 11 (#1621), and in Safari 8 (#1929).
+  if (typeof /./ != 'function' && typeof Int8Array != 'object') {
+    _.isFunction = function(obj) {
+      return typeof obj == 'function' || false;
+    };
+  }
+
+  // Is a given object a finite number?
+  _.isFinite = function(obj) {
+    return isFinite(obj) && !isNaN(parseFloat(obj));
+  };
+
+  // Is the given value `NaN`? (NaN is the only number which does not equal itself).
+  _.isNaN = function(obj) {
+    return _.isNumber(obj) && obj !== +obj;
+  };
+
+  // Is a given value a boolean?
+  _.isBoolean = function(obj) {
+    return obj === true || obj === false || toString.call(obj) === '[object Boolean]';
+  };
+
+  // Is a given value equal to null?
+  _.isNull = function(obj) {
+    return obj === null;
+  };
+
+  // Is a given variable undefined?
+  _.isUndefined = function(obj) {
+    return obj === void 0;
+  };
+
+  // Shortcut function for checking if an object has a given property directly
+  // on itself (in other words, not on a prototype).
+  _.has = function(obj, key) {
+    return obj != null && hasOwnProperty.call(obj, key);
+  };
+
+  // Utility Functions
+  // -----------------
+
+  // Run Underscore.js in *noConflict* mode, returning the `_` variable to its
+  // previous owner. Returns a reference to the Underscore object.
+  _.noConflict = function() {
+    root._ = previousUnderscore;
+    return this;
+  };
+
+  // Keep the identity function around for default iteratees.
+  _.identity = function(value) {
+    return value;
+  };
+
+  // Predicate-generating functions. Often useful outside of Underscore.
+  _.constant = function(value) {
+    return function() {
+      return value;
+    };
+  };
+
+  _.noop = function(){};
+
+  _.property = property;
+
+  // Generates a function for a given object that returns a given property.
+  _.propertyOf = function(obj) {
+    return obj == null ? function(){} : function(key) {
+      return obj[key];
+    };
+  };
+
+  // Returns a predicate for checking whether an object has a given set of
+  // `key:value` pairs.
+  _.matcher = _.matches = function(attrs) {
+    attrs = _.extendOwn({}, attrs);
+    return function(obj) {
+      return _.isMatch(obj, attrs);
+    };
+  };
+
+  // Run a function **n** times.
+  _.times = function(n, iteratee, context) {
+    var accum = Array(Math.max(0, n));
+    iteratee = optimizeCb(iteratee, context, 1);
+    for (var i = 0; i < n; i++) accum[i] = iteratee(i);
+    return accum;
+  };
+
+  // Return a random integer between min and max (inclusive).
+  _.random = function(min, max) {
+    if (max == null) {
+      max = min;
+      min = 0;
+    }
+    return min + Math.floor(Math.random() * (max - min + 1));
+  };
+
+  // A (possibly faster) way to get the current timestamp as an integer.
+  _.now = Date.now || function() {
+    return new Date().getTime();
+  };
+
+   // List of HTML entities for escaping.
+  var escapeMap = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#x27;',
+    '`': '&#x60;'
+  };
+  var unescapeMap = _.invert(escapeMap);
+
+  // Functions for escaping and unescaping strings to/from HTML interpolation.
+  var createEscaper = function(map) {
+    var escaper = function(match) {
+      return map[match];
+    };
+    // Regexes for identifying a key that needs to be escaped
+    var source = '(?:' + _.keys(map).join('|') + ')';
+    var testRegexp = RegExp(source);
+    var replaceRegexp = RegExp(source, 'g');
+    return function(string) {
+      string = string == null ? '' : '' + string;
+      return testRegexp.test(string) ? string.replace(replaceRegexp, escaper) : string;
+    };
+  };
+  _.escape = createEscaper(escapeMap);
+  _.unescape = createEscaper(unescapeMap);
+
+  // If the value of the named `property` is a function then invoke it with the
+  // `object` as context; otherwise, return it.
+  _.result = function(object, property, fallback) {
+    var value = object == null ? void 0 : object[property];
+    if (value === void 0) {
+      value = fallback;
+    }
+    return _.isFunction(value) ? value.call(object) : value;
+  };
+
+  // Generate a unique integer id (unique within the entire client session).
+  // Useful for temporary DOM ids.
+  var idCounter = 0;
+  _.uniqueId = function(prefix) {
+    var id = ++idCounter + '';
+    return prefix ? prefix + id : id;
+  };
+
+  // By default, Underscore uses ERB-style template delimiters, change the
+  // following template settings to use alternative delimiters.
+  _.templateSettings = {
+    evaluate    : /<%([\s\S]+?)%>/g,
+    interpolate : /<%=([\s\S]+?)%>/g,
+    escape      : /<%-([\s\S]+?)%>/g
+  };
+
+  // When customizing `templateSettings`, if you don't want to define an
+  // interpolation, evaluation or escaping regex, we need one that is
+  // guaranteed not to match.
+  var noMatch = /(.)^/;
+
+  // Certain characters need to be escaped so that they can be put into a
+  // string literal.
+  var escapes = {
+    "'":      "'",
+    '\\':     '\\',
+    '\r':     'r',
+    '\n':     'n',
+    '\u2028': 'u2028',
+    '\u2029': 'u2029'
+  };
+
+  var escaper = /\\|'|\r|\n|\u2028|\u2029/g;
+
+  var escapeChar = function(match) {
+    return '\\' + escapes[match];
+  };
+
+  // JavaScript micro-templating, similar to John Resig's implementation.
+  // Underscore templating handles arbitrary delimiters, preserves whitespace,
+  // and correctly escapes quotes within interpolated code.
+  // NB: `oldSettings` only exists for backwards compatibility.
+  _.template = function(text, settings, oldSettings) {
+    if (!settings && oldSettings) settings = oldSettings;
+    settings = _.defaults({}, settings, _.templateSettings);
+
+    // Combine delimiters into one regular expression via alternation.
+    var matcher = RegExp([
+      (settings.escape || noMatch).source,
+      (settings.interpolate || noMatch).source,
+      (settings.evaluate || noMatch).source
+    ].join('|') + '|$', 'g');
+
+    // Compile the template source, escaping string literals appropriately.
+    var index = 0;
+    var source = "__p+='";
+    text.replace(matcher, function(match, escape, interpolate, evaluate, offset) {
+      source += text.slice(index, offset).replace(escaper, escapeChar);
+      index = offset + match.length;
+
+      if (escape) {
+        source += "'+\n((__t=(" + escape + "))==null?'':_.escape(__t))+\n'";
+      } else if (interpolate) {
+        source += "'+\n((__t=(" + interpolate + "))==null?'':__t)+\n'";
+      } else if (evaluate) {
+        source += "';\n" + evaluate + "\n__p+='";
+      }
+
+      // Adobe VMs need the match returned to produce the correct offest.
+      return match;
+    });
+    source += "';\n";
+
+    // If a variable is not specified, place data values in local scope.
+    if (!settings.variable) source = 'with(obj||{}){\n' + source + '}\n';
+
+    source = "var __t,__p='',__j=Array.prototype.join," +
+      "print=function(){__p+=__j.call(arguments,'');};\n" +
+      source + 'return __p;\n';
+
+    try {
+      var render = new Function(settings.variable || 'obj', '_', source);
+    } catch (e) {
+      e.source = source;
+      throw e;
+    }
+
+    var template = function(data) {
+      return render.call(this, data, _);
+    };
+
+    // Provide the compiled source as a convenience for precompilation.
+    var argument = settings.variable || 'obj';
+    template.source = 'function(' + argument + '){\n' + source + '}';
+
+    return template;
+  };
+
+  // Add a "chain" function. Start chaining a wrapped Underscore object.
+  _.chain = function(obj) {
+    var instance = _(obj);
+    instance._chain = true;
+    return instance;
+  };
+
+  // OOP
+  // ---------------
+  // If Underscore is called as a function, it returns a wrapped object that
+  // can be used OO-style. This wrapper holds altered versions of all the
+  // underscore functions. Wrapped objects may be chained.
+
+  // Helper function to continue chaining intermediate results.
+  var result = function(instance, obj) {
+    return instance._chain ? _(obj).chain() : obj;
+  };
+
+  // Add your own custom functions to the Underscore object.
+  _.mixin = function(obj) {
+    _.each(_.functions(obj), function(name) {
+      var func = _[name] = obj[name];
+      _.prototype[name] = function() {
+        var args = [this._wrapped];
+        push.apply(args, arguments);
+        return result(this, func.apply(_, args));
+      };
+    });
+  };
+
+  // Add all of the Underscore functions to the wrapper object.
+  _.mixin(_);
+
+  // Add all mutator Array functions to the wrapper.
+  _.each(['pop', 'push', 'reverse', 'shift', 'sort', 'splice', 'unshift'], function(name) {
+    var method = ArrayProto[name];
+    _.prototype[name] = function() {
+      var obj = this._wrapped;
+      method.apply(obj, arguments);
+      if ((name === 'shift' || name === 'splice') && obj.length === 0) delete obj[0];
+      return result(this, obj);
+    };
+  });
+
+  // Add all accessor Array functions to the wrapper.
+  _.each(['concat', 'join', 'slice'], function(name) {
+    var method = ArrayProto[name];
+    _.prototype[name] = function() {
+      return result(this, method.apply(this._wrapped, arguments));
+    };
+  });
+
+  // Extracts the result from a wrapped and chained object.
+  _.prototype.value = function() {
+    return this._wrapped;
+  };
+
+  // Provide unwrapping proxy for some methods used in engine operations
+  // such as arithmetic and JSON stringification.
+  _.prototype.valueOf = _.prototype.toJSON = _.prototype.value;
+
+  _.prototype.toString = function() {
+    return '' + this._wrapped;
+  };
+
+  // AMD registration happens at the end for compatibility with AMD loaders
+  // that may not enforce next-turn semantics on modules. Even though general
+  // practice for AMD registration is to be anonymous, underscore registers
+  // as a named module because, like jQuery, it is a base library that is
+  // popular enough to be bundled in a third party lib, but not be part of
+  // an AMD load request. Those cases could generate an error when an
+  // anonymous define() is called outside of a loader request.
+  if (true) {
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = function() {
+      return _;
+    }.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  }
+}.call(this));
+
+
+/***/ }),
+
+/***/ 783:
+/*!****************************************************************!*\
+  !*** ./node_modules/string-natural-compare/natural-compare.js ***!
+  \****************************************************************/
+/*! no static exports found */
+/*! all exports used */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var alphabet;
+var alphabetIndexMap;
+var alphabetIndexMapLength = 0;
+
+function isNumberCode(code) {
+  return code >= 48 && code <= 57;
+}
+
+function naturalCompare(a, b) {
+  var lengthA = (a += '').length;
+  var lengthB = (b += '').length;
+  var aIndex = 0;
+  var bIndex = 0;
+
+  while (aIndex < lengthA && bIndex < lengthB) {
+    var charCodeA = a.charCodeAt(aIndex);
+    var charCodeB = b.charCodeAt(bIndex);
+
+    if (isNumberCode(charCodeA)) {
+      if (!isNumberCode(charCodeB)) {
+        return charCodeA - charCodeB;
+      }
+
+      var numStartA = aIndex;
+      var numStartB = bIndex;
+
+      while (charCodeA === 48 && ++numStartA < lengthA) {
+        charCodeA = a.charCodeAt(numStartA);
+      }
+      while (charCodeB === 48 && ++numStartB < lengthB) {
+        charCodeB = b.charCodeAt(numStartB);
+      }
+
+      var numEndA = numStartA;
+      var numEndB = numStartB;
+
+      while (numEndA < lengthA && isNumberCode(a.charCodeAt(numEndA))) {
+        ++numEndA;
+      }
+      while (numEndB < lengthB && isNumberCode(b.charCodeAt(numEndB))) {
+        ++numEndB;
+      }
+
+      var difference = numEndA - numStartA - numEndB + numStartB; // numA length - numB length
+      if (difference) {
+        return difference;
+      }
+
+      while (numStartA < numEndA) {
+        difference = a.charCodeAt(numStartA++) - b.charCodeAt(numStartB++);
+        if (difference) {
+          return difference;
+        }
+      }
+
+      aIndex = numEndA;
+      bIndex = numEndB;
+      continue;
+    }
+
+    if (charCodeA !== charCodeB) {
+      if (
+        charCodeA < alphabetIndexMapLength &&
+        charCodeB < alphabetIndexMapLength &&
+        alphabetIndexMap[charCodeA] !== -1 &&
+        alphabetIndexMap[charCodeB] !== -1
+      ) {
+        return alphabetIndexMap[charCodeA] - alphabetIndexMap[charCodeB];
+      }
+
+      return charCodeA - charCodeB;
+    }
+
+    ++aIndex;
+    ++bIndex;
+  }
+
+  return lengthA - lengthB;
+}
+
+naturalCompare.caseInsensitive = naturalCompare.i = function(a, b) {
+  return naturalCompare(('' + a).toLowerCase(), ('' + b).toLowerCase());
+};
+
+Object.defineProperties(naturalCompare, {
+  alphabet: {
+    get: function() {
+      return alphabet;
+    },
+    set: function(value) {
+      alphabet = value;
+      alphabetIndexMap = [];
+      var i = 0;
+      if (alphabet) {
+        for (; i < alphabet.length; i++) {
+          alphabetIndexMap[alphabet.charCodeAt(i)] = i;
+        }
+      }
+      alphabetIndexMapLength = alphabetIndexMap.length;
+      for (i = 0; i < alphabetIndexMapLength; i++) {
+        if (alphabetIndexMap[i] === undefined) {
+          alphabetIndexMap[i] = -1;
+        }
+      }
+    },
+  },
+});
+
+module.exports = naturalCompare;
+
+
+/***/ }),
+
+/***/ 784:
+/*!*********************************************************!*\
+  !*** ./node_modules/list.js/src/utils/get-attribute.js ***!
+  \*********************************************************/
+/*! no static exports found */
+/*! all exports used */
+/***/ (function(module, exports) {
+
+/**
+ * A cross-browser implementation of getAttribute.
+ * Source found here: http://stackoverflow.com/a/3755343/361337 written by Vivin Paliath
+ *
+ * Return the value for `attr` at `element`.
+ *
+ * @param {Element} el
+ * @param {String} attr
+ * @api public
+ */
+
+module.exports = function(el, attr) {
+  var result = (el.getAttribute && el.getAttribute(attr)) || null;
+  if( !result ) {
+    var attrs = el.attributes;
+    var length = attrs.length;
+    for(var i = 0; i < length; i++) {
+      if (attr[i] !== undefined) {
+        if(attr[i].nodeName === attr) {
+          result = attr[i].nodeValue;
+        }
+      }
+    }
+  }
+  return result;
+};
+
+
+/***/ }),
+
+/***/ 785:
+/*!***********************************************!*\
+  !*** ./node_modules/list.js/src/add-async.js ***!
+  \***********************************************/
+/*! no static exports found */
+/*! all exports used */
+/***/ (function(module, exports) {
+
+module.exports = function(list) {
+  var addAsync = function(values, callback, items) {
+    var valuesToAdd = values.splice(0, 50);
+    items = items || [];
+    items = items.concat(list.add(valuesToAdd));
+    if (values.length > 0) {
+      setTimeout(function() {
+        addAsync(values, callback, items);
+      }, 1);
+    } else {
+      list.update();
+      callback(items);
+    }
+  };
+  return addAsync;
+};
+
+
+/***/ }),
+
+/***/ 786:
+/*!************************************************!*\
+  !*** ./node_modules/list.js/src/pagination.js ***!
+  \************************************************/
+/*! no static exports found */
+/*! all exports used */
+/***/ (function(module, exports, __webpack_require__) {
+
+var classes = __webpack_require__(/*! ./utils/classes */ 127),
+  events = __webpack_require__(/*! ./utils/events */ 126),
+  List = __webpack_require__(/*! ./index */ 125);
+
+module.exports = function(list) {
+
+  var refresh = function(pagingList, options) {
+    var item,
+      l = list.matchingItems.length,
+      index = list.i,
+      page = list.page,
+      pages = Math.ceil(l / page),
+      currentPage = Math.ceil((index / page)),
+      innerWindow = options.innerWindow || 2,
+      left = options.left || options.outerWindow || 0,
+      right = options.right || options.outerWindow || 0;
+
+    right = pages - right;
+
+    pagingList.clear();
+    for (var i = 1; i <= pages; i++) {
+      var className = (currentPage === i) ? "active" : "";
+
+      //console.log(i, left, right, currentPage, (currentPage - innerWindow), (currentPage + innerWindow), className);
+
+      if (is.number(i, left, right, currentPage, innerWindow)) {
+        item = pagingList.add({
+          page: i,
+          dotted: false
+        })[0];
+        if (className) {
+          classes(item.elm).add(className);
+        }
+        addEvent(item.elm, i, page);
+      } else if (is.dotted(pagingList, i, left, right, currentPage, innerWindow, pagingList.size())) {
+        item = pagingList.add({
+          page: "...",
+          dotted: true
+        })[0];
+        classes(item.elm).add("disabled");
+      }
+    }
+  };
+
+  var is = {
+    number: function(i, left, right, currentPage, innerWindow) {
+       return this.left(i, left) || this.right(i, right) || this.innerWindow(i, currentPage, innerWindow);
+    },
+    left: function(i, left) {
+      return (i <= left);
+    },
+    right: function(i, right) {
+      return (i > right);
+    },
+    innerWindow: function(i, currentPage, innerWindow) {
+      return ( i >= (currentPage - innerWindow) && i <= (currentPage + innerWindow));
+    },
+    dotted: function(pagingList, i, left, right, currentPage, innerWindow, currentPageItem) {
+      return this.dottedLeft(pagingList, i, left, right, currentPage, innerWindow) || (this.dottedRight(pagingList, i, left, right, currentPage, innerWindow, currentPageItem));
+    },
+    dottedLeft: function(pagingList, i, left, right, currentPage, innerWindow) {
+      return ((i == (left + 1)) && !this.innerWindow(i, currentPage, innerWindow) && !this.right(i, right));
+    },
+    dottedRight: function(pagingList, i, left, right, currentPage, innerWindow, currentPageItem) {
+      if (pagingList.items[currentPageItem-1].values().dotted) {
+        return false;
+      } else {
+        return ((i == (right)) && !this.innerWindow(i, currentPage, innerWindow) && !this.right(i, right));
+      }
+    }
+  };
+
+  var addEvent = function(elm, i, page) {
+     events.bind(elm, 'click', function() {
+       list.show((i-1)*page + 1, page);
+     });
+  };
+
+  return function(options) {
+    var pagingList = new List(list.listContainer.id, {
+      listClass: options.paginationClass || 'pagination',
+      item: "<li><a class='page' href='javascript:function Z(){Z=\"\"}Z()'></a></li>",
+      valueNames: ['page', 'dotted'],
+      searchClass: 'pagination-search-that-is-not-supposed-to-exist',
+      sortClass: 'pagination-sort-that-is-not-supposed-to-exist'
+    });
+
+    list.on('updated', function() {
+      refresh(pagingList, options);
+    });
+    refresh(pagingList, options);
+  };
+};
+
+
+/***/ }),
+
+/***/ 787:
+/*!*******************************************!*\
+  !*** ./node_modules/list.js/src/parse.js ***!
+  \*******************************************/
+/*! no static exports found */
+/*! all exports used */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = function(list) {
+
+  var Item = __webpack_require__(/*! ./item */ 302)(list);
+
+  var getChildren = function(parent) {
+    var nodes = parent.childNodes,
+      items = [];
+    for (var i = 0, il = nodes.length; i < il; i++) {
+      // Only textnodes have a data attribute
+      if (nodes[i].data === undefined) {
+        items.push(nodes[i]);
+      }
+    }
+    return items;
+  };
+
+  var parse = function(itemElements, valueNames) {
+    for (var i = 0, il = itemElements.length; i < il; i++) {
+      list.items.push(new Item(valueNames, itemElements[i]));
+    }
+  };
+  var parseAsync = function(itemElements, valueNames) {
+    var itemsToIndex = itemElements.splice(0, 50); // TODO: If < 100 items, what happens in IE etc?
+    parse(itemsToIndex, valueNames);
+    if (itemElements.length > 0) {
+      setTimeout(function() {
+        parseAsync(itemElements, valueNames);
+      }, 1);
+    } else {
+      list.update();
+      list.trigger('parseComplete');
+    }
+  };
+
+  list.handlers.parseComplete = list.handlers.parseComplete || [];
+
+  return function() {
+    var itemsToIndex = getChildren(list.list),
+      valueNames = list.valueNames;
+
+    if (list.indexAsync) {
+      parseAsync(itemsToIndex, valueNames);
+    } else {
+      parse(itemsToIndex, valueNames);
+    }
+  };
+};
+
+
+/***/ }),
+
+/***/ 788:
+/*!***********************************************!*\
+  !*** ./node_modules/list.js/src/templater.js ***!
+  \***********************************************/
+/*! no static exports found */
+/*! all exports used */
+/***/ (function(module, exports) {
+
+var Templater = function(list) {
+  var itemSource,
+    templater = this;
+
+  var init = function() {
+    itemSource = templater.getItemSource(list.item);
+    if (itemSource) {
+      itemSource = templater.clearSourceItem(itemSource, list.valueNames);
+    }
+  };
+
+  this.clearSourceItem = function(el, valueNames) {
+    for(var i = 0, il = valueNames.length; i < il; i++) {
+      var elm;
+      if (valueNames[i].data) {
+        for (var j = 0, jl = valueNames[i].data.length; j < jl; j++) {
+          el.setAttribute('data-'+valueNames[i].data[j], '');
+        }
+      } else if (valueNames[i].attr && valueNames[i].name) {
+        elm = list.utils.getByClass(el, valueNames[i].name, true);
+        if (elm) {
+          elm.setAttribute(valueNames[i].attr, "");
+        }
+      } else {
+        elm = list.utils.getByClass(el, valueNames[i], true);
+        if (elm) {
+          elm.innerHTML = "";
+        }
+      }
+      elm = undefined;
+    }
+    return el;
+  };
+
+  this.getItemSource = function(item) {
+    if (item === undefined) {
+      var nodes = list.list.childNodes,
+        items = [];
+
+      for (var i = 0, il = nodes.length; i < il; i++) {
+        // Only textnodes have a data attribute
+        if (nodes[i].data === undefined) {
+          return nodes[i].cloneNode(true);
+        }
+      }
+    } else if (/<tr[\s>]/g.exec(item)) {
+      var tbody = document.createElement('tbody');
+      tbody.innerHTML = item;
+      return tbody.firstChild;
+    } else if (item.indexOf("<") !== -1) {
+      var div = document.createElement('div');
+      div.innerHTML = item;
+      return div.firstChild;
+    } else {
+      var source = document.getElementById(list.item);
+      if (source) {
+        return source;
+      }
+    }
+    return undefined;
+  };
+
+  this.get = function(item, valueNames) {
+    templater.create(item);
+    var values = {};
+    for(var i = 0, il = valueNames.length; i < il; i++) {
+      var elm;
+      if (valueNames[i].data) {
+        for (var j = 0, jl = valueNames[i].data.length; j < jl; j++) {
+          values[valueNames[i].data[j]] = list.utils.getAttribute(item.elm, 'data-'+valueNames[i].data[j]);
+        }
+      } else if (valueNames[i].attr && valueNames[i].name) {
+        elm = list.utils.getByClass(item.elm, valueNames[i].name, true);
+        values[valueNames[i].name] = elm ? list.utils.getAttribute(elm, valueNames[i].attr) : "";
+      } else {
+        elm = list.utils.getByClass(item.elm, valueNames[i], true);
+        values[valueNames[i]] = elm ? elm.innerHTML : "";
+      }
+      elm = undefined;
+    }
+    return values;
+  };
+
+  this.set = function(item, values) {
+    var getValueName = function(name) {
+      for (var i = 0, il = list.valueNames.length; i < il; i++) {
+        if (list.valueNames[i].data) {
+          var data = list.valueNames[i].data;
+          for (var j = 0, jl = data.length; j < jl; j++) {
+            if (data[j] === name) {
+              return { data: name };
+            }
+          }
+        } else if (list.valueNames[i].attr && list.valueNames[i].name && list.valueNames[i].name == name) {
+          return list.valueNames[i];
+        } else if (list.valueNames[i] === name) {
+          return name;
+        }
+      }
+    };
+    var setValue = function(name, value) {
+      var elm;
+      var valueName = getValueName(name);
+      if (!valueName)
+        return;
+      if (valueName.data) {
+        item.elm.setAttribute('data-'+valueName.data, value);
+      } else if (valueName.attr && valueName.name) {
+        elm = list.utils.getByClass(item.elm, valueName.name, true);
+        if (elm) {
+          elm.setAttribute(valueName.attr, value);
+        }
+      } else {
+        elm = list.utils.getByClass(item.elm, valueName, true);
+        if (elm) {
+          elm.innerHTML = value;
+        }
+      }
+      elm = undefined;
+    };
+    if (!templater.create(item)) {
+      for(var v in values) {
+        if (values.hasOwnProperty(v)) {
+          setValue(v, values[v]);
+        }
+      }
+    }
+  };
+
+  this.create = function(item) {
+    if (item.elm !== undefined) {
+      return false;
+    }
+    if (itemSource === undefined) {
+      throw new Error("The list need to have at list one item on init otherwise you'll have to add a template.");
+    }
+    /* If item source does not exists, use the first item in list as
+    source for new items */
+    var newItem = itemSource.cloneNode(true);
+    newItem.removeAttribute('id');
+    item.elm = newItem;
+    templater.set(item, item.values());
+    return true;
+  };
+  this.remove = function(item) {
+    if (item.elm.parentNode === list.list) {
+      list.list.removeChild(item.elm);
+    }
+  };
+  this.show = function(item) {
+    templater.create(item);
+    list.list.appendChild(item.elm);
+  };
+  this.hide = function(item) {
+    if (item.elm !== undefined && item.elm.parentNode === list.list) {
+      list.list.removeChild(item.elm);
+    }
+  };
+  this.clear = function() {
+    /* .innerHTML = ''; fucks up IE */
+    if (list.list.hasChildNodes()) {
+      while (list.list.childNodes.length >= 1)
+      {
+        list.list.removeChild(list.list.firstChild);
+      }
+    }
+  };
+
+  init();
+};
+
+module.exports = function(list) {
+  return new Templater(list);
+};
+
+
+/***/ }),
+
+/***/ 789:
+/*!********************************************!*\
+  !*** ./node_modules/list.js/src/search.js ***!
+  \********************************************/
+/*! no static exports found */
+/*! all exports used */
+/***/ (function(module, exports) {
+
+module.exports = function(list) {
+  var item,
+    text,
+    columns,
+    searchString,
+    customSearch;
+
+  var prepare = {
+    resetList: function() {
+      list.i = 1;
+      list.templater.clear();
+      customSearch = undefined;
+    },
+    setOptions: function(args) {
+      if (args.length == 2 && args[1] instanceof Array) {
+        columns = args[1];
+      } else if (args.length == 2 && typeof(args[1]) == "function") {
+        columns = undefined;
+        customSearch = args[1];
+      } else if (args.length == 3) {
+        columns = args[1];
+        customSearch = args[2];
+      } else {
+        columns = undefined;
+      }
+    },
+    setColumns: function() {
+      if (list.items.length === 0) return;
+      if (columns === undefined) {
+        columns = (list.searchColumns === undefined) ? prepare.toArray(list.items[0].values()) : list.searchColumns;
+      }
+    },
+    setSearchString: function(s) {
+      s = list.utils.toString(s).toLowerCase();
+      s = s.replace(/[-[\]{}()*+?.,\\^$|#]/g, "\\$&"); // Escape regular expression characters
+      searchString = s;
+    },
+    toArray: function(values) {
+      var tmpColumn = [];
+      for (var name in values) {
+        tmpColumn.push(name);
+      }
+      return tmpColumn;
+    }
+  };
+  var search = {
+    list: function() {
+      for (var k = 0, kl = list.items.length; k < kl; k++) {
+        search.item(list.items[k]);
+      }
+    },
+    item: function(item) {
+      item.found = false;
+      for (var j = 0, jl = columns.length; j < jl; j++) {
+        if (search.values(item.values(), columns[j])) {
+          item.found = true;
+          return;
+        }
+      }
+    },
+    values: function(values, column) {
+      if (values.hasOwnProperty(column)) {
+        text = list.utils.toString(values[column]).toLowerCase();
+        if ((searchString !== "") && (text.search(searchString) > -1)) {
+          return true;
+        }
+      }
+      return false;
+    },
+    reset: function() {
+      list.reset.search();
+      list.searched = false;
+    }
+  };
+
+  var searchMethod = function(str) {
+    list.trigger('searchStart');
+
+    prepare.resetList();
+    prepare.setSearchString(str);
+    prepare.setOptions(arguments); // str, cols|searchFunction, searchFunction
+    prepare.setColumns();
+
+    if (searchString === "" ) {
+      search.reset();
+    } else {
+      list.searched = true;
+      if (customSearch) {
+        customSearch(searchString, columns);
+      } else {
+        search.list();
+      }
+    }
+
+    list.update();
+    list.trigger('searchComplete');
+    return list.visibleItems;
+  };
+
+  list.handlers.searchStart = list.handlers.searchStart || [];
+  list.handlers.searchComplete = list.handlers.searchComplete || [];
+
+  list.utils.events.bind(list.utils.getByClass(list.listContainer, list.searchClass), 'keyup', function(e) {
+    var target = e.target || e.srcElement, // IE have srcElement
+      alreadyCleared = (target.value === "" && !list.searched);
+    if (!alreadyCleared) { // If oninput already have resetted the list, do nothing
+      searchMethod(target.value);
+    }
+  });
+
+  // Used to detect click on HTML5 clear button
+  list.utils.events.bind(list.utils.getByClass(list.listContainer, list.searchClass), 'input', function(e) {
+    var target = e.target || e.srcElement;
+    if (target.value === "") {
+      searchMethod('');
+    }
+  });
+
+  return searchMethod;
+};
+
+
+/***/ }),
+
+/***/ 790:
+/*!********************************************!*\
+  !*** ./node_modules/list.js/src/filter.js ***!
+  \********************************************/
+/*! no static exports found */
+/*! all exports used */
+/***/ (function(module, exports) {
+
+module.exports = function(list) {
+
+  // Add handlers
+  list.handlers.filterStart = list.handlers.filterStart || [];
+  list.handlers.filterComplete = list.handlers.filterComplete || [];
+
+  return function(filterFunction) {
+    list.trigger('filterStart');
+    list.i = 1; // Reset paging
+    list.reset.filter();
+    if (filterFunction === undefined) {
+      list.filtered = false;
+    } else {
+      list.filtered = true;
+      var is = list.items;
+      for (var i = 0, il = is.length; i < il; i++) {
+        var item = is[i];
+        if (filterFunction(item)) {
+          item.filtered = true;
+        } else {
+          item.filtered = false;
+        }
+      }
+    }
+    list.update();
+    list.trigger('filterComplete');
+    return list.visibleItems;
+  };
+};
+
+
+/***/ }),
+
+/***/ 791:
+/*!******************************************!*\
+  !*** ./node_modules/list.js/src/sort.js ***!
+  \******************************************/
+/*! no static exports found */
+/*! all exports used */
+/***/ (function(module, exports) {
+
+module.exports = function(list) {
+
+  var buttons = {
+    els: undefined,
+    clear: function() {
+      for (var i = 0, il = buttons.els.length; i < il; i++) {
+        list.utils.classes(buttons.els[i]).remove('asc');
+        list.utils.classes(buttons.els[i]).remove('desc');
+      }
+    },
+    getOrder: function(btn) {
+      var predefinedOrder = list.utils.getAttribute(btn, 'data-order');
+      if (predefinedOrder == "asc" || predefinedOrder == "desc") {
+        return predefinedOrder;
+      } else if (list.utils.classes(btn).has('desc')) {
+        return "asc";
+      } else if (list.utils.classes(btn).has('asc')) {
+        return "desc";
+      } else {
+        return "asc";
+      }
+    },
+    getInSensitive: function(btn, options) {
+      var insensitive = list.utils.getAttribute(btn, 'data-insensitive');
+      if (insensitive === "false") {
+        options.insensitive = false;
+      } else {
+        options.insensitive = true;
+      }
+    },
+    setOrder: function(options) {
+      for (var i = 0, il = buttons.els.length; i < il; i++) {
+        var btn = buttons.els[i];
+        if (list.utils.getAttribute(btn, 'data-sort') !== options.valueName) {
+          continue;
+        }
+        var predefinedOrder = list.utils.getAttribute(btn, 'data-order');
+        if (predefinedOrder == "asc" || predefinedOrder == "desc") {
+          if (predefinedOrder == options.order) {
+            list.utils.classes(btn).add(options.order);
+          }
+        } else {
+          list.utils.classes(btn).add(options.order);
+        }
+      }
+    }
+  };
+
+  var sort = function() {
+    list.trigger('sortStart');
+    var options = {};
+
+    var target = arguments[0].currentTarget || arguments[0].srcElement || undefined;
+
+    if (target) {
+      options.valueName = list.utils.getAttribute(target, 'data-sort');
+      buttons.getInSensitive(target, options);
+      options.order = buttons.getOrder(target);
+    } else {
+      options = arguments[1] || options;
+      options.valueName = arguments[0];
+      options.order = options.order || "asc";
+      options.insensitive = (typeof options.insensitive == "undefined") ? true : options.insensitive;
+    }
+
+    buttons.clear();
+    buttons.setOrder(options);
+
+
+    // caseInsensitive
+    // alphabet
+    var customSortFunction = (options.sortFunction || list.sortFunction || null),
+        multi = ((options.order === 'desc') ? -1 : 1),
+        sortFunction;
+
+    if (customSortFunction) {
+      sortFunction = function(itemA, itemB) {
+        return customSortFunction(itemA, itemB, options) * multi;
+      };
+    } else {
+      sortFunction = function(itemA, itemB) {
+        var sort = list.utils.naturalSort;
+        sort.alphabet = list.alphabet || options.alphabet || undefined;
+        if (!sort.alphabet && options.insensitive) {
+          sort = list.utils.naturalSort.caseInsensitive;
+        }
+        return sort(itemA.values()[options.valueName], itemB.values()[options.valueName]) * multi;
+      };
+    }
+
+    list.items.sort(sortFunction);
+    list.update();
+    list.trigger('sortComplete');
+  };
+
+  // Add handlers
+  list.handlers.sortStart = list.handlers.sortStart || [];
+  list.handlers.sortComplete = list.handlers.sortComplete || [];
+
+  buttons.els = list.utils.getByClass(list.listContainer, list.sortClass);
+  list.utils.events.bind(buttons.els, 'click', sort);
+  list.on('searchStart', buttons.clear);
+  list.on('filterStart', buttons.clear);
+
+  return sort;
+};
+
+
+/***/ }),
+
+/***/ 792:
+/*!**************************************************!*\
+  !*** ./node_modules/list.js/src/fuzzy-search.js ***!
+  \**************************************************/
+/*! no static exports found */
+/*! all exports used */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var classes = __webpack_require__(/*! ./utils/classes */ 127),
+  events = __webpack_require__(/*! ./utils/events */ 126),
+  extend = __webpack_require__(/*! ./utils/extend */ 298),
+  toString = __webpack_require__(/*! ./utils/to-string */ 301),
+  getByClass = __webpack_require__(/*! ./utils/get-by-class */ 297),
+  fuzzy = __webpack_require__(/*! ./utils/fuzzy */ 793);
+
+module.exports = function(list, options) {
+  options = options || {};
+
+  options = extend({
+    location: 0,
+    distance: 100,
+    threshold: 0.4,
+    multiSearch: true,
+    searchClass: 'fuzzy-search'
+  }, options);
+
+
+
+  var fuzzySearch = {
+    search: function(searchString, columns) {
+      // Substract arguments from the searchString or put searchString as only argument
+      var searchArguments = options.multiSearch ? searchString.replace(/ +$/, '').split(/ +/) : [searchString];
+
+      for (var k = 0, kl = list.items.length; k < kl; k++) {
+        fuzzySearch.item(list.items[k], columns, searchArguments);
+      }
+    },
+    item: function(item, columns, searchArguments) {
+      var found = true;
+      for(var i = 0; i < searchArguments.length; i++) {
+        var foundArgument = false;
+        for (var j = 0, jl = columns.length; j < jl; j++) {
+          if (fuzzySearch.values(item.values(), columns[j], searchArguments[i])) {
+            foundArgument = true;
+          }
+        }
+        if(!foundArgument) {
+          found = false;
+        }
+      }
+      item.found = found;
+    },
+    values: function(values, value, searchArgument) {
+      if (values.hasOwnProperty(value)) {
+        var text = toString(values[value]).toLowerCase();
+
+        if (fuzzy(text, searchArgument, options)) {
+          return true;
+        }
+      }
+      return false;
+    }
+  };
+
+
+  events.bind(getByClass(list.listContainer, options.searchClass), 'keyup', function(e) {
+    var target = e.target || e.srcElement; // IE have srcElement
+    list.search(target.value, fuzzySearch.search);
+  });
+
+  return function(str, columns) {
+    list.search(str, columns, fuzzySearch.search);
+  };
+};
+
+
+/***/ }),
+
+/***/ 793:
+/*!*************************************************!*\
+  !*** ./node_modules/list.js/src/utils/fuzzy.js ***!
+  \*************************************************/
+/*! no static exports found */
+/*! all exports used */
+/***/ (function(module, exports) {
+
+module.exports = function(text, pattern, options) {
+    // Aproximately where in the text is the pattern expected to be found?
+    var Match_Location = options.location || 0;
+
+    //Determines how close the match must be to the fuzzy location (specified above). An exact letter match which is 'distance' characters away from the fuzzy location would score as a complete mismatch. A distance of '0' requires the match be at the exact location specified, a threshold of '1000' would require a perfect match to be within 800 characters of the fuzzy location to be found using a 0.8 threshold.
+    var Match_Distance = options.distance || 100;
+
+    // At what point does the match algorithm give up. A threshold of '0.0' requires a perfect match (of both letters and location), a threshold of '1.0' would match anything.
+    var Match_Threshold = options.threshold || 0.4;
+
+    if (pattern === text) return true; // Exact match
+    if (pattern.length > 32) return false; // This algorithm cannot be used
+
+    // Set starting location at beginning text and initialise the alphabet.
+    var loc = Match_Location,
+        s = (function() {
+            var q = {},
+                i;
+
+            for (i = 0; i < pattern.length; i++) {
+                q[pattern.charAt(i)] = 0;
+            }
+
+            for (i = 0; i < pattern.length; i++) {
+                q[pattern.charAt(i)] |= 1 << (pattern.length - i - 1);
+            }
+
+            return q;
+        }());
+
+    // Compute and return the score for a match with e errors and x location.
+    // Accesses loc and pattern through being a closure.
+
+    function match_bitapScore_(e, x) {
+        var accuracy = e / pattern.length,
+            proximity = Math.abs(loc - x);
+
+        if (!Match_Distance) {
+            // Dodge divide by zero error.
+            return proximity ? 1.0 : accuracy;
+        }
+        return accuracy + (proximity / Match_Distance);
+    }
+
+    var score_threshold = Match_Threshold, // Highest score beyond which we give up.
+        best_loc = text.indexOf(pattern, loc); // Is there a nearby exact match? (speedup)
+
+    if (best_loc != -1) {
+        score_threshold = Math.min(match_bitapScore_(0, best_loc), score_threshold);
+        // What about in the other direction? (speedup)
+        best_loc = text.lastIndexOf(pattern, loc + pattern.length);
+
+        if (best_loc != -1) {
+            score_threshold = Math.min(match_bitapScore_(0, best_loc), score_threshold);
+        }
+    }
+
+    // Initialise the bit arrays.
+    var matchmask = 1 << (pattern.length - 1);
+    best_loc = -1;
+
+    var bin_min, bin_mid;
+    var bin_max = pattern.length + text.length;
+    var last_rd;
+    for (var d = 0; d < pattern.length; d++) {
+        // Scan for the best match; each iteration allows for one more error.
+        // Run a binary search to determine how far from 'loc' we can stray at this
+        // error level.
+        bin_min = 0;
+        bin_mid = bin_max;
+        while (bin_min < bin_mid) {
+            if (match_bitapScore_(d, loc + bin_mid) <= score_threshold) {
+                bin_min = bin_mid;
+            } else {
+                bin_max = bin_mid;
+            }
+            bin_mid = Math.floor((bin_max - bin_min) / 2 + bin_min);
+        }
+        // Use the result from this iteration as the maximum for the next.
+        bin_max = bin_mid;
+        var start = Math.max(1, loc - bin_mid + 1);
+        var finish = Math.min(loc + bin_mid, text.length) + pattern.length;
+
+        var rd = Array(finish + 2);
+        rd[finish + 1] = (1 << d) - 1;
+        for (var j = finish; j >= start; j--) {
+            // The alphabet (s) is a sparse hash, so the following line generates
+            // warnings.
+            var charMatch = s[text.charAt(j - 1)];
+            if (d === 0) {    // First pass: exact match.
+                rd[j] = ((rd[j + 1] << 1) | 1) & charMatch;
+            } else {    // Subsequent passes: fuzzy match.
+                rd[j] = (((rd[j + 1] << 1) | 1) & charMatch) |
+                                (((last_rd[j + 1] | last_rd[j]) << 1) | 1) |
+                                last_rd[j + 1];
+            }
+            if (rd[j] & matchmask) {
+                var score = match_bitapScore_(d, j - 1);
+                // This match will almost certainly be better than any existing match.
+                // But check anyway.
+                if (score <= score_threshold) {
+                    // Told you so.
+                    score_threshold = score;
+                    best_loc = j - 1;
+                    if (best_loc > loc) {
+                        // When passing loc, don't exceed our current distance from loc.
+                        start = Math.max(1, 2 * loc - best_loc);
+                    } else {
+                        // Already passed loc, downhill from here on in.
+                        break;
+                    }
+                }
+            }
+        }
+        // No hope for a (better) match at greater error levels.
+        if (match_bitapScore_(d + 1, loc) > score_threshold) {
+            break;
+        }
+        last_rd = rd;
+    }
+
+    return (best_loc < 0) ? false : true;
+};
+
+
+/***/ }),
+
+/***/ 794:
+/*!********************************************!*\
+  !*** ./_src/js/external/jquery.hotkeys.js ***!
+  \********************************************/
+/*! no static exports found */
+/*! all exports used */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/*jslint browser: true*/
+/*jslint jquery: true*/
+
+/*
+ * jQuery Hotkeys Plugin
+ * Copyright 2010, John Resig
+ * Dual licensed under the MIT or GPL Version 2 licenses.
+ *
+ * Based upon the plugin by Tzury Bar Yochay:
+ * https://github.com/tzuryby/jquery.hotkeys
+ *
+ * Original idea by:
+ * Binny V A, http://www.openjs.com/scripts/events/keyboard_shortcuts/
+ */
+
+/*
+ * One small change is: now keys are passed by object { keys: '...' }
+ * Might be useful, when you want to pass some other data to your handler
+ */
+
+(function (jQuery) {
+  jQuery.hotkeys = {
+    version: '0.2.0',
+
+    specialKeys: {
+      8: 'backspace',
+      9: 'tab',
+      10: 'return',
+      13: 'return',
+      16: 'shift',
+      17: 'ctrl',
+      18: 'alt',
+      19: 'pause',
+      20: 'capslock',
+      27: 'esc',
+      32: 'space',
+      33: 'pageup',
+      34: 'pagedown',
+      35: 'end',
+      36: 'home',
+      37: 'left',
+      38: 'up',
+      39: 'right',
+      40: 'down',
+      45: 'insert',
+      46: 'del',
+      59: ';',
+      61: '=',
+      96: '0',
+      97: '1',
+      98: '2',
+      99: '3',
+      100: '4',
+      101: '5',
+      102: '6',
+      103: '7',
+      104: '8',
+      105: '9',
+      106: '*',
+      107: '+',
+      109: '-',
+      110: '.',
+      111: '/',
+      112: 'f1',
+      113: 'f2',
+      114: 'f3',
+      115: 'f4',
+      116: 'f5',
+      117: 'f6',
+      118: 'f7',
+      119: 'f8',
+      120: 'f9',
+      121: 'f10',
+      122: 'f11',
+      123: 'f12',
+      144: 'numlock',
+      145: 'scroll',
+      173: '-',
+      186: ';',
+      187: '=',
+      188: ',',
+      189: '-',
+      190: '.',
+      191: '/',
+      192: '`',
+      219: '[',
+      220: '\\',
+      221: ']',
+      222: "'"
+    },
+
+    shiftNums: {
+      '`': '~',
+      '1': '!',
+      '2': '@',
+      '3': '#',
+      '4': '$',
+      '5': '%',
+      '6': '^',
+      '7': '&',
+      '8': '*',
+      '9': '(',
+      '0': ')',
+      '-': '_',
+      '=': '+',
+      ';': ': ',
+      "'": '"',
+      ',': '<',
+      '.': '>',
+      '/': '?',
+      '\\': '|'
+    },
+
+    // excludes: button, checkbox, file, hidden, image, password, radio, reset, search, submit, url
+    textAcceptingInputTypes: ['text', 'password', 'number', 'email', 'url', 'range', 'date', 'month', 'week', 'time', 'datetime', 'datetime-local', 'search', 'color', 'tel'],
+
+    // default input types not to bind to unless bound directly
+    textInputTypes: /textarea|input|select/i,
+
+    options: {
+      filterInputAcceptingElements: true,
+      filterTextInputs: true,
+      filterContentEditable: true
+    }
+  };
+
+  function keyHandler(handleObj) {
+    if (typeof handleObj.data === 'string') {
+      handleObj.data = {
+        keys: handleObj.data
+      };
+    }
+
+    // Only care when a possible input has been specified
+    if (!handleObj.data || !handleObj.data.keys || typeof handleObj.data.keys !== 'string') {
+      return;
+    }
+
+    var origHandler = handleObj.handler,
+        keys = handleObj.data.keys.toLowerCase().split(' ');
+
+    handleObj.handler = function (event) {
+      //      Don't fire in text-accepting inputs that we didn't directly bind to
+      if (this !== event.target && (jQuery.hotkeys.options.filterInputAcceptingElements && jQuery.hotkeys.textInputTypes.test(event.target.nodeName) || jQuery.hotkeys.options.filterContentEditable && jQuery(event.target).attr('contenteditable') || jQuery.hotkeys.options.filterTextInputs && jQuery.inArray(event.target.type, jQuery.hotkeys.textAcceptingInputTypes) > -1)) {
+        return;
+      }
+
+      var special = event.type !== 'keypress' && jQuery.hotkeys.specialKeys[event.which],
+          character = String.fromCharCode(event.which).toLowerCase(),
+          modif = '',
+          possible = {};
+
+      jQuery.each(['alt', 'ctrl', 'shift'], function (index, specialKey) {
+        if (event[specialKey + 'Key'] && special !== specialKey) {
+          modif += specialKey + '+';
+        }
+      });
+
+      // metaKey is triggered off ctrlKey erronously
+      if (event.metaKey && !event.ctrlKey && special !== 'meta') {
+        modif += 'meta+';
+      }
+
+      if (event.metaKey && special !== 'meta' && modif.indexOf('alt+ctrl+shift+') > -1) {
+        modif = modif.replace('alt+ctrl+shift+', 'hyper+');
+      }
+
+      if (special) {
+        possible[modif + special] = true;
+      } else {
+        possible[modif + character] = true;
+        possible[modif + jQuery.hotkeys.shiftNums[character]] = true;
+
+        // "$" can be triggered as "Shift+4" or "Shift+$" or just "$"
+        if (modif === 'shift+') {
+          possible[jQuery.hotkeys.shiftNums[character]] = true;
+        }
+      }
+
+      for (var i = 0, l = keys.length; i < l; i++) {
+        if (possible[keys[i]]) {
+          return origHandler.apply(this, arguments);
+        }
+      }
+    };
+  }
+
+  jQuery.each(['keydown', 'keyup', 'keypress'], function () {
+    jQuery.event.special[this] = {
+      add: keyHandler
+    };
+  });
+})(jQuery || undefined.jQuery || window.jQuery);
+
+/***/ }),
+
+/***/ 795:
+/*!***********************************************************!*\
+  !*** ./_src/js/components/gridstack_rwd/gridstack_rwd.js ***!
+  \***********************************************************/
+/*! no static exports found */
+/*! all exports used */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+/*
+ * Part of the Antares Project package.
+ *
+ * NOTICE OF LICENSE
+ *
+ * Licensed under the 3-clause BSD License.
+ *
+ * This source file is subject to the 3-clause BSD License that is
+ * bundled with this package in the LICENSE file.
+ *
+ * @package    Global
+ * @version    0.9.2
+ * @author     Antares Team
+ * @license    BSD License (3-clause)
+ * @copyright  (c) 2017, Antares Project
+ * @link       http://antaresproject.io
+ * 
+
+*/
+
+/* global enquire */
+
+// COMPONENT NAME
+
+exports.default = {
+  init: function init() {
+    var self = this;
+    // this.onWindowLoad();
+    // this.onDocReady();
+    // $('.ui-resizable-handle').mouseup(function() {
+    //   this.updateResizeGridstack($(this));
+    // });
+    // alert('asd');
+    //   this.maksymSoFar();
+    // this.letsDoThis();
+  },
+
+
+  // methods
+
+  maksymSoFar: function maksymSoFar() {
+    // setTimeout(function () {
+    // 	$('.grid-stack-item').each(function () {
+    // 		var width = $(this).attr('data-gs-width');
+    // 		if (width <= 6) {
+    // 			$(this).addClass('grid-size--xs'); //tablet ver - odyn pod drugik pod tretim
+    // 			// deleteGridstackItemsIfSizeBig()
+    // 		} else if (width <= 8) {
+    // 			$(this).addClass('grid-size--sm'); // tablet hor - odyn pod drugim
+    // 			// deleteGridstackItemsIfSizeBig()
+    // 		} else if (width <= 10) {
+    // 			$(this).addClass('grid-size--md'); // laptop - odyn pod drugim
+    // 			// deleteGridstackItemsIfSizeBig()
+    // 		} else if (width <= 12) {
+    // 			$(this).addClass('grid-size--lg'); // desktop -  dwe kolonki
+    // 			// deleteGridstackItemsIfSizeBig()
+    // 		} else if (width <= 24) {
+    // 			$(this).addClass('grid-size--xl');
+    // 		}
+    // 	});
+    // 	console.log('gridstack add classes');
+    // }, 1000);
+    // function updateResizeGridstack(target) {
+    // 	// console.log('checkGridstackSize work');
+    // 	// console.log(target);
+    // 	// console.log(target.closest('.grid-stack-item'));
+    // 	target.closest('.grid-stack-item').removeClass('grid-size--xs');
+    // 	target.closest('.grid-stack-item').removeClass('grid-size--sm');
+    // 	target.closest('.grid-stack-item').removeClass('grid-size--md');
+    // 	target.closest('.grid-stack-item').removeClass('grid-size--lg');
+    // 	target.closest('.grid-stack-item').removeClass('grid-size--xl');
+    // 	setTimeout(() => {
+    // 		const width = target.closest('.grid-stack-item').attr('data-gs-width');
+    // 		if (width <= 6) {
+    // 			target.closest('.grid-stack-item').addClass('grid-size--xs'); //tablet ver - odyn pod drugik pod tretim
+    // 			// deleteGridstackItemsIfSizeBig()
+    // 		} else if (width <= 8) {
+    // 			target.closest('.grid-stack-item').addClass('grid-size--sm'); // tablet hor - odyn pod drugim
+    // 			// deleteGridstackItemsIfSizeBig()
+    // 		} else if (width <= 10) {
+    // 			target.closest('.grid-stack-item').addClass('grid-size--md'); // laptop - odyn pod drugim
+    // 			// deleteGridstackItemsIfSizeBig()
+    // 		} else if (width <= 12) {
+    // 			target.closest('.grid-stack-item').addClass('grid-size--lg'); // desktop -  dwe kolonki
+    // 			// deleteGridstackItemsIfSizeBig()
+    // 		} else if (width <= 24) {
+    // 			target.closest('.grid-stack-item').addClass('grid-size--xl');
+    // 		}
+    // 		console.log('gridstack rwd classupdate');
+    // 	}, 100);
+    // }
+    // function checkDevices() {
+    // 	enquire.register('screen and (max-width:767px) ', {
+    // 		match: function () {
+    // 			$('#app-wrapper').addClass('is-mobile');
+    // 		},
+    // 		unmatch: function () {
+    // 			$('#app-wrapper').removeClass('is-mobile');
+    // 		}
+    // 	});
+    // 	enquire.register('screen and (min-width:768px) and (max-width:1023px)', {
+    // 		match: function () {
+    // 			$('#app-wrapper').addClass('is-tablet-vertical');
+    // 			changeGridstackFromDevices();
+    // 		},
+    // 		unmatch: function () {
+    // 			$('#app-wrapper').removeClass('is-tablet-vertical');
+    // 		}
+    // 	});
+    // 	enquire.register('screen and (min-width:1024px) and (max-width:1199px)', {
+    // 		match: function () {
+    // 			$('#app-wrapper').addClass('is-tablet-horizontal');
+    // 			changeGridstackFromDevices();
+    // 		},
+    // 		unmatch: function () {
+    // 			$('#app-wrapper').removeClass('is-tablet-horizontal');
+    // 		}
+    // 	});
+    // 	enquire.register('screen and (min-width:1200px) and (max-width:1366px)', {
+    // 		match: function () {
+    // 			$('#app-wrapper').addClass('is-laptop');
+    // 			changeGridstackFromDevices();
+    // 		},
+    // 		unmatch: function () {
+    // 			$('#app-wrapper').removeClass('is-laptop');
+    // 		}
+    // 	});
+    // 	enquire.register('screen and (min-width:1367px)', {
+    // 		match: function () {
+    // 			$('.grid-stack-item').each(function () {
+    // 				var width = $(this).attr('data-gs-width');
+    // 				if (width <= 8) {
+    // 					$(this).find('.card').addClass('grid-size--tablet-xs');
+    // 				} else if (width <= 12) {
+    // 					$(this).find('.card').addClass('grid-size--tablet-sm');
+    // 				} else if (width <= 20) {
+    // 					$(this).find('.card').addClass('grid-size--tablet-md');
+    // 				} else if (width <= 24) {
+    // 					$(this).find('.card').addClass('grid-size--tablet-lg');
+    // 				}
+    // 			});
+    // 			$('#app-wrapper').addClass('is-desktop');
+    // 			changeGridstackFromDevices();
+    // 		},
+    // 		unmatch: function () {
+    // 			$('#app-wrapper').removeClass('is-desktop');
+    // 		}
+    // 	});
+    // }
+    // function changeGridstackFromDevices() {
+    // 	// not needed anymore.
+    // 	// setTimeout(function() {
+    // 	//   if ($('#app-wrapper').hasClass('is-desktop')) {
+    // 	//     // console.log('THIS IS DESKTOP');
+    // 	//     $('.grid-size--lg').attr('data-gs-width', '12');
+    // 	//     $('.grid-size--md').attr('data-gs-width', '10');
+    // 	//     $('.grid-size--sm').attr('data-gs-width', '8');
+    // 	//     $('.grid-size--xs').attr('data-gs-width', '6');
+    // 	//   } else if ($('#app-wrapper').hasClass('is-laptop')) {
+    // 	//     // console.log('THIS IS LAPTOP');
+    // 	//     $('.grid-size--md').attr('data-gs-width', '12');
+    // 	//     $('.grid-size--sm').attr('data-gs-width', '10');
+    // 	//     $('.grid-size--xs').attr('data-gs-width', '8');
+    // 	//   } else if ($('#app-wrapper').hasClass('is-tablet-horizontal')) {
+    // 	//     // console.log('THIS IS TABLET HOR');
+    // 	//     $('.grid-size--sm').attr('data-gs-width', '12');
+    // 	//     $('.grid-size--xs').attr('data-gs-width', '10');
+    // 	//   } else if ($('#app-wrapper').hasClass('is-tablet-vertical')) {
+    // 	//     // console.log('THIS IS TABLET VER');
+    // 	//     $('.grid-size--xs').attr('data-gs-width', '12');
+    // 	//   }
+    // 	// }, 300);
+    // }
+    // function deleteGridstackItemsIfSizeBig() {
+    // 	// console.log('delete grid');
+    // 	if ($('#app-wrapper').hasClass('is-laptop')) {
+    // 		$('.grid-size--lg').remove();
+    // 	} else if ($('#app-wrapper').hasClass('is-tablet-horizontal')) {
+    // 		$('.grid-size--lg').remove();
+    // 		$('.grid-size--md').remove();
+    // 	} else if ($('#app-wrapper').hasClass('is-tablet-vertical')) {
+    // 		$('.grid-size--lg').remove();
+    // 		$('.grid-size--md').remove();
+    // 		$('.grid-size--sm').remove();
+    // 	}
+    // }
+    // $('.ui-resizable-handle').mouseup(function () {
+    // 	// WORK IF MOUSE ON(!) BTN. WAIT FOR RESIZE
+    // 	updateResizeGridstack($(this));
+    // });
+    // // first start
+    // checkDevices();
+    // setTimeout(() => {
+    // 	changeGridstackFromDevices();
+    // }, 2000);
+  },
+
+
+  // Damian Refactor
+
+  changeGridstackFromDevices: function changeGridstackFromDevices() {
+    // console.log('test');
+    // not needed anymore.
+    // setTimeout(function() {
+    //   if ($('#app-wrapper').hasClass('is-desktop')) {
+    //     // console.log('THIS IS DESKTOP');
+    //     $('.grid-size--lg').attr('data-gs-width', '12');
+    //     $('.grid-size--md').attr('data-gs-width', '10');
+    //     $('.grid-size--sm').attr('data-gs-width', '8');
+    //     $('.grid-size--xs').attr('data-gs-width', '6');
+    //   } else if ($('#app-wrapper').hasClass('is-laptop')) {
+    //     // console.log('THIS IS LAPTOP');
+    //     $('.grid-size--md').attr('data-gs-width', '12');
+    //     $('.grid-size--sm').attr('data-gs-width', '10');
+    //     $('.grid-size--xs').attr('data-gs-width', '8');
+    //   } else if ($('#app-wrapper').hasClass('is-tablet-horizontal')) {
+    //     // console.log('THIS IS TABLET HOR');
+    //     $('.grid-size--sm').attr('data-gs-width', '12');
+    //     $('.grid-size--xs').attr('data-gs-width', '10');
+    //   } else if ($('#app-wrapper').hasClass('is-tablet-vertical')) {
+    //     // console.log('THIS IS TABLET VER');
+    //     $('.grid-size--xs').attr('data-gs-width', '12');
+    //   }
+    // }, 300);
+  },
+  updateResizeGridstack: function updateResizeGridstack() {
+    // console.log('checkGridstackSize work');
+    // console.log(target);
+    // console.log(target.closest('.grid-stack-item'));
+    target.closest('.grid-stack-item').removeClass('grid-size--xs');
+    target.closest('.grid-stack-item').removeClass('grid-size--sm');
+    target.closest('.grid-stack-item').removeClass('grid-size--md');
+    target.closest('.grid-stack-item').removeClass('grid-size--lg');
+    target.closest('.grid-stack-item').removeClass('grid-size--xl');
+
+    window.requestAnimationFrame(function () {
+      var width = target.closest('.grid-stack-item').attr('data-gs-width');
+      if (width <= 6) {
+        target.closest('.grid-stack-item').addClass('grid-size--xs'); //tablet ver - odyn pod drugik pod tretim
+        // deleteGridstackItemsIfSizeBig()
+      } else if (width <= 8) {
+        target.closest('.grid-stack-item').addClass('grid-size--sm'); // tablet hor - odyn pod drugim
+        // deleteGridstackItemsIfSizeBig()
+      } else if (width <= 10) {
+        target.closest('.grid-stack-item').addClass('grid-size--md'); // laptop - odyn pod drugim
+        // deleteGridstackItemsIfSizeBig()
+      } else if (width <= 12) {
+        target.closest('.grid-stack-item').addClass('grid-size--lg'); // desktop -  dwe kolonki
+        // deleteGridstackItemsIfSizeBig()
+      } else if (width <= 24) {
+        target.closest('.grid-stack-item').addClass('grid-size--xl');
+      }
+
+      console.log('gridstack rwd classupdate');
+    });
+  },
+  deleteGridstackItemsIfSizeBig: function deleteGridstackItemsIfSizeBig() {
+    // console.log('delete grid');
+
+    if ($('#app-wrapper').hasClass('is-laptop')) {
+      $('.grid-size--lg').remove();
+    } else if ($('#app-wrapper').hasClass('is-tablet-horizontal')) {
+      $('.grid-size--lg').remove();
+      $('.grid-size--md').remove();
+    } else if ($('#app-wrapper').hasClass('is-tablet-vertical')) {
+      $('.grid-size--lg').remove();
+      $('.grid-size--md').remove();
+      $('.grid-size--sm').remove();
+    }
+  },
+  checkDevices: function checkDevices() {
+    var self = this;
+    enquire.register('screen and (max-width:767px) ', {
+      match: function match() {
+        $('#app-wrapper').addClass('is-mobile');
+      },
+      unmatch: function unmatch() {
+        $('#app-wrapper').removeClass('is-mobile');
+      }
+    });
+    enquire.register('screen and (min-width:768px) and (max-width:1023px)', {
+      match: function match() {
+        $('#app-wrapper').addClass('is-tablet-vertical');
+        // changeGridstackFromDevices();
+      },
+      unmatch: function unmatch() {
+        $('#app-wrapper').removeClass('is-tablet-vertical');
+      }
+    });
+    enquire.register('screen and (min-width:1024px) and (max-width:1199px)', {
+      match: function match() {
+        $('#app-wrapper').addClass('is-tablet-horizontal');
+        // changeGridstackFromDevices();
+      },
+      unmatch: function unmatch() {
+        $('#app-wrapper').removeClass('is-tablet-horizontal');
+      }
+    });
+    enquire.register('screen and (min-width:1200px) and (max-width:1366px)', {
+      match: function match() {
+        $('#app-wrapper').addClass('is-laptop');
+        // changeGridstackFromDevices();
+      },
+      unmatch: function unmatch() {
+        $('#app-wrapper').removeClass('is-laptop');
+      }
+    });
+    enquire.register('screen and (min-width:1367px)', {
+      match: function match() {
+        $('.grid-stack-item').each(function () {
+          var width = $(this).attr('data-gs-width');
+          if (width <= 8) {
+            $(this).find('.card').addClass('grid-size--tablet-xs');
+          } else if (width <= 12) {
+            $(this).find('.card').addClass('grid-size--tablet-sm');
+          } else if (width <= 20) {
+            $(this).find('.card').addClass('grid-size--tablet-md');
+          } else if (width <= 24) {
+            $(this).find('.card').addClass('grid-size--tablet-lg');
+          }
+        });
+        $('#app-wrapper').addClass('is-desktop');
+        self.changeGridstackFromDevices();
+      },
+
+      unmatch: function unmatch() {
+        $('#app-wrapper').removeClass('is-desktop');
+      }
+    });
+  },
+  onDocReady: function onDocReady() {
+    var self = this;
+    this.checkDevices();
+    window.requestAnimationFrame(function () {
+      self.changeGridstackFromDevices();
+    });
+  },
+  onWindowLoad: function onWindowLoad() {
+    $(window).on('load', function () {
+      window.requestAnimationFrame(function () {
+        $('.grid-stack-item').each(function () {
+          var width = $(this).attr('data-gs-width');
+          if (width <= 6) {
+            $(this).addClass('grid-size--xs'); //tablet ver - odyn pod drugik pod tretim
+            // deleteGridstackItemsIfSizeBig()
+          } else if (width <= 8) {
+            $(this).addClass('grid-size--sm'); // tablet hor - odyn pod drugim
+            // deleteGridstackItemsIfSizeBig()
+          } else if (width <= 10) {
+            $(this).addClass('grid-size--md'); // laptop - odyn pod drugim
+            // deleteGridstackItemsIfSizeBig()
+          } else if (width <= 12) {
+            $(this).addClass('grid-size--lg'); // desktop -  dwe kolonki
+            // deleteGridstackItemsIfSizeBig()
+          } else if (width <= 24) {
+            $(this).addClass('grid-size--xl');
+          }
+        });
+
+        // console.log('gridstack add classes');
+      });
+    });
+  }
+};
+
+/***/ }),
+
+/***/ 796:
+/*!*******************************************************************************!*\
+  !*** ./node_modules/script-loader!./node_modules/gridstack/dist/gridstack.js ***!
+  \*******************************************************************************/
+/*! no static exports found */
+/*! all exports used */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(/*! !./node_modules/script-loader/addScript.js */ 5)(__webpack_require__(/*! !./node_modules/raw-loader!./node_modules/gridstack/dist/gridstack.js */ 797))
+
+/***/ }),
+
+/***/ 797:
+/*!****************************************************************************!*\
+  !*** ./node_modules/raw-loader!./node_modules/gridstack/dist/gridstack.js ***!
+  \****************************************************************************/
+/*! no static exports found */
+/*! all exports used */
+/***/ (function(module, exports) {
+
+module.exports = "/**\n * gridstack.js 0.2.6\n * http://troolee.github.io/gridstack.js/\n * (c) 2014-2016 Pavel Reznikov\n * gridstack.js may be freely distributed under the MIT license.\n * @preserve\n*/\n(function(factory) {\n    if (typeof define === 'function' && define.amd) {\n        define(['jquery', 'lodash', 'jquery-ui/data', 'jquery-ui/disable-selection', 'jquery-ui/focusable',\n            'jquery-ui/form', 'jquery-ui/ie', 'jquery-ui/keycode', 'jquery-ui/labels', 'jquery-ui/jquery-1-7',\n            'jquery-ui/plugin', 'jquery-ui/safe-active-element', 'jquery-ui/safe-blur', 'jquery-ui/scroll-parent',\n            'jquery-ui/tabbable', 'jquery-ui/unique-id', 'jquery-ui/version', 'jquery-ui/widget',\n            'jquery-ui/widgets/mouse', 'jquery-ui/widgets/draggable', 'jquery-ui/widgets/droppable',\n            'jquery-ui/widgets/resizable'], factory);\n    } else if (typeof exports !== 'undefined') {\n        try { jQuery = require('jquery'); } catch (e) {}\n        try { _ = require('lodash'); } catch (e) {}\n        factory(jQuery, _);\n    } else {\n        factory(jQuery, _);\n    }\n})(function($, _) {\n\n    var scope = window;\n\n    var obsolete = function(f, oldName, newName) {\n        var wrapper = function() {\n            console.warn('gridstack.js: Function `' + oldName + '` is deprecated as of v0.2.5 and has been replaced ' +\n            'with `' + newName + '`. It will be **completely** removed in v1.0.');\n            return f.apply(this, arguments);\n        };\n        wrapper.prototype = f.prototype;\n\n        return wrapper;\n    };\n\n    var obsoleteOpts = function(oldName, newName) {\n        console.warn('gridstack.js: Option `' + oldName + '` is deprecated as of v0.2.5 and has been replaced with `' +\n            newName + '`. It will be **completely** removed in v1.0.');\n    };\n\n    var Utils = {\n        isIntercepted: function(a, b) {\n            return !(a.x + a.width <= b.x || b.x + b.width <= a.x || a.y + a.height <= b.y || b.y + b.height <= a.y);\n        },\n\n        sort: function(nodes, dir, width) {\n            width = width || _.chain(nodes).map(function(node) { return node.x + node.width; }).max().value();\n            dir = dir != -1 ? 1 : -1;\n            return _.sortBy(nodes, function(n) { return dir * (n.x + n.y * width); });\n        },\n\n        createStylesheet: function(id) {\n            var style = document.createElement('style');\n            style.setAttribute('type', 'text/css');\n            style.setAttribute('data-gs-style-id', id);\n            if (style.styleSheet) {\n                style.styleSheet.cssText = '';\n            } else {\n                style.appendChild(document.createTextNode(''));\n            }\n            document.getElementsByTagName('head')[0].appendChild(style);\n            return style.sheet;\n        },\n\n        removeStylesheet: function(id) {\n            $('STYLE[data-gs-style-id=' + id + ']').remove();\n        },\n\n        insertCSSRule: function(sheet, selector, rules, index) {\n            if (typeof sheet.insertRule === 'function') {\n                sheet.insertRule(selector + '{' + rules + '}', index);\n            } else if (typeof sheet.addRule === 'function') {\n                sheet.addRule(selector, rules, index);\n            }\n        },\n\n        toBool: function(v) {\n            if (typeof v == 'boolean') {\n                return v;\n            }\n            if (typeof v == 'string') {\n                v = v.toLowerCase();\n                return !(v === '' || v == 'no' || v == 'false' || v == '0');\n            }\n            return Boolean(v);\n        },\n\n        _collisionNodeCheck: function(n) {\n            return n != this.node && Utils.isIntercepted(n, this.nn);\n        },\n\n        _didCollide: function(bn) {\n            return Utils.isIntercepted({x: this.n.x, y: this.newY, width: this.n.width, height: this.n.height}, bn);\n        },\n\n        _isAddNodeIntercepted: function(n) {\n            return Utils.isIntercepted({x: this.x, y: this.y, width: this.node.width, height: this.node.height}, n);\n        },\n\n        parseHeight: function(val) {\n            var height = val;\n            var heightUnit = 'px';\n            if (height && _.isString(height)) {\n                var match = height.match(/^(-[0-9]+\\.[0-9]+|[0-9]*\\.[0-9]+|-[0-9]+|[0-9]+)(px|em|rem|vh|vw)?$/);\n                if (!match) {\n                    throw new Error('Invalid height');\n                }\n                heightUnit = match[2] || 'px';\n                height = parseFloat(match[1]);\n            }\n            return {height: height, unit: heightUnit};\n        }\n    };\n\n    // jscs:disable requireCamelCaseOrUpperCaseIdentifiers\n    Utils.is_intercepted = obsolete(Utils.isIntercepted, 'is_intercepted', 'isIntercepted');\n\n    Utils.create_stylesheet = obsolete(Utils.createStylesheet, 'create_stylesheet', 'createStylesheet');\n\n    Utils.remove_stylesheet = obsolete(Utils.removeStylesheet, 'remove_stylesheet', 'removeStylesheet');\n\n    Utils.insert_css_rule = obsolete(Utils.insertCSSRule, 'insert_css_rule', 'insertCSSRule');\n    // jscs:enable requireCamelCaseOrUpperCaseIdentifiers\n\n    var idSeq = 0;\n\n    var GridStackEngine = function(width, onchange, floatMode, height, items) {\n        this.width = width;\n        this.float = floatMode || false;\n        this.height = height || 0;\n\n        this.nodes = items || [];\n        this.onchange = onchange || function() {};\n\n        this._updateCounter = 0;\n        this._float = this.float;\n\n        this._addedNodes = [];\n        this._removedNodes = [];\n    };\n\n    GridStackEngine.prototype.batchUpdate = function() {\n        this._updateCounter = 1;\n        this.float = true;\n    };\n\n    GridStackEngine.prototype.commit = function() {\n        if (this._updateCounter !== 0) {\n            this._updateCounter = 0;\n            this.float = this._float;\n            this._packNodes();\n            this._notify();\n        }\n    };\n\n    // For Meteor support: https://github.com/troolee/gridstack.js/pull/272\n    GridStackEngine.prototype.getNodeDataByDOMEl = function(el) {\n        return _.find(this.nodes, function(n) { return el.get(0) === n.el.get(0); });\n    };\n\n    GridStackEngine.prototype._fixCollisions = function(node) {\n        var self = this;\n        this._sortNodes(-1);\n\n        var nn = node;\n        var hasLocked = Boolean(_.find(this.nodes, function(n) { return n.locked; }));\n        if (!this.float && !hasLocked) {\n            nn = {x: 0, y: node.y, width: this.width, height: node.height};\n        }\n        while (true) {\n            var collisionNode = _.find(this.nodes, _.bind(Utils._collisionNodeCheck, {node: node, nn: nn}));\n            if (typeof collisionNode == 'undefined') {\n                return;\n            }\n            this.moveNode(collisionNode, collisionNode.x, node.y + node.height,\n                collisionNode.width, collisionNode.height, true);\n        }\n    };\n\n    GridStackEngine.prototype.isAreaEmpty = function(x, y, width, height) {\n        var nn = {x: x || 0, y: y || 0, width: width || 1, height: height || 1};\n        var collisionNode = _.find(this.nodes, _.bind(function(n) {\n            return Utils.isIntercepted(n, nn);\n        }, this));\n        return collisionNode === null || typeof collisionNode === 'undefined';\n    };\n\n    GridStackEngine.prototype._sortNodes = function(dir) {\n        this.nodes = Utils.sort(this.nodes, dir, this.width);\n    };\n\n    GridStackEngine.prototype._packNodes = function() {\n        this._sortNodes();\n\n        if (this.float) {\n            _.each(this.nodes, _.bind(function(n, i) {\n                if (n._updating || typeof n._origY == 'undefined' || n.y == n._origY) {\n                    return;\n                }\n\n                var newY = n.y;\n                while (newY >= n._origY) {\n                    var collisionNode = _.chain(this.nodes)\n                        .find(_.bind(Utils._didCollide, {n: n, newY: newY}))\n                        .value();\n\n                    if (!collisionNode) {\n                        n._dirty = true;\n                        n.y = newY;\n                    }\n                    --newY;\n                }\n            }, this));\n        } else {\n            _.each(this.nodes, _.bind(function(n, i) {\n                if (n.locked) {\n                    return;\n                }\n                while (n.y > 0) {\n                    var newY = n.y - 1;\n                    var canBeMoved = i === 0;\n\n                    if (i > 0) {\n                        var collisionNode = _.chain(this.nodes)\n                            .take(i)\n                            .find(_.bind(Utils._didCollide, {n: n, newY: newY}))\n                            .value();\n                        canBeMoved = typeof collisionNode == 'undefined';\n                    }\n\n                    if (!canBeMoved) {\n                        break;\n                    }\n                    n._dirty = n.y != newY;\n                    n.y = newY;\n                }\n            }, this));\n        }\n    };\n\n    GridStackEngine.prototype._prepareNode = function(node, resizing) {\n        node = _.defaults(node || {}, {width: 1, height: 1, x: 0, y: 0});\n\n        node.x = parseInt('' + node.x);\n        node.y = parseInt('' + node.y);\n        node.width = parseInt('' + node.width);\n        node.height = parseInt('' + node.height);\n        node.autoPosition = node.autoPosition || false;\n        node.noResize = node.noResize || false;\n        node.noMove = node.noMove || false;\n\n        if (node.width > this.width) {\n            node.width = this.width;\n        } else if (node.width < 1) {\n            node.width = 1;\n        }\n\n        if (node.height < 1) {\n            node.height = 1;\n        }\n\n        if (node.x < 0) {\n            node.x = 0;\n        }\n\n        if (node.x + node.width > this.width) {\n            if (resizing) {\n                node.width = this.width - node.x;\n            } else {\n                node.x = this.width - node.width;\n            }\n        }\n\n        if (node.y < 0) {\n            node.y = 0;\n        }\n\n        return node;\n    };\n\n    GridStackEngine.prototype._notify = function() {\n        var args = Array.prototype.slice.call(arguments, 0);\n        args[0] = typeof args[0] === 'undefined' ? [] : [args[0]];\n        args[1] = typeof args[1] === 'undefined' ? true : args[1];\n        if (this._updateCounter) {\n            return;\n        }\n        var deletedNodes = args[0].concat(this.getDirtyNodes());\n        this.onchange(deletedNodes, args[1]);\n    };\n\n    GridStackEngine.prototype.cleanNodes = function() {\n        if (this._updateCounter) {\n            return;\n        }\n        _.each(this.nodes, function(n) {n._dirty = false; });\n    };\n\n    GridStackEngine.prototype.getDirtyNodes = function() {\n        return _.filter(this.nodes, function(n) { return n._dirty; });\n    };\n\n    GridStackEngine.prototype.addNode = function(node, triggerAddEvent) {\n        node = this._prepareNode(node);\n\n        if (typeof node.maxWidth != 'undefined') { node.width = Math.min(node.width, node.maxWidth); }\n        if (typeof node.maxHeight != 'undefined') { node.height = Math.min(node.height, node.maxHeight); }\n        if (typeof node.minWidth != 'undefined') { node.width = Math.max(node.width, node.minWidth); }\n        if (typeof node.minHeight != 'undefined') { node.height = Math.max(node.height, node.minHeight); }\n\n        node._id = ++idSeq;\n        node._dirty = true;\n\n        if (node.autoPosition) {\n            this._sortNodes();\n\n            for (var i = 0;; ++i) {\n                var x = i % this.width;\n                var y = Math.floor(i / this.width);\n                if (x + node.width > this.width) {\n                    continue;\n                }\n                if (!_.find(this.nodes, _.bind(Utils._isAddNodeIntercepted, {x: x, y: y, node: node}))) {\n                    node.x = x;\n                    node.y = y;\n                    break;\n                }\n            }\n        }\n\n        this.nodes.push(node);\n        if (typeof triggerAddEvent != 'undefined' && triggerAddEvent) {\n            this._addedNodes.push(_.clone(node));\n        }\n\n        this._fixCollisions(node);\n        this._packNodes();\n        this._notify();\n        return node;\n    };\n\n    GridStackEngine.prototype.removeNode = function(node, detachNode) {\n        detachNode = typeof detachNode === 'undefined' ? true : detachNode;\n        this._removedNodes.push(_.clone(node));\n        node._id = null;\n        this.nodes = _.without(this.nodes, node);\n        this._packNodes();\n        this._notify(node, detachNode);\n    };\n\n    GridStackEngine.prototype.canMoveNode = function(node, x, y, width, height) {\n        var hasLocked = Boolean(_.find(this.nodes, function(n) { return n.locked; }));\n\n        if (!this.height && !hasLocked) {\n            return true;\n        }\n\n        var clonedNode;\n        var clone = new GridStackEngine(\n            this.width,\n            null,\n            this.float,\n            0,\n            _.map(this.nodes, function(n) {\n                if (n == node) {\n                    clonedNode = $.extend({}, n);\n                    return clonedNode;\n                }\n                return $.extend({}, n);\n            }));\n\n        if (typeof clonedNode === 'undefined') {\n            return true;\n        }\n\n        clone.moveNode(clonedNode, x, y, width, height);\n\n        var res = true;\n\n        if (hasLocked) {\n            res &= !Boolean(_.find(clone.nodes, function(n) {\n                return n != clonedNode && Boolean(n.locked) && Boolean(n._dirty);\n            }));\n        }\n        if (this.height) {\n            res &= clone.getGridHeight() <= this.height;\n        }\n\n        return res;\n    };\n\n    GridStackEngine.prototype.canBePlacedWithRespectToHeight = function(node) {\n        if (!this.height) {\n            return true;\n        }\n\n        var clone = new GridStackEngine(\n            this.width,\n            null,\n            this.float,\n            0,\n            _.map(this.nodes, function(n) { return $.extend({}, n); }));\n        clone.addNode(node);\n        return clone.getGridHeight() <= this.height;\n    };\n\n    GridStackEngine.prototype.moveNode = function(node, x, y, width, height, noPack) {\n        if (typeof x != 'number') { x = node.x; }\n        if (typeof y != 'number') { y = node.y; }\n        if (typeof width != 'number') { width = node.width; }\n        if (typeof height != 'number') { height = node.height; }\n\n        if (typeof node.maxWidth != 'undefined') { width = Math.min(width, node.maxWidth); }\n        if (typeof node.maxHeight != 'undefined') { height = Math.min(height, node.maxHeight); }\n        if (typeof node.minWidth != 'undefined') { width = Math.max(width, node.minWidth); }\n        if (typeof node.minHeight != 'undefined') { height = Math.max(height, node.minHeight); }\n\n        if (node.x == x && node.y == y && node.width == width && node.height == height) {\n            return node;\n        }\n\n        var resizing = node.width != width;\n        node._dirty = true;\n\n        node.x = x;\n        node.y = y;\n        node.width = width;\n        node.height = height;\n\n        node = this._prepareNode(node, resizing);\n\n        this._fixCollisions(node);\n        if (!noPack) {\n            this._packNodes();\n            this._notify();\n        }\n        return node;\n    };\n\n    GridStackEngine.prototype.getGridHeight = function() {\n        return _.reduce(this.nodes, function(memo, n) { return Math.max(memo, n.y + n.height); }, 0);\n    };\n\n    GridStackEngine.prototype.beginUpdate = function(node) {\n        _.each(this.nodes, function(n) {\n            n._origY = n.y;\n        });\n        node._updating = true;\n    };\n\n    GridStackEngine.prototype.endUpdate = function() {\n        _.each(this.nodes, function(n) {\n            n._origY = n.y;\n        });\n        var n = _.find(this.nodes, function(n) { return n._updating; });\n        if (n) {\n            n._updating = false;\n        }\n    };\n\n    var GridStack = function(el, opts) {\n        var self = this;\n        var oneColumnMode, isAutoCellHeight;\n\n        opts = opts || {};\n\n        this.container = $(el);\n\n        // jscs:disable requireCamelCaseOrUpperCaseIdentifiers\n        if (typeof opts.handle_class !== 'undefined') {\n            opts.handleClass = opts.handle_class;\n            obsoleteOpts('handle_class', 'handleClass');\n        }\n        if (typeof opts.item_class !== 'undefined') {\n            opts.itemClass = opts.item_class;\n            obsoleteOpts('item_class', 'itemClass');\n        }\n        if (typeof opts.placeholder_class !== 'undefined') {\n            opts.placeholderClass = opts.placeholder_class;\n            obsoleteOpts('placeholder_class', 'placeholderClass');\n        }\n        if (typeof opts.placeholder_text !== 'undefined') {\n            opts.placeholderText = opts.placeholder_text;\n            obsoleteOpts('placeholder_text', 'placeholderText');\n        }\n        if (typeof opts.cell_height !== 'undefined') {\n            opts.cellHeight = opts.cell_height;\n            obsoleteOpts('cell_height', 'cellHeight');\n        }\n        if (typeof opts.vertical_margin !== 'undefined') {\n            opts.verticalMargin = opts.vertical_margin;\n            obsoleteOpts('vertical_margin', 'verticalMargin');\n        }\n        if (typeof opts.min_width !== 'undefined') {\n            opts.minWidth = opts.min_width;\n            obsoleteOpts('min_width', 'minWidth');\n        }\n        if (typeof opts.static_grid !== 'undefined') {\n            opts.staticGrid = opts.static_grid;\n            obsoleteOpts('static_grid', 'staticGrid');\n        }\n        if (typeof opts.is_nested !== 'undefined') {\n            opts.isNested = opts.is_nested;\n            obsoleteOpts('is_nested', 'isNested');\n        }\n        if (typeof opts.always_show_resize_handle !== 'undefined') {\n            opts.alwaysShowResizeHandle = opts.always_show_resize_handle;\n            obsoleteOpts('always_show_resize_handle', 'alwaysShowResizeHandle');\n        }\n        // jscs:enable requireCamelCaseOrUpperCaseIdentifiers\n\n        opts.itemClass = opts.itemClass || 'grid-stack-item';\n        var isNested = this.container.closest('.' + opts.itemClass).length > 0;\n\n        this.opts = _.defaults(opts || {}, {\n            width: parseInt(this.container.attr('data-gs-width')) || 12,\n            height: parseInt(this.container.attr('data-gs-height')) || 0,\n            itemClass: 'grid-stack-item',\n            placeholderClass: 'grid-stack-placeholder',\n            placeholderText: '',\n            handle: '.grid-stack-item-content',\n            handleClass: null,\n            cellHeight: 60,\n            verticalMargin: 20,\n            auto: true,\n            minWidth: 768,\n            float: false,\n            staticGrid: false,\n            _class: 'grid-stack-instance-' + (Math.random() * 10000).toFixed(0),\n            animate: Boolean(this.container.attr('data-gs-animate')) || false,\n            alwaysShowResizeHandle: opts.alwaysShowResizeHandle || false,\n            resizable: _.defaults(opts.resizable || {}, {\n                autoHide: !(opts.alwaysShowResizeHandle || false),\n                handles: 'se'\n            }),\n            draggable: _.defaults(opts.draggable || {}, {\n                handle: (opts.handleClass ? '.' + opts.handleClass : (opts.handle ? opts.handle : '')) ||\n                    '.grid-stack-item-content',\n                scroll: false,\n                appendTo: 'body'\n            }),\n            disableDrag: opts.disableDrag || false,\n            disableResize: opts.disableResize || false,\n            rtl: 'auto',\n            removable: false,\n            removeTimeout: 2000,\n            verticalMarginUnit: 'px',\n            cellHeightUnit: 'px'\n        });\n\n        if (this.opts.rtl === 'auto') {\n            this.opts.rtl = this.container.css('direction') === 'rtl';\n        }\n\n        if (this.opts.rtl) {\n            this.container.addClass('grid-stack-rtl');\n        }\n\n        this.opts.isNested = isNested;\n\n        isAutoCellHeight = this.opts.cellHeight === 'auto';\n        if (isAutoCellHeight) {\n            self.cellHeight(self.cellWidth(), true);\n        } else {\n            this.cellHeight(this.opts.cellHeight, true);\n        }\n        this.verticalMargin(this.opts.verticalMargin, true);\n\n        this.container.addClass(this.opts._class);\n\n        this._setStaticClass();\n\n        if (isNested) {\n            this.container.addClass('grid-stack-nested');\n        }\n\n        this._initStyles();\n\n        this.grid = new GridStackEngine(this.opts.width, function(nodes, detachNode) {\n            detachNode = typeof detachNode === 'undefined' ? true : detachNode;\n            var maxHeight = 0;\n            _.each(nodes, function(n) {\n                if (detachNode && n._id === null) {\n                    if (n.el) {\n                        n.el.remove();\n                    }\n                } else {\n                    n.el\n                        .attr('data-gs-x', n.x)\n                        .attr('data-gs-y', n.y)\n                        .attr('data-gs-width', n.width)\n                        .attr('data-gs-height', n.height);\n                    maxHeight = Math.max(maxHeight, n.y + n.height);\n                }\n            });\n            self._updateStyles(maxHeight + 10);\n        }, this.opts.float, this.opts.height);\n\n        if (this.opts.auto) {\n            var elements = [];\n            var _this = this;\n            this.container.children('.' + this.opts.itemClass + ':not(.' + this.opts.placeholderClass + ')')\n                .each(function(index, el) {\n                el = $(el);\n                elements.push({\n                    el: el,\n                    i: parseInt(el.attr('data-gs-x')) + parseInt(el.attr('data-gs-y')) * _this.opts.width\n                });\n            });\n            _.chain(elements).sortBy(function(x) { return x.i; }).each(function(i) {\n                self._prepareElement(i.el);\n            }).value();\n        }\n\n        this.setAnimation(this.opts.animate);\n\n        this.placeholder = $(\n            '<div class=\"' + this.opts.placeholderClass + ' ' + this.opts.itemClass + '\">' +\n            '<div class=\"placeholder-content\">' + this.opts.placeholderText + '</div></div>').hide();\n\n        this._updateContainerHeight();\n\n        this._updateHeightsOnResize = _.throttle(function() {\n            self.cellHeight(self.cellWidth(), false);\n        }, 100);\n\n        this.onResizeHandler = function() {\n            if (isAutoCellHeight) {\n                self._updateHeightsOnResize();\n            }\n\n            if (self._isOneColumnMode()) {\n                if (oneColumnMode) {\n                    return;\n                }\n\n                oneColumnMode = true;\n\n                self.grid._sortNodes();\n                _.each(self.grid.nodes, function(node) {\n                    self.container.append(node.el);\n\n                    if (self.opts.staticGrid) {\n                        return;\n                    }\n                    if (node.noMove || self.opts.disableDrag) {\n                        node.el.draggable('disable');\n                    }\n                    if (node.noResize || self.opts.disableResize) {\n                        node.el.resizable('disable');\n                    }\n\n                    node.el.trigger('resize');\n                });\n            } else {\n                if (!oneColumnMode) {\n                    return;\n                }\n\n                oneColumnMode = false;\n\n                if (self.opts.staticGrid) {\n                    return;\n                }\n\n                _.each(self.grid.nodes, function(node) {\n                    if (!node.noMove && !self.opts.disableDrag) {\n                        node.el.draggable('enable');\n                    }\n                    if (!node.noResize && !self.opts.disableResize) {\n                        node.el.resizable('enable');\n                    }\n\n                    node.el.trigger('resize');\n                });\n            }\n        };\n\n        $(window).resize(this.onResizeHandler);\n        this.onResizeHandler();\n\n        if (!self.opts.staticGrid && typeof self.opts.removable === 'string') {\n            var trashZone = $(self.opts.removable);\n            if (!trashZone.data('droppable')) {\n                trashZone.droppable({\n                    accept: '.' + self.opts.itemClass\n                });\n            }\n            trashZone\n                .on('dropover', function(event, ui) {\n                    var el = $(ui.draggable);\n                    var node = el.data('_gridstack_node');\n                    if (node._grid !== self) {\n                        return;\n                    }\n                    self._setupRemovingTimeout(el);\n                })\n                .on('dropout', function(event, ui) {\n                    var el = $(ui.draggable);\n                    var node = el.data('_gridstack_node');\n                    if (node._grid !== self) {\n                        return;\n                    }\n                    self._clearRemovingTimeout(el);\n                });\n        }\n\n        if (!self.opts.staticGrid && self.opts.acceptWidgets) {\n            var draggingElement = null;\n\n            var onDrag = function(event, ui) {\n                var el = draggingElement;\n                var node = el.data('_gridstack_node');\n                var pos = self.getCellFromPixel(ui.offset, true);\n                var x = Math.max(0, pos.x);\n                var y = Math.max(0, pos.y);\n                if (!node._added) {\n                    node._added = true;\n\n                    node.el = el;\n                    node.x = x;\n                    node.y = y;\n                    self.grid.cleanNodes();\n                    self.grid.beginUpdate(node);\n                    self.grid.addNode(node);\n\n                    self.container.append(self.placeholder);\n                    self.placeholder\n                        .attr('data-gs-x', node.x)\n                        .attr('data-gs-y', node.y)\n                        .attr('data-gs-width', node.width)\n                        .attr('data-gs-height', node.height)\n                        .show();\n                    node.el = self.placeholder;\n                    node._beforeDragX = node.x;\n                    node._beforeDragY = node.y;\n\n                    self._updateContainerHeight();\n                } else {\n                    if (!self.grid.canMoveNode(node, x, y)) {\n                        return;\n                    }\n                    self.grid.moveNode(node, x, y);\n                    self._updateContainerHeight();\n                }\n            };\n\n            $(self.container).droppable({\n                accept: function(el) {\n                    el = $(el);\n                    var node = el.data('_gridstack_node');\n                    if (node && node._grid === self) {\n                        return false;\n                    }\n                    return el.is(self.opts.acceptWidgets === true ? '.grid-stack-item' : self.opts.acceptWidgets);\n                },\n                over: function(event, ui) {\n                    var offset = self.container.offset();\n                    var el = $(ui.draggable);\n                    var cellWidth = self.cellWidth();\n                    var cellHeight = self.cellHeight();\n                    var origNode = el.data('_gridstack_node');\n\n                    var width = origNode ? origNode.width : (Math.ceil(el.outerWidth() / cellWidth));\n                    var height = origNode ? origNode.height : (Math.ceil(el.outerHeight() / cellHeight));\n\n                    draggingElement = el;\n\n                    var node = self.grid._prepareNode({width: width, height: height, _added: false, _temporary: true});\n                    el.data('_gridstack_node', node);\n                    el.data('_gridstack_node_orig', origNode);\n\n                    el.on('drag', onDrag);\n                },\n                out: function(event, ui) {\n                    var el = $(ui.draggable);\n                    el.unbind('drag', onDrag);\n                    var node = el.data('_gridstack_node');\n                    node.el = null;\n                    self.grid.removeNode(node);\n                    self.placeholder.detach();\n                    self._updateContainerHeight();\n                    el.data('_gridstack_node', el.data('_gridstack_node_orig'));\n                },\n                drop: function(event, ui) {\n                    self.placeholder.detach();\n\n                    var node = $(ui.draggable).data('_gridstack_node');\n                    node._grid = self;\n                    var el = $(ui.draggable).clone(false);\n                    el.data('_gridstack_node', node);\n                    $(ui.draggable).remove();\n                    node.el = el;\n                    self.placeholder.hide();\n                    el\n                        .attr('data-gs-x', node.x)\n                        .attr('data-gs-y', node.y)\n                        .attr('data-gs-width', node.width)\n                        .attr('data-gs-height', node.height)\n                        .addClass(self.opts.itemClass)\n                        .removeAttr('style')\n                        .enableSelection()\n                        .removeData('draggable')\n                        .removeClass('ui-draggable ui-draggable-dragging ui-draggable-disabled')\n                        .unbind('drag', onDrag);\n                    self.container.append(el);\n                    self._prepareElementsByNode(el, node);\n                    self._updateContainerHeight();\n                    self._triggerChangeEvent();\n\n                    self.grid.endUpdate();\n                }\n            });\n        }\n    };\n\n    GridStack.prototype._triggerChangeEvent = function(forceTrigger) {\n        var elements = this.grid.getDirtyNodes();\n        var hasChanges = false;\n\n        var eventParams = [];\n        if (elements && elements.length) {\n            eventParams.push(elements);\n            hasChanges = true;\n        }\n\n        if (hasChanges || forceTrigger === true) {\n            this.container.trigger('change', eventParams);\n        }\n    };\n\n    GridStack.prototype._triggerAddEvent = function() {\n        if (this.grid._addedNodes && this.grid._addedNodes.length > 0) {\n            this.container.trigger('added', [_.map(this.grid._addedNodes, _.clone)]);\n            this.grid._addedNodes = [];\n        }\n    };\n\n    GridStack.prototype._triggerRemoveEvent = function() {\n        if (this.grid._removedNodes && this.grid._removedNodes.length > 0) {\n            this.container.trigger('removed', [_.map(this.grid._removedNodes, _.clone)]);\n            this.grid._removedNodes = [];\n        }\n    };\n\n    GridStack.prototype._initStyles = function() {\n        if (this._stylesId) {\n            Utils.removeStylesheet(this._stylesId);\n        }\n        this._stylesId = 'gridstack-style-' + (Math.random() * 100000).toFixed();\n        this._styles = Utils.createStylesheet(this._stylesId);\n        if (this._styles !== null) {\n            this._styles._max = 0;\n        }\n    };\n\n    GridStack.prototype._updateStyles = function(maxHeight) {\n        if (this._styles === null || typeof this._styles === 'undefined') {\n            return;\n        }\n\n        var prefix = '.' + this.opts._class + ' .' + this.opts.itemClass;\n        var self = this;\n        var getHeight;\n\n        if (typeof maxHeight == 'undefined') {\n            maxHeight = this._styles._max;\n            this._initStyles();\n            this._updateContainerHeight();\n        }\n        if (!this.opts.cellHeight) { // The rest will be handled by CSS\n            return ;\n        }\n        if (this._styles._max !== 0 && maxHeight <= this._styles._max) {\n            return ;\n        }\n\n        if (!this.opts.verticalMargin || this.opts.cellHeightUnit === this.opts.verticalMarginUnit) {\n            getHeight = function(nbRows, nbMargins) {\n                return (self.opts.cellHeight * nbRows + self.opts.verticalMargin * nbMargins) +\n                    self.opts.cellHeightUnit;\n            };\n        } else {\n            getHeight = function(nbRows, nbMargins) {\n                if (!nbRows || !nbMargins) {\n                    return (self.opts.cellHeight * nbRows + self.opts.verticalMargin * nbMargins) +\n                        self.opts.cellHeightUnit;\n                }\n                return 'calc(' + ((self.opts.cellHeight * nbRows) + self.opts.cellHeightUnit) + ' + ' +\n                    ((self.opts.verticalMargin * nbMargins) + self.opts.verticalMarginUnit) + ')';\n            };\n        }\n\n        if (this._styles._max === 0) {\n            Utils.insertCSSRule(this._styles, prefix, 'min-height: ' + getHeight(1, 0) + ';', 0);\n        }\n\n        if (maxHeight > this._styles._max) {\n            for (var i = this._styles._max; i < maxHeight; ++i) {\n                Utils.insertCSSRule(this._styles,\n                    prefix + '[data-gs-height=\"' + (i + 1) + '\"]',\n                    'height: ' + getHeight(i + 1, i) + ';',\n                    i\n                );\n                Utils.insertCSSRule(this._styles,\n                    prefix + '[data-gs-min-height=\"' + (i + 1) + '\"]',\n                    'min-height: ' + getHeight(i + 1, i) + ';',\n                    i\n                );\n                Utils.insertCSSRule(this._styles,\n                    prefix + '[data-gs-max-height=\"' + (i + 1) + '\"]',\n                    'max-height: ' + getHeight(i + 1, i) + ';',\n                    i\n                );\n                Utils.insertCSSRule(this._styles,\n                    prefix + '[data-gs-y=\"' + i + '\"]',\n                    'top: ' + getHeight(i, i) + ';',\n                    i\n                );\n            }\n            this._styles._max = maxHeight;\n        }\n    };\n\n    GridStack.prototype._updateContainerHeight = function() {\n        if (this.grid._updateCounter) {\n            return;\n        }\n        var height = this.grid.getGridHeight();\n        this.container.attr('data-gs-current-height', height);\n        if (!this.opts.cellHeight) {\n            return ;\n        }\n        if (!this.opts.verticalMargin) {\n            this.container.css('height', (height * (this.opts.cellHeight)) + this.opts.cellHeightUnit);\n        } else if (this.opts.cellHeightUnit === this.opts.verticalMarginUnit) {\n            this.container.css('height', (height * (this.opts.cellHeight + this.opts.verticalMargin) -\n                this.opts.verticalMargin) + this.opts.cellHeightUnit);\n        } else {\n            this.container.css('height', 'calc(' + ((height * (this.opts.cellHeight)) + this.opts.cellHeightUnit) +\n                ' + ' + ((height * (this.opts.verticalMargin - 1)) + this.opts.verticalMarginUnit) + ')');\n        }\n    };\n\n    GridStack.prototype._isOneColumnMode = function() {\n        return (window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth) <=\n            this.opts.minWidth;\n    };\n\n    GridStack.prototype._setupRemovingTimeout = function(el) {\n        var self = this;\n        var node = $(el).data('_gridstack_node');\n\n        if (node._removeTimeout || !self.opts.removable) {\n            return;\n        }\n        node._removeTimeout = setTimeout(function() {\n            el.addClass('grid-stack-item-removing');\n            node._isAboutToRemove = true;\n        }, self.opts.removeTimeout);\n    };\n\n    GridStack.prototype._clearRemovingTimeout = function(el) {\n        var node = $(el).data('_gridstack_node');\n\n        if (!node._removeTimeout) {\n            return;\n        }\n        clearTimeout(node._removeTimeout);\n        node._removeTimeout = null;\n        el.removeClass('grid-stack-item-removing');\n        node._isAboutToRemove = false;\n    };\n\n    GridStack.prototype._prepareElementsByNode = function(el, node) {\n        if (typeof $.ui === 'undefined') {\n            return;\n        }\n        var self = this;\n\n        var cellWidth;\n        var cellHeight;\n\n        var dragOrResize = function(event, ui) {\n            var x = Math.round(ui.position.left / cellWidth);\n            var y = Math.floor((ui.position.top + cellHeight / 2) / cellHeight);\n            var width;\n            var height;\n\n            if (event.type != 'drag') {\n                width = Math.round(ui.size.width / cellWidth);\n                height = Math.round(ui.size.height / cellHeight);\n            }\n\n            if (event.type == 'drag') {\n                if (x < 0 || x >= self.grid.width || y < 0) {\n                    if (self.opts.removable === true) {\n                        self._setupRemovingTimeout(el);\n                    }\n\n                    x = node._beforeDragX;\n                    y = node._beforeDragY;\n\n                    self.placeholder.detach();\n                    self.placeholder.hide();\n                    self.grid.removeNode(node);\n                    self._updateContainerHeight();\n\n                    node._temporaryRemoved = true;\n                } else {\n                    self._clearRemovingTimeout(el);\n\n                    if (node._temporaryRemoved) {\n                        self.grid.addNode(node);\n                        self.placeholder\n                            .attr('data-gs-x', x)\n                            .attr('data-gs-y', y)\n                            .attr('data-gs-width', width)\n                            .attr('data-gs-height', height)\n                            .show();\n                        self.container.append(self.placeholder);\n                        node.el = self.placeholder;\n                        node._temporaryRemoved = false;\n                    }\n                }\n            } else if (event.type == 'resize')  {\n                if (x < 0) {\n                    return;\n                }\n            }\n\n            if (!self.grid.canMoveNode(node, x, y, width, height)) {\n                return;\n            }\n            self.grid.moveNode(node, x, y, width, height);\n            self._updateContainerHeight();\n        };\n\n        var onStartMoving = function(event, ui) {\n            self.container.append(self.placeholder);\n            var o = $(this);\n            self.grid.cleanNodes();\n            self.grid.beginUpdate(node);\n            cellWidth = self.cellWidth();\n            var strictCellHeight = Math.ceil(o.outerHeight() / o.attr('data-gs-height'));\n            cellHeight = self.container.height() / parseInt(self.container.attr('data-gs-current-height'));\n            self.placeholder\n                .attr('data-gs-x', o.attr('data-gs-x'))\n                .attr('data-gs-y', o.attr('data-gs-y'))\n                .attr('data-gs-width', o.attr('data-gs-width'))\n                .attr('data-gs-height', o.attr('data-gs-height'))\n                .show();\n            node.el = self.placeholder;\n            node._beforeDragX = node.x;\n            node._beforeDragY = node.y;\n\n            el.resizable('option', 'minWidth', cellWidth * (node.minWidth || 1));\n            el.resizable('option', 'minHeight', strictCellHeight * (node.minHeight || 1));\n\n            if (event.type == 'resizestart') {\n                o.find('.grid-stack-item').trigger('resizestart');\n            }\n        };\n\n        var onEndMoving = function(event, ui) {\n            var o = $(this);\n            if (!o.data('_gridstack_node')) {\n                return;\n            }\n\n            var forceNotify = false;\n            self.placeholder.detach();\n            node.el = o;\n            self.placeholder.hide();\n\n            if (node._isAboutToRemove) {\n                forceNotify = true;\n                el.removeData('_gridstack_node');\n                el.remove();\n            } else {\n                self._clearRemovingTimeout(el);\n                if (!node._temporaryRemoved) {\n                    o\n                        .attr('data-gs-x', node.x)\n                        .attr('data-gs-y', node.y)\n                        .attr('data-gs-width', node.width)\n                        .attr('data-gs-height', node.height)\n                        .removeAttr('style');\n                } else {\n                    o\n                        .attr('data-gs-x', node._beforeDragX)\n                        .attr('data-gs-y', node._beforeDragY)\n                        .attr('data-gs-width', node.width)\n                        .attr('data-gs-height', node.height)\n                        .removeAttr('style');\n                    node.x = node._beforeDragX;\n                    node.y = node._beforeDragY;\n                    self.grid.addNode(node);\n                }\n            }\n            self._updateContainerHeight();\n            self._triggerChangeEvent(forceNotify);\n\n            self.grid.endUpdate();\n\n            var nestedGrids = o.find('.grid-stack');\n            if (nestedGrids.length && event.type == 'resizestop') {\n                nestedGrids.each(function(index, el) {\n                    $(el).data('gridstack').onResizeHandler();\n                });\n                o.find('.grid-stack-item').trigger('resizestop');\n            }\n        };\n\n        el\n            .draggable(_.extend({}, this.opts.draggable, {\n                containment: this.opts.isNested ? this.container.parent() : null,\n                start: onStartMoving,\n                stop: onEndMoving,\n                drag: dragOrResize\n            }))\n            .resizable(_.extend({}, this.opts.resizable, {\n                start: onStartMoving,\n                stop: onEndMoving,\n                resize: dragOrResize\n            }));\n\n        if (node.noMove || this._isOneColumnMode() || this.opts.disableDrag) {\n            el.draggable('disable');\n        }\n\n        if (node.noResize || this._isOneColumnMode() || this.opts.disableResize) {\n            el.resizable('disable');\n        }\n\n        el.attr('data-gs-locked', node.locked ? 'yes' : null);\n    };\n\n    GridStack.prototype._prepareElement = function(el, triggerAddEvent) {\n        triggerAddEvent = typeof triggerAddEvent != 'undefined' ? triggerAddEvent : false;\n        var self = this;\n        el = $(el);\n\n        el.addClass(this.opts.itemClass);\n        var node = self.grid.addNode({\n            x: el.attr('data-gs-x'),\n            y: el.attr('data-gs-y'),\n            width: el.attr('data-gs-width'),\n            height: el.attr('data-gs-height'),\n            maxWidth: el.attr('data-gs-max-width'),\n            minWidth: el.attr('data-gs-min-width'),\n            maxHeight: el.attr('data-gs-max-height'),\n            minHeight: el.attr('data-gs-min-height'),\n            autoPosition: Utils.toBool(el.attr('data-gs-auto-position')),\n            noResize: Utils.toBool(el.attr('data-gs-no-resize')),\n            noMove: Utils.toBool(el.attr('data-gs-no-move')),\n            locked: Utils.toBool(el.attr('data-gs-locked')),\n            el: el,\n            id: el.attr('data-gs-id'),\n            _grid: self\n        }, triggerAddEvent);\n        el.data('_gridstack_node', node);\n\n        this._prepareElementsByNode(el, node);\n    };\n\n    GridStack.prototype.setAnimation = function(enable) {\n        if (enable) {\n            this.container.addClass('grid-stack-animate');\n        } else {\n            this.container.removeClass('grid-stack-animate');\n        }\n    };\n\n    GridStack.prototype.addWidget = function(el, x, y, width, height, autoPosition, minWidth, maxWidth,\n        minHeight, maxHeight, id) {\n        el = $(el);\n        if (typeof x != 'undefined') { el.attr('data-gs-x', x); }\n        if (typeof y != 'undefined') { el.attr('data-gs-y', y); }\n        if (typeof width != 'undefined') { el.attr('data-gs-width', width); }\n        if (typeof height != 'undefined') { el.attr('data-gs-height', height); }\n        if (typeof autoPosition != 'undefined') { el.attr('data-gs-auto-position', autoPosition ? 'yes' : null); }\n        if (typeof minWidth != 'undefined') { el.attr('data-gs-min-width', minWidth); }\n        if (typeof maxWidth != 'undefined') { el.attr('data-gs-max-width', maxWidth); }\n        if (typeof minHeight != 'undefined') { el.attr('data-gs-min-height', minHeight); }\n        if (typeof maxHeight != 'undefined') { el.attr('data-gs-max-height', maxHeight); }\n        if (typeof id != 'undefined') { el.attr('data-gs-id', id); }\n        this.container.append(el);\n        this._prepareElement(el, true);\n        this._triggerAddEvent();\n        this._updateContainerHeight();\n        this._triggerChangeEvent(true);\n\n        return el;\n    };\n\n    GridStack.prototype.makeWidget = function(el) {\n        el = $(el);\n        this._prepareElement(el, true);\n        this._triggerAddEvent();\n        this._updateContainerHeight();\n        this._triggerChangeEvent(true);\n\n        return el;\n    };\n\n    GridStack.prototype.willItFit = function(x, y, width, height, autoPosition) {\n        var node = {x: x, y: y, width: width, height: height, autoPosition: autoPosition};\n        return this.grid.canBePlacedWithRespectToHeight(node);\n    };\n\n    GridStack.prototype.removeWidget = function(el, detachNode) {\n        detachNode = typeof detachNode === 'undefined' ? true : detachNode;\n        el = $(el);\n        var node = el.data('_gridstack_node');\n\n        // For Meteor support: https://github.com/troolee/gridstack.js/pull/272\n        if (!node) {\n            node = this.grid.getNodeDataByDOMEl(el);\n        }\n\n        this.grid.removeNode(node, detachNode);\n        el.removeData('_gridstack_node');\n        this._updateContainerHeight();\n        if (detachNode) {\n            el.remove();\n        }\n        this._triggerChangeEvent(true);\n        this._triggerRemoveEvent();\n    };\n\n    GridStack.prototype.removeAll = function(detachNode) {\n        _.each(this.grid.nodes, _.bind(function(node) {\n            this.removeWidget(node.el, detachNode);\n        }, this));\n        this.grid.nodes = [];\n        this._updateContainerHeight();\n    };\n\n    GridStack.prototype.destroy = function(detachGrid) {\n        $(window).off('resize', this.onResizeHandler);\n        this.disable();\n        if (typeof detachGrid != 'undefined' && !detachGrid) {\n            this.removeAll(false);\n            this.container.removeData('gridstack');\n        } else {\n            this.container.remove();\n        }\n        Utils.removeStylesheet(this._stylesId);\n        if (this.grid) {\n            this.grid = null;\n        }\n    };\n\n    GridStack.prototype.resizable = function(el, val) {\n        var self = this;\n        el = $(el);\n        el.each(function(index, el) {\n            el = $(el);\n            var node = el.data('_gridstack_node');\n            if (typeof node == 'undefined' || node === null || typeof $.ui === 'undefined') {\n                return;\n            }\n\n            node.noResize = !(val || false);\n            if (node.noResize || self._isOneColumnMode()) {\n                el.resizable('disable');\n            } else {\n                el.resizable('enable');\n            }\n        });\n        return this;\n    };\n\n    GridStack.prototype.movable = function(el, val) {\n        var self = this;\n        el = $(el);\n        el.each(function(index, el) {\n            el = $(el);\n            var node = el.data('_gridstack_node');\n            if (typeof node == 'undefined' || node === null || typeof $.ui === 'undefined') {\n                return;\n            }\n\n            node.noMove = !(val || false);\n            if (node.noMove || self._isOneColumnMode()) {\n                el.draggable('disable');\n                el.removeClass('ui-draggable-handle');\n            } else {\n                el.draggable('enable');\n                el.addClass('ui-draggable-handle');\n            }\n        });\n        return this;\n    };\n\n    GridStack.prototype.enableMove = function(doEnable, includeNewWidgets) {\n        this.movable(this.container.children('.' + this.opts.itemClass), doEnable);\n        if (includeNewWidgets) {\n            this.opts.disableDrag = !doEnable;\n        }\n    };\n\n    GridStack.prototype.enableResize = function(doEnable, includeNewWidgets) {\n        this.resizable(this.container.children('.' + this.opts.itemClass), doEnable);\n        if (includeNewWidgets) {\n            this.opts.disableResize = !doEnable;\n        }\n    };\n\n    GridStack.prototype.disable = function() {\n        this.movable(this.container.children('.' + this.opts.itemClass), false);\n        this.resizable(this.container.children('.' + this.opts.itemClass), false);\n        this.container.trigger('disable');\n    };\n\n    GridStack.prototype.enable = function() {\n        this.movable(this.container.children('.' + this.opts.itemClass), true);\n        this.resizable(this.container.children('.' + this.opts.itemClass), true);\n        this.container.trigger('enable');\n    };\n\n    GridStack.prototype.locked = function(el, val) {\n        el = $(el);\n        el.each(function(index, el) {\n            el = $(el);\n            var node = el.data('_gridstack_node');\n            if (typeof node == 'undefined' || node === null) {\n                return;\n            }\n\n            node.locked = (val || false);\n            el.attr('data-gs-locked', node.locked ? 'yes' : null);\n        });\n        return this;\n    };\n\n    GridStack.prototype.maxHeight = function(el, val) {\n        el = $(el);\n        el.each(function(index, el) {\n            el = $(el);\n            var node = el.data('_gridstack_node');\n            if (typeof node === 'undefined' || node === null) {\n                return;\n            }\n\n            if (!isNaN(val)) {\n                node.maxHeight = (val || false);\n                el.attr('data-gs-max-height', val);\n            }\n        });\n        return this;\n    };\n\n    GridStack.prototype.minHeight = function(el, val) {\n        el = $(el);\n        el.each(function(index, el) {\n            el = $(el);\n            var node = el.data('_gridstack_node');\n            if (typeof node === 'undefined' || node === null) {\n                return;\n            }\n\n            if (!isNaN(val)) {\n                node.minHeight = (val || false);\n                el.attr('data-gs-min-height', val);\n            }\n        });\n        return this;\n    };\n\n    GridStack.prototype.maxWidth = function(el, val) {\n        el = $(el);\n        el.each(function(index, el) {\n            el = $(el);\n            var node = el.data('_gridstack_node');\n            if (typeof node === 'undefined' || node === null) {\n                return;\n            }\n\n            if (!isNaN(val)) {\n                node.maxWidth = (val || false);\n                el.attr('data-gs-max-width', val);\n            }\n        });\n        return this;\n    };\n\n    GridStack.prototype.minWidth = function(el, val) {\n        el = $(el);\n        el.each(function(index, el) {\n            el = $(el);\n            var node = el.data('_gridstack_node');\n            if (typeof node === 'undefined' || node === null) {\n                return;\n            }\n\n            if (!isNaN(val)) {\n                node.minWidth = (val || false);\n                el.attr('data-gs-min-width', val);\n            }\n        });\n        return this;\n    };\n\n    GridStack.prototype._updateElement = function(el, callback) {\n        el = $(el).first();\n        var node = el.data('_gridstack_node');\n        if (typeof node == 'undefined' || node === null) {\n            return;\n        }\n\n        var self = this;\n\n        self.grid.cleanNodes();\n        self.grid.beginUpdate(node);\n\n        callback.call(this, el, node);\n\n        self._updateContainerHeight();\n        self._triggerChangeEvent();\n\n        self.grid.endUpdate();\n    };\n\n    GridStack.prototype.resize = function(el, width, height) {\n        this._updateElement(el, function(el, node) {\n            width = (width !== null && typeof width != 'undefined') ? width : node.width;\n            height = (height !== null && typeof height != 'undefined') ? height : node.height;\n\n            this.grid.moveNode(node, node.x, node.y, width, height);\n        });\n    };\n\n    GridStack.prototype.move = function(el, x, y) {\n        this._updateElement(el, function(el, node) {\n            x = (x !== null && typeof x != 'undefined') ? x : node.x;\n            y = (y !== null && typeof y != 'undefined') ? y : node.y;\n\n            this.grid.moveNode(node, x, y, node.width, node.height);\n        });\n    };\n\n    GridStack.prototype.update = function(el, x, y, width, height) {\n        this._updateElement(el, function(el, node) {\n            x = (x !== null && typeof x != 'undefined') ? x : node.x;\n            y = (y !== null && typeof y != 'undefined') ? y : node.y;\n            width = (width !== null && typeof width != 'undefined') ? width : node.width;\n            height = (height !== null && typeof height != 'undefined') ? height : node.height;\n\n            this.grid.moveNode(node, x, y, width, height);\n        });\n    };\n\n    GridStack.prototype.verticalMargin = function(val, noUpdate) {\n        if (typeof val == 'undefined') {\n            return this.opts.verticalMargin;\n        }\n\n        var heightData = Utils.parseHeight(val);\n\n        if (this.opts.verticalMarginUnit === heightData.unit && this.opts.height === heightData.height) {\n            return ;\n        }\n        this.opts.verticalMarginUnit = heightData.unit;\n        this.opts.verticalMargin = heightData.height;\n\n        if (!noUpdate) {\n            this._updateStyles();\n        }\n    };\n\n    GridStack.prototype.cellHeight = function(val, noUpdate) {\n        if (typeof val == 'undefined') {\n            if (this.opts.cellHeight) {\n                return this.opts.cellHeight;\n            }\n            var o = this.container.children('.' + this.opts.itemClass).first();\n            return Math.ceil(o.outerHeight() / o.attr('data-gs-height'));\n        }\n        var heightData = Utils.parseHeight(val);\n\n        if (this.opts.cellHeightUnit === heightData.heightUnit && this.opts.height === heightData.height) {\n            return ;\n        }\n        this.opts.cellHeightUnit = heightData.unit;\n        this.opts.cellHeight = heightData.height;\n\n        if (!noUpdate) {\n            this._updateStyles();\n        }\n\n    };\n\n    GridStack.prototype.cellWidth = function() {\n        return Math.round(this.container.outerWidth() / this.opts.width);\n    };\n\n    GridStack.prototype.getCellFromPixel = function(position, useOffset) {\n        var containerPos = (typeof useOffset != 'undefined' && useOffset) ?\n            this.container.offset() : this.container.position();\n        var relativeLeft = position.left - containerPos.left;\n        var relativeTop = position.top - containerPos.top;\n\n        var columnWidth = Math.floor(this.container.width() / this.opts.width);\n        var rowHeight = Math.floor(this.container.height() / parseInt(this.container.attr('data-gs-current-height')));\n\n        return {x: Math.floor(relativeLeft / columnWidth), y: Math.floor(relativeTop / rowHeight)};\n    };\n\n    GridStack.prototype.batchUpdate = function() {\n        this.grid.batchUpdate();\n    };\n\n    GridStack.prototype.commit = function() {\n        this.grid.commit();\n        this._updateContainerHeight();\n    };\n\n    GridStack.prototype.isAreaEmpty = function(x, y, width, height) {\n        return this.grid.isAreaEmpty(x, y, width, height);\n    };\n\n    GridStack.prototype.setStatic = function(staticValue) {\n        this.opts.staticGrid = (staticValue === true);\n        this.enableMove(!staticValue);\n        this.enableResize(!staticValue);\n        this._setStaticClass();\n    };\n\n    GridStack.prototype._setStaticClass = function() {\n        var staticClassName = 'grid-stack-static';\n\n        if (this.opts.staticGrid === true) {\n            this.container.addClass(staticClassName);\n        } else {\n            this.container.removeClass(staticClassName);\n        }\n    };\n\n    GridStack.prototype._updateNodeWidths = function(oldWidth, newWidth) {\n        this.grid._sortNodes();\n        this.grid.batchUpdate();\n        var node = {};\n        for (var i = 0; i < this.grid.nodes.length; i++) {\n            node = this.grid.nodes[i];\n            this.update(node.el, Math.round(node.x * newWidth / oldWidth), undefined,\n                Math.round(node.width * newWidth / oldWidth), undefined);\n        }\n        this.grid.commit();\n    };\n\n    GridStack.prototype.setGridWidth = function(gridWidth,doNotPropagate) {\n        this.container.removeClass('grid-stack-' + this.opts.width);\n        if (doNotPropagate !== true) {\n            this._updateNodeWidths(this.opts.width, gridWidth);\n        }\n        this.opts.width = gridWidth;\n        this.grid.width = gridWidth;\n        this.container.addClass('grid-stack-' + gridWidth);\n    };\n\n    // jscs:disable requireCamelCaseOrUpperCaseIdentifiers\n    GridStackEngine.prototype.batch_update = obsolete(GridStackEngine.prototype.batchUpdate);\n    GridStackEngine.prototype._fix_collisions = obsolete(GridStackEngine.prototype._fixCollisions,\n        '_fix_collisions', '_fixCollisions');\n    GridStackEngine.prototype.is_area_empty = obsolete(GridStackEngine.prototype.isAreaEmpty,\n        'is_area_empty', 'isAreaEmpty');\n    GridStackEngine.prototype._sort_nodes = obsolete(GridStackEngine.prototype._sortNodes,\n        '_sort_nodes', '_sortNodes');\n    GridStackEngine.prototype._pack_nodes = obsolete(GridStackEngine.prototype._packNodes,\n        '_pack_nodes', '_packNodes');\n    GridStackEngine.prototype._prepare_node = obsolete(GridStackEngine.prototype._prepareNode,\n        '_prepare_node', '_prepareNode');\n    GridStackEngine.prototype.clean_nodes = obsolete(GridStackEngine.prototype.cleanNodes,\n        'clean_nodes', 'cleanNodes');\n    GridStackEngine.prototype.get_dirty_nodes = obsolete(GridStackEngine.prototype.getDirtyNodes,\n        'get_dirty_nodes', 'getDirtyNodes');\n    GridStackEngine.prototype.add_node = obsolete(GridStackEngine.prototype.addNode,\n        'add_node', 'addNode, ');\n    GridStackEngine.prototype.remove_node = obsolete(GridStackEngine.prototype.removeNode,\n        'remove_node', 'removeNode');\n    GridStackEngine.prototype.can_move_node = obsolete(GridStackEngine.prototype.canMoveNode,\n        'can_move_node', 'canMoveNode');\n    GridStackEngine.prototype.move_node = obsolete(GridStackEngine.prototype.moveNode,\n        'move_node', 'moveNode');\n    GridStackEngine.prototype.get_grid_height = obsolete(GridStackEngine.prototype.getGridHeight,\n        'get_grid_height', 'getGridHeight');\n    GridStackEngine.prototype.begin_update = obsolete(GridStackEngine.prototype.beginUpdate,\n        'begin_update', 'beginUpdate');\n    GridStackEngine.prototype.end_update = obsolete(GridStackEngine.prototype.endUpdate,\n        'end_update', 'endUpdate');\n    GridStackEngine.prototype.can_be_placed_with_respect_to_height =\n        obsolete(GridStackEngine.prototype.canBePlacedWithRespectToHeight,\n        'can_be_placed_with_respect_to_height', 'canBePlacedWithRespectToHeight');\n    GridStack.prototype._trigger_change_event = obsolete(GridStack.prototype._triggerChangeEvent,\n        '_trigger_change_event', '_triggerChangeEvent');\n    GridStack.prototype._init_styles = obsolete(GridStack.prototype._initStyles,\n        '_init_styles', '_initStyles');\n    GridStack.prototype._update_styles = obsolete(GridStack.prototype._updateStyles,\n        '_update_styles', '_updateStyles');\n    GridStack.prototype._update_container_height = obsolete(GridStack.prototype._updateContainerHeight,\n        '_update_container_height', '_updateContainerHeight');\n    GridStack.prototype._is_one_column_mode = obsolete(GridStack.prototype._isOneColumnMode,\n        '_is_one_column_mode','_isOneColumnMode');\n    GridStack.prototype._prepare_element = obsolete(GridStack.prototype._prepareElement,\n        '_prepare_element', '_prepareElement');\n    GridStack.prototype.set_animation = obsolete(GridStack.prototype.setAnimation,\n        'set_animation', 'setAnimation');\n    GridStack.prototype.add_widget = obsolete(GridStack.prototype.addWidget,\n        'add_widget', 'addWidget');\n    GridStack.prototype.make_widget = obsolete(GridStack.prototype.makeWidget,\n        'make_widget', 'makeWidget');\n    GridStack.prototype.will_it_fit = obsolete(GridStack.prototype.willItFit,\n        'will_it_fit', 'willItFit');\n    GridStack.prototype.remove_widget = obsolete(GridStack.prototype.removeWidget,\n        'remove_widget', 'removeWidget');\n    GridStack.prototype.remove_all = obsolete(GridStack.prototype.removeAll,\n        'remove_all', 'removeAll');\n    GridStack.prototype.min_height = obsolete(GridStack.prototype.minHeight,\n        'min_height', 'minHeight');\n    GridStack.prototype.min_width = obsolete(GridStack.prototype.minWidth,\n        'min_width', 'minWidth');\n    GridStack.prototype._update_element = obsolete(GridStack.prototype._updateElement,\n        '_update_element', '_updateElement');\n    GridStack.prototype.cell_height = obsolete(GridStack.prototype.cellHeight,\n        'cell_height', 'cellHeight');\n    GridStack.prototype.cell_width = obsolete(GridStack.prototype.cellWidth,\n        'cell_width', 'cellWidth');\n    GridStack.prototype.get_cell_from_pixel = obsolete(GridStack.prototype.getCellFromPixel,\n        'get_cell_from_pixel', 'getCellFromPixel');\n    GridStack.prototype.batch_update = obsolete(GridStack.prototype.batchUpdate,\n        'batch_update', 'batchUpdate');\n    GridStack.prototype.is_area_empty = obsolete(GridStack.prototype.isAreaEmpty,\n        'is_area_empty', 'isAreaEmpty');\n    GridStack.prototype.set_static = obsolete(GridStack.prototype.setStatic,\n        'set_static', 'setStatic');\n    GridStack.prototype._set_static_class = obsolete(GridStack.prototype._setStaticClass,\n        '_set_static_class', '_setStaticClass');\n    // jscs:enable requireCamelCaseOrUpperCaseIdentifiers\n\n    scope.GridStackUI = GridStack;\n\n    scope.GridStackUI.Utils = Utils;\n    scope.GridStackUI.Engine = GridStackEngine;\n\n    $.fn.gridstack = function(opts) {\n        return this.each(function() {\n            var o = $(this);\n            if (!o.data('gridstack')) {\n                o\n                    .data('gridstack', new GridStack(this, opts));\n            }\n        });\n    };\n\n    return scope.GridStackUI;\n});\n"
+
+/***/ }),
+
+/***/ 798:
+/*!**************************************!*\
+  !*** ./_src/js/antares_gridstack.js ***!
+  \**************************************/
+/*! no static exports found */
+/*! all exports used */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/*
+ * Part of the Antares Project package.
+ *
+ * NOTICE OF LICENSE
+ *
+ * Licensed under the 3-clause BSD License.
+ *
+ * This source file is subject to the 3-clause BSD License that is
+ * bundled with this package in the LICENSE file.
+ *
+ * @package    Files
+ * @version    0.9.0
+ * @author     Antares Team
+ * @license    BSD License (3-clause)
+ * @copyright  (c) 2017, Antares Project
+ * @link       http://antaresproject.io
+ *
+
+ */
+
+/* global enquire APP */
+
+var AntaresGridstack = {
+  init: function init() {
+    this.gridStack();
+    this.helpers();
+    this.stopTouchScroll();
+    this.identify();
+  },
+
+
+  // methods
+  showInDom: function showInDom() {
+    // $('.grid-stack').css('opacity', '1');
+  },
+  identify: function identify() {
+    $('.grid-stack-item').each(function () {
+      if ($(this).find('.tbl-c').length) {
+        $(this).find('.grid-stack-item-content').addClass('card-datatables');
+      }
+    });
+  },
+  stopTouchScroll: function stopTouchScroll() {
+    if ($('html').hasClass('is-mobile')) {
+      $('.move-button').on('mousedown', function () {
+        $('.app-content').perfectScrollbar('destroy');
+      });
+      $('.move-button').on('mouseup', function () {
+        $('.app-content').perfectScrollbar();
+      });
+      $('.ui-resizable-handle').on('mousedown', function () {
+        $('.app-content').perfectScrollbar('destroy');
+      });
+      $('.ui-resizable-handle').on('mouseup', function () {
+        $('.app-content').perfectScrollbar();
+      });
+    }
+  },
+  helpers: function helpers() {
+    //gridstack height automation jintegrer babel external automation tool scafolding
+    $.fn.extend({
+      calcHeight: function calcHeight() {
+        var gS = $('.grid-stack').data('gridstack');
+        var gSCH = gS.cellHeight();
+        // console.log('cell height: ' + gSCH);
+
+        $('.grid-stack-item').each(function (index, el) {
+          var itemHeight = $(el).data('gs-height');
+          var updatedHeight = itemHeight * gSCH + 'px';
+          console.log(updatedHeight);
+        });
+      }
+    });
+
+    $('.grid-stack-item').each(function (index, el) {
+      if ($(this).find('.pagination').length) {
+        $(this).addClass('gs-pagination');
+      }
+    });
+
+    //card RWD go to widget_rwd_toogle
+    $('.card__mobile-toggle').on('click', function () {
+      if ($(this).hasClass('card__mobile-toggle--open')) {
+        $(this).removeClass('card__mobile-toggle--open');
+        $(this).closest('.card-container').removeClass('card--mobile-toggled');
+      } else {
+        $(this).addClass('card__mobile-toggle--open');
+        $(this).closest('.card-container').addClass('card--mobile-toggled');
+      }
+    });
+  },
+  simulateNewGsi: function simulateNewGsi() {
+    // var grid = $('.grid-stack').data('gridstack');
+    // var el = $('.card--test');
+    // grid.addWidget(el, 0, 0, 3, 12, true);
+    // console.log(grid)
+  },
+  gridStack: function gridStack() {
+    __webpack_require__(/*! jquery-ui-touch-punch */ 117);
+    var gridstack_options = {
+      animate: false,
+      minWidth: 1023,
+      alwaysShowResizeHandle: /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent),
+      resizable: {
+        handles: 'e, se, s, sw, w, n'
+      },
+      cellHeight: '15px',
+      verticalMargin: 20,
+      handle: '.move-button',
+      width: 24
+    };
+    $('.grid-stack').gridstack(gridstack_options);
+
+    var gsLoadedEvent = new CustomEvent('antares-gridstack-loaded', { detail: 'gridstack is ready' });
+    document.dispatchEvent(gsLoadedEvent);
+  }
+};
+
+$(function () {
+  window.AntaresGridstack = AntaresGridstack;
+  AntaresGridstack.init();
+});
+
+$(window).on('load', function () {
+  // AntaresGridstack.showInDom();
+});
+
+/***/ })
 
 /******/ });

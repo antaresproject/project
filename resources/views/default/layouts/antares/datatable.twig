@@ -1,0 +1,9 @@
+{% extends  app.request.isXmlHttpRequest() ? "antares/foundation::layouts.antares.clear":  "antares/foundation::layouts.antares.main" %}   
+{% block main_content %}
+    {% set panes=app('antares.widget').make('pane.left') %}    
+    <section class="main-content">        
+        {% include 'antares/foundation::components.messages'  %}                      
+        {% block content %}
+        {% endblock %}
+    </section>            
+{% endblock %} 

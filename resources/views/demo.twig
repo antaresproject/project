@@ -1,0 +1,27 @@
+{% extends "antares/foundation::layouts.quest.main" %}
+{% block content %}
+    <div class="app-content page-login">
+        <div class="img-logo" style="background-image:url({{ brand_logo('big',asset('/img/logos/logo_default_full_mobile.png')) }})"></div>
+        <section class="main-content">
+            <div class="login-box">
+                {{ set_meta('header::class', 'main-header') }}                
+                <a href="/admin/login" class="btn btn--submit btn--s-extra-large btn--primary mdl-button mdl-js-button mdl-js-ripple-effect" >
+                    {{ trans('Log In As Admin') }}
+                </a>
+                <a href="/users/login" class="btn btn--submit btn--s-extra-large btn--primary mdl-button mdl-js-button mdl-js-ripple-effect mt20" >
+                    {{ trans('Log In As User') }}
+                </a>
+                <a href="/register/create" class="btn btn--submit btn--s-extra-large btn--primary mdl-button mdl-js-button mdl-js-ripple-effect mt20" >
+                    {{ trans('Register') }}
+                </a>  
+                <div class="form-block mt20">
+                    <div class="col-24 no-padding">
+                        <div class="input-field__desc">
+                            Please note that the demo environment is wiped every hour.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+{% endblock %}

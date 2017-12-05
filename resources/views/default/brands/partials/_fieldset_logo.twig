@@ -1,6 +1,8 @@
 <fieldset name="{{ attributes.name }}">
     <legend>{{ legend }}</legend>
     <div class="col-group">
-        {% for control in controls %}{{ control.getField(row, control, [])|raw }}{% endfor %}
+        {% for control in controls %}
+            {{ control.getField(row, control, [])|raw }}
+        {% endfor %}
     </div>
 </fieldset> 

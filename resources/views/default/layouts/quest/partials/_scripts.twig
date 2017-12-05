@@ -1,12 +1,10 @@
 {% block javascripts %}
     {%  
-        set asset = app('antares.asset').container('antares/foundation::application').script('app_cache',    '/webpack/app_cache.js')
-            .add('webpack_forms_basic', '/webpack/forms_basic.js', ['app_cache'])
-            .add('error-page-js',    '/js/error-page.js', ['webpack_forms_basic'])
-            .add('login-js',    '/js/login.js', ['error-page-js'])
+        set asset = app('antares.asset').container('antares/foundation::application')
+                    .script('app_cache','/_dist/js/app_cache.js?t='~random(1000))
+                    .script('forms_standard','/_dist/js/forms_standard.js?t='~random(1000)) 
     %}     
     {{ asset.styles()|raw }} 
     {{ asset.scripts()|raw }}
-{% endblock %}
-{{  app('antares.asset').container('antares/foundation::scripts').webpack()|raw }}        
-{{ brandstyles|raw }}
+{% endblock %}       
+{{  app('antares.asset').container('antares/foundation::scripts').webpack()|raw }}

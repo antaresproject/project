@@ -13,6 +13,8 @@
         $.ajax({
             url: url,
             success: function (response) {
+
+
                 if (parseInt(response.progress) > parseInt($progress.text())) {
                     $progress.text(response.progress);
                 }
@@ -20,6 +22,7 @@
                     window.location.replace(response.redirect);
                 } else {
                     var text = response.console.replace(/\r\n/g, "\n");
+                    console.log(text);
                     editor.getDoc().setValue(text);
                     editor.execCommand('goDocEnd');
                     setTimeout(refresh, 1000);

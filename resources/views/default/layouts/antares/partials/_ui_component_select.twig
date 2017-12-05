@@ -1,0 +1,42 @@
+{% set components=components_list() %}
+<div class="card-bar" id="widgets-list">
+    <div class="card-bar__rel">
+        <div class="card-bar__search">
+            <span class="card-bar__title">{{ trans('Available UI Components') }}</span>
+            <span class="card-bar__desc">
+                {{ trans('Select component to place it on the dashboards') }}            
+            </span>
+            <div class="search-box search-box--darkbg">
+                <i class="zmdi zmdi-search"></i>
+                <form action="#">
+                    <div class="mdl-js-textfield mdl-textfield search-box__mdl-textfield">
+                        <input class="mdl-textfield__input search-box__search-field" type="text" id="widget-search">
+                        <label class="mdl-textfield__label" for="sample2">
+                            {{ trans('Quick Search') }}
+                        </label>
+                    </div>
+                </form>
+            </div>
+        </div>            
+
+        <div class="card-bar__items widget-selector">               
+            {% if components|length>0 %}                         
+                <input type="hidden" name="current-uri" id="current-uri"  value="{{ pane.uri }}" />
+                {% for child in components %}         
+                    <a class="card-bar__sgl add-widget ajaxable {{ child.attributes().attributes.disabled ? '' : 'hidden' }}" data-widget="{{child.title|str_slug|lower}}" x="{{child.attributes().attributes.x}}" y="{{child.attributes().attributes.y}}" width="{{child.attributes().attributes.width}}" height="{{child.attributes().attributes.height}}"  rel="{{ child.id }}" href="{{ child.link }}" data-attributes="{{ component_attributes(child) }}">
+                        <div class="image"></div>                    
+                        <span class="widget-name">{{ child.title|length > 20 ? child.title|slice(0, 20) ~ '...' : child.title }}</span>
+                    </a>
+                {% endfor %}
+            {% endif %}        
+        </div>
+        <button name="" data-tooltip-inline="End Edit Mode" class="mdl-js-button mdl-js-ripple-effect card-bar__close mdl-button"><i class="zmdi zmdi-close"></i></button>
+    </div>
+</div>
+<style>
+    {% for child in components %}
+        [data-widget="{{child.title|str_slug|lower}}"] .image{
+            background-image:url('{{ avatar_component(child.title) }}');
+        }
+    {% endfor %}
+</style>

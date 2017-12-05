@@ -3,7 +3,18 @@
 return [
     'areas'   => [
         'admin' => 'Admin',
-        'user'  => 'User',
+        'users' => 'User',
     ],
-    'default' => 'admin'
+    'default' => 'admin',
+    /**
+     * Configuration of route files which should be used by user area
+     */
+    'routes'  => [
+        'frontend' => [
+            'users',
+        ],
+        'backend'  => [
+            'admin'
+        ]
+    ],
 ];

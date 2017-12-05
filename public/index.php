@@ -52,6 +52,8 @@ $response = $kernel->handle(
         $request  = Illuminate\Http\Request::capture()
 );
 
+ini_set('display_errors', '1');
+set_time_limit(60);
 
 
 $response->send();

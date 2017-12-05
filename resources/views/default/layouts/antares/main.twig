@@ -6,29 +6,16 @@
         {% endblock %}        
     </head>    
     <body data-id="{{ pageId }}">
-
-        <div id="app-wrapper">
-            <!-- App sidebar -->
-            <aside class="main-sidebar {{ extension_active('multibrand') ? (brand_composition('big_sidemenu') ? 'main-sidebar--expanded' : ''): '' }}">
-                <nav>
-                    {% block navigation %}
-                        {% include 'antares/foundation::layouts.antares.partials.navigation._navigation' %}
-                    {% endblock %}                              
-                    <div class="mobile-ddowns">
-                        {% block navigation_mobile %}
-                            {% include 'antares/foundation::layouts.antares.partials.navigation._navigation_mobile' %}
-                        {% endblock %} 
-                    </div>                
-                </nav>
-            </aside> 
+        <div id="app-wrapper" class="{{ (brand_composition('top_menu') or brand_composition('short_top_menu'))  ? 'main-sidebar--top' : '' }} {{ brand_composition('short_top_menu') ? 'main-sidebar--ca':'' }} {{ brand_composition('big_sidemenu') ? 'main-sidebar--wide main-sidebar--expanded' : '' }}" >            
+            {% include 'antares/foundation::layouts.antares.partials.navigation._aside' %}            
             {{ placeholder('left-menu') }}
-            <div class="app-content {{content_class|default('page-dashboard')}}">
+            {% block app_content %}
+                <div class="app-content {{ content_class|default('app-content app-content--gridstack page-datatables') }}">
+                {% endblock %}     
                 {% block widgets %}
-                    {% if app('antares.ui-components.installed') %}
-                        {% include 'antares/foundation::layouts.antares.partials.placeholder.ui_component_select' %}
-                    {% endif %}    
+                    {% include 'antares/foundation::layouts.antares.partials._ui_component_select' %}
                 {% endblock %} 
-                <section class="main-head">
+                <section class="main-head {{ brand_composition('short_top_menu') ? 'main-head--ca' : '' }}">
                     {% block breadcrumbs %}
                         {% include 'antares/foundation::layouts.antares.partials._breadcrumbs' %}
                     {% endblock %} 
@@ -36,16 +23,20 @@
                         {% block sidebar_top_panes %}
                             {% include 'antares/foundation::layouts.antares.partials._sidebar_top_panes' %}                        
                         {% endblock %}
-                        <div class="item-grp item-grp--40 mr16">        
-                            {% block sidebar_top_widgets %}                                
-                            {% endblock %}                        
-                            {% include 'antares/foundation::layouts.antares.partials._sidebar_top' %}
-                        </div>                     
-                        {{ placeholder('brands') }}
+                        {% if not brand_composition('short_top_menu') %}
+                            <div class="item-grp item-grp--40">        
+                                <div class="client-area">
+                                    {% block sidebar_top_widgets %}                                
+                                    {% endblock %}                        
+                                    {% include 'antares/foundation::layouts.antares.partials._sidebar_top' %}
+                                </div>
+                            </div> 
+                            {{ placeholder('brands') }}
+                        {% endif %}                        
                         {{ placeholder('multiuser') }}
                     {% endblock %}
                 </section>
-                <aside class="sidebar sidebar--notifications sidebar--white" data-url="{{ handles('antares::notifications/sidebar/get') }}">
+                <aside class="sidebar sidebar--white sidebar--notifications" data-url="{{ handles('antares::notifications/sidebar/get') }}">
                     <div class="sidebar__header">
                         <div class="sidebar__header-left">
                             <span>{{ trans('antares/foundation::messages.sidebar.notifications') }}</span>
@@ -54,14 +45,14 @@
                             </span>
                         </div>
                         <div class="sidebar__header-right">
-                            <a href="#" class="btn-more mdl-js-button mdl-js-button mdl-js-ripple-effect">
+                            <a class="mdl-js-button mdl-js-ripple-effect btn-more" id="close-sidebar">
                                 <i class="zmdi zmdi-close"></i>
                             </a>
                         </div>
                     </div>
                     <div class="sidebar__content" data-delete="{{ handles('antares::notifications/sidebar/delete') }}">
                         <div class="sidebar__list">
-                            <div class="notification-item sidebar__sgl flex-block" >                                
+                            <div class="notification-item flex-block sidebar__sgl" >  
                                 <span class="flex-block__title item-title">
                                     {{ trans('antares/foundation::messages.sidebar.no_items_found') }}
                                 </span>
@@ -72,31 +63,33 @@
                         <div class="btn btn--md btn--primary mdl-js-button mdl-js-ripple-effect" data-url="{{ handles('antares::notifications/sidebar/clear') }}">Clear All</div>
                     </div>    
                 </aside>
-                <aside class="sidebar sidebar--alerts sidebar--white">
-                    <div class="sidebar__header">
-                        <div class="sidebar__header-left">
-                            <span>{{ trans('antares/foundation::messages.sidebar.alerts') }}</span>
-                            <span class="badge badge--md badge--green alerts-counter" >0</span>
-                        </div>
-                        <div class="sidebar__header-right">
-                            <a href="#" class="btn-more mdl-js-button mdl-js-button mdl-js-ripple-effect">
-                                <i class="zmdi zmdi-close"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="sidebar__content" >
-                        <div class="sidebar__list">
-                            <div class="notification-item sidebar__sgl flex-block" >                                
-                                <span class="flex-block__title item-title">
-                                    {{ trans('antares/foundation::messages.sidebar.no_items_found') }}
-                                </span>
+                {% if not brand_composition('short_top_menu') %}    
+                    <aside class="sidebar sidebar--white sidebar--alerts">
+                        <div class="sidebar__header">
+                            <div class="sidebar__header-left">
+                                <span>{{ trans('antares/foundation::messages.sidebar.alerts') }}</span>
+                                <span class="badge badge--md badge--green alerts-counter" >0</span>
+                            </div>
+                            <div class="sidebar__header-right">
+                                <a class="mdl-js-button mdl-js-ripple-effect btn-more" id="close-sidebar">
+                                    <i class="zmdi zmdi-close"></i>
+                                </a>
                             </div>
                         </div>
-                    </div>
-                    <div class="sidebar__footer hidden" >
-                        <div class="btn btn--md btn--primary mdl-js-button mdl-js-ripple-effect" data-url="{{ handles('antares::notifications/sidebar/clear/alerts') }}">Clear All</div>
-                    </div>    
-                </aside>
+                        <div class="sidebar__content" >
+                            <div class="sidebar__list">
+                                <div class="notification-item sidebar__sgl flex-block" >                                
+                                    <span class="flex-block__title item-title">
+                                        {{ trans('antares/foundation::messages.sidebar.no_items_found') }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sidebar__footer hidden" >
+                            <div class="btn btn--md btn--primary mdl-js-button mdl-js-ripple-effect" data-url="{{ handles('antares::notifications/sidebar/clear/alerts') }}">Clear All</div>
+                        </div>    
+                    </aside>
+                {% endif %}
                 {% block sidebar_preview %}
 
                 {% endblock %}
@@ -104,13 +97,7 @@
 
                 {% endblock %}
             </div>
-        </div>    
-
-        <template id="sweet-alert-template">
-            <div class="sweet-overlay" tabIndex="-1"></div><div class="sweet-alert" style="display: none" tabIndex="-1"><div class="icon error"><span class="x-mark"><span class="line left"></span><span class="line right"></span></span></div><div class="icon warning"> <span class="body"></span> <span class="dot"></span> </div> <div class="icon info"></div> <div class="icon success"> <span class="line tip"></span> <span class="line long"></span> <div class="placeholder"></div> <div class="fix"></div> </div> <img class="sweet-image"> <div class="header"><h2>Title</h2><i class="zmdi zmdi-close swal__close"></i></div><div class="sweet-content">Text</div><hr class="sweet-spacer"><div class="footer"><button class="sweet-confirm">OK</button><button class="sweet-cancel">Cancel</button></div></div>
-        </template>
-        {% include 'antares/foundation::layouts.antares.partials._spinner' %}
-        {% include 'antares/foundation::layouts.antares.partials._scripts_webpack' %}                
-
+        </div> 
+        {% include 'antares/foundation::layouts.antares.partials._scripts_webpack' %}                        
     </body>
 </html>

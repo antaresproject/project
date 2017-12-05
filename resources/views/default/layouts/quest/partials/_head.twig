@@ -1,25 +1,127 @@
-<meta charset="UTF-8">
-{% set title=get_meta('title') %}
-<title>Antares {{ title|length > 0 ? '- '~title:'' }}</title>
+<meta charset="UTF-8" >
+{% block head_title %}
+    {% set title=get_meta('title') %}
+    <title>Antares {{ title|length > 0 ? '- '~title:'' }}</title>
+{% endblock %}
+<meta name="viewport" content="user-scalable=no,width=device-width,initial-scale=1,maximum-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
 <meta name="description" content="Thank you for choosing Antares as a foundation for your application. You can find the latest updates and documentation at: http://antaresproject.io" >
 <meta name="keywords" content="Antares, User Management, Platform, Laravel, Two-Factor Authentication, REST API,Notifications, Automation, Open Source, Installer, Updater" >
 <meta name="author" content="INBS Software" >
-<meta name="viewport" content="user-scalable=no,width=device-width,initial-scale=1,maximum-scale=1">
-<meta name="theme-color" content="#27ae60">
+<META NAME="robots" content="noindex, nofollow">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="theme-color" content="#02A8F3">
 <link rel="icon" sizes="192x192" href="{{ brand_logo('favicon') }}">
 <link rel="icon" href="{{ brand_logo('favicon') }}">
 <meta name="theme-color" content="#4285f4">
-<meta name="msapplication-navbutton-color" content="#27ae60">
-<meta name="apple-mobile-web-app-status-bar-style" content="#27ae60">
-{% block javascripts %}    
-    {%  set asset = app('antares.asset').container('antares.header')               
-               .style('external_css', '/css/external.css')
-               .style('antares_css', '/css/antares.css')
-               .style('additionals', '/packages/core/css/additionals.css')                               
-               .style('login_css', '/css/login.css')
-               .style('wrapper', '/packages/core/css/wrapper.css')                               
-    %}
-    {{ asset.styles()|raw }}    
-{% endblock %}
+<meta name="msapplication-navbutton-color" content="#02A8F3">
+<meta name="apple-mobile-web-app-status-bar-style" content="#02A8F3">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="application-name" content="Antares">
+<meta name="apple-mobile-web-app-title" content="Antares">
 {{ brand_styles()|raw }}
+<style>
+
+    #app-wrapper aside.main-sidebar ul.main-menu li.main-menu__brand .main-sidebar__logo {
+        background-image: url({{ (brand_composition('big_sidemenu') or brand_composition('top_menu'))? brand_logo('white',asset('/img/logos/logo_default_full_mobile.png')) : brand_logo() }})
+    }
+    @media only screen and (max-width: 1023px) and (min-width: 768px){
+        #app-wrapper aside.main-sidebar ul.main-menu li.main-menu__brand .main-sidebar__logo {
+            background-image: url({{ brand_logo('white',asset('/img/logos/logo_default_full_mobile.png'))  }}) !important;            
+        }
+    }
+    @media only screen and (max-width: 1023px) {
+        .app-content:before {
+            left:0;
+            width: 100% !important;
+        }
+    }
+    [data-preload] {
+        opacity: 0;
+    }
+
+    .grid-stack-item-content {
+        background: #fff;
+    }
+
+    .main-sidebar--top .main-menu.main-menu--secondary > li a i, .main-sidebar--top .main-menu.main-menu--primary > li a i{
+        font-size: 24px;
+        margin-right: 16px;
+    }
+    aside.main-sidebar {
+        width: 98px;
+        height: 100vh;
+    }
+    @media only screen and (min-width: 1024px) {
+        .app-content {
+            margin-left: 98px;
+        }
+    }
+    .app-content:before {
+        -webkit-transition: .3s;
+        -o-transition: .3s;
+        position: absolute;
+        left: 0;
+        width: calc(100vw - 98px);
+        height: 230px;
+        background: #02a8f3;
+        content: "";
+        opacity: 1;
+        transition: .3s;
+    }
+
+    #app-wrapper.main-sidebar--top .main-head, #app-wrapper.main-sidebar--top .main-content, #app-wrapper.main-sidebar--top .nav-container, #app-wrapper.main-sidebar--top .submenu section {
+        max-width: 1400px;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    #app-wrapper.main-sidebar--top .main-head--ca.main-head,
+    #app-wrapper.main-sidebar--top.main-sidebar--ca .main-content,
+    #app-wrapper.main-sidebar--top .main-menu-html--ca .nav-container,
+    #app-wrapper.main-sidebar--top .main-menu-html--ca .submenu section {
+        max-width: 1152px;
+    }
+
+    #app-wrapper.main-sidebar--top .main-menu-html--ca .more-trigger {
+        display: none;
+    }
+
+    #app-wrapper.main-sidebar--top .main-menu-html--ca .client-area .item-grp-single:nth-child(2) {
+        position: relative;
+    }
+
+    .badge {
+        display: none;
+    }
+    .ddown-multi .ddown-multi__submenu .ddown__sgl--range .btn, .ddown-multi .ddown-multi__submenu .ddown__sgl--range button{
+        text-align: left;
+    }
+    .mass-actions-menu{
+        display:none;
+    }
+    .widget-ajax-response{
+        height:100%;
+    }
+    #app-wrapper .page-clients-details .main-content .clients-details-gridstack .tbl-c .card-ctrls.swiper--no-slides{
+        margin-bottom:21px !important;
+    }
+    .datatables-row-loader{        
+        min-height:38px;
+        width:100%;
+    }
+
+</style>
+{% block javascripts %}
+    {%  set asset = app('antares.asset').container('antares.header')
+            .style('external_css', '/_dist/css/external.css?t='~random(1000))
+            .style('antares_css', '/_dist/css/antares.css?t='~random(1000))
+    %} 
+    {{ asset.styles()|raw }}
+{% endblock %}
+<link rel="manifest" href="/manifest.json">
+{#{{ brand_styles()|raw }}#}
 

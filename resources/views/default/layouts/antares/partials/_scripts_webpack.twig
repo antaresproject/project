@@ -1,18 +1,14 @@
-<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.23.0/polyfill.js"></script>
 {% block javascripts %}
-    {%  set asset = app('antares.asset').container('antares/foundation::application').script('app_cache',    '/webpack/app_cache.js') %}     
+    {%  
+        set asset = app('antares.asset').container('antares/foundation::application')
+                    .script('app_cache','/_dist/js/app_cache.js?t='~random(1000))
+                    .script('view_gridstack','/_dist/js/view_gridstack.js?t='~random(1000)) 
+                    .script('forms_standard','/_dist/js/forms_standard.js?t='~random(1000)) 
+    %}     
     {{ asset.styles()|raw }} 
     {{ asset.scripts()|raw }}
-{% endblock %}
-{{  app('antares.asset').container('antares/foundation::scripts').webpack()|raw }}        
-
-<script>
-    window.addEventListener("load", function (event) {
-        $('.grid-stack,form').css('opacity', '1');
-        $('.grid-stack-item-content').css('opacity', '1');
-        $('.card > * > *').css('opacity', '1');
-    });
-</script>
+{% endblock %}       
+{{  app('antares.asset').container('antares/foundation::scripts').webpack()|raw }}
 
 
 
