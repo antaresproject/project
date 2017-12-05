@@ -1212,109 +1212,109 @@ module.exports = "/**\n * gridstack.js 0.2.6\n * http://troolee.github.io/gridst
 /* global enquire APP */
 
 var AntaresGridstack = {
-    init: function init() {
-        this.gridStack();
-        this.helpers();
-        this.stopTouchScroll();
-        this.identify();
-    },
+  init: function init() {
+    this.gridStack();
+    this.helpers();
+    this.stopTouchScroll();
+    this.identify();
+  },
 
 
-    // methods
-    showInDom: function showInDom() {
-        // $('.grid-stack').css('opacity', '1');
-    },
-    identify: function identify() {
-        $('.grid-stack-item').each(function () {
-            if ($(this).find('.tbl-c').length) {
-                $(this).find('.grid-stack-item-content').addClass('card-datatables');
-            }
-        });
-    },
-    stopTouchScroll: function stopTouchScroll() {
-        if ($('html').hasClass('is-mobile')) {
-            $('.move-button').on('mousedown', function () {
-                $('.app-content').perfectScrollbar('destroy');
-            });
-            $('.move-button').on('mouseup', function () {
-                $('.app-content').perfectScrollbar();
-            });
-            $('.ui-resizable-handle').on('mousedown', function () {
-                $('.app-content').perfectScrollbar('destroy');
-            });
-            $('.ui-resizable-handle').on('mouseup', function () {
-                $('.app-content').perfectScrollbar();
-            });
-        }
-    },
-    helpers: function helpers() {
-        //gridstack height automation jintegrer babel external automation tool scafolding
-        $.fn.extend({
-            calcHeight: function calcHeight() {
-                var gS = $('.grid-stack').data('gridstack');
-                var gSCH = gS.cellHeight();
-                // console.log('cell height: ' + gSCH);
-
-                $('.grid-stack-item').each(function (index, el) {
-                    var itemHeight = $(el).data('gs-height');
-                    var updatedHeight = itemHeight * gSCH + 'px';
-                    console.log(updatedHeight);
-                });
-            }
-        });
+  // methods
+  showInDom: function showInDom() {
+    // $('.grid-stack').css('opacity', '1');
+  },
+  identify: function identify() {
+    $('.grid-stack-item').each(function () {
+      if ($(this).find('.tbl-c').length) {
+        $(this).find('.grid-stack-item-content').addClass('card-datatables');
+      }
+    });
+  },
+  stopTouchScroll: function stopTouchScroll() {
+    if ($('html').hasClass('is-mobile')) {
+      $('.move-button').on('mousedown', function () {
+        $('.app-content').perfectScrollbar('destroy');
+      });
+      $('.move-button').on('mouseup', function () {
+        $('.app-content').perfectScrollbar();
+      });
+      $('.ui-resizable-handle').on('mousedown', function () {
+        $('.app-content').perfectScrollbar('destroy');
+      });
+      $('.ui-resizable-handle').on('mouseup', function () {
+        $('.app-content').perfectScrollbar();
+      });
+    }
+  },
+  helpers: function helpers() {
+    //gridstack height automation jintegrer babel external automation tool scafolding
+    $.fn.extend({
+      calcHeight: function calcHeight() {
+        var gS = $('.grid-stack').data('gridstack');
+        var gSCH = gS.cellHeight();
+        // console.log('cell height: ' + gSCH);
 
         $('.grid-stack-item').each(function (index, el) {
-            if ($(this).find('.pagination').length) {
-                $(this).addClass('gs-pagination');
-            }
+          var itemHeight = $(el).data('gs-height');
+          var updatedHeight = itemHeight * gSCH + 'px';
+          console.log(updatedHeight);
         });
+      }
+    });
 
-        //card RWD go to widget_rwd_toogle
-        $('.card__mobile-toggle').on('click', function () {
-            if ($(this).hasClass('card__mobile-toggle--open')) {
-                $(this).removeClass('card__mobile-toggle--open');
-                $(this).closest('.card-container').removeClass('card--mobile-toggled');
-            } else {
-                $(this).addClass('card__mobile-toggle--open');
-                $(this).closest('.card-container').addClass('card--mobile-toggled');
-            }
-        });
-    },
-    simulateNewGsi: function simulateNewGsi() {
-        // var grid = $('.grid-stack').data('gridstack');
-        // var el = $('.card--test');
-        // grid.addWidget(el, 0, 0, 3, 12, true);
-        // console.log(grid)
-    },
-    gridStack: function gridStack() {
-        __webpack_require__(153);
-        var gridstack_options = {
-            animate: false,
-            minWidth: 1023,
-            alwaysShowResizeHandle: /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent),
-            resizable: {
-                handles: 'e, se, s, sw, w, n'
-            },
-            cellHeight: '15px',
-            verticalMargin: 20,
-            handle: '.move-button',
-            width: 24
-        };
-        var gridStack = $('.grid-stack');
-        if (gridStack.length > 0) {
-            gridStack.gridstack(gridstack_options);
-            var grid = gridStack.data('gridstack');
-            grid.disable();
-        }
+    $('.grid-stack-item').each(function (index, el) {
+      if ($(this).find('.pagination').length) {
+        $(this).addClass('gs-pagination');
+      }
+    });
 
-        var gsLoadedEvent = new CustomEvent('antares-gridstack-loaded', { detail: 'gridstack is ready' });
-        document.dispatchEvent(gsLoadedEvent);
+    //card RWD go to widget_rwd_toogle
+    $('.card__mobile-toggle').on('click', function () {
+      if ($(this).hasClass('card__mobile-toggle--open')) {
+        $(this).removeClass('card__mobile-toggle--open');
+        $(this).closest('.card-container').removeClass('card--mobile-toggled');
+      } else {
+        $(this).addClass('card__mobile-toggle--open');
+        $(this).closest('.card-container').addClass('card--mobile-toggled');
+      }
+    });
+  },
+  simulateNewGsi: function simulateNewGsi() {
+    // var grid = $('.grid-stack').data('gridstack');
+    // var el = $('.card--test');
+    // grid.addWidget(el, 0, 0, 3, 12, true);
+    // console.log(grid)
+  },
+  gridStack: function gridStack() {
+    __webpack_require__(153);
+    var gridstack_options = {
+      animate: false,
+      minWidth: 768,
+      alwaysShowResizeHandle: /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent),
+      resizable: {
+        handles: 'e, se, s, sw, w, n'
+      },
+      cellHeight: '15px',
+      verticalMargin: 20,
+      handle: '.move-button',
+      width: 24
+    };
+    var gridStack = $('.grid-stack');
+    if (gridStack.length > 0) {
+      gridStack.gridstack(gridstack_options);
+      var grid = gridStack.data('gridstack');
+      grid.disable();
     }
+
+    var gsLoadedEvent = new CustomEvent('antares-gridstack-loaded', { detail: 'gridstack is ready' });
+    document.dispatchEvent(gsLoadedEvent);
+  }
 };
 
 $(function () {
-    window.AntaresGridstack = AntaresGridstack;
-    AntaresGridstack.init();
+  window.AntaresGridstack = AntaresGridstack;
+  AntaresGridstack.init();
 });
 
 /***/ }),

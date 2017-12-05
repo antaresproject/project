@@ -1,5 +1,5 @@
 {% if brand_composition('short_top_menu') %}
-    <div class="item-grp-single" >
+    <div class="item-grp-single mainhead-btn--widget-edit" >
         <div class="mdl-js-button mdl-js-ripple-effect widget-edit" id="widgets-edit" >
             <i class="icon--widgets-edit"></i>
             <span class="mdl-button__ripple-container">
@@ -8,14 +8,14 @@
         </div>
     </div>
 {% endif %} 
-<div class="item-grp-single" data-tooltip-inline="{{ trans('Notifications') }}" data-tooltip-my-position="top left" data-tooltip-target-position="bottom right">
+<div class="item-grp-single mainhead-btn--noti" data-tooltip-inline="{{ trans('Notifications') }}" data-tooltip-my-position="top left" data-tooltip-target-position="bottom right">
     <span id="notification-counter" data-preload class="badge badge--md badge--green badge--top-right notification-counter" data-count="" data-host="{{ hostname() }}"></span>
     <div class="mdl-js-button mdl-js-button mdl-js-ripple-effect" id="main-notifications" data-url="{{ handles('antares::notifications/sidebar/read') }}">
         <div class="main-head__alerts"><i class="icon--alert"></i></div>
     </div>
 </div>
 {% if not brand_composition('short_top_menu') %}
-    <div class="item-grp-single"  data-tooltip-inline="{{ trans('Alerts') }}">
+    <div class="item-grp-single  mainhead-btn--alerts"  data-tooltip-inline="{{ trans('Alerts') }}">
         <span class="badge badge--md badge--green badge--top-right" data-preload></span>
         <div class="mdl-js-button mdl-js-button mdl-js-ripple-effect" id="main-alerts" data-url="{{ handles('antares::notifications/sidebar/read/alerts') }}">
             <div class="main-head__settings"><i class="zmdi zmdi-alert-triangle"></i>
@@ -24,7 +24,7 @@
     </div>           
 {% endif %} 
 {% if not auth_user() is null %}        
-    <div class="item-grp-single">
+    <div class="item-grp-single  mainhead-btn--user-info">
         <div class="ddown ddown--user">
             <div class="mdl-js-button mdl-js-ripple-effect ddown__init ddown__init--clean">
                 <div class="avatar avatar--xs">
