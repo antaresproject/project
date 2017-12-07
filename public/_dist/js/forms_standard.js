@@ -2451,7 +2451,8 @@ var AntaresForms = {
                     myData = '';
                 }
                 $(this).select2($.extend({}, select2Base, {
-                    theme: 'selectAR ' + myData
+                    theme: 'selectAR ' + myData,
+                    minimumResultsForSearch: -1
                 }));
             });
 
@@ -5148,8 +5149,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 offset.top -= $(window).scrollTop() - paddingTop;
 
                 /*
-                 Animating left + top + width/height looks glitchy in Firefox, but perfect in Chrome. And vice-versa.
-                  */
+                  Animating left + top + width/height looks glitchy in Firefox, but perfect in Chrome. And vice-versa.
+                   */
                 var obj = {
                     width: el.width(),
                     // fix Zepto height+padding issue

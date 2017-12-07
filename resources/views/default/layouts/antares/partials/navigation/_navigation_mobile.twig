@@ -9,7 +9,7 @@
     <ul class="mobile-ddowns__menu mobile-ddowns__menu--user">
 
         <li class="mobile-ddowns__menu-header">
-            <a href="#">
+            <a href="{{ handles('antares/foundation::account') }}">
                 <div class="flex-block">
                     <div class="avatar avatar--xs">
                         <img src="{{ profile_picture(auth_user().email,60,60) }}" alt="Avatar" />

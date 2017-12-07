@@ -225,17 +225,17 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
      $.support.cssUserSelect = (function(){
      var t = false,
      e = document.createElement('div');
-      $.each('Moz|Webkit|Khtml|O|ms|Icab|'.split('|'), function(i, prefix) {
+       $.each('Moz|Webkit|Khtml|O|ms|Icab|'.split('|'), function(i, prefix) {
      var propCC = prefix + (prefix ? 'U' : 'u') + 'serSelect',
      prop = (prefix ? ('-' + prefix.toLowerCase() + '-') : '') + 'user-select';
-      e.style.cssText = prop + ': text;';
+       e.style.cssText = prop + ': text;';
      if (e.style[propCC] == 'text') {
      t = true;
      return false;
      }
-      return true;
+       return true;
      });
-      return t;
+       return t;
      })();
      */
 
@@ -2764,7 +2764,6 @@ var AntaresTableView = {
     oTable: null,
 
     init: function init($instance, $params) {
-
         var self = this;
 
         this.$instance = $instance;
@@ -2814,10 +2813,7 @@ var AntaresTableView = {
             return nRow;
         };
         $params.responsive = {
-            breakpoints: [{ name: 'desktop', width: Infinity }, { name: 'laptop', width: 1356 }, {
-                name: 'tabletH',
-                width: 1200
-            }, { name: 'tabletV', width: 1024 }, { name: 'mobile', width: 768 }]
+            breakpoints: [{ name: 'desktop', width: Infinity }, { name: 'laptop', width: 1356 }, { name: 'tabletH', width: 1200 }, { name: 'tabletV', width: 1024 }, { name: 'mobile', width: 768 }]
         };
         if ($('html').hasClass('is-mobile') || $('html').hasClass('is-tablet')) {} else {
             $params.select = {
@@ -2862,6 +2858,10 @@ var AntaresTableView = {
         $(document).on('dblclick', '.tbl-c td', function (e) {
             var actionsContainer = $(e.target).closest('tr').find('.mass-actions-menu'),
                 firstCMLinkHref = actionsContainer.find('a.default').length ? actionsContainer.find('a.default').attr('href') : actionsContainer.find('a:first').attr('href');
+
+            if (actionsContainer.hasClass('disable-dbclick')) {
+                return false;
+            }
 
             window.location = firstCMLinkHref;
         });
@@ -2915,25 +2915,26 @@ var AntaresTableView = {
                 if (self.$instance.closest('.tbl-c').find('.mass-actions-container').hasClass('mass-actions-disabled')) {
                     return false;
                 }
+                if (!self.$instance.closest('.tbl-c').hasClass('no-selected-mode')) {
+                    self.$instance.closest('.tbl-c').find('table').selectable({
+                        delay: 10,
+                        distance: 10,
+                        start: function start(event, ui) {
+                            if (event.ctrlKey || event.shiftKey) {} else {
+                                $(this).find('.is-selected').removeClass('is-selected');
+                            }
+                        },
+                        stop: function stop(event, ui) {
+                            $(this).find('.ui-selected.odd,.ui-selected.even').removeClass('ui-selected').addClass('is-selected--ST');
 
-                self.$instance.closest('.tbl-c').find('table').selectable({
-                    delay: 10,
-                    distance: 10,
-                    start: function start(event, ui) {
-                        if (event.ctrlKey || event.shiftKey) {} else {
-                            $(this).find('.is-selected').removeClass('is-selected');
+                            self.oTable.rows('.is-selected--ST').select();
+                            if (event.ctrlKey || event.shiftKey) {} else {
+                                $(this).find('.ui-selected').removeClass('ui-selected');
+                            }
+                            $(this).find('tr').removeClass('is-selected--ST');
                         }
-                    },
-                    stop: function stop(event, ui) {
-                        $(this).find('.ui-selected.odd,.ui-selected.even').removeClass('ui-selected').addClass('is-selected--ST');
-
-                        self.oTable.rows('.is-selected--ST').select();
-                        if (event.ctrlKey || event.shiftKey) {} else {
-                            $(this).find('.ui-selected').removeClass('ui-selected');
-                        }
-                        $(this).find('tr').removeClass('is-selected--ST');
-                    }
-                });
+                    });
+                }
             }
             var containerTbody = $('.dataTables_wrapper tbody');
             var parentTblc = containerTbody.closest('.tbl-c');

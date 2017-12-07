@@ -2,11 +2,11 @@
     <div class="{{ control.getWrapper('class') }}" >
     {% endif %}
     {% if control.hasLabel() %}
-        <div class="col-24 mb2">        
+        <div class="col-mb-24 mb2">        
             {{ Form.htmlLabel(control)|raw }}
         </div>
     {% endif %}    
-    <div class="col-24">
+    <div class="col-mb-24">
         <div class="radio-btns">            
             {% for value,name in control.options %}
                 <label data-type="radio-btn">                    

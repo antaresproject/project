@@ -22419,7 +22419,7 @@ _antares_mechanics.Antares.prototype.dialog = {
     display: function display(options) {
         var dialog = $('dialog.is-current');
 
-        dialog[0].showModal();
+        dialog[0].show();
 
         //MDL
         componentHandler.upgradeAllRegistered();
@@ -44422,84 +44422,84 @@ exports.default = browserHooks;
 // Antares Preloader
 
 var antaresPreloader = {
-    data: {
-        selector: '[data-preload]',
-        timer: 800
-    },
+  data: {
+    selector: '[data-preload]',
+    timer: 800
+  },
 
-    init: function init() {
-        this.elemHide();
-        this.elemShow();
-    },
-    element: function element(elem, boolean) {
-        if (!$(elem)) {
-            return false;
-        }
-        if (boolean === true || boolean === 'true') {
-            $(elem).attr('data-is-loading', true);
-        } else {
-            $(elem).removeAttr('data-is-loading');
-        }
-    },
-    global: function global(boolean) {
-        if (boolean === true || boolean === 'true') {
-            var $elem = $('[data-is-preloading]');
-            $('#app-wrapper').attr('data-is-preloading', true);
-        } else {
-            var _$elem = $('[data-is-preloading]');
-            _$elem.removeAttr('data-is-preloading');
-        }
-    },
-
-
-    // methods
-    elemHide: function elemHide() {
-        var preElements = document.querySelectorAll(this.data.selector);
-
-        for (var i = 0; i < preElements.length; i += 1) {
-            preElements[i].style.opacity = 0;
-        }
-    },
-    elemShowAll: function elemShowAll() {
-        var self = this;
-        var preElements = document.querySelectorAll('[data-preload]');
-        $(preElements).css('opacity', '1');
-        //   for (let i = 0; i < preElements.length; i += 1) {
-        //   setTimeout(() => {
-        //       console.log('ajassuccess showall')
-        //
-        //       preElements[i].style.opacity = 1;
-        //   }, self.data.timer);
-        // }
-    },
-    elemShow: function elemShow() {
-        var _this = this;
-
-        var self = this;
-        window.addEventListener('load', function () {
-            var gs = document.getElementsByClassName('grid-stack');
-            var dt = document.getElementsByClassName('tbl-c');
-            var preElements = document.querySelectorAll(_this.data.selector);
-            // GRIDSTACK!
-            // document.addEventListener('antares-gridstack-loaded', e => {
-            //   for (let i = 0; i < preElements.length; i += 1) {
-            //     preElements[i].style.opacity = 1;
-            //   }
-            // });
-
-            // NOT GRIDSTACK
-
-            var _loop = function _loop(i) {
-                setTimeout(function () {
-                    preElements[i].style.opacity = 1;
-                }, self.data.timer);
-            };
-
-            for (var i = 0; i < preElements.length; i += 1) {
-                _loop(i);
-            }
-        });
+  init: function init() {
+    this.elemHide();
+    this.elemShow();
+  },
+  element: function element(elem, boolean) {
+    if (!$(elem)) {
+      return false;
     }
+    if (boolean === true || boolean === 'true') {
+      $(elem).attr('data-is-loading', true);
+    } else {
+      $(elem).removeAttr('data-is-loading');
+    }
+  },
+  global: function global(boolean) {
+    if (boolean === true || boolean === 'true') {
+      var $elem = $('[data-is-preloading]');
+      $('#app-wrapper').attr('data-is-preloading', true);
+    } else {
+      var _$elem = $('[data-is-preloading]');
+      _$elem.removeAttr('data-is-preloading');
+    }
+  },
+
+
+  // methods
+  elemHide: function elemHide() {
+    var preElements = document.querySelectorAll(this.data.selector);
+
+    for (var i = 0; i < preElements.length; i += 1) {
+      preElements[i].style.opacity = 0;
+    }
+  },
+  elemShowAll: function elemShowAll() {
+    var self = this;
+    var preElements = document.querySelectorAll('[data-preload]');
+    $(preElements).css('opacity', '1');
+    //   for (let i = 0; i < preElements.length; i += 1) {
+    //   setTimeout(() => {
+    //       console.log('ajassuccess showall')
+    //
+    //       preElements[i].style.opacity = 1;
+    //   }, self.data.timer);
+    // }
+  },
+  elemShow: function elemShow() {
+    var _this = this;
+
+    var self = this;
+    window.addEventListener('load', function () {
+      var gs = document.getElementsByClassName('grid-stack');
+      var dt = document.getElementsByClassName('tbl-c');
+      var preElements = document.querySelectorAll(_this.data.selector);
+      // GRIDSTACK!
+      // document.addEventListener('antares-gridstack-loaded', e => {
+      //   for (let i = 0; i < preElements.length; i += 1) {
+      //     preElements[i].style.opacity = 1;
+      //   }
+      // });
+
+      // NOT GRIDSTACK
+
+      var _loop = function _loop(i) {
+        setTimeout(function () {
+          preElements[i].style.opacity = 1;
+        }, self.data.timer);
+      };
+
+      for (var i = 0; i < preElements.length; i += 1) {
+        _loop(i);
+      }
+    });
+  }
 };
 
 // Fire!
@@ -44511,7 +44511,7 @@ window.antaresPreloader = antaresPreloader;
 var countCard = 0;
 
 $(document).ajaxSuccess(function () {
-    antaresPreloader.elemShowAll();
+  antaresPreloader.elemShowAll();
 });
 
 /***/ }),
@@ -45445,14 +45445,14 @@ var AntaresDdownGeneral = {
     $(document).mouseup(function (e) {
       var container = $('.ddown');
       var container2 = $('.input-field--group');
-      if (!e.target.closest('.ui-widget-content')) {
+      if ($(!e.target).closest('.ui-widget-content')) {
         if (container.has(e.target).length === 0 || container2.has(e.target).length === 0) {
           $('[data-daterangepicker]').daterangepicker('close');
         }
       }
     });
     $('.breadcrumbs').click(function () {
-      self.closeAllDropdowns;
+      self.closeAllDropdowns();
       $('.grid-stack-item').css('z-index', '0');
     });
   },
@@ -46680,15 +46680,20 @@ var AntaresMainMenuHtml = {
                 }
             });
         }
-        enquire.register('screen and (min-width: 1024px)', {
-            //dla tablet
-            match: function match() {
-                addLinkToMainLinkMenu(true);
-            },
-            unmatch: function unmatch() {
-                addLinkToMainLinkMenu(false);
-            }
-        });
+        if ($('html').hasClass('is-mobile') || $('html').hasClass('is-tablet')) {
+            addLinkToMainLinkMenu(false);
+        } else {
+            addLinkToMainLinkMenu(true);
+        }
+        // enquire.register('screen and (min-width: 1024px)', {
+        //     //dla tablet
+        //     match: function () {
+        //         addLinkToMainLinkMenu(true)
+        //     },
+        //     unmatch: function () {
+        //         addLinkToMainLinkMenu(false)
+        //     }
+        // });
     }
 };
 
@@ -47761,7 +47766,7 @@ var AntaresMobileSelectMode = exports.AntaresMobileSelectMode = {
         //     console.log(ev.type);
         // });
         hammertime.on('press', function (ev) {
-          if ($('.tbl-c').hasClass('selected-mode--touch-active')) {
+          if ($('.tbl-c').hasClass('selected-mode--touch-active') || $('.tbl-c').hasClass('no-selected-mode')) {
             statusHammer = false;
           } else {
             var thisTR = $(ev.target);
@@ -50279,7 +50284,7 @@ exports = module.exports = __webpack_require__(39)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -50342,6 +50347,7 @@ var _bar2 = _interopRequireDefault(_bar);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+//
 //
 //
 //
