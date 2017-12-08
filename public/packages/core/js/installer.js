@@ -13,7 +13,7 @@
         $.ajax({
             url: url,
             success: function (response) {
-                if (parseInt($progress.text()) > 30) {
+                if (parseInt(response.progress) > 30) {
                     $('.stop-and-back').remove();
                 }
                 if (parseInt(response.progress) > parseInt($progress.text())) {
