@@ -22,10 +22,19 @@
                 if (response.redirect) {
                     window.location.replace(response.redirect);
                 } else {
-                    var text = response.console.replace(/\r\n/g, "\n");
+                    var text = '';
+                    if (response.console !== undefined) {
+                        var text = response.console.replace(/\r\n/g, "\n");
+
+                    } else {
+                        if ($(response).find('.login-box').length) {
+                            window.location.replace('/');
+                        }
+                    }
                     editor.getDoc().setValue(text);
                     editor.execCommand('goDocEnd');
                     setTimeout(refresh, 1000);
+
                 }
             },
             error: function () {
