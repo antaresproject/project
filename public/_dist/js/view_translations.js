@@ -2371,7 +2371,7 @@ var AntaresContextMenu = {
             $.contextMenu({
               selector: '#' + self.$instance.attr('id') + ' tbody tr',
               build: function build(trigger, e) {
-                if (self.$instance.find('.dataTables_empty').length) {
+                if ($(e.currentTarget).find('td.dataTables_empty').length) {
                   return false;
                 }
 

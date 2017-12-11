@@ -2426,7 +2426,7 @@ var AntaresContextMenu = {
             $.contextMenu({
               selector: '#' + self.$instance.attr('id') + ' tbody tr',
               build: function build(trigger, e) {
-                if (self.$instance.find('.dataTables_empty').length) {
+                if ($(e.currentTarget).find('td.dataTables_empty').length) {
                   return false;
                 }
 
@@ -2833,7 +2833,12 @@ var AntaresTableView = {
             this.oTable = $instance.DataTable($params);
         }
 
+        // if ($params.dataTables0Data === undefined) {
         this.dataTables0Data();
+        // } else {
+        //     $params.dataTables0Data();
+        // }
+
         this.dataTablesOpenRow();
         this.dataTablesGridStackClass();
         this.dataTablesSelectRows();
@@ -2859,10 +2864,6 @@ var AntaresTableView = {
             var actionsContainer = $(e.target).closest('tr').find('.mass-actions-menu'),
                 firstCMLinkHref = actionsContainer.find('a.default').length ? actionsContainer.find('a.default').attr('href') : actionsContainer.find('a:first').attr('href');
 
-            if (actionsContainer.hasClass('disable-dbclick')) {
-                return false;
-            }
-
             window.location = firstCMLinkHref;
         });
     },
@@ -2872,9 +2873,11 @@ var AntaresTableView = {
         var self = this;
 
         ready('.dataTables_empty', function (element) {
+
+            console.log('zero data detected');
             ++loadCounter;
 
-            var bTable = self.$instance,
+            var bTable = $(element).closest('table'),
                 cell = bTable.find('tbody td'),
                 zeroElement = bTable.find('.dataTables_empty');
 
@@ -2883,10 +2886,9 @@ var AntaresTableView = {
                 return;
             }
 
-            if (cell.length === 1 && zeroElement.length) {
-                bTable.closest('.tbl-c').addClass('tbl-c--zd tbl-c--zd-empty');
-            }
+            bTable.closest('.tbl-c').addClass('tbl-c--zd tbl-c--zd-empty');
             zeroElement.html(self.$params.sEmptyTable);
+            console.log(self.$params.sEmptyTable);
             bTable.adjustCardHeight();
         });
     },
@@ -2915,7 +2917,9 @@ var AntaresTableView = {
                 if (self.$instance.closest('.tbl-c').find('.mass-actions-container').hasClass('mass-actions-disabled')) {
                     return false;
                 }
+
                 if (!self.$instance.closest('.tbl-c').hasClass('no-selected-mode')) {
+
                     self.$instance.closest('.tbl-c').find('table').selectable({
                         delay: 10,
                         distance: 10,
@@ -2936,7 +2940,7 @@ var AntaresTableView = {
                     });
                 }
             }
-            var containerTbody = $('.dataTables_wrapper tbody');
+            var containerTbody = self.$instance.closest('.tbl-c').find('.dataTables_wrapper tbody');
             var parentTblc = containerTbody.closest('.tbl-c');
 
             containerTbody.mouseup(function (e) {

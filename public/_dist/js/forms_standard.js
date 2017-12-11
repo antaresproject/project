@@ -2441,7 +2441,19 @@ var AntaresForms = {
 
             // $.fn.select2.defaults.set("theme", "AR");
 
+
             // Select2 Init - Standard
+            $('[data-select-filter]').each(function () {
+                var myData = $(this).attr('data-select2--class');
+                if (myData === undefined) {
+                    myData = '';
+                }
+                $(this).select2($.extend({}, select2Base, {
+                    theme: 'selectAR ' + myData,
+                    minimumResultsForSearch: -1
+                }));
+            });
+
             $('[data-selectAR]').each(function () {
                 if ($(this).data('select2')) {
                     return false;

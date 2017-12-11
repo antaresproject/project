@@ -113,7 +113,6 @@ ready('.datatable-disable-selected-filter', function (element) {
             table = element.parents('.tbl-c').find('[data-table-init]'),
             container = element.closest('.ddown--filter-edit');
         var url = $(this).data('url') !== undefined && $(this).data('url').length > 0 ? $(this).data('url') : $('input.datatables-filter-destroy').val();
-
         $.ajax({
             url: url,
             data: {
@@ -123,7 +122,7 @@ ready('.datatable-disable-selected-filter', function (element) {
                     value: handler.attr('value')
                 }
             },
-            type: 'GET',
+            type: 'POST',
             success: function success(response) {
                 var logs = handler.closest('.card--logs');
                 container.remove();
