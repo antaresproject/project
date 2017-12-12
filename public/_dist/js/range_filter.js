@@ -123,7 +123,7 @@ ready('.datatable-disable-selected-filter', function (element) {
                     value: handler.attr('value')
                 }
             },
-            type: 'GET',
+            type: 'POST',
             success: function success(response) {
                 var logs = handler.closest('.card--logs');
                 container.remove();

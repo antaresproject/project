@@ -26,7 +26,12 @@
                         {% if not brand_composition('short_top_menu') %}
                             <div class="item-grp item-grp--40 mainhead-control-btns">        
                                 <div class="client-area">
-                                    {% block sidebar_top_widgets %}                                
+                                    {% block sidebar_top_widgets %}       
+                                        <div class="item-grp-single is-hidden mainhead-btn--widget-edit"  data-tooltip-inline="{{ trans('Widget Edit Toggle') }}">
+                                            <div class="mdl-js-button mdl-js-ripple-effect widget-edit" id="widgets-edit">
+                                                <i class="icon--widgets-edit"></i>
+                                            </div>
+                                        </div>
                                     {% endblock %}                        
                                     {% include 'antares/foundation::layouts.antares.partials._sidebar_top' %}
                                 </div>

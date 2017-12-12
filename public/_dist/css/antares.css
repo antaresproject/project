@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/*! Antares_Front-End - v0.9.2 - 2017-12-07 */
+/*! Antares_Front-End - v0.9.2 - 2017-12-11 */
 .truncate-flex{
   -o-text-overflow:ellipsis;
   -webkit-box-flex:1;
@@ -2011,6 +2011,9 @@ select + .select2{
 .is-firefox #app-wrapper .app-content .grid-stack-item .grid-stack-item-content,.is-firefox .main-menu-html nav ul.main-menu{
   overflow:visible;
 }
+.is-firefox .form-block .input-field.input-field--icon .input-field__icon{
+  top:0;
+}
 .is-firefox .app-content.page-login .login-box .login-box__header img{
   width:250px;
 }
@@ -2070,9 +2073,6 @@ select + .select2{
 }
 .is-ie11 .page-login .form-block:first-of-type,.is-ie11 .form-block{
   min-height:80px;
-}
-.is-ie11 .form-block:last-of-type{
-  margin-top:64px;
 }
 .is-ie11 .grid-container.grid-container--1col .grid-col--container{
   -webkit-box-flex:1;
@@ -2188,8 +2188,13 @@ select + .select2{
   margin-top:2px;
 }
 .is-ie11 .app-content .main-head{
-  margin-bottom:24px;
-  padding-top:16px;
+  padding-top:0;
+}
+.is-ie11 #app-wrapper .page-clients-details .card .card__header > .card__header-right{
+  -webkit-box-flex:1;
+  -webkit-flex:1;
+      -ms-flex:1;
+          flex:1;
 }
 .is-ie11 .ddown .ddown__menu > li.has-submenu::after{
   top:40%;
@@ -10105,9 +10110,6 @@ body .mdl-dialog:before{
 .card.card--chart-small .card__content{
   height:100%;
 }
-.card.card--contacts .card__content{
-  max-height:100% !important;
-}
 .clients-details-gridstack .card .mdl-tabs__tab-bar{
   border-bottom:1px solid #dfe3e6;
 }
@@ -12074,7 +12076,7 @@ span.ellipse.clickable{
 .form-block .col-group.error .input-field input:not(.switch-checkbox)::placeholder{
   color:#f44336;
 }
-.page-settings .form-block .radio-btns [data-type="radio-btn"] input[type="radio"]{
+.form-block .radio-btns [data-type="radio-btn"] input[type="radio"]{
   display:none;
 }
 .page-settings .form-block .input-field--desc{
@@ -12519,9 +12521,6 @@ fieldset[name="Alert"] .btn{
     width:100%;
   }
 }
-#app-wrapper .main-content .card--logs .card-ctrls.tab-search--standard{
-  margin-top:22px;
-}
 @media only screen and (max-width: 767px){
   #app-wrapper .main-content .card--logs .card-ctrls.tab-search--standard{
     margin:8px 0;
@@ -12754,14 +12753,6 @@ fieldset[name="Alert"] .btn{
 }
 .page-notification-templates .page-notification-templates__name .page-notification-templates__switch .switch{
   position:absolute;
-  width:50px !important;
-}
-.page-notification-templates .page-notification-templates__name .page-notification-templates__switch .switch .switch-checkbox:checked + .switch-container:after{
-  content:"Yes";
-}
-.page-notification-templates .page-notification-templates__name .page-notification-templates__switch .switch .switch-checkbox + .switch-container:after{
-  right:8px;
-  content:"No";
 }
 .page-notification-templates .page-notification-templates__content{
   -webkit-box-pack:justify;
@@ -13348,6 +13339,21 @@ fieldset[name="Alert"] .btn{
 @media only screen and (max-width: 767px){
   .card--chart .mobile-toogle--box{
     display:block !important;
+  }
+}
+@media only screen and (min-width: 1024px){
+  .card:not(.card--contacts, .card--info) .mobile-toogle--box{
+    display:none !important;
+  }
+}
+@media only screen and (min-width: 768px){
+  .card-container .card.card--detail-info .mobile-toogle--box{
+    display:none !important;
+  }
+}
+@media only screen and (min-width: 1200px){
+  .card-container .card.card--contacts .mobile-toogle--box{
+    display:none !important;
   }
 }
 @media only screen and (max-width: 1366px){
@@ -18894,6 +18900,27 @@ aside.main-sidebar ul.main-menu.main-menu--brand li:nth-child(1).submenu-open > 
   color:#5c6066;
   font-size:19px;
 }
+.sidebar .sidebar__header .sidebar__header-right a{
+  -webkit-box-align:center;
+  -webkit-align-items:center;
+      -ms-flex-align:center;
+  -webkit-box-pack:center;
+  -webkit-justify-content:center;
+      -ms-flex-pack:center;
+  display:-webkit-box;
+  display:-webkit-flex;
+  display:-ms-flexbox;
+  display:flex;
+          align-items:center;
+          justify-content:center;
+  width:40px;
+  height:40px;
+  margin-right:-20px;
+  cursor:pointer;
+}
+.sidebar .sidebar__header .sidebar__header-right a span{
+  border-radius:50%;
+}
 .sidebar .sidebar__content{
   -webkit-box-flex:1;
   -webkit-flex:1;
@@ -21633,6 +21660,7 @@ nav.submenu-is-active .menu-scroll{
 }
 .card.card--chart .card__right .datarow{
   width:100%;
+  margin-bottom:0 !important;
   padding-right:16px;
   padding-left:16px;
   overflow-x:hidden;
@@ -29513,8 +29541,10 @@ trix-toolbar .trix-button-group--extras{
   display:block !important;
   z-index:30;
 }
-.antares-dropjs-filter--out{
-  width:100%;
+@media only screen and (max-width: 767px){
+  .antares-dropjs-filter--out{
+    width:100%;
+  }
 }
 .antares-dropjs-filter--out .filter-content{
   -webkit-box-shadow:0 5px 20px rgba(0, 0, 0, 0.2);
@@ -31086,14 +31116,6 @@ div[data-dropjs--target] div[data-dropjs--wrapper]{
 }
 .page-notification-templates .page-notification-templates__name .page-notification-templates__switch .switch{
   position:absolute;
-  width:50px !important;
-}
-.page-notification-templates .page-notification-templates__name .page-notification-templates__switch .switch .switch-checkbox:checked + .switch-container:after{
-  content:"Yes";
-}
-.page-notification-templates .page-notification-templates__name .page-notification-templates__switch .switch .switch-checkbox + .switch-container:after{
-  right:8px;
-  content:"No";
 }
 .page-notification-templates .page-notification-templates__content{
   -webkit-box-pack:justify;
@@ -33121,6 +33143,17 @@ a.disabled{
 }
 #app-wrapper .tbl-c--zd .zd .zd__header i{
   color:#02a8f3;
+}
+#app-wrapper .tbl-c--zd .zd.zd--xs .zd__header i{
+  font-size:35px;
+}
+#app-wrapper .tbl-c--zd .zd.zd--md .zd__header i{
+  font-size:45px;
+}
+#app-wrapper .tbl-c--zd .zd.zd--default .zd__header i{
+  font-size:65px;
+}
+#app-wrapper .tbl-c--zd .zd.zd--lg .zd__header i{
   font-size:130px;
 }
 #app-wrapper .tbl-c--zd tbody tr{
@@ -37783,11 +37816,9 @@ table.dataTable{
   color:#5c6066;
   font-size:13px;
 }
-.tbl-c table tr td:last-child,
 .tbl-c table tr td.dt-actions{
   text-align:right;
 }
-.tbl-c table tr td:last-child i,
 .tbl-c table tr td.dt-actions i{
   padding-right:8px;
   padding-left:8px;
@@ -37796,7 +37827,6 @@ table.dataTable{
   cursor:pointer;
 }
 @media only screen and (max-width: 767px){
-  .tbl-c table tr td:last-child i,
   .tbl-c table tr td.dt-actions i{
     padding-right:8px;
   }

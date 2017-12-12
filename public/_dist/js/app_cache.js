@@ -22290,6 +22290,7 @@ _antares_mechanics.Antares.prototype.dialog = {
     close: function close() {
         $('.ar-dialog').removeClass('is-current');
         $('.ar-dialog').removeAttr('open');
+        $('.dialog-backdrop').remove();
     },
 
 
@@ -22682,35 +22683,6 @@ Antares.prototype.init = function () {
     self.components.autoComplete();
     // self.components.inlineAlerts();
   })();
-
-  $(window).on('load', function () {
-    // APP.components.pagePreloader('off');
-  });
-
-  // (function secondary() {
-  //     if ($("body[data-id='dashboard'").length) {
-  //         self.components.breadcrumbs('Dashboard');
-  //         $('.breadcrumbs li:not(:first-child').remove();
-  //     }
-  //     if ($("body[data-id='clients-list'").length) {
-  //         self.components.breadcrumbs('Clients');
-  //         $('.breadcrumbs li:not(:first-child').remove();
-  //     }
-  //     if ($("body[data-id='settings-page'").length) {
-  //         self.components.breadcrumbs('Settings', 'General Settings');
-  //     }
-  //     if ($("body[data-id='settings-page'").length) {
-  //         self.components.breadcrumbs('Settings', 'General Settings');
-  //     }
-  // }());
-  //tmp - wip:
-  // self.components.tabScroll();
-  //unused
-  // self.animations.animator();
-  // self.animations.animate();
-  // self.dashboard.gridShowCase();
-  // self.dashboard.cardReadability();
-  // self.charts.labelBackground();
 };
 Antares.prototype.helpers = function () {
   var self = this;
@@ -22726,20 +22698,6 @@ Antares.prototype.helpers = function () {
   });
 
   antaresEvents.emit('something_happend', function () {});
-
-  // $('.main-menu--primary > li:nth-child(3)').addClass('hovered submenu-open');
-  //input file manual
-  // $('.file-upload').each(function(index, el) {
-
-  //     $(this).find('input.input-upload').on('change', function() {
-
-  //         var curVal = $(this).val();
-
-  //         $(this).siblings('.file-path').val(curVal);
-
-  //     });
-
-  // });
 
   (function ($) {
     $.fn.hasScrollBar = function () {
@@ -22763,20 +22721,8 @@ Antares.prototype.helpers = function () {
     });
   }
 
-  //tmp add expanded sidebar
-  // $('#app-wrapper').addClass('main-sidebar--expanded');
   radioButtonsBigBg();
-  //     $('.card >* ').css('opacity', '0');
-  //     $('.card >* ').css('transition', '500ms');
-  // window.addEventListener("load", function(event) {
-  //     setTimeout(function() {
-  //         $('.card > * ').css('opacity', '1');
-  //     }, 500);
-  //   });
-  // if ($('.grid-container--1col').length) {
-  //     $('.app-content .main-content').css('height', '100%');
-  // }
-  //simulate widnowResizeEnd
+
   $(window).on('resize', function () {
     if (this.resizeTO) clearTimeout(this.resizeTO);
     this.resizeTO = setTimeout(function () {
@@ -22856,7 +22802,7 @@ Antares.prototype.helpers = function () {
 
   ready('.select2-dropdown .select2-results__options', function (element) {
     $(element).attr('data-scrollable', 'true');
-    APP.components.scroll();
+    // APP.components.scroll();
   });
   // fix quick
   // ready('.dataTables_wrapper', function(element) {
@@ -22871,7 +22817,7 @@ Antares.prototype.components = {
   autoComplete: function autoComplete() {},
   mutationService: function mutationService() {
     ready('[data-scrollable]', function (element) {
-      APP.components.scroll();
+      // APP.components.scroll();
     });
   },
   preloader: function preloader() {
@@ -23001,12 +22947,10 @@ Antares.prototype.components = {
         wheelPropagation: true,
         suppressScrollX: true
       };
-      if (!$(selector).hasClass('ps')) {
-        if (relative) {
-          $(selector).perfectScrollbar(perfectScrollbarCFG).css('position', 'relative');
-        } else {
-          $(selector).perfectScrollbar(perfectScrollbarCFG);
-        }
+      if (relative) {
+        $(selector).perfectScrollbar(perfectScrollbarCFG).css('position', 'relative');
+      } else {
+        $(selector).perfectScrollbar(perfectScrollbarCFG);
       }
     }
     enquire.register('screen and (min-width:768px)', {
@@ -23031,6 +22975,8 @@ Antares.prototype.components = {
         //custom selector for scrolling
         addScroll('[data-scrollable]', true);
         addScroll('[data-scrollable--alt]', false);
+        addScroll('.select2-dropdown .select2-results__options', false);
+
         $(window).resize(_.debounce(function () {
           $('.app-content').perfectScrollbar('update');
         }));
