@@ -1,15 +1,18 @@
+Header always set Access-Control-Allow-Origin "http://demo.antaresproject.io"
+Header always set Access-Control-Allow-Methods "POST, GET, OPTIONS, DELETE, PUT"
+Header always set Access-Control-Max-Age "1000"
+Header always set Access-Control-Expose-Headers "X-Mashery-Error-Code, X-Mashery-Responder"
+Header always set Access-Control-Allow-Headers "x-requested-with, Content-Type, origin, authorization, accept, client-security-token"
 
-Header always set Access-Control-Allow-Origin "http://demo.antaresproject.io"                   
-#Header always set Access-Control-Allow-Methods "PUT, GET, POST, DELETE, OPTIONS"
-#Header set Access-Control-Allow-Headers "authorization,Authorization ,origin, x-requested-with, content-type"
+#RewriteEngine On
 
-Header always set Access-Control-Allow-Methods "POST, GET, PUT, OPTIONS, PATCH, DELETE" 
-#Header always set Access-Control-Allow-Origin "%{ORIGIN}e"
-Header always set Access-Control-Allow-Credentials "true"
-Header always set Access-Control-Allow-Headers "Authorization,X-Accept-Charset,X-Accept,Content-Type"
+
 
 <IfModule mod_rewrite.c>
 	RewriteEngine On
+        RewriteCond %{REQUEST_METHOD} OPTIONS
+        RewriteRule ^(.*)$ $1 [R=200,L]
+
 #        RewriteCond %{REQUEST_METHOD} OPTIONS 
 #        RewriteRule ^(.*)$ $1 [R=200,L] 
         RewriteCond %{REQUEST_METHOD} OPTIONS
