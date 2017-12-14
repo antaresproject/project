@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Antares\Extension\Traits\DomainAwareTrait;
 use Illuminate\Support\ServiceProvider;
+use App\Console\Commands\Reset;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -17,6 +18,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+
         //
     }
 
@@ -31,7 +33,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        
+        $this->commands([Reset::class]);
     }
 
 }
