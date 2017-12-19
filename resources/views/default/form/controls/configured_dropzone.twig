@@ -1,0 +1,20 @@
+<div id="{{ control.getName() }}" {{ control.getAttributes()|stringify }} data-options="{{ options|json_encode }}">
+    <div class="dz-message" data-dz-message>
+        <div class="dz-m__current" >
+            {% if current_image_path %}
+                <img height="80" src="{{ current_image_path }}" />
+            {% endif %}
+        </div>
+
+        <div class="dz-m__header">
+            <i class="zmdi zmdi-wallpaper"></i>
+        </div>
+
+        <div class="dz-m__content">
+            <span>Drag &amp; drop,</span>
+            <span>or click to upload</span>
+        </div>
+    </div>
+
+    <input type="hidden" name="{{ control.getName() }}" value="{{ control.getValue() }}" />
+</div>
