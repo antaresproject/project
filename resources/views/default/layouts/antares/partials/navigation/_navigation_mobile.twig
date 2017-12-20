@@ -1,39 +1,43 @@
-<div class="mobile-ddowns__sgl ddown--logged">
-    <div class="mobile-ddowns__desc">
-        <div class="mobile-ddowns__label">Logged as:</div>
-        <div class="mobile-ddowns__text">{{ auth_user().fullname }}</div>
-    </div>
-    <div class="mobile-ddowns__icon">
-        <i class="zmdi zmdi-caret-down"></i>
-    </div>
-    <ul class="mobile-ddowns__menu mobile-ddowns__menu--user">
+{% if auth_user() %}
+    <div class="mobile-ddowns__sgl ddown--logged">
 
-        <li class="mobile-ddowns__menu-header">
-            <a href="{{ handles('antares/foundation::account') }}">
-                <div class="flex-block">
-                    <div class="avatar avatar--xs">
-                        <img src="{{ profile_picture(auth_user().email,60,60) }}" alt="Avatar" />
+        <div class="mobile-ddowns__desc">
+            <div class="mobile-ddowns__label">Logged as:</div>
+            <div class="mobile-ddowns__text">{{ auth_user().fullname }}</div>
+        </div>
+
+        <div class="mobile-ddowns__icon">
+            <i class="zmdi zmdi-caret-down"></i>
+        </div>
+        <ul class="mobile-ddowns__menu mobile-ddowns__menu--user">
+
+            <li class="mobile-ddowns__menu-header">
+                <a href="{{ handles('antares/foundation::account') }}">
+                    <div class="flex-block">
+                        <div class="avatar avatar--xs">
+                            <img src="{{ profile_picture(auth_user().email,60,60) }}" alt="Avatar" />
+                        </div>
+                        <div class="flex-block__content">
+                            <span class="flex-block__title">{{ auth_user().email }}</span>
+                            <span class="flex-block__desc">{{ auth_user().fullname }}</span>
+                        </div>
+                        <div class="flex-block__badge"><i class="zmdi zmdi-check"></i></div>
                     </div>
-                    <div class="flex-block__content">
-                        <span class="flex-block__title">{{ auth_user().email }}</span>
-                        <span class="flex-block__desc">{{ auth_user().fullname }}</span>
-                    </div>
-                    <div class="flex-block__badge"><i class="zmdi zmdi-check"></i></div>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="{{ handles('antares/foundation::account') }}">
-                <span>My Account</span>
-            </a>
-        </li>
-        <li>
-            <a href="{{ handles('antares/foundation::logout') }}">
-                <span>Sign Out</span>
-            </a>
-        </li>
-    </ul>
-</div>    
+                </a>
+            </li>
+            <li>
+                <a href="{{ handles('antares/foundation::account') }}">
+                    <span>My Account</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ handles('antares/foundation::logout') }}">
+                    <span>Sign Out</span>
+                </a>
+            </li>
+        </ul>
+    </div>    
+{% endif %}
 {% if can('antares/brands::add-brand') %}   
 
 

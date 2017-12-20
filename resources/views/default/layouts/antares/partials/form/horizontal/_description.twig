@@ -1,8 +1,8 @@
 <div class="col-group ">
-    <div class="col-mb-8 col-6 col-dt-4 col-ld-3 {{ control.getLabelWrapper('class') }}">
+    <div class="{{ control.getLabelWrapper('class')|default('col-mb-8 col-6 col-dt-4 col-ld-3') }}">
         <label class="form-block__name">&nbsp;</label>
     </div>
-    <div class="col-mb-16 col-16 col-dt-16 col-ld-16">
+    <div class="{{ control.getWrapper('class')|default('col-mb-16 col-18 col-dt-10 col-ld-4') }}">
         {% if control.inlineHelp|length>1 %}
             <div class="input-field__desc">
                 {{ control.inlineHelp|raw }}
