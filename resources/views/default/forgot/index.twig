@@ -6,7 +6,6 @@
             <div class="login-box">
                 {{ set_meta('header::class', 'main-header') }}
                 {% set formbuilder=app('form') %}   
-                {% set request=app('request') %}   
                 {{ formbuilder.open({'url':handles('antares::forgot'), 'method':'POST'})|raw }}
                 <fieldset name="MDLForms">
                     <div class="form-block">
