@@ -13,7 +13,7 @@ engines:
   phpmd:
     enabled: true
     config:
-      rulesets: "codesize,design,unusedcode,resources/codeclimate/phpmd_ruleset.xml"
+      rulesets: "codesize,design,unusedcode"
 ratings:
   paths:
   - "**.php"
